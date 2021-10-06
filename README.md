@@ -1,4 +1,4 @@
- ## *Note. This repository is depricated in favour of Polus.gg, and is now read-only as it will not be recieving updates. Please visit our [steam page](https://store.steampowered.com/app/1653240/Polusgg/) and our [discord](https://discord.gg/polus) for all updates**
+ ### Note. The official Town of Us mod was deprecated in favour of Polus.gg. Information on Polus.gg is available at their [steam page](https://store.steampowered.com/app/1653240/Polusgg/) and their [discord](https://discord.gg/polus).
 
 
 [![Discord](./Images/Polus.png)](https://discord.gg/polus)
@@ -522,6 +522,8 @@ However, when they only have a single task left, the Impostors get an arrow poin
 |----------|:-------------:|:------:|:------:|
 | Snitch | The percentage probability of the Snitch appearing | Percentage | 0% |
 | Snitch knows who they are on Game Start | Whether the Snitch knows their role at the start of a game | Toggle | False |
+| Snitch sees neutral roles | Whether the Snitch sees neutral roles or just Impostors | Toggle | False |
+| Snitch sees in meetings | Whether the Snitch sees Impostors colored red in meetings | Toggle | True |
 
 -----------------------
 ## Altruist

@@ -143,6 +143,7 @@ namespace TownOfUs.CustomOption
         public static CustomHeaderOption Snitch;
         public static CustomToggleOption SnitchOnLaunch;
         public static CustomToggleOption SnitchSeesNeutrals;
+        public static CustomToggleOption SnitchSeesInMeetings;
 
         public static CustomHeaderOption Altruist;
         public static CustomNumberOption ReviveDuration;
@@ -381,6 +382,7 @@ namespace TownOfUs.CustomOption
             SnitchOnLaunch =
                 new CustomToggleOption(num++, "Snitch knows who they are on Game Start", false);
             SnitchSeesNeutrals = new CustomToggleOption(num++, "Snitch sees neutral roles", false);
+            SnitchSeesInMeetings = new CustomToggleOption(num++, "Snitch sees in meetings");
 
             Altruist = new CustomHeaderOption(num++, "<color=#660000FF>Altruist</color>");
             ReviveDuration =
