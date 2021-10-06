@@ -96,6 +96,7 @@ namespace TownOfUs
         public static OnTargetDead OnTargetDead => (OnTargetDead) Generate.OnTargetDead.Get();
         public static bool SnitchOnLaunch => Generate.SnitchOnLaunch.Get();
         public static bool SnitchSeesNeutrals => Generate.SnitchSeesNeutrals.Get();
+        public static bool SnitchSeesInMeetings => Generate.SnitchSeesInMeetings.Get();
         public static float MineCd => Generate.MineCooldown.Get();
         public static float SwoopCd => Generate.SwoopCooldown.Get();
         public static float SwoopDuration => Generate.SwoopDuration.Get();
