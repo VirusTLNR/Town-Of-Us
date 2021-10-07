@@ -19,10 +19,11 @@ using UnityEngine.SceneManagement;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Us", "2.2.1")]
+    [BepInPlugin(Id, "Town Of Us", Version)]
     [BepInDependency(ReactorPlugin.Id)]
     public class TownOfUs : BasePlugin
     {
+        public const String Version = "2.2.2-a";
         public const string Id = "com.slushiegoose.townofus";
         
         public static Sprite JanitorClean;

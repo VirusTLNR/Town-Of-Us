@@ -79,95 +79,161 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 <details>
   <summary> Changelog </summary>
-  <details>
+<ul>
+
+ <li>
+ <details>
+  <summary> v2.2.2 </summary>
+  <ul>
+   <li> Snitch seeing the Impostors in meetings can be disabled. </li>
+   <li> Loving Impostor can be disabled. </li>
+   <li> Description of Swapper updated to note they cannot call an emergency meeting. </li>
+   <li> Description of Button Barry updated to note that using it affects your vision. </li>
+   <li> Added options for Sheriff to kill Shifter and Executioner. </li>
+ </ul>
+ </details>
+ </li>
+
+ <li>
+ <details>
   <summary> v2.2.1 </summary>
-  <ul> <li>Fix for the credits removed in v2.0.3 </li> </ul>
+  <ul>
+  <li> Fix for the credits removed in v2.0.3 </li>
+  </ul>
   </details>
-  <details>
+ </li>
+
+ <li>
+ <details>
   <summary> v2.2.0 </summary>
-  <ul> <li> Compatibility for v2021.6.30 </li> </ul>
-  <ul> <li> Role percentages now change by 10%, or 5% if you hold shift </li> </ul>
-  <ul> <li> New Drag/Drop Buttons for the Undertaker </li> </ul>
-  <ul> <li> New Button Image for the Button Barry </li> </ul>
-  <ul> <li> Phantom can't switch between vents </li> </ul>
-  <ul> <li> Increased Max Cooldown for the Shifter to 60s </li> </ul>
-  <ul> <li> Swapper can no longer get the Button Barry Modifier </li> </ul>
-  <ul> <li> Glitch can no longer get the Button Barry Modifier </li> </ul>
-  <ul> <li> Mayor votes are refunded if the player disconnects </li> </ul>
-  <ul> <li> Mayor votes are refunded if the player is killed by the assassin </li> </ul>
-  <ul> <li> Handshake refactor </li> </ul>
-  <ul> <li> Fix for the Crashing Issues </li> </ul>
-  <ul> <li> Fix for the Interaction Shifter/Giant </li> </ul>
-  <ul> <li> Fix for the Interaction Shifter/Engineer </li> </ul>    
-  <ul> <li> Fix for the Interaction Glitch/Jester </li> </ul>
-  <ul> <li> Fix for the Interaction Morphling/Giant </li> </ul>
-  <ul> <li> Fix for the Altruist Body Issues </li> </ul>
-  <ul> <li> Fix for the Assassin DC Issues </li> </ul>
-  <ul> <li> Fix for the Executioner Spawn Issues </li> </ul>
-  <ul> <li> Fix for the Phantom Vent Spawn Issues </li> </ul>    
-  <ul> <li> Fix for the Phantom Walking Through Walls Issues </li> </ul>
-  <ul> <li> Fix for the Phantom Doors Issues </li> </ul>
-  <ul> <li> Fix for the Phantom Tasks Issues </li> </ul>
-  <ul> <li> Fix for the Swooper Invisible Issues </li> </ul>    
-  <ul> <li> Fix for the Time Lord Flashing Ability Issues </li> </ul>
-  <ul> <li> Fix for the Time Lord Rewind Vent Issues </li> </ul>
-  <ul> <li> Fix for the Undertaker Dragging Issues </li> </ul>    
-  <ul> <li> Fix for the Underdog Cooldown Issues </li> </ul>
-  <ul> <li> Fix for the Giant Modifier Size Issues </li> </ul>
-  <ul> <li> Fix for the State Of Dead/DC Bodies In Meeting Issues </li> </ul>   
-  <ul> <li> Fix for the Voting Visual Issues </li> </ul>      
-  <ul> <li> Minor enhancements and bug fixes </li> </ul>
+  <ul>
+  <li> Compatibility for v2021.6.30 </li>
+  <li> Role percentages now change by 10%, or 5% if you hold shift </li>
+  <li> New Drag/Drop Buttons for the Undertaker </li>
+  <li> New Button Image for the Button Barry </li>
+  <li> Phantom can't switch between vents </li>
+  <li> Increased Max Cooldown for the Shifter to 60s </li>
+  <li> Swapper can no longer get the Button Barry Modifier </li>
+  <li> Glitch can no longer get the Button Barry Modifier </li>
+  <li> Mayor votes are refunded if the player disconnects </li>
+  <li> Mayor votes are refunded if the player is killed by the assassin </li>
+  <li> Handshake refactor </li>
+  <li> Fix for the Crashing Issues </li>
+  <li> Fix for the Interaction Shifter/Giant </li>
+  <li> Fix for the Interaction Shifter/Engineer </li>    
+  <li> Fix for the Interaction Glitch/Jester </li>
+  <li> Fix for the Interaction Morphling/Giant </li>
+  <li> Fix for the Altruist Body Issues </li>
+  <li> Fix for the Assassin DC Issues </li>
+  <li> Fix for the Executioner Spawn Issues </li>
+  <li> Fix for the Phantom Vent Spawn Issues </li>    
+  <li> Fix for the Phantom Walking Through Walls Issues </li>
+  <li> Fix for the Phantom Doors Issues </li>
+  <li> Fix for the Phantom Tasks Issues </li>
+  <li> Fix for the Swooper Invisible Issues </li>    
+  <li> Fix for the Time Lord Flashing Ability Issues </li>
+  <li> Fix for the Time Lord Rewind Vent Issues </li>
+  <li> Fix for the Undertaker Dragging Issues </li>    
+  <li> Fix for the Underdog Cooldown Issues </li>
+  <li> Fix for the Giant Modifier Size Issues </li>
+  <li> Fix for the State Of Dead/DC Bodies In Meeting Issues </li>   
+  <li> Fix for the Voting Visual Issues </li>      
+  <li> Minor enhancements and bug fixes </li>
+  </ul>
  </details>
-  <details>
+ </li>
+
+ <li>
+ <details>
   <summary> v2.1.4 </summary>
-  <ul> <li> New Role (Phantom, Undertaker, Underdog) </li> </ul>
-  <ul> <li> Custom Color </li> </ul>
-  <ul> <li> Hats </li> </ul>
-  <ul> <li> Fix for launching issues </li> </ul>
-  <ul> <li> Fix for the Voting issues </li> </ul>
-  <ul> <li> Fix for the disconnect issue</li> </ul>
-  <ul> <li> Fix for the username placement </li> </ul>
-  <ul> <li> Fix for the Medic  </li> </ul>
-  <ul> <li> Fix for the Spy </li> </ul>
-  <ul> <li> Fix for the Mayor </li> </ul>
-  <ul> <li> Fix for the Arsonist </li> </ul>
-  <ul> <li> Fix for the Assassin </li> </ul>
-  <ul> <li> Fix for the Phantom </li> </ul>
-  <ul> <li> Modded Handshake </li> </ul>
-  <ul> <li> Child is removed </li> </ul>
-  <ul> <li> Minor enhancements and bug fixes </li> </ul>
+  <ul>
+  <li> New Role (Phantom, Undertaker, Underdog) </li>
+  <li> Custom Color </li>
+  <li> Hats </li>
+  <li> Fix for launching issues </li>
+  <li> Fix for the Voting issues </li>
+  <li> Fix for the disconnect issue</li>
+  <li> Fix for the username placement </li>
+  <li> Fix for the Medic  </li>
+  <li> Fix for the Spy </li>
+  <li> Fix for the Mayor </li>
+  <li> Fix for the Arsonist </li>
+  <li> Fix for the Assassin </li>
+  <li> Fix for the Phantom </li>
+  <li> Modded Handshake </li>
+  <li> Child is removed </li>
+  <li> Minor enhancements and bug fixes </li>
+  </ul>
  </details>
+ </li>
+
+ <li>
  <details>
   <summary> v2.1.3 </summary>
-  <ul> <li> Fix the launch issue </li> </ul>
-  <ul> <li> Fix for the swooper role </li> </ul>
-  <ul> <li> Fix for the janitor role </li> </ul>
-  <ul> <li> Minor enhancements and bug fixes </li> </ul>
+  <ul>
+  <li> Fix the launch issue </li>
+  <li> Fix for the swooper role </li>
+  <li> Fix for the janitor role </li>
+  <li> Minor enhancements and bug fixes </li>
+  </ul>
  </details>
+ </li>
+
+ <li>
  <details>
   <summary> v2.1.2 </summary>
-  <ul> <li> Crucial bug fixes </li> </ul>
+  <ul>
+  <li> Crucial bug fixes </li>
+  </ul>
  </details>
+ </li>
+
+ <li>
  <details>
   <summary> v2.1.1 </summary>
-  <ul> <li> 2021.6.15 support, Epic Games compatibility and Assassin Role </li> </ul>
+  <ul>
+  <li> 2021.6.15 support, Epic Games compatibility and Assassin Role </li>
+  </ul>
  </details>
-  <details>
+ </li>
+
+ <li>
+ <details>
   <summary> v2.0.4 </summary>
-  <ul> <li> Crucial bug fixes </li> </ul>
+  <ul>
+  <li> Crucial bug fixes </li>
+  </ul>
  </details>
+ </li>
+
+ <li>
  <details>
   <summary> v2.0.3 </summary>
-  <ul> <li> 2021.5.10s support </li> </ul>
+  <ul>
+  <li> 2021.5.10s support </li>
+  </ul>
  </details>
+ </li>
+
+ <li>
  <details>
   <summary> v2.0.2 </summary>
-  <ul> <li> 2021.4.14s support and temporary auth fixes </li> </ul>
+  <ul>
+  <li> 2021.4.14s support and temporary auth fixes </li>
+  </ul>
  </details>
+ </li>
+
+ <li>
  <details>
   <summary> v2.0.1 </summary>
-  <ul> <li> 2021.4.12s support </li> </ul>
+  <ul>
+  <li> 2021.4.12s support </li>
+  </ul>
  </details>
+ </li>
+
+ <li>
  <details>
   <summary> v2.0.0 </summary>
   <ul>
@@ -180,11 +246,13 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
    <li> Investigator cannot spawn on airship due to too much lag with handling footprints </li>
   </ul>
  </details>
+ </li>
   
+ <li>
  <details>
   <summary> v1.2.0 </summary>
   <ul>
-    <li> New roles (see above)</a>
+    <li> New roles (see above)</li>
     <li> New modifiers (see above)</li>
     <li> Exporting and Importing game settings which sync between versions 1.2.0 and future versions</li>
     <li> Disconnect fix </li>
@@ -193,10 +261,13 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
     <li> Custom colours now work! </li>
   </ul>
  </details>
+ </li>
+
+ <li>
  <details>
   <summary> v1.1.0 </summary>
   <ul>
-    <li> New roles (see above)</a>
+    <li> New roles (see above)</li>
     <li> New modifiers (see above)</li>
     <li> The Engineer has been changed to the <a href="https://github.com/NotHunter101/ExtraRolesAmongUs">ExtraRoles</a> version </li>
     <li> Backend overhaul! This will make it easier to add new roles </li>
@@ -213,9 +284,11 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
     </ul>
   </ul>
   </details>
+ </li>
 
 
-  <details>
+ <li>
+ <details>
   <summary> v1.0.3 </summary>
   <p> Fixes: </p>
   <ul>
@@ -227,27 +300,34 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
     <li> Graphical Bug of Time Lord's name not being blue in Meetings </li>
     <li> Fixed Medbay Scan not working for custom colours </li>
   </ul>
-  </details>
+ </details>
+ </li>
 
-  <details>
+  <li>
+ <details>
   <summary> v1.0.2 </summary>
   <p> Fixes: </p>
   <ul>
-    <li>  The Swapper being unable to vote </li>
-    Swapper unable to vote
+    <li> The Swapper being unable to vote </li>
     <li> Mayor Vote Bank ending up negative </li>
     <li> Anonymous Voting not working when Mayor is in a game </li>
     <li> Chats not working in the lobby </li>
     <li> Sheriff desync (I think) </li>
     <li> Buttons being able to be used during meetings </li>
   </ul>
-  <hr>
   </details>
+ </li>
 
-  <details>
+  <li>
+ <details>
   <summary> v1.0.1 </summary>
-  <p> Fixes errors of not being able to launch. </p>
+  <ul>
+  <li> Fixes errors of not being able to launch. </li>
+  </ul>
   </details>
+ </li>
+
+</ul>
 </details>
 
 
