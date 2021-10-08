@@ -34,10 +34,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
             role.LastInvestigated = DateTime.UtcNow;
-            if (successfulSee)
-            {
-                role.Investigated.Add(role.ClosestPlayer.PlayerId);
-            }
+            role.Investigated.Add(role.ClosestPlayer.PlayerId, successfulSee);
 
             return false;
         }

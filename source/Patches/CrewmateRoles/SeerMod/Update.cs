@@ -26,7 +26,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             foreach (var role in Role.GetRoles(RoleEnum.Seer))
             {
                 var seerRole = (Seer) role;
-                if (!seerRole.Investigated.Contains(PlayerControl.LocalPlayer.PlayerId)) continue;
+                if (!seerRole.Investigated.ContainsKey(PlayerControl.LocalPlayer.PlayerId)) continue;
                 if (!seerRole.CheckSeeReveal(PlayerControl.LocalPlayer)) continue;
                 var state = __instance.playerStates.FirstOrDefault(x => x.TargetPlayerId == seerRole.Player.PlayerId);
                 state.NameText.color = seerRole.Color;
@@ -38,7 +38,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
         {
             foreach (var player in PlayerControl.AllPlayerControls)
             {
-                if (!seer.Investigated.Contains(player.PlayerId)) continue;
+                if (!seer.Investigated.TryGetValue(player.PlayerId, out var successfulInvestigation) || !successfulInvestigation) continue;
                 foreach (var state in __instance.playerStates)
                 {
                     if (player.PlayerId != state.TargetPlayerId) continue;
@@ -81,7 +81,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             foreach (var role in Role.GetRoles(RoleEnum.Seer))
             {
                 var seerRole = (Seer) role;
-                if (!seerRole.Investigated.Contains(PlayerControl.LocalPlayer.PlayerId)) continue;
+                if (!seerRole.Investigated.ContainsKey(PlayerControl.LocalPlayer.PlayerId)) continue;
                 if (!seerRole.CheckSeeReveal(PlayerControl.LocalPlayer)) continue;
 
                 seerRole.Player.nameText.color = seerRole.Color;
@@ -96,7 +96,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
 
             foreach (var player in PlayerControl.AllPlayerControls)
             {
-                if (!seer.Investigated.Contains(player.PlayerId)) continue;
+                if (!seer.Investigated.TryGetValue(player.PlayerId, out var successfulInvestigation) || !successfulInvestigation) continue;
                 var roleType = Utils.GetRole(player);
                 player.nameText.transform.localPosition = new Vector3(0f, 2f, -0.5f);
                 switch (roleType)
