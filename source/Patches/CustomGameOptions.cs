@@ -79,6 +79,9 @@ namespace TownOfUs
         public static float SeerCd => Generate.SeerCooldown.Get();
         public static SeerInfo SeerInfo => (SeerInfo) Generate.SeerInfo.Get();
         public static SeeReveal SeeReveal => (SeeReveal) Generate.SeeReveal.Get();
+        public static float SeerCrewmateChance = Generate.SeerCrewmateChance.Get();
+        public static float SeerNeutralChance = Generate.SeerNeutralChance.Get();
+        public static float SeerImpostorChance = Generate.SeerImpostorChance.Get();
         public static bool NeutralRed => Generate.NeutralRed.Get();
         public static float MimicCooldown => Generate.MimicCooldownOption.Get();
         public static float MimicDuration => Generate.MimicDurationOption.Get();

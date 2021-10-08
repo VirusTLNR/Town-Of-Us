@@ -1,10 +1,13 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TownOfUs.CustomOption
 {
+    [SuppressMessage("ReSharper", "NotAccessedField.Local")]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class Generate
     {
-        public static CustomHeaderOption CrewmateRoles;
+        private static CustomHeaderOption CrewmateRoles;
         public static CustomNumberOption MayorOn;
         public static CustomNumberOption LoversOn;
         public static CustomNumberOption SheriffOn;
@@ -17,10 +20,10 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption SpyOn;
         public static CustomNumberOption SnitchOn;
         public static CustomNumberOption AltruistOn;
-        public static CustomNumberOption ButtonBarryOn;
+        public static CustomNumberOption AugurOn;
 
 
-        public static CustomHeaderOption NeutralRoles;
+        private static CustomHeaderOption NeutralRoles;
         public static CustomNumberOption JesterOn;
         public static CustomNumberOption ShifterOn;
         public static CustomNumberOption GlitchOn;
@@ -29,7 +32,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption PhantomOn;
 
 
-        public static CustomHeaderOption ImpostorRoles;
+        private static CustomHeaderOption ImpostorRoles;
         public static CustomNumberOption JanitorOn;
         public static CustomNumberOption MorphlingOn;
         public static CustomNumberOption CamouflagerOn;
@@ -44,16 +47,17 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption SecurityGuardOn ;
             */
 
-        public static CustomHeaderOption Modifiers;
+        private static CustomHeaderOption Modifiers;
         public static CustomNumberOption TorchOn;
         public static CustomNumberOption DiseasedOn;
         public static CustomNumberOption FlashOn;
         public static CustomNumberOption TiebreakerOn;
         public static CustomNumberOption DrunkOn;
         public static CustomNumberOption BigBoiOn;
+        public static CustomNumberOption ButtonBarryOn;
 
 
-        public static CustomHeaderOption CustomGameSettings;
+        private static CustomHeaderOption CustomGameSettings;
         public static CustomToggleOption ColourblindComms;
         public static CustomToggleOption MeetingColourblind;
         public static CustomToggleOption ImpostorSeeRoles;
@@ -63,15 +67,15 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption RoleUnderName;
         public static CustomNumberOption VanillaGame;
 
-        public static CustomHeaderOption Mayor;
+        private static CustomHeaderOption Mayor;
         public static CustomNumberOption MayorVoteBank;
         public static CustomToggleOption MayorAnonymous;
 
-        public static CustomHeaderOption Lovers;
+        private static CustomHeaderOption Lovers;
         public static CustomToggleOption BothLoversDie;
         public static CustomNumberOption LovingImpostorOn;
 
-        public static CustomHeaderOption Sheriff;
+        private static CustomHeaderOption Sheriff;
         public static CustomToggleOption ShowSheriff;
         public static CustomToggleOption SheriffKillOther;
         public static CustomToggleOption SheriffKillsJester;
@@ -82,29 +86,27 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption SheriffKillCd;
         public static CustomToggleOption SheriffBodyReport;
 
-
-        public static CustomHeaderOption Shifter;
+        private static CustomHeaderOption Shifter;
         public static CustomNumberOption ShifterCd;
         public static CustomStringOption WhoShifts;
 
-
-        public static CustomHeaderOption Engineer;
+        private static CustomHeaderOption Engineer;
         public static CustomStringOption EngineerPer;
 
-        public static CustomHeaderOption Investigator;
+        private static CustomHeaderOption Investigator;
         public static CustomNumberOption FootprintSize;
         public static CustomNumberOption FootprintInterval;
         public static CustomNumberOption FootprintDuration;
         public static CustomToggleOption AnonymousFootPrint;
         public static CustomToggleOption VentFootprintVisible;
 
-        public static CustomHeaderOption TimeLord;
+        private static CustomHeaderOption TimeLord;
         public static CustomToggleOption RewindRevive;
         public static CustomNumberOption RewindDuration;
         public static CustomNumberOption RewindCooldown;
         public static CustomToggleOption TimeLordVitals;
 
-        public static CustomHeaderOption Medic;
+        private static CustomHeaderOption Medic;
         public static CustomStringOption ShowShielded;
         public static CustomToggleOption MedicReportSwitch;
         public static CustomNumberOption MedicReportNameDuration;
@@ -112,14 +114,21 @@ namespace TownOfUs.CustomOption
         public static CustomStringOption WhoGetsNotification;
         public static CustomToggleOption ShieldBreaks;
 
-        public static CustomHeaderOption Seer;
+        private static CustomHeaderOption Seer;
         public static CustomNumberOption SeerCooldown;
         public static CustomStringOption SeerInfo;
         public static CustomStringOption SeeReveal;
         public static CustomToggleOption NeutralRed;
+        public static CustomNumberOption SeerCrewmateChance;
+        public static CustomNumberOption SeerNeutralChance;
+        public static CustomNumberOption SeerImpostorChance;
+
+        private static CustomHeaderOption Altruist;
+        public static CustomNumberOption ReviveDuration;
+        public static CustomToggleOption AltruistTargetBody;
 
 
-        public static CustomHeaderOption TheGlitch;
+        private static CustomHeaderOption TheGlitch;
         public static CustomNumberOption MimicCooldownOption;
         public static CustomNumberOption MimicDurationOption;
         public static CustomNumberOption HackCooldownOption;
@@ -129,46 +138,42 @@ namespace TownOfUs.CustomOption
         public static CustomStringOption GlitchHackDistanceOption;
 
 
-        public static CustomHeaderOption Morphling;
+        private static CustomHeaderOption Morphling;
         public static CustomNumberOption MorphlingCooldown;
         public static CustomNumberOption MorphlingDuration;
 
-        public static CustomHeaderOption Camouflager;
+        private static CustomHeaderOption Camouflager;
         public static CustomNumberOption CamouflagerCooldown;
         public static CustomNumberOption CamouflagerDuration;
 
-        public static CustomHeaderOption Executioner;
+        private static CustomHeaderOption Executioner;
         public static CustomStringOption OnTargetDead;
 
-        public static CustomHeaderOption Snitch;
+        private static CustomHeaderOption Snitch;
         public static CustomToggleOption SnitchOnLaunch;
         public static CustomToggleOption SnitchSeesNeutrals;
         public static CustomToggleOption SnitchSeesInMeetings;
 
-        public static CustomHeaderOption Altruist;
-        public static CustomNumberOption ReviveDuration;
-        public static CustomToggleOption AltruistTargetBody;
-
-        public static CustomHeaderOption Miner;
+        private static CustomHeaderOption Miner;
         public static CustomNumberOption MineCooldown;
 
-        public static CustomHeaderOption Swooper;
+        private static CustomHeaderOption Swooper;
         public static CustomNumberOption SwoopCooldown;
         public static CustomNumberOption SwoopDuration;
 
-        public static CustomHeaderOption Arsonist;
+        private static CustomHeaderOption Arsonist;
         public static CustomNumberOption DouseCooldown;
         public static CustomToggleOption ArsonistGameEnd;
 
-        public static CustomHeaderOption Undertaker;
+        private static CustomHeaderOption Undertaker;
         public static CustomNumberOption DragCooldown;
 
-        public static CustomHeaderOption Assassin;
+        private static CustomHeaderOption Assassin;
         public static CustomNumberOption AssassinKills;
         public static CustomToggleOption AssassinGuessNeutrals;
         public static CustomToggleOption AssassinCrewmateGuess;
         public static CustomToggleOption AssassinMultiKill;
-        public static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
+        private static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
 
 
@@ -323,7 +328,6 @@ namespace TownOfUs.CustomOption
             Investigator =
                 new CustomHeaderOption(num++, "<color=#00B3B3FF>Investigator</color>");
             FootprintSize = new CustomNumberOption(num++, "Footprint Size", 4f, 1f, 10f, 1f);
-
             FootprintInterval =
                 new CustomNumberOption(num++, "Footprint Interval", 1f, 0.25f, 5f, 0.25f, CooldownFormat);
             FootprintDuration = new CustomNumberOption(num++, "Footprint Duration", 10f, 1f, 10f, 0.5f, CooldownFormat);
@@ -335,27 +339,21 @@ namespace TownOfUs.CustomOption
             RewindRevive = new CustomToggleOption(num++, "Revive During Rewind", false);
             RewindDuration = new CustomNumberOption(num++, "Rewind Duration", 3f, 3f, 15f, 0.5f, CooldownFormat);
             RewindCooldown = new CustomNumberOption(num++, "Rewind Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
-
             TimeLordVitals =
                 new CustomToggleOption(num++, "Time Lord can use Vitals", false);
 
             Medic =
                 new CustomHeaderOption(num++, "<color=#006600FF>Medic</color>");
-
             ShowShielded =
                 new CustomStringOption(num++, "Show Shielded Player",
                     new[] {"Self", "Medic", "Self+Medic", "Everyone"});
-
             MedicReportSwitch = new CustomToggleOption(num++, "Show Medic Reports");
-
             MedicReportNameDuration =
                 new CustomNumberOption(num++, "Time Where Medic Reports Will Have Name", 0, 0, 60, 2.5f,
                     CooldownFormat);
-
             MedicReportColorDuration =
                 new CustomNumberOption(num++, "Time Where Medic Reports Will Have Color Type", 15, 0, 120, 2.5f,
                     CooldownFormat);
-
             WhoGetsNotification =
                 new CustomStringOption(num++, "Who gets murder attempt indicator",
                     new[] {"Medic", "Shielded", "Everyone", "Nobody"});
@@ -364,21 +362,23 @@ namespace TownOfUs.CustomOption
 
             Seer =
                 new CustomHeaderOption(num++, "<color=#FFCC80FF>Seer</color>");
-
             SeerCooldown =
                 new CustomNumberOption(num++, "Seer Cooldown", 25f, 10f, 100f, 2.5f, CooldownFormat);
-
             SeerInfo =
                 new CustomStringOption(num++, "Info that Seer sees", new[] {"Role", "Team"});
-
-
             SeeReveal =
                 new CustomStringOption(num++, "Who Sees That They Are Revealed",
                     new[] {"Crew", "Imps+Neut", "All", "Nobody"});
             NeutralRed =
                 new CustomToggleOption(num++, "Neutrals show up as Impostors", false);
+            SeerCrewmateChance = new CustomNumberOption(num++,
+                "Chance to successfully reveal a Crewmate", 100f, 0f, 100f, 10f, PercentFormat);
+            SeerNeutralChance = new CustomNumberOption(num++,
+                "Chance to successfully reveal a Neutral role", 100f, 0f, 100f, 10f, PercentFormat);
+            SeerImpostorChance = new CustomNumberOption(num++,
+                "Chance to successfully reveal an Impostor", 100f, 0f, 100f, 10f, PercentFormat);
 
-            Snitch = new CustomHeaderOption(num++, "<color=#D4AF37FF>Snitch</color>");
+                Snitch = new CustomHeaderOption(num++, "<color=#D4AF37FF>Snitch</color>");
             SnitchOnLaunch =
                 new CustomToggleOption(num++, "Snitch knows who they are on Game Start", false);
             SnitchSeesNeutrals = new CustomToggleOption(num++, "Snitch sees neutral roles", false);
