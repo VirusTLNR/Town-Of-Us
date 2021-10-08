@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Reactor.Extensions;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Extensions;
@@ -180,6 +181,16 @@ namespace TownOfUs
                 impostors.Add(impData.Object);
 
             return impostors;
+        }
+
+        public static TeamEnum GetTeam(PlayerControl player)
+        {
+            var role = GetRole(player);
+            var type = role.GetType();
+            var name = Enum.GetName(type, role);
+            return type.GetField(name)
+                .GetCustomAttribute<RoleAttribute>()
+                .TeamEnum;
         }
 
         public static RoleEnum GetRole(PlayerControl player)
