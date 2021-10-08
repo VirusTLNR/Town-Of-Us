@@ -85,6 +85,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
  <details>
   <summary> v2.2.2 </summary>
   <ul>
+   <li> Seer can have a percentage chance of the sight failing. </li>
    <li> Snitch seeing the Impostors in meetings can be disabled. </li>
    <li> Loving Impostor can be disabled. </li>
    <li> Description of Swapper updated to note they cannot call an emergency meeting. </li>
@@ -567,7 +568,9 @@ A report can contain the name of the killer or the color type (Darker/Lighter)
 The Seer is a Crewmate that can reveal the roles of other players.\
 Based on settings, the Seer can find out whether a role is Good, Evil or Neutral, or they can find out the role itself.\
 A player's name will change color to their team or role.\
-If the Seer investigates someone, the Seer's name will change color to inform that player who the Seer is.
+If the Seer investigates someone, the Seer's name will change color to inform that player who the Seer is.\
+The Seer can be configured so their investigations will sometimes fail. The Seer will get no information, but it will reset their cooldown.\
+The investigated player will see they are revealed, if applicable.
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
@@ -576,6 +579,9 @@ If the Seer investigates someone, the Seer's name will change color to inform th
 | Info that Seer sees | Whether the Seer sees the Role or the Team of a player | Role / Team | Role |
 | Who Sees That They Are Revealed | Which roles see the Seer's identity once the Seer has seen their role | Crewmates / Impostors + Neutral / All / Nobody | Crewmates |
 | Neutrals show up as Impostors | When the Info is set to Team, Neutral roles show up as Red, like Impostors | Toggle | False |
+| Crewmate Investigation Chance | How likely is the investigation to reveal a Crewmate role | Percentage | 100% |
+| Neutral Investigation Chance | How likely is the investigation to reveal a Neutral role | Percentage | 100% |
+| Impostor Investigation Chance |  How likely is the investigation to reveal an Impostor role | Percentage | 100% |
 
 -----------------------
 ## Spy

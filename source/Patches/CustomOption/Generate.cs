@@ -372,11 +372,11 @@ namespace TownOfUs.CustomOption
             NeutralRed =
                 new CustomToggleOption(num++, "Neutrals show up as Impostors", false);
             SeerCrewmateChance = new CustomNumberOption(num++,
-                "Chance the Seer will successfully reveal a Crewmate role", 100f, 0f, 100f, 10f, PercentFormat);
+                "Chance to successfully reveal a Crewmate", 100f, 0f, 100f, 10f, PercentFormat);
             SeerNeutralChance = new CustomNumberOption(num++,
-                "Chance the Seer will successfully reveal a Neutral role", 100f, 0f, 100f, 10f, PercentFormat);
+                "Chance to successfully reveal a Neutral role", 100f, 0f, 100f, 10f, PercentFormat);
             SeerImpostorChance = new CustomNumberOption(num++,
-                "Chance the Seer will successfully reveal an Impostor role", 100f, 0f, 100f, 10f, PercentFormat);
+                "Chance to successfully reveal an Impostor", 100f, 0f, 100f, 10f, PercentFormat);
 
                 Snitch = new CustomHeaderOption(num++, "<color=#D4AF37FF>Snitch</color>");
             SnitchOnLaunch =
