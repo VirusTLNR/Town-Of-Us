@@ -42,15 +42,15 @@ namespace TownOfUs.CrewmateRoles.SeerMod
         private static bool CheckSeerChance(PlayerControl target)
         {
             float chance;
-            switch (Utils.GetTeam(target))
+            switch (Role.GetRole(target).Faction)
             {
-                case TeamEnum.Crew:
+                case Faction.Crewmates:
                     chance = CustomGameOptions.SeerCrewmateChance;
                     break;
-                case TeamEnum.Neutral:
+                case Faction.Neutral:
                     chance = CustomGameOptions.SeerNeutralChance;
                     break;
-                case TeamEnum.Impostor:
+                case Faction.Impostors:
                 default:
                     chance = CustomGameOptions.SeerImpostorChance;
                     break;

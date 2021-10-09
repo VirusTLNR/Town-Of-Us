@@ -20,7 +20,6 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption SpyOn;
         public static CustomNumberOption SnitchOn;
         public static CustomNumberOption AltruistOn;
-        public static CustomNumberOption AugurOn;
 
 
         private static CustomHeaderOption NeutralRoles;

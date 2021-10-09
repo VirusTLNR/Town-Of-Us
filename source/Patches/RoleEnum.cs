@@ -2,66 +2,37 @@ namespace TownOfUs
 {
     public enum RoleEnum
     {
-        [Role(TeamEnum.Crew)]
         Sheriff,
-        [Role(TeamEnum.Neutral)]
         Jester,
-        [Role(TeamEnum.Crew)]
         Engineer,
-        [Role(TeamEnum.Impostor)]
         LoverImpostor,
-        [Role(TeamEnum.Crew)]
         Lover,
-        [Role(TeamEnum.Crew)]
         Mayor,
-        [Role(TeamEnum.Crew)]
         Swapper,
-        [Role(TeamEnum.Crew)]
         Investigator,
-        [Role(TeamEnum.Crew)]
         TimeLord,
-        [Role(TeamEnum.Neutral)]
         Shifter,
-        [Role(TeamEnum.Crew)]
         Medic,
-        [Role(TeamEnum.Crew)]
         Seer,
-        [Role(TeamEnum.Neutral)]
         Executioner,
-        [Role(TeamEnum.Crew)]
         Spy,
-        [Role(TeamEnum.Crew)]
         Snitch,
-        [Role(TeamEnum.Neutral)]
         Arsonist,
-        [Role(TeamEnum.Crew)]
         Altruist,
-        [Role(TeamEnum.Neutral)]
         Phantom,
 
-        [Role(TeamEnum.Impostor)]
         Miner,
-        [Role(TeamEnum.Impostor)]
         Swooper,
-        [Role(TeamEnum.Impostor)]
         Morphling,
-        [Role(TeamEnum.Impostor)]
         Camouflager,
-        [Role(TeamEnum.Impostor)]
         Janitor,
-        [Role(TeamEnum.Impostor)]
         Undertaker,
-        [Role(TeamEnum.Impostor)]
         Assassin,
-        [Role(TeamEnum.Impostor)]
         Underdog,
 
-        [Role(TeamEnum.Neutral)]
         Glitch,
 
-        [Role(TeamEnum.Crew)]
         Crewmate,
-        [Role(TeamEnum.Impostor)]
         Impostor,
         None
     }
