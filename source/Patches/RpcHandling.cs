@@ -481,7 +481,8 @@ namespace TownOfUs
                     case CustomRPC.Investigate:
                         var seer = Utils.PlayerById(reader.ReadByte());
                         var otherPlayer = Utils.PlayerById(reader.ReadByte());
-                        Role.GetRole<Seer>(seer).Investigated.Add(otherPlayer.PlayerId);
+                        bool successfulSee = reader.ReadByte() == 1; // TODO: Can this be readBoolean()?
+                        Role.GetRole<Seer>(seer).Investigated.Add(otherPlayer.PlayerId, successfulSee);
                         Role.GetRole<Seer>(seer).LastInvestigated = DateTime.UtcNow;
                         break;
                     case CustomRPC.SetSeer:
