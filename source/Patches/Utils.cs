@@ -183,16 +183,6 @@ namespace TownOfUs
             return impostors;
         }
 
-        public static TeamEnum GetTeam(PlayerControl player)
-        {
-            var role = GetRole(player);
-            var type = role.GetType();
-            var name = Enum.GetName(type, role);
-            return type.GetField(name)
-                .GetCustomAttribute<RoleAttribute>()
-                .TeamEnum;
-        }
-
         public static RoleEnum GetRole(PlayerControl player)
         {
             if (player == null) return RoleEnum.None;
