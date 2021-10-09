@@ -85,6 +85,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
  <details>
   <summary> v2.2.2 </summary>
   <ul>
+   <li> Assassin is only presented with enabled roles when guessing. </li>
    <li> Snitch seeing the Impostors in meetings can be disabled. </li>
    <li> Loving Impostor can be disabled. </li>
    <li> Description of Swapper updated to note they cannot call an emergency meeting. </li>
