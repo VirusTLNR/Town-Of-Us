@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Hazel;
 using TownOfUs.ImpostorRoles.CamouflageMod;
@@ -11,7 +11,6 @@ namespace TownOfUs.Roles
         public Lover(PlayerControl player, bool impostor, bool eitherLoverImpostor) : base(player)
         {
             Name = impostor ? "Loving Impostor" : "Lover";
-            Color = new Color(1f, 0.4f, 0.8f, 1f);
             ImpostorText = () =>
                 "You are in " + ColorString + "Love</color> with " + ColorString + OtherLover.Player.name;
             TaskText = () => $"Stay alive with your love {OtherLover.Player.name} \n and win together";
