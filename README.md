@@ -1,10 +1,6 @@
  ### Note. The official Town of Us mod was deprecated in favour of Polus.gg. Information on Polus.gg is available at their [steam page](https://store.steampowered.com/app/1653240/Polusgg/) and their [discord](https://discord.gg/polus).
 
-
-[![Discord](./Images/Polus.png)](https://discord.gg/polus)
-
 ![LOGO](./Images/TOU-logo.png)
-![Roles](./Images/Roles3.png)
 
 An Among Us mod that adds a bunch of roles, modifiers and game settings
 
