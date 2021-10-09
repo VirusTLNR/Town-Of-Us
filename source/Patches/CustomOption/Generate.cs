@@ -212,7 +212,7 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             AltruistOn = new CustomNumberOption(true, num++, "<color=#660000FF>Altruist</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            ProphetOn = new CustomNumberOption(true, num++, "<color=#301934>Prophet</color>", 0f, 0f, 100f, 10f,
+            ProphetOn = new CustomNumberOption(true, num++, "<color=#B026FF>Prophet</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
 
@@ -394,7 +394,7 @@ namespace TownOfUs.CustomOption
             AltruistTargetBody =
                 new CustomToggleOption(num++, "Target's body disappears on beginning of revive", false);
 
-            Prophet = new CustomHeaderOption(num++, "<color=#301934>Prophet</color>");
+            Prophet = new CustomHeaderOption(num++, "<color=#B026FF>Prophet</color>");
             ProphetCooldown = new CustomNumberOption(num++, "Prophet Cooldown", 25f, 10f, 100f, 2.5f, CooldownFormat);
 
             Shifter =

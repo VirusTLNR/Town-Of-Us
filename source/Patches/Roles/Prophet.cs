@@ -15,7 +15,7 @@ namespace TownOfUs.Roles
             Name = "Prophet";
             ImpostorText = () => "Survive and find crewmates";
             TaskText = () => "Survive to find all the crewmates";
-            Color = new Color(0.19f, 0.09f, 0.20f, 1f);
+            Color = new Color(0.69f, 0.15f, 1f, 1f);
             RoleType = RoleEnum.Prophet;
         }
     }
