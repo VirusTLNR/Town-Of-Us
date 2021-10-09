@@ -58,6 +58,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 # Releases
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.2 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.2.2a/TOU_222a.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.1/TOU_221.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.0/TOU_220.zip) |
 | 2021.6.15s & 2021.6.15e | v2.1.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.4/TOU_214.zip) |
@@ -83,7 +84,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
  <li>
  <details>
-  <summary> v2.2.2 </summary>
+  <summary> v2.2.2: First release post-Polus.gg! </summary> 
   <ul>
    <li> Seer can have a percentage chance of the sight failing. </li>
    <li> Snitch seeing the Impostors in meetings can be disabled. </li>
@@ -932,7 +933,7 @@ If you have any bugs or any need to contact me, join the [Discord server](https:
 [Among-Us-Love-Couple-Mod](https://github.com/Woodi-dev/Among-Us-Love-Couple-Mod) - For the inspiration of Lovers role.\
 [ExtraRolesAmongUs](https://github.com/NotHunter101/ExtraRolesAmongUs) - For the Engineer & Medic roles.\
 [TooManyRolesMods](https://github.com/Hardel-DW/TooManyRolesMods) - For the Investigator & Time Lord roles.\
-[TorchMod](https://github.com/tomozbot/TorchMod) - For the inspirtation of the Torch Mod.\
+[TorchMod](https://github.com/tomozbot/TorchMod) - For the inspiration of the Torch Mod.\
 [XtraCube](https://github.com/XtraCube) - For the RainbowMod.\
 [PhasmoFireGod](https://twitch.tv/PhasmoFireGod) - Button Art.\
 [TheOtherRoles](https://github.com/Eisbison/TheOtherRoles) - For the inspiration of the Child and Spy roles.
