@@ -24,6 +24,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Spy](#spy)
 - [Snitch](#snitch)
 - [Altruist](#altruist)
+- [Prophet](#prophet)
 
 **Neutral Roles**
 - [Jester](#jester)
@@ -85,6 +86,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
  <details>
   <summary> v2.2.2 </summary>
   <ul>
+   <li> Added Prophet role </li>
    <li> Seer can have a percentage chance of the sight failing. </li>
    <li> Snitch seeing the Impostors in meetings can be disabled. </li>
    <li> Loving Impostor can be disabled. </li>
@@ -625,6 +627,21 @@ After a set period of time, the player will be resurrected, if the revival isn't
 | Altruist | The percentage probability of the Altruist appearing | Percentage | 0% |
 | Altruist Revive Duration | The time it takes for the Altruist to revive a dead body | Time | 10s |
 | Target's body disappears on beginning of revive | Whether the dead body of the player the Altruist is reviving disappears upon revival | Toggle | False |
+
+----------------------
+## Prophet
+### **Team: Crewmates**
+
+The Prophet is a Crewmate that receives revelations informing them of players who are not evil.\
+The Prophet periodically during the game (not in meetings) receives information that a player is a Crewmate role.\
+When this happens, they will receive a green flash. Afterward, the player will show up with a green name to them in-game and in meetings.\
+These revelations can be about players who are living or dead.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Prophet | The percentage probability of the Prophet appearing | Percentage | 0% |
+| Prophet Cooldown | The cooldown of how long it takes for the Prophet to be given a revelation | Time | 25s |
+
 
 -----------------------
 # Neutral Roles
