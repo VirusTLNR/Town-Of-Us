@@ -1,3 +1,4 @@
+using System;
 using HarmonyLib;
 using TownOfUs.Roles;
 
@@ -10,7 +11,8 @@ namespace TownOfUs.Patches.CrewmateRoles.ProphetMod
         {
             foreach (var role in Role.GetRoles(RoleEnum.Prophet))
             {
-                var Prophet = (Prophet) role;
+                var prophet = (Prophet) role;
+                prophet.LastRevealed = DateTime.UtcNow;
             }
         }
     }
