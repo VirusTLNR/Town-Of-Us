@@ -36,26 +36,8 @@ namespace TownOfUs.CrewmateRoles.ProphetMod
         private static void CheckForRevelation(PlayerControl __instance)
         {
             var role = Role.GetRole<Prophet>(PlayerControl.LocalPlayer);
-            role.LastRevealed = DateTime.UtcNow;
-
-            var allPlayers = PlayerControl.AllPlayerControls.ToArray().ToList();
-
-            var target = allPlayers
-                .Where(player => !role.Revealed.Contains(player.PlayerId))
-                .Where(player => Role.GetRole(player).Faction == Faction.Crewmates)
-                .Random();
-
-            if (target == null)
-            {
-                PluginSingleton<TownOfUs>.Instance.Log.LogMessage(
-                    $"The Prophet has no more eligible revelations to receive.");
-                return;
-            }
-
-            PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"The Prophet has received information that {target.nameText} is a Crewmate role. "
-                                                              + $"Their role is {Role.GetRole(target).Name}. They are currently {(target.Data.IsDead ? "dead" : "alive")}.");
+            role.Revelation();
             Coroutines.Start(Utils.FlashCoroutine(role.Color));
-            role.Revealed.Add(target.PlayerId);
         }
     }
 }

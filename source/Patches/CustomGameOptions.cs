@@ -84,6 +84,7 @@ namespace TownOfUs
         public static float SeerNeutralChance => Generate.SeerNeutralChance.Get();
         public static float SeerImpostorChance => Generate.SeerImpostorChance.Get();
         public static float ProphetCooldown => Generate.ProphetCooldown.Get();
+        public static bool ProphetInitialReveal => Generate.ProphetInitialReveal.Get();
         public static bool NeutralRed => Generate.NeutralRed.Get();
         public static float MimicCooldown => Generate.MimicCooldownOption.Get();
         public static float MimicDuration => Generate.MimicDurationOption.Get();

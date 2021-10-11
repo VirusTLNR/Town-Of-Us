@@ -636,7 +636,8 @@ These revelations can be about players who are living or dead.
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Prophet | The percentage probability of the Prophet appearing | Percentage | 0% |
-| Prophet Cooldown | The cooldown of how long it takes for the Prophet to be given a revelation | Time | 25s |
+| Prophet Cooldown | The cooldown of how long it takes for the Prophet to be given a revelation | Time | 40s |
+| Prophet Initial Reveal | Whether the Prophet starts the game with a player already revealed to them | Toggle | False |
 
 
 -----------------------

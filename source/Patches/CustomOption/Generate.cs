@@ -129,6 +129,7 @@ namespace TownOfUs.CustomOption
 
         private static CustomHeaderOption Prophet;
         public static CustomNumberOption ProphetCooldown;
+        public static CustomToggleOption ProphetInitialReveal;
 
         private static CustomHeaderOption TheGlitch;
         public static CustomNumberOption MimicCooldownOption;
@@ -395,7 +396,9 @@ namespace TownOfUs.CustomOption
                 new CustomToggleOption(num++, "Target's body disappears on beginning of revive", false);
 
             Prophet = new CustomHeaderOption(num++, "<color=#B026FF>Prophet</color>");
-            ProphetCooldown = new CustomNumberOption(num++, "Prophet Cooldown", 25f, 10f, 100f, 2.5f, CooldownFormat);
+            ProphetCooldown = new CustomNumberOption(num++, "Prophet Cooldown", 40f, 10f, 120f, 2.5f, CooldownFormat);
+            ProphetInitialReveal =
+                new CustomToggleOption(num++, "Prophet starts the game with a player revealed.", false);
 
             Shifter =
                 new CustomHeaderOption(num++, "<color=#999999FF>Shifter</color>");

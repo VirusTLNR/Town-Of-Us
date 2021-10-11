@@ -13,6 +13,11 @@ namespace TownOfUs.CrewmateRoles.ProphetMod
             {
                 var prophet = (Prophet) role;
                 prophet.LastRevealed = DateTime.UtcNow;
+
+                if (CustomGameOptions.ProphetInitialReveal)
+                {
+                    prophet.Revelation();
+                }
             }
         }
     }
