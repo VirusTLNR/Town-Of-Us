@@ -31,7 +31,8 @@ namespace TownOfUs
                 "<color=#00FF00FF>TownOfUs " + TownOfUs.GetVersion() + "</color>\n" +
                 $"Ping: {AmongUsClient.Instance.Ping}ms\n" +
                 (!MeetingHud.Instance
-                    ? "<color=#00FF00FF>slushiegoose ft. edisonparklive ft. Anusien</color>"
+                    ? "<color=#00FF00FF>slushiegoose ft. edisonparklive\n" +
+                      "This version by Anusien</color>"
                     : "");
         }
     }

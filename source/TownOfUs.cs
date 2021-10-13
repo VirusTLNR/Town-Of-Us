@@ -23,7 +23,7 @@ namespace TownOfUs
     public class TownOfUs : BasePlugin
     {
         public const string MajorVersion = "2.2.2";
-        public static string GetVersion() => Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+        public static string GetVersion() => typeof(TownOfUs).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
         private const string Id = "com.slushiegoose.townofus";
 
         public static Sprite JanitorClean;
