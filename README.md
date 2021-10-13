@@ -83,6 +83,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
  <details>
   <summary> v2.2.2: First release post-Polus.gg! </summary> 
   <ul>
+   <li> Fix the instant Game Over screen when there aren't enough Impostor roles. </li>
    <li> Fix for the Undertaker failing to drop a body. </li>
    <li> Seer can have a percentage chance of the sight failing. </li>
    <li> Snitch seeing the Impostors in meetings can be disabled. </li>
