@@ -133,7 +133,7 @@ namespace TownOfUs
             if (LoversOn)
                 Lover.Gen(crewmates, impostors);
 
-            while (impostors.Count > 0)
+            while (impostors.Count > 0 && ImpostorRoles.Count > 0)
             {
                 var (type, rpc, _) = ImpostorRoles.TakeFirst();
                 if (type == null) break;
