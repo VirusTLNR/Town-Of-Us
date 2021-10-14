@@ -20,6 +20,10 @@ namespace TownOfUs.Roles
             TaskText = () => "Survive to find all the crewmates";
             Color = new Color(0.69f, 0.15f, 1f, 1f);
             RoleType = RoleEnum.Prophet;
+        }
+
+        protected override void DoOnGameStart()
+        {
             LastRevealed = DateTime.UtcNow;
 
             // I think this will trigger a revelation as soon as the HUD hits
@@ -27,6 +31,11 @@ namespace TownOfUs.Roles
             {
                 LastRevealed = LastRevealed.AddMilliseconds(CustomGameOptions.ProphetCooldown * -1);
             }
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            LastRevealed = DateTime.UtcNow;
         }
 
         public void Revelation()

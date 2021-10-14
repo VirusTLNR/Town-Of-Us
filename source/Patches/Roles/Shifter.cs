@@ -13,11 +13,20 @@ namespace TownOfUs.Roles
             Color = new Color(0.6f, 0.6f, 0.6f, 1f);
             RoleType = RoleEnum.Shifter;
             Faction = Faction.Neutral;
-            LastShifted = DateTime.UtcNow;
         }
 
         public PlayerControl ClosestPlayer;
         public DateTime LastShifted { get; set; }
+
+        protected override void DoOnGameStart()
+        {
+            LastShifted = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            LastShifted = DateTime.UtcNow;
+        }
 
         public void Loses()
         {

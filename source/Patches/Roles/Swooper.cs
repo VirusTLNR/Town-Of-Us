@@ -22,6 +22,15 @@ namespace TownOfUs.Roles
             LastSwooped = DateTime.UtcNow;
         }
 
+        protected override void DoOnGameStart()
+        {
+            LastSwooped = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            LastSwooped = DateTime.UtcNow;
+        }
         public bool IsSwooped => TimeRemaining > 0f;
 
         public KillButtonManager SwoopButton

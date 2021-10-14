@@ -24,7 +24,6 @@ namespace TownOfUs.Roles
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Morphling;
             Faction = Faction.Impostors;
-            LastMorphed = DateTime.UtcNow;
         }
 
         public KillButtonManager MorphButton
@@ -36,6 +35,18 @@ namespace TownOfUs.Roles
                 ExtraButtons.Clear();
                 ExtraButtons.Add(value);
             }
+        }
+
+        protected override void DoOnGameStart()
+        {
+            LastMorphed = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            MorphButton.renderer.sprite = TownOfUs.SampleSprite;
+            SampledPlayer = null;
+            LastMorphed = DateTime.UtcNow;
         }
 
         public bool Morphed => TimeRemaining > 0f;

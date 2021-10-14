@@ -22,6 +22,16 @@ namespace TownOfUs.Roles
         public PlayerControl ClosestPlayer;
         public DateTime LastInvestigated { get; set; }
 
+        protected override void DoOnGameStart()
+        {
+            LastInvestigated = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            LastInvestigated = DateTime.UtcNow;
+        }
+
         public float SeerTimer()
         {
             var utcNow = DateTime.UtcNow;

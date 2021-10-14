@@ -23,13 +23,24 @@ namespace TownOfUs.Roles
             Faction = Faction.Impostors;
             LastMined = DateTime.UtcNow;
 
+
+        }
+
+        public bool CanPlace { get; set; }
+        public Vector2 VentSize { get; set; }
+
+        protected override void DoOnGameStart()
+        {
+            LastMined = DateTime.UtcNow;
             var vents = Object.FindObjectsOfType<Vent>();
             VentSize =
                 Vector2.Scale(vents[0].GetComponent<BoxCollider2D>().size, vents[0].transform.localScale) * 0.75f;
         }
 
-        public bool CanPlace { get; set; }
-        public Vector2 VentSize { get; set; }
+        protected override void DoOnMeetingEnd()
+        {
+            LastMined = DateTime.UtcNow;
+        }
 
         public KillButtonManager MineButton
         {

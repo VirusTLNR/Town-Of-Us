@@ -11,7 +11,7 @@ namespace TownOfUs.Roles
         private KillButtonManager _igniteButton;
         public bool ArsonistWins;
         public PlayerControl ClosestPlayer;
-        public List<byte> DousedPlayers = new List<byte>();
+        public readonly List<byte> DousedPlayers = new List<byte>();
         public bool IgniteUsed;
         public DateTime LastDoused;
 
@@ -24,6 +24,16 @@ namespace TownOfUs.Roles
             Color = new Color(1f, 0.3f, 0f);
             RoleType = RoleEnum.Arsonist;
             Faction = Faction.Neutral;
+        }
+
+        protected override void DoOnGameStart()
+        {
+            LastDoused = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            LastDoused = DateTime.UtcNow;
         }
 
         public KillButtonManager IgniteButton
