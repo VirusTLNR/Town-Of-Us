@@ -5,7 +5,7 @@ namespace TownOfUs.CustomOption
 {
     [SuppressMessage("ReSharper", "NotAccessedField.Local")]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class Generate
+    public static class Generate
     {
         private static CustomHeaderOption CrewmateRoles;
         public static CustomNumberOption MayorOn;
@@ -41,11 +41,6 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption UndertakerOn;
         public static CustomNumberOption AssassinOn;
         public static CustomNumberOption UnderdogOn;
-
-
-        /*
-        public static CustomNumberOption SecurityGuardOn ;
-            */
 
         private static CustomHeaderOption Modifiers;
         public static CustomNumberOption TorchOn;
@@ -450,12 +445,10 @@ namespace TownOfUs.CustomOption
 
 
             Miner = new CustomHeaderOption(num++, "<color=#FF0000FF>Miner</color>");
-
             MineCooldown =
                 new CustomNumberOption(num++, "Mine Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
 
             Swooper = new CustomHeaderOption(num++, "<color=#FF0000FF>Swooper</color>");
-
             SwoopCooldown =
                 new CustomNumberOption(num++, "Swoop Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             SwoopDuration =
