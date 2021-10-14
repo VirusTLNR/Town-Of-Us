@@ -516,13 +516,14 @@ On Vitals, the Spy can see how long killed bodies have been dead for.
 The Snitch is a Crewmate that can get arrows pointing towards the Impostors, once all their tasks are finished.\
 The names of the Impostors will also show up as red on their screen.\
 Based on game settings, the Snitch may not know who they are until they have one task left.\
-However, when they only have a single task left, the Impostors get an arrow pointing towards the Snitch.
+However, when they only have a single task left, the Impostors get an arrow pointing towards the Snitch.\
+If Snitch sees neutral roles is turned on, they will see those players with a colored name but will _not_ get an arrow to them.
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Snitch | The percentage probability of the Snitch appearing | Percentage | 0% |
 | Snitch knows who they are on Game Start | Whether the Snitch knows their role at the start of a game | Toggle | False |
-| Snitch sees neutral roles | Whether the Snitch sees neutral roles or just Impostors | Toggle | False |
+| Snitch sees neutral roles | The Snitch will also see players with Neutral roles with a different color name | Toggle | False |
 | Snitch sees in meetings | Whether the Snitch sees Impostors colored red in meetings | Toggle | True |
 
 -----------------------
