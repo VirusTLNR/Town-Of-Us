@@ -5,12 +5,12 @@ using HarmonyLib;
 using Hazel;
 using Reactor;
 using Reactor.Extensions;
+using Reactor.Networking;
 using TownOfUs.CrewmateRoles.AltruistMod;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.CrewmateRoles.SwapperMod;
 using TownOfUs.CrewmateRoles.TimeLordMod;
 using TownOfUs.CustomOption;
-using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.AssassinMod;
 using TownOfUs.ImpostorRoles.MinerMod;
 using TownOfUs.NeutralRoles.ExecutionerMod;
@@ -588,6 +588,9 @@ namespace TownOfUs
                     case CustomRPC.SetAltruist:
                         new Altruist(Utils.PlayerById(reader.ReadByte()));
                         break;
+                    case CustomRPC.SetProphet:
+                        new Prophet(Utils.PlayerById(reader.ReadByte()));
+                        break;
                     case CustomRPC.SetBigBoi:
                         new BigBoiModifier(Utils.PlayerById(reader.ReadByte()));
                         break;
@@ -694,7 +697,7 @@ namespace TownOfUs
                     case CustomRPC.PhantomWin:
                         Role.GetRole<Phantom>(Utils.PlayerById(reader.ReadByte())).CompletedTasks = true;
                         break;
-                    
+
                     case CustomRPC.AddMayorVoteBank:
                         Role.GetRole<Mayor>(Utils.PlayerById(reader.ReadByte())).VoteBank += reader.ReadInt32();
                         break;
@@ -760,6 +763,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.AltruistOn))
                     CrewmateRoles.Add((typeof(Altruist), CustomRPC.SetAltruist, CustomGameOptions.AltruistOn));
+
+                if (Check(CustomGameOptions.ProphetOn))
+                    CrewmateRoles.Add((typeof(Prophet), CustomRPC.SetProphet, CustomGameOptions.ProphetOn));
 
                 if (Check(CustomGameOptions.ArsonistOn))
                     NeutralRoles.Add((typeof(Arsonist), CustomRPC.SetArsonist, CustomGameOptions.ArsonistOn));

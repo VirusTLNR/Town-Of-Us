@@ -20,6 +20,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption SpyOn;
         public static CustomNumberOption SnitchOn;
         public static CustomNumberOption AltruistOn;
+        public static CustomNumberOption ProphetOn;
 
 
         private static CustomHeaderOption NeutralRoles;
@@ -126,6 +127,9 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ReviveDuration;
         public static CustomToggleOption AltruistTargetBody;
 
+        private static CustomHeaderOption Prophet;
+        public static CustomNumberOption ProphetCooldown;
+        public static CustomToggleOption ProphetInitialReveal;
 
         private static CustomHeaderOption TheGlitch;
         public static CustomNumberOption MimicCooldownOption;
@@ -209,6 +213,8 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             AltruistOn = new CustomNumberOption(true, num++, "<color=#660000FF>Altruist</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
+            ProphetOn = new CustomNumberOption(true, num++, "<color=#B026FF>Prophet</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
 
 
             NeutralRoles = new CustomHeaderOption(num++, "Neutral Roles");
@@ -240,7 +246,7 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             UndertakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Undertaker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            
+
             UnderdogOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Underdog</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
@@ -388,6 +394,11 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Altruist Revive Duration", 10, 1, 30, 1f, CooldownFormat);
             AltruistTargetBody =
                 new CustomToggleOption(num++, "Target's body disappears on beginning of revive", false);
+
+            Prophet = new CustomHeaderOption(num++, "<color=#B026FF>Prophet</color>");
+            ProphetCooldown = new CustomNumberOption(num++, "Prophet Cooldown", 40f, 10f, 120f, 2.5f, CooldownFormat);
+            ProphetInitialReveal =
+                new CustomToggleOption(num++, "Prophet starts the game with a player revealed.", false);
 
             Shifter =
                 new CustomHeaderOption(num++, "<color=#999999FF>Shifter</color>");

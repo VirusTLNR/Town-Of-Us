@@ -20,6 +20,7 @@ namespace TownOfUs
         Arsonist,
         Altruist,
         Phantom,
+        Prophet,
 
         Miner,
         Swooper,
