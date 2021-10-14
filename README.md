@@ -81,7 +81,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
  <li>
  <details>
-   <summary> v2.2.3 </summary>
+   <summary> v2.3.0 </summary>
    <ul>
      <li> Added the Prophet </li>
    </ul>
