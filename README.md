@@ -523,7 +523,7 @@ If Snitch sees neutral roles is turned on, they will see those players with a co
 |----------|:-------------:|:------:|:------:|
 | Snitch | The percentage probability of the Snitch appearing | Percentage | 0% |
 | Snitch knows who they are on Game Start | Whether the Snitch knows their role at the start of a game | Toggle | False |
-| Snitch sees neutral roles | The Snitch will also see players with Neutral roles with a different color name | Toggle | False |
+| Snitch sees neutral roles | Whether the Snitch will also see players with Neutral roles with a different color name | Toggle | False |
 | Snitch sees in meetings | Whether the Snitch sees Impostors colored red in meetings | Toggle | True |
 
 -----------------------
