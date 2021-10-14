@@ -7,7 +7,7 @@ namespace TownOfUs.Roles
 {
     public class Seer : Role
     {
-        public List<byte> Investigated = new List<byte>();
+        public readonly Dictionary<byte, bool> Investigated = new Dictionary<byte, bool>();
 
         public Seer(PlayerControl player) : base(player)
         {
