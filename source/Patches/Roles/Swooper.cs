@@ -19,6 +19,7 @@ namespace TownOfUs.Roles
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Swooper;
             Faction = Faction.Impostors;
+            LastSwooped = DateTime.UtcNow;
         }
 
         public bool IsSwooped => TimeRemaining > 0f;

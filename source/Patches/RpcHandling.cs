@@ -126,7 +126,7 @@ namespace TownOfUs
                     crewmates.Remove(executioner);
                     continue;
                 }
-                    
+
                 Role.Gen<Role>(type, crewmates, rpc);
             }
 
@@ -351,10 +351,6 @@ namespace TownOfUs
                         break;
 
                     case CustomRPC.Start:
-                        /*
-                        EngineerMod.PerformKill.UsedThisRound = false;
-                        EngineerMod.PerformKill.SabotageTime = DateTime.UtcNow.AddSeconds(-100);
-                        */
                         Utils.ShowDeadBodies = false;
                         Murder.KilledPlayers.Clear();
                         Role.NobodyWins = false;

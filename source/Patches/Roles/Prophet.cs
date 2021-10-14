@@ -20,6 +20,13 @@ namespace TownOfUs.Roles
             TaskText = () => "Survive to find all the crewmates";
             Color = new Color(0.69f, 0.15f, 1f, 1f);
             RoleType = RoleEnum.Prophet;
+            LastRevealed = DateTime.UtcNow;
+
+            // I think this will trigger a revelation as soon as the HUD hits
+            if (CustomGameOptions.ProphetInitialReveal)
+            {
+                LastRevealed = LastRevealed.AddMilliseconds(0 - CustomGameOptions.ProphetCooldown);
+            }
         }
 
         public void Revelation()

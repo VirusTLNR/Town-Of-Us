@@ -14,6 +14,8 @@ namespace TownOfUs.Roles
             Color = new Color(0f, 0f, 1f, 1f);
             RoleType = RoleEnum.TimeLord;
             Scale = 1.4f;
+            FinishRewind = DateTime.UtcNow;
+            StartRewind = DateTime.UtcNow;
         }
 
         public DateTime StartRewind { get; set; }
@@ -47,7 +49,7 @@ namespace TownOfUs.Roles
 
         public float GetCooldown()
         {
-            return RecordRewind.rewinding ? CustomGameOptions.RewindDuration : CustomGameOptions.SheriffKillCd;
+            return RecordRewind.rewinding ? CustomGameOptions.RewindDuration : CustomGameOptions.RewindCooldown;
         }
     }
 }

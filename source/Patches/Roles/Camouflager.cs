@@ -19,6 +19,7 @@ namespace TownOfUs.Roles
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Camouflager;
             Faction = Faction.Impostors;
+            LastCamouflaged = DateTime.UtcNow;
         }
 
         public bool Camouflaged => TimeRemaining > 0f;

@@ -24,6 +24,7 @@ namespace TownOfUs.Roles
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Morphling;
             Faction = Faction.Impostors;
+            LastMorphed = DateTime.UtcNow;
         }
 
         public KillButtonManager MorphButton
