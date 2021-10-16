@@ -57,6 +57,7 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.3 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.3/TOU_233.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.2 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.2/TOU_232.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.1 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.1/TOU_231.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.0 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.0-a/TOU_230.zip) |
@@ -83,6 +84,16 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.3.3 </summary>
+   <ul>
+     <li> Fix for the Glitch Hack Cooldown not resetting. </li>
+     <li> Fix for Lover partner being told they are Impostor without a kill button. </li>
+   </ul>
+ </details>
+ </li>
 
 <li>
  <details>
