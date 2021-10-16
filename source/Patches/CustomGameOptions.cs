@@ -4,12 +4,8 @@ using TownOfUs.CrewmateRoles.SeerMod;
 using TownOfUs.CustomOption;
 using TownOfUs.NeutralRoles.ExecutionerMod;
 using TownOfUs.NeutralRoles.ShifterMod;
-<<<<<<< HEAD
 using System.Collections.Generic;
-||||||| c562737
-=======
 using TownOfUs.Roles;
->>>>>>> origin
 
 namespace TownOfUs
 {
