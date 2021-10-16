@@ -20,6 +20,7 @@ namespace TownOfUs.Roles
             TaskText = () => "Survive to find all the crewmates";
             Color = new Color(0.69f, 0.15f, 1f, 1f);
             RoleType = RoleEnum.Prophet;
+            LastRevealed = DateTime.Now; // We shouldn't have to do this, but the revelation is firing before the DoOnGameStart() hits
         }
 
         protected override void DoOnGameStart()
@@ -29,7 +30,7 @@ namespace TownOfUs.Roles
             // I think this will trigger a revelation as soon as the HUD hits
             if (CustomGameOptions.ProphetInitialReveal)
             {
-                LastRevealed = LastRevealed.AddMilliseconds(CustomGameOptions.ProphetCooldown * -1);
+                LastRevealed = LastRevealed.AddMilliseconds(CustomGameOptions.ProphetCooldown * -1).AddSeconds(5);
             }
         }
 
@@ -45,6 +46,7 @@ namespace TownOfUs.Roles
             List<PlayerControl> allPlayers = PlayerControl.AllPlayerControls.ToArray().ToList();
 
             PlayerControl target = allPlayers
+                .Where(player => player.PlayerId != PlayerControl.LocalPlayer.PlayerId)
                 .Where(player => !Revealed.Contains(player.PlayerId))
                 .Where(player => Role.GetRole(player).Faction == Faction.Crewmates)
                 .Random();
@@ -56,9 +58,11 @@ namespace TownOfUs.Roles
                 return;
             }
 
-            PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"The Prophet has received information that {target.nameText} is a Crewmate role. "
+            PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"The Prophet has received information that {target.name} is a Crewmate role. "
                                                               + $"Their role is {Role.GetRole(target).Name}. They are currently {(target.Data.IsDead ? "dead" : "alive")}.");
             Revealed.Add(target.PlayerId);
+
+            Coroutines.Start(Utils.FlashCoroutine(Color));
         }
     }
 }

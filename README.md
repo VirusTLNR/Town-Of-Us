@@ -53,6 +53,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 -----------------------
 # Releases
+Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/releases/latest).
+
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.1 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.1/TOU_231.zip) |

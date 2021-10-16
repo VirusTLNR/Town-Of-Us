@@ -123,6 +123,8 @@ namespace TownOfUs.Roles
         /*
          * Hook. to simplify creating setting up initial cooldowns and things. Called some time at the start of the
          * game to initialize the player's role.
+         * WARNING: This method could be called more than once right now.
+         * We don't do these things in the constructor because some constructors will be instantiated more than once.
          * See https://github.com/Anusien/Town-Of-Us/pull/22 for more context.
          */
         protected virtual void DoOnGameStart()

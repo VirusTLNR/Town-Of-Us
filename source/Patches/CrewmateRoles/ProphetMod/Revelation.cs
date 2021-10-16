@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using HarmonyLib;
-using Reactor;
-using Reactor.Extensions;
-using Rewired;
 using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.ProphetMod
@@ -18,6 +13,8 @@ namespace TownOfUs.CrewmateRoles.ProphetMod
                 PlayerControl.AllPlayerControls.Count <= 1
                 || PlayerControl.LocalPlayer == null
                 || PlayerControl.LocalPlayer.Data == null
+                || MeetingHud.Instance
+                || !PlayerControl.LocalPlayer.CanMove
                 || !PlayerControl.LocalPlayer.Is(RoleEnum.Prophet))
             {
                 return;
@@ -28,7 +25,7 @@ namespace TownOfUs.CrewmateRoles.ProphetMod
                 return;
             }
 
-            CheckForRevelation();
+            Role.GetRole<Prophet>(PlayerControl.LocalPlayer).Revelation();
         }
 
         private static bool IsTimeForRevelation()
@@ -40,13 +37,6 @@ namespace TownOfUs.CrewmateRoles.ProphetMod
             var cooldown = CustomGameOptions.ProphetCooldown * 1000f;
 
             return cooldown <= timeSpan.TotalMilliseconds;
-        }
-
-        private static void CheckForRevelation()
-        {
-            var role = Role.GetRole<Prophet>(PlayerControl.LocalPlayer);
-            role.Revelation();
-            Coroutines.Start(Utils.FlashCoroutine(role.Color));
         }
     }
 }
