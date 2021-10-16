@@ -109,7 +109,7 @@ namespace TownOfUs.Roles
         protected override void DoOnMeetingEnd()
         {
             LastMimic = DateTime.UtcNow;
-            LastHack = DateTime.Now;
+            LastHack = DateTime.UtcNow;
             LastKill = DateTime.UtcNow;
         }
 
