@@ -18,7 +18,6 @@ namespace TownOfUs.Roles
                     : $"Vote {target.name} out\nFake Tasks:";
             RoleType = RoleEnum.Executioner;
             Faction = Faction.Neutral;
-            Scale = 1.4f;
         }
 
         protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)

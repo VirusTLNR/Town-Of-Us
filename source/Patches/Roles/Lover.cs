@@ -10,13 +10,11 @@ namespace TownOfUs.Roles
     {
         public Lover(PlayerControl player, bool impostor, bool eitherLoverImpostor) : base(player)
         {
-            Name = impostor ? "Loving Impostor" : "Lover";
             ImpostorText = () =>
                 "You are in " + ColorString + "Love</color> with " + ColorString + OtherLover.Player.name;
             TaskText = () => $"Stay alive with your love {OtherLover.Player.name} \n and win together";
             RoleType = impostor ? RoleEnum.LoverImpostor : RoleEnum.Lover;
             LoverImpostor = eitherLoverImpostor;
-            Scale = impostor ? 2.3f : 1f;
             Faction = impostor ? Faction.Impostors : Faction.Crewmates;
         }
 
