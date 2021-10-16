@@ -336,9 +336,9 @@ namespace TownOfUs
                         break;
 
                     case CustomRPC.SetCouple:
-                        var id = reader.ReadByte();
-                        var id2 = reader.ReadByte();
-                        bool lovingImpostor = reader.ReadByte() == 0;
+                        byte id = reader.ReadByte();
+                        byte id2 = reader.ReadByte();
+                        bool lovingImpostor = reader.ReadBoolean();
                         var lover1 = Utils.PlayerById(id);
                         var lover2 = Utils.PlayerById(id2);
 
