@@ -11,6 +11,19 @@ namespace TownOfUs.Roles
             RoleType = RoleEnum.Engineer;
         }
 
+        protected override void DoOnMeetingEnd()
+        {
+            if (CustomGameOptions.EngineerFixPer == EngineerFixPer.Round)
+            {
+                UsedThisRound = false;
+            }
+        }
         public bool UsedThisRound { get; set; } = false;
+
+        public enum EngineerFixPer
+        {
+            Round,
+            Game
+        }
     }
 }

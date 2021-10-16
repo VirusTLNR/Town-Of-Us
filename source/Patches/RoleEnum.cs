@@ -1,3 +1,6 @@
+using TownOfUs.Roles;
+using UnityEngine;
+
 namespace TownOfUs
 {
     public enum RoleEnum
@@ -20,6 +23,7 @@ namespace TownOfUs
         Arsonist,
         Altruist,
         Phantom,
+        Prophet,
 
         Miner,
         Swooper,

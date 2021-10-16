@@ -12,6 +12,11 @@ namespace TownOfUs.Roles
             Faction = Faction.Impostors;
         }
 
+        protected override void DoOnMeetingEnd()
+        {
+            SetKillTimer();
+        }
+
         public float MaxTimer() => PlayerControl.GameOptions.KillCooldown * (
             PerformKill.LastImp() ? 0.5f : 1.5f
         );

@@ -4,7 +4,12 @@ using TownOfUs.CrewmateRoles.SeerMod;
 using TownOfUs.CustomOption;
 using TownOfUs.NeutralRoles.ExecutionerMod;
 using TownOfUs.NeutralRoles.ShifterMod;
+<<<<<<< HEAD
 using System.Collections.Generic;
+||||||| c562737
+=======
+using TownOfUs.Roles;
+>>>>>>> origin
 
 namespace TownOfUs
 {
@@ -32,6 +37,7 @@ namespace TownOfUs
         public static int SwooperOn => (int) Generate.SwooperOn.Get();
         public static int ArsonistOn => (int) Generate.ArsonistOn.Get();
         public static int AltruistOn => (int) Generate.AltruistOn.Get();
+        public static int ProphetOn => (int) Generate.ProphetOn.Get();
         public static int UndertakerOn => (int) Generate.UndertakerOn.Get();
         public static int AssassinOn => (int) Generate.AssassinOn.Get();
         public static int UnderdogOn => (int) Generate.UnderdogOn.Get();
@@ -83,6 +89,8 @@ namespace TownOfUs
         public static float SeerCrewmateChance => Generate.SeerCrewmateChance.Get();
         public static float SeerNeutralChance => Generate.SeerNeutralChance.Get();
         public static float SeerImpostorChance => Generate.SeerImpostorChance.Get();
+        public static float ProphetCooldown => Generate.ProphetCooldown.Get();
+        public static bool ProphetInitialReveal => Generate.ProphetInitialReveal.Get();
         public static bool NeutralRed => Generate.NeutralRed.Get();
         public static float MimicCooldown => Generate.MimicCooldownOption.Get();
         public static float MimicDuration => Generate.MimicDurationOption.Get();
@@ -111,7 +119,7 @@ namespace TownOfUs
         public static int MaxImpostorRoles => (int) Generate.MaxImpostorRoles.Get();
         public static int MaxNeutralRoles => (int) Generate.MaxNeutralRoles.Get();
         public static bool RoleUnderName => Generate.RoleUnderName.Get();
-        public static EngineerFixPer EngineerFixPer => (EngineerFixPer) Generate.EngineerPer.Get();
+        public static Engineer.EngineerFixPer EngineerFixPer => (Engineer.EngineerFixPer) Generate.EngineerPer.Get();
         public static float ReviveDuration => Generate.ReviveDuration.Get();
         public static bool AltruistTargetBody => Generate.AltruistTargetBody.Get();
         public static bool SheriffBodyReport => Generate.SheriffBodyReport.Get();
@@ -137,6 +145,7 @@ namespace TownOfUs
             if (On(SpyOn)) enabledRoles.Add(RoleEnum.Spy);
             if (On(SnitchOn)) enabledRoles.Add(RoleEnum.Snitch);
             if (On(AltruistOn)) enabledRoles.Add(RoleEnum.Altruist);
+            if (On(ProphetOn)) enabledRoles.Add(RoleEnum.Prophet);
 
             if (includeNeutrals)
             {

@@ -24,6 +24,7 @@ namespace TownOfUs
         SetJanitor,
         SetArsonist,
         SetAltruist,
+        SetProphet,
         SetUndertaker,
         SetAssassin,
         SetUnderdog,
@@ -91,7 +92,7 @@ namespace TownOfUs
         Start,
         SyncCustomSettings,
         FixAnimation,
-        
+
         AddMayorVoteBank
     }
 }

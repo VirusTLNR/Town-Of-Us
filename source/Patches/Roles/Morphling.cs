@@ -35,6 +35,18 @@ namespace TownOfUs.Roles
             }
         }
 
+        protected override void DoOnGameStart()
+        {
+            LastMorphed = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            MorphButton.renderer.sprite = TownOfUs.SampleSprite;
+            SampledPlayer = null;
+            LastMorphed = DateTime.UtcNow;
+        }
+
         public bool Morphed => TimeRemaining > 0f;
 
         public void Morph()

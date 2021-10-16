@@ -18,6 +18,18 @@ namespace TownOfUs.Roles
         public DeadBody CurrentTarget { get; set; }
         public DeadBody CurrentlyDragging { get; set; }
 
+        protected override void DoOnGameStart()
+        {
+            LastDragged = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            DragDropButton.renderer.sprite = TownOfUs.DragSprite;
+            CurrentlyDragging = null;
+            LastDragged = DateTime.UtcNow;
+        }
+
         public KillButtonManager DragDropButton
         {
             get => _dragDropButton;

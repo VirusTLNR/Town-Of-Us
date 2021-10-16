@@ -22,9 +22,8 @@ namespace TownOfUs.Roles
 
         public Lover OtherLover { get; set; }
         public bool LoveCoupleWins { get; set; }
-        
+
         // Returns true if either lover is an impostor
-    
         public bool LoverImpostor { get; set; }
 
         protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
@@ -63,11 +62,11 @@ namespace TownOfUs.Roles
 
             return Player.name + "\n" + "Lover";
         }
-        
+
         public static void Gen(List<PlayerControl> crewmates, List<PlayerControl> impostors)
         {
             var lovingImpostorEnabled = Random.RandomRangeInt(1, 101) <= CustomGameOptions.LovingImpostorOn;
-            
+
             var canMakeCrewCrewLovers = crewmates.Count >= 2;
             var canMakeCrewImpostorLovers = crewmates.Count >= 1 && impostors.Count >= 2 && lovingImpostorEnabled;
             if (!canMakeCrewCrewLovers && !canMakeCrewImpostorLovers) {

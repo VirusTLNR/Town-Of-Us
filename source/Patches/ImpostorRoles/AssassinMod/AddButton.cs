@@ -94,7 +94,7 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
             void Listener()
             {
                 if (MeetingHud.Instance.state == MeetingHud.VoteStates.Discussion) return;
-                
+
                 var currentGuessIdx = role.Guesses[voteArea.TargetPlayerId];
                 if (++currentGuessIdx == role.PossibleGuesses.Count)
                     currentGuessIdx = 0;

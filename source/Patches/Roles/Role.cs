@@ -49,13 +49,11 @@ namespace TownOfUs.Roles
 
         public string Name => GetName(RoleType, false);
         public Color Color => GetColor(RoleType);
-        protected float Scale { get; set; } = 1f;
-        protected internal RoleEnum RoleType { get; set; }
+        protected internal RoleEnum RoleType { get; protected set; }
 
         protected internal bool Hidden { get; set; } = false;
 
-        //public static Faction Faction;
-        protected internal Faction Faction { get; set; } = Faction.Crewmates;
+        protected internal Faction Faction { get; protected set; } = Faction.Crewmates;
 
         protected internal Color FactionColor
         {
@@ -71,8 +69,7 @@ namespace TownOfUs.Roles
             }
         }
 
-        public static uint NetId => PlayerControl.LocalPlayer.NetId;
-        public string PlayerName { get; set; }
+        public string PlayerName { get; private set; }
 
         public string ColorString => "<color=#" + Color.ToHtmlStringRGBA() + ">";
 
@@ -94,8 +91,6 @@ namespace TownOfUs.Roles
             return HashCode.Combine(Player, (int)RoleType);
         }
 
-        //public static T Gen<T>()
-
         internal virtual bool Criteria()
         {
             Player.nameText.transform.localPosition = new Vector3(
@@ -109,7 +104,31 @@ namespace TownOfUs.Roles
             return GetRole(PlayerControl.LocalPlayer) == this;
         }
 
+        /*
+         * Hook. Override this method to run before the cutscene showing the player who's on their team.
+         * I'm not really sure why anybody does this at the moment.
+         */
         protected virtual void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
+        {
+        }
+
+        /*
+         * Hook. to simplify creating setting up initial cooldowns and things. Called some time at the start of the
+         * game to initialize the player's role.
+         * WARNING: This method could be called more than once right now.
+         * We don't do these things in the constructor because some constructors will be instantiated more than once.
+         * See https://github.com/Anusien/Town-Of-Us/pull/22 for more context.
+         */
+        protected virtual void DoOnGameStart()
+        {
+        }
+
+        /*
+         * Hook. to simplify resetting cooldowns and things. Called at the end of the meeting to initialize the
+         * player's role.
+         * See https://github.com/Anusien/Town-Of-Us/pull/22 for more context.
+         */
+        protected virtual void DoOnMeetingEnd()
         {
         }
 
@@ -280,6 +299,7 @@ namespace TownOfUs.Roles
             RoleEnum.Snitch => new Color(0.83f, 0.69f, 0.22f, 1f),
             RoleEnum.Arsonist => new Color(1f, 0.3f, 0f),
             RoleEnum.Altruist => new Color(0.4f, 0f, 0f, 1f),
+            RoleEnum.Prophet => new Color(0.69f, 0.15f, 1f, 1f),
             RoleEnum.Phantom => new Color(0.4f, 0.16f, 0.38f, 1f),
             RoleEnum.Miner => Palette.ImpostorRed,
             RoleEnum.Swooper => Palette.ImpostorRed,
@@ -315,6 +335,7 @@ namespace TownOfUs.Roles
                 RoleEnum.Snitch => "Snitch",
                 RoleEnum.Arsonist => "Arsonist",
                 RoleEnum.Altruist => "Altruist",
+                RoleEnum.Prophet => "Prophet",
                 RoleEnum.Phantom => "Phantom",
                 RoleEnum.Miner => "Miner",
                 RoleEnum.Swooper => "Swooper",
@@ -338,8 +359,6 @@ namespace TownOfUs.Roles
         {
             public static TextMeshPro ModifierText;
 
-            public static float Scale;
-
             [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.BeginCrewmate))]
             public static class IntroCutscene_BeginCrewmate
             {
@@ -353,8 +372,6 @@ namespace TownOfUs.Roles
                     //                        Scale = ModifierText.scale;
                     else
                         ModifierText = null;
-
-                    Lights.SetLights();
                 }
             }
 
@@ -371,15 +388,12 @@ namespace TownOfUs.Roles
                     //                        Scale = ModifierText.scale;
                     else
                         ModifierText = null;
-                    Lights.SetLights();
                 }
             }
 
             [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__14), nameof(IntroCutscene._CoBegin_d__14.MoveNext))]
             public static class IntroCutscene_CoBegin__d_MoveNext
             {
-                public static float TestScale;
-
                 public static void Prefix(IntroCutscene._CoBegin_d__14 __instance)
                 {
                     var role = GetRole(PlayerControl.LocalPlayer);
@@ -398,13 +412,7 @@ namespace TownOfUs.Roles
                         __instance.__4__this.ImpostorText.text = role.ImpostorText();
                         __instance.__4__this.ImpostorText.gameObject.SetActive(true);
                         __instance.__4__this.BackgroundBar.material.color = role.Color;
-                        //                        TestScale = Mathf.Max(__instance.__this.Title.scale, TestScale);
-                        //                        __instance.__this.Title.scale = TestScale / role.Scale;
                     }
-                    /*else if (!__instance.isImpostor)
-                    {
-                        __instance.__this.ImpostorText.text = "Haha imagine being a boring old crewmate";
-                    }*/
 
                     if (ModifierText != null)
                     {
@@ -412,11 +420,27 @@ namespace TownOfUs.Roles
                         ModifierText.text = "<size=4>Modifier: " + modifier.Name + "</size>";
                         ModifierText.color = modifier.Color;
 
-                        //
                         ModifierText.transform.position =
                             __instance.__4__this.transform.position - new Vector3(0f, 2.0f, 0f);
                         ModifierText.gameObject.SetActive(true);
                     }
+
+                    foreach (Role r in AllRoles)
+                    {
+                        r.DoOnGameStart();
+                    }
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(ExileController), nameof(ExileController.WrapUp))]
+        public static class PostMeeting
+        {
+            public static void Postfix()
+            {
+                foreach (Role r in AllRoles)
+                {
+                    r.DoOnMeetingEnd();
                 }
             }
         }
@@ -523,7 +547,6 @@ namespace TownOfUs.Roles
 
                 RoleDictionary.Clear();
                 Modifier.ModifierDictionary.Clear();
-                Lights.SetLights(Color.white);
             }
         }
 

@@ -1,10 +1,6 @@
  ### Note. The official Town of Us mod was deprecated in favour of Polus.gg. Information on Polus.gg is available at their [steam page](https://store.steampowered.com/app/1653240/Polusgg/) and their [discord](https://discord.gg/polus).
 
-
-[![Discord](./Images/Polus.png)](https://discord.gg/polus)
-
 ![LOGO](./Images/TOU-logo.png)
-![Roles](./Images/Roles3.png)
 
 An Among Us mod that adds a bunch of roles, modifiers and game settings
 
@@ -24,6 +20,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Spy](#spy)
 - [Snitch](#snitch)
 - [Altruist](#altruist)
+- [Prophet](#prophet)
 
 **Neutral Roles**
 - [Jester](#jester)
@@ -56,8 +53,15 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 -----------------------
 # Releases
+Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/releases/latest).
+
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.3 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.3/TOU_233.zip) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.2 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.2/TOU_232.zip) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.1 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.1/TOU_231.zip) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.0 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.0-a/TOU_230.zip) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.2 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.2.2a/TOU_222.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.1/TOU_221.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.0/TOU_220.zip) |
 | 2021.6.15s & 2021.6.15e | v2.1.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.4/TOU_214.zip) |
@@ -81,11 +85,60 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
   <summary> Changelog </summary>
 <ul>
 
+<li>
+ <details>
+   <summary> v2.3.4 </summary>
+   <ul>
+   <li> Assassin is only presented with enabled roles when guessing. </li>
+   </ul>
+ </details>
+ </li>
+
+<li>
+ <details>
+   <summary> v2.3.3 </summary>
+   <ul>
+     <li> Fix for the Glitch Hack Cooldown not resetting. </li>
+     <li> Fix for Lover partner being told they are Impostor without a kill button. </li>
+   </ul>
+ </details>
+ </li>
+
+<li>
+ <details>
+   <summary> v2.3.2 </summary>
+   <ul>
+     <li> Fix for the Prophet light show. </li>
+     <li> Fix for the host having their cooldown on day 1 automatically up. </li>
+   </ul>
+ </details>
+ </li>
+
  <li>
  <details>
-  <summary> v2.2.2 </summary>
+   <summary> v2.3.1 </summary>
+   <ul>
+     <li> Fix for being unable to scroll through all the config options in the lobby as host. </li>
+   </ul>
+ </details>
+ </li>
+
+
+ <li>
+ <details>
+   <summary> v2.3.0 </summary>
+   <ul>
+     <li> Added the Prophet </li>
+   </ul>
+ </details>
+ </li>
+
+ <li>
+ <details>
+  <summary> v2.2.2: First release post-Polus.gg! </summary> 
   <ul>
-   <li> Assassin is only presented with enabled roles when guessing. </li>
+   <li> Fix the instant Game Over screen when there aren't enough Impostor roles. </li>
+   <li> Fix for the Undertaker failing to drop a body. </li>
    <li> Seer can have a percentage chance of the sight failing. </li>
    <li> Snitch seeing the Impostors in meetings can be disabled. </li>
    <li> Loving Impostor can be disabled. </li>
@@ -603,13 +656,14 @@ On Vitals, the Spy can see how long killed bodies have been dead for.
 The Snitch is a Crewmate that can get arrows pointing towards the Impostors, once all their tasks are finished.\
 The names of the Impostors will also show up as red on their screen.\
 Based on game settings, the Snitch may not know who they are until they have one task left.\
-However, when they only have a single task left, the Impostors get an arrow pointing towards the Snitch.
+However, when they only have a single task left, the Impostors get an arrow pointing towards the Snitch.\
+If Snitch sees neutral roles is turned on, they will see those players with a colored name but will _not_ get an arrow to them.
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Snitch | The percentage probability of the Snitch appearing | Percentage | 0% |
 | Snitch knows who they are on Game Start | Whether the Snitch knows their role at the start of a game | Toggle | False |
-| Snitch sees neutral roles | Whether the Snitch sees neutral roles or just Impostors | Toggle | False |
+| Snitch sees neutral roles | Whether the Snitch will also see players with Neutral roles with a different color name | Toggle | False |
 | Snitch sees in meetings | Whether the Snitch sees Impostors colored red in meetings | Toggle | True |
 
 -----------------------
@@ -626,6 +680,22 @@ After a set period of time, the player will be resurrected, if the revival isn't
 | Altruist | The percentage probability of the Altruist appearing | Percentage | 0% |
 | Altruist Revive Duration | The time it takes for the Altruist to revive a dead body | Time | 10s |
 | Target's body disappears on beginning of revive | Whether the dead body of the player the Altruist is reviving disappears upon revival | Toggle | False |
+
+----------------------
+## Prophet
+### **Team: Crewmates**
+
+The Prophet is a Crewmate that receives revelations informing them of players who are not evil.\
+The Prophet periodically during the game (not in meetings) receives information that a player is a Crewmate role.\
+When this happens, they will receive a green flash. Afterward, the player will show up with a green name to them in-game and in meetings.\
+These revelations can be about players who are living or dead.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Prophet | The percentage probability of the Prophet appearing | Percentage | 0% |
+| Prophet Cooldown | The cooldown of how long it takes for the Prophet to be given a revelation | Time | 40s |
+| Prophet Initial Reveal | Whether the Prophet starts the game with a player already revealed to them | Toggle | False |
+
 
 -----------------------
 # Neutral Roles
@@ -933,7 +1003,7 @@ If you have any bugs or any need to contact me, join the [Discord server](https:
 [Among-Us-Love-Couple-Mod](https://github.com/Woodi-dev/Among-Us-Love-Couple-Mod) - For the inspiration of Lovers role.\
 [ExtraRolesAmongUs](https://github.com/NotHunter101/ExtraRolesAmongUs) - For the Engineer & Medic roles.\
 [TooManyRolesMods](https://github.com/Hardel-DW/TooManyRolesMods) - For the Investigator & Time Lord roles.\
-[TorchMod](https://github.com/tomozbot/TorchMod) - For the inspirtation of the Torch Mod.\
+[TorchMod](https://github.com/tomozbot/TorchMod) - For the inspiration of the Torch Mod.\
 [XtraCube](https://github.com/XtraCube) - For the RainbowMod.\
 [PhasmoFireGod](https://twitch.tv/PhasmoFireGod) - Button Art.\
 [TheOtherRoles](https://github.com/Eisbison/TheOtherRoles) - For the inspiration of the Child and Spy roles.

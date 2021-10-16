@@ -17,8 +17,18 @@ namespace TownOfUs.Roles
             TaskText = () => "Turn invisible and sneakily kill";
             RoleType = RoleEnum.Swooper;
             Faction = Faction.Impostors;
+            LastSwooped = DateTime.UtcNow;
         }
 
+        protected override void DoOnGameStart()
+        {
+            LastSwooped = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            LastSwooped = DateTime.UtcNow;
+        }
         public bool IsSwooped => TimeRemaining > 0f;
 
         public KillButtonManager SwoopButton

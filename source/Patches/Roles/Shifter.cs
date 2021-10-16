@@ -16,6 +16,16 @@ namespace TownOfUs.Roles
         public PlayerControl ClosestPlayer;
         public DateTime LastShifted { get; set; }
 
+        protected override void DoOnGameStart()
+        {
+            LastShifted = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            LastShifted = DateTime.UtcNow;
+        }
+
         public void Loses()
         {
             Player.Data.IsImpostor = true;

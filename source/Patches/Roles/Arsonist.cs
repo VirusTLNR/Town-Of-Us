@@ -11,7 +11,7 @@ namespace TownOfUs.Roles
         private KillButtonManager _igniteButton;
         public bool ArsonistWins;
         public PlayerControl ClosestPlayer;
-        public List<byte> DousedPlayers = new List<byte>();
+        public readonly List<byte> DousedPlayers = new List<byte>();
         public bool IgniteUsed;
         public DateTime LastDoused;
 
@@ -22,6 +22,16 @@ namespace TownOfUs.Roles
             TaskText = () => "Douse players and ignite to kill everyone\nFake Tasks:";
             RoleType = RoleEnum.Arsonist;
             Faction = Faction.Neutral;
+        }
+
+        protected override void DoOnGameStart()
+        {
+            LastDoused = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            LastDoused = DateTime.UtcNow;
         }
 
         public KillButtonManager IgniteButton
