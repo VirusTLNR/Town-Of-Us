@@ -14,15 +14,24 @@ namespace TownOfUs.CrewmateRoles.ProphetMod
     {
         public static void Postfix(PlayerControl __instance)
         {
-            if (PlayerControl.AllPlayerControls.Count <= 1) return;
-            if (PlayerControl.LocalPlayer == null) return;
-            if (PlayerControl.LocalPlayer.Data == null) return;
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Prophet)) return;
+            if (
+                PlayerControl.AllPlayerControls.Count <= 1
+                || PlayerControl.LocalPlayer == null
+                || PlayerControl.LocalPlayer.Data == null
+                || !PlayerControl.LocalPlayer.Is(RoleEnum.Prophet))
+            {
+                return;
+            }
 
-            CheckForRevelation(__instance);
+            if (!IsTimeForRevelation())
+            {
+                return;
+            }
+
+            CheckForRevelation();
         }
 
-        private static bool IsTimeForRevelation(PlayerControl __instance)
+        private static bool IsTimeForRevelation()
         {
             var now = DateTime.UtcNow;
 
@@ -33,7 +42,7 @@ namespace TownOfUs.CrewmateRoles.ProphetMod
             return cooldown <= timeSpan.TotalMilliseconds;
         }
 
-        private static void CheckForRevelation(PlayerControl __instance)
+        private static void CheckForRevelation()
         {
             var role = Role.GetRole<Prophet>(PlayerControl.LocalPlayer);
             role.Revelation();

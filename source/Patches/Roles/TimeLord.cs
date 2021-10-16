@@ -19,6 +19,22 @@ namespace TownOfUs.Roles
         public DateTime StartRewind { get; set; }
         public DateTime FinishRewind { get; set; }
 
+        protected override void DoOnGameStart()
+        {
+            FinishRewind = DateTime.UtcNow;
+            StartRewind = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            /*
+             * TODO: I don't fully understand why these add -10. In other places I've removed it, but since it has
+             * the StartRewind as well, I'm inclined to leave it for now so I don't break Time Lord.
+             */
+            FinishRewind = DateTime.UtcNow.AddSeconds(-10);
+            StartRewind = DateTime.UtcNow.AddSeconds(-20);
+        }
+
         public float TimeLordRewindTimer()
         {
             var utcNow = DateTime.UtcNow;
@@ -47,7 +63,7 @@ namespace TownOfUs.Roles
 
         public float GetCooldown()
         {
-            return RecordRewind.rewinding ? CustomGameOptions.RewindDuration : CustomGameOptions.SheriffKillCd;
+            return RecordRewind.rewinding ? CustomGameOptions.RewindDuration : CustomGameOptions.RewindCooldown;
         }
     }
 }

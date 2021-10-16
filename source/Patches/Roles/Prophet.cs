@@ -22,6 +22,22 @@ namespace TownOfUs.Roles
             RoleType = RoleEnum.Prophet;
         }
 
+        protected override void DoOnGameStart()
+        {
+            LastRevealed = DateTime.UtcNow;
+
+            // I think this will trigger a revelation as soon as the HUD hits
+            if (CustomGameOptions.ProphetInitialReveal)
+            {
+                LastRevealed = LastRevealed.AddMilliseconds(CustomGameOptions.ProphetCooldown * -1);
+            }
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            LastRevealed = DateTime.UtcNow;
+        }
+
         public void Revelation()
         {
             LastRevealed = DateTime.UtcNow;

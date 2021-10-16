@@ -17,6 +17,16 @@ namespace TownOfUs.Roles
         public PlayerControl ClosestPlayer;
         public DateTime LastKilled { get; set; }
 
+        protected override void DoOnGameStart()
+        {
+            LastKilled = DateTime.UtcNow;
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            LastKilled = DateTime.UtcNow;
+        }
+
         public float SheriffKillTimer()
         {
             var utcNow = DateTime.UtcNow;

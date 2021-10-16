@@ -98,6 +98,21 @@ namespace TownOfUs.Roles
             Player.Data.IsImpostor = true;
         }
 
+        protected override void DoOnGameStart()
+        {
+            LastMimic = DateTime.UtcNow;
+            LastHack = DateTime.UtcNow;
+            LastKill = DateTime.UtcNow.AddSeconds(CustomGameOptions.InitialGlitchKillCooldown +
+                                                                    CustomGameOptions.GlitchKillCooldown * -1);
+        }
+
+        protected override void DoOnMeetingEnd()
+        {
+            LastMimic = DateTime.UtcNow;
+            LastHack = DateTime.Now;
+            LastKill = DateTime.UtcNow;
+        }
+
         protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
         {
             var glitchTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();

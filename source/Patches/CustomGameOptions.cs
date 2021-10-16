@@ -4,6 +4,7 @@ using TownOfUs.CrewmateRoles.SeerMod;
 using TownOfUs.CustomOption;
 using TownOfUs.NeutralRoles.ExecutionerMod;
 using TownOfUs.NeutralRoles.ShifterMod;
+using TownOfUs.Roles;
 
 namespace TownOfUs
 {
@@ -113,7 +114,7 @@ namespace TownOfUs
         public static int MaxImpostorRoles => (int) Generate.MaxImpostorRoles.Get();
         public static int MaxNeutralRoles => (int) Generate.MaxNeutralRoles.Get();
         public static bool RoleUnderName => Generate.RoleUnderName.Get();
-        public static EngineerFixPer EngineerFixPer => (EngineerFixPer) Generate.EngineerPer.Get();
+        public static Engineer.EngineerFixPer EngineerFixPer => (Engineer.EngineerFixPer) Generate.EngineerPer.Get();
         public static float ReviveDuration => Generate.ReviveDuration.Get();
         public static bool AltruistTargetBody => Generate.AltruistTargetBody.Get();
         public static bool SheriffBodyReport => Generate.SheriffBodyReport.Get();

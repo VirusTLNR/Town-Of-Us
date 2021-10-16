@@ -18,8 +18,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
             var role = Role.GetRole<Sheriff>(PlayerControl.LocalPlayer);
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
-            var flag2 = role.SheriffKillTimer() == 0f;
-            if (!flag2) return false;
+            if (role.SheriffKillTimer() != 0f) return false;
             if (!__instance.enabled || role.ClosestPlayer == null) return false;
             var distBetweenPlayers = Utils.getDistBetweenPlayers(PlayerControl.LocalPlayer, role.ClosestPlayer);
             var flag3 = distBetweenPlayers < GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
