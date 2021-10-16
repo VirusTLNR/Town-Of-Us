@@ -20,7 +20,7 @@ namespace TownOfUs.Roles
             TaskText = () => "Survive to find all the crewmates";
             Color = new Color(0.69f, 0.15f, 1f, 1f);
             RoleType = RoleEnum.Prophet;
-            LastRevealed = DateTime.Now; // We shouldn't have to do this, but the revelation is firing before the DoOnGameStart() hits
+            LastRevealed = DateTime.UtcNow; // We shouldn't have to do this, but the revelation is firing before the DoOnGameStart() hits
         }
 
         protected override void DoOnGameStart()
