@@ -57,6 +57,7 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.4 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.4/TOU_234.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.3 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.3/TOU_233.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.2 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.2/TOU_232.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.1 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.1/TOU_231.zip) |
@@ -84,6 +85,15 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.3.4 </summary>
+   <ul>
+     <li> Fix the Prophet's initial reveal. </li>
+   </ul>
+ </details>
+ </li>
 
 <li>
  <details>
