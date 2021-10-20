@@ -20,7 +20,7 @@ namespace TownOfUs.Patches.ImpostorRoles
                 && __instance.Data.IsImpostor && time == 10
                 && (__instance.killTimer > time || __instance.killTimer == 0))
             {
-                time = PlayerControl.GameOptions.KillCooldown;
+                time = CustomGameOptions.InitialImpostorKillCooldown;
             }
         }
     }
