@@ -184,6 +184,7 @@ namespace TownOfUs.CustomOption
             Patches.ImportButton = new Import(num++);
 
 
+            #region Probabilities
             CrewmateRoles = new CustomHeaderOption(num++, "Crewmate Roles");
             MayorOn = new CustomNumberOption(true, num++, "<color=#704FA8FF>Mayor</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -242,7 +243,6 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             UndertakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Undertaker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-
             UnderdogOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Underdog</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
@@ -263,8 +263,10 @@ namespace TownOfUs.CustomOption
             ButtonBarryOn =
                 new CustomNumberOption(true, num++, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
                     PercentFormat);
+            #endregion
 
 
+            #region GameSettings
             CustomGameSettings =
                 new CustomHeaderOption(num++, "Custom Game Settings");
             InitialImpostorKillCooldown = new CustomNumberOption(num++, "Initial Impostor Kill Cooldown", 10f, 10f, 60f,
@@ -272,10 +274,8 @@ namespace TownOfUs.CustomOption
             ColourblindComms = new CustomToggleOption(num++, "Camouflaged Comms", false);
             MeetingColourblind = new CustomToggleOption(num++, "Camouflaged Meetings", false);
             ImpostorSeeRoles = new CustomToggleOption(num++, "Impostors can see the roles of their team", false);
-
             DeadSeeRoles =
                 new CustomToggleOption(num++, "Dead can see everyone's roles", false);
-
             MaxImpostorRoles =
                 new CustomNumberOption(num++, "Max Impostor Roles", 1f, 1f, 3f, 1f);
             MaxNeutralRoles =
@@ -283,13 +283,14 @@ namespace TownOfUs.CustomOption
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
             VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
                 PercentFormat);
+            #endregion
 
+
+            #region CrewConfiguration
             Mayor =
                 new CustomHeaderOption(num++, "<color=#704FA8FF>Mayor</color>");
-
             MayorVoteBank =
                 new CustomNumberOption(num++, "Initial Mayor Vote Bank", 1, 1, 5, 1);
-
             MayorAnonymous =
                 new CustomToggleOption(num++, "Mayor Votes Show Anonymous", false);
 
@@ -302,10 +303,8 @@ namespace TownOfUs.CustomOption
             Sheriff =
                 new CustomHeaderOption(num++, "<color=#FFFF00FF>Sheriff</color>");
             ShowSheriff = new CustomToggleOption(num++, "Show Sheriff", false);
-
             SheriffKillOther =
                 new CustomToggleOption(num++, "Sheriff Miskill Kills Crewmate", false);
-
             SheriffKillsJester =
                 new CustomToggleOption(num++, "Sheriff Kills Jester", false);
             SheriffKillsShifter =
@@ -316,17 +315,14 @@ namespace TownOfUs.CustomOption
                 new CustomToggleOption(num++, "Sheriff Kills Executioner", false);
             SheriffKillsArsonist =
                 new CustomToggleOption(num++, "Sheriff Kills Arsonist", false);
-
             SheriffKillCd =
                 new CustomNumberOption(num++, "Sheriff Kill Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
             SheriffBodyReport = new CustomToggleOption(num++, "Sheriff can report who they've killed");
-
 
             Engineer =
                 new CustomHeaderOption(num++, "<color=#FFA60AFF>Engineer</color>");
             EngineerPer =
                 new CustomStringOption(num++, "Engineer Fix Per", new[] {"Round", "Game"});
-
 
             Investigator =
                 new CustomHeaderOption(num++, "<color=#00B3B3FF>Investigator</color>");
@@ -360,7 +356,6 @@ namespace TownOfUs.CustomOption
             WhoGetsNotification =
                 new CustomStringOption(num++, "Who gets murder attempt indicator",
                     new[] {"Medic", "Shielded", "Everyone", "Nobody"});
-
             ShieldBreaks = new CustomToggleOption(num++, "Shield breaks on murder attempt", false);
 
             Seer =
@@ -397,14 +392,16 @@ namespace TownOfUs.CustomOption
             ProphetCooldown = new CustomNumberOption(num++, "Prophet Cooldown", 40f, 10f, 120f, 2.5f, CooldownFormat);
             ProphetInitialReveal =
                 new CustomToggleOption(num++, "Prophet starts the game with a player revealed.", false);
+            #endregion
 
+
+            #region NeutralConfiguration
             Shifter =
                 new CustomHeaderOption(num++, "<color=#999999FF>Shifter</color>");
             ShifterCd =
                 new CustomNumberOption(num++, "Shifter Cooldown", 30f, 10f, 60f, 2.5f, CooldownFormat);
             WhoShifts = new CustomStringOption(num++,
                 "Who gets the Shifter role on Shift", new[] {"NoImps", "RegCrew", "Nobody"});
-
 
             TheGlitch =
                 new CustomHeaderOption(num++, "<color=#00FF00FF>The Glitch</color>");
@@ -425,13 +422,12 @@ namespace TownOfUs.CustomOption
                 new[] {"Crew", "Jester"});
 
             Arsonist = new CustomHeaderOption(num++, "<color=#FF4D00FF>Arsonist</color>");
-
             DouseCooldown =
                 new CustomNumberOption(num++, "Douse Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
-
             ArsonistGameEnd = new CustomToggleOption(num++, "Game keeps going so long as Arsonist is alive", false);
+            #endregion
 
-
+            #region ImpostorConfiguration
             Morphling =
                 new CustomHeaderOption(num++, "<color=#FF0000FF>Morphling</color>");
             MorphlingCooldown =
@@ -445,7 +441,6 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Camouflager Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             CamouflagerDuration =
                 new CustomNumberOption(num++, "Camouflager Duration", 10, 5, 15, 1f, CooldownFormat);
-
 
             Miner = new CustomHeaderOption(num++, "<color=#FF0000FF>Miner</color>");
             MineCooldown =
@@ -465,6 +460,7 @@ namespace TownOfUs.CustomOption
             AssassinCrewmateGuess = new CustomToggleOption(num++, "Assassin can Guess \"Crewmate\"", false);
             AssassinGuessNeutrals = new CustomToggleOption(num++, "Assassin can Guess Neutral roles", false);
             AssassinMultiKill = new CustomToggleOption(num++, "Assassin can kill more than once per meeting");
+            #endregion
         }
     }
 }
