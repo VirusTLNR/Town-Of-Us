@@ -184,6 +184,7 @@ namespace TownOfUs.CustomOption
             Patches.ImportButton = new Import(num++);
 
 
+            #region Probabilities
             CrewmateRoles = new CustomHeaderOption(num++, "Crewmate Roles");
             MayorOn = new CustomNumberOption(true, num++, "<color=#704FA8FF>Mayor</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -242,7 +243,6 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             UndertakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Undertaker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
-
             UnderdogOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Underdog</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
@@ -263,8 +263,10 @@ namespace TownOfUs.CustomOption
             ButtonBarryOn =
                 new CustomNumberOption(true, num++, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
                     PercentFormat);
+            #endregion
 
 
+            #region GameSettings
             CustomGameSettings =
                 new CustomHeaderOption(num++, "Custom Game Settings");
             InitialImpostorKillCooldown = new CustomNumberOption(num++, "Initial Impostor Kill Cooldown", 10f, 10f, 60f,
@@ -272,10 +274,8 @@ namespace TownOfUs.CustomOption
             ColourblindComms = new CustomToggleOption(num++, "Camouflaged Comms", false);
             MeetingColourblind = new CustomToggleOption(num++, "Camouflaged Meetings", false);
             ImpostorSeeRoles = new CustomToggleOption(num++, "Impostors can see the roles of their team", false);
-
             DeadSeeRoles =
                 new CustomToggleOption(num++, "Dead can see everyone's roles", false);
-
             MaxImpostorRoles =
                 new CustomNumberOption(num++, "Max Impostor Roles", 1f, 1f, 3f, 1f);
             MaxNeutralRoles =
@@ -283,7 +283,10 @@ namespace TownOfUs.CustomOption
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
             VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
                 PercentFormat);
+            #endregion
 
+
+            #region CrewConfiguration
             Mayor =
                 new CustomHeaderOption(num++, "<color=#704FA8FF>Mayor</color>");
             MayorVoteBank =
@@ -389,8 +392,10 @@ namespace TownOfUs.CustomOption
             ProphetCooldown = new CustomNumberOption(num++, "Prophet Cooldown", 40f, 10f, 120f, 2.5f, CooldownFormat);
             ProphetInitialReveal =
                 new CustomToggleOption(num++, "Prophet starts the game with a player revealed.", false);
+            #endregion
 
 
+            #region NeutralConfiguration
             Shifter =
                 new CustomHeaderOption(num++, "<color=#999999FF>Shifter</color>");
             ShifterCd =
@@ -420,7 +425,10 @@ namespace TownOfUs.CustomOption
             DouseCooldown =
                 new CustomNumberOption(num++, "Douse Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             ArsonistGameEnd = new CustomToggleOption(num++, "Game keeps going so long as Arsonist is alive", false);
+            #endregion
 
+
+            #region ImpostorConfiguration
             Morphling =
                 new CustomHeaderOption(num++, "<color=#FF0000FF>Morphling</color>");
             MorphlingCooldown =
@@ -453,6 +461,7 @@ namespace TownOfUs.CustomOption
             AssassinCrewmateGuess = new CustomToggleOption(num++, "Assassin can Guess \"Crewmate\"", false);
             AssassinGuessNeutrals = new CustomToggleOption(num++, "Assassin can Guess Neutral roles", false);
             AssassinMultiKill = new CustomToggleOption(num++, "Assassin can kill more than once per meeting");
+            #endregion
         }
     }
 }
