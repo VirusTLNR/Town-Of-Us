@@ -57,6 +57,7 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.7 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.7/TOU_2.3.7.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.6 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.6/TOU_2.3.6.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.5 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.5/TOU_235.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.4 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.4/TOU_234.zip) |
@@ -87,6 +88,16 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.3.7 </summary>
+   <ul>
+     <li> Allow setting the initial Impostor kill coolodown. </li>
+     <li> Fixed a bug preventing games from ever starting when there were more Crewmates than modifiers. </li>
+   </ul>
+ </details>
+ </li>
 
 <li>
  <details>
@@ -993,6 +1004,7 @@ After the first time they use this ability, their vision is halved for the rest 
 # Custom Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
+| Initial Impostor Kill Cooldown | The kill cooldown for impostors at the very beginning of the game | Time | 10s |
 | Camouflaged Comms | Whether everyone becomes camouflaged when Comms are sabotaged | Toggle | False |
 | Camouflaged Meetings | Whether everyone is camouflaged during meetings while Comms are sabotaged | Toggle | False |
 | Impostors can see the roles of their team | Whether Impostors are able to see which Impostor roles their teammates have | Toggle | False |
