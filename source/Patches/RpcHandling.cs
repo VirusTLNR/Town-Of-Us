@@ -179,7 +179,7 @@ namespace TownOfUs
             canHaveModifier.RemoveAll(player => player.Is(Faction.Neutral) || player.Is(Faction.Impostors));
             canHaveModifier.Shuffle();
 
-            while (canHaveModifier.Count > 0)
+            while (canHaveModifier.Count > 0 && CrewmateModifiers.Count > 0)
             {
                 var (type, rpc, _) = CrewmateModifiers.TakeFirst();
                 Role.Gen<Modifier>(type, canHaveModifier.TakeFirst(), rpc);
