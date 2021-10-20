@@ -28,7 +28,7 @@ namespace TownOfUs.Roles
             // I think this will trigger a revelation as soon as the HUD hits
             if (CustomGameOptions.ProphetInitialReveal)
             {
-                LastRevealed = LastRevealed.AddMilliseconds(CustomGameOptions.ProphetCooldown * -1).AddSeconds(5);
+                LastRevealed = LastRevealed.AddSeconds(CustomGameOptions.ProphetCooldown * -1).AddSeconds(5);
             }
         }
 

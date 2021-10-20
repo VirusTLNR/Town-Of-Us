@@ -99,6 +99,7 @@ namespace TownOfUs
         public static float MorphlingDuration => Generate.MorphlingDuration.Get();
         public static float CamouflagerCd => Generate.CamouflagerCooldown.Get();
         public static float CamouflagerDuration => Generate.CamouflagerDuration.Get();
+        public static float InitialImpostorKillCooldown => Generate.InitialImpostorKillCooldown.Get();
         public static bool ColourblindComms => Generate.ColourblindComms.Get();
         public static bool MeetingColourblind => Generate.MeetingColourblind.Get();
         public static OnTargetDead OnTargetDead => (OnTargetDead) Generate.OnTargetDead.Get();
