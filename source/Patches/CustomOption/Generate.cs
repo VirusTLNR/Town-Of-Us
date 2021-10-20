@@ -53,6 +53,7 @@ namespace TownOfUs.CustomOption
 
 
         private static CustomHeaderOption CustomGameSettings;
+        public static CustomNumberOption InitialImpostorKillCooldown;
         public static CustomToggleOption ColourblindComms;
         public static CustomToggleOption MeetingColourblind;
         public static CustomToggleOption ImpostorSeeRoles;
@@ -266,6 +267,8 @@ namespace TownOfUs.CustomOption
 
             CustomGameSettings =
                 new CustomHeaderOption(num++, "Custom Game Settings");
+            InitialImpostorKillCooldown = new CustomNumberOption(num++, "Initial Impostor Kill Cooldown", 10f, 10f, 60f,
+                2.5f, CooldownFormat);
             ColourblindComms = new CustomToggleOption(num++, "Camouflaged Comms", false);
             MeetingColourblind = new CustomToggleOption(num++, "Camouflaged Meetings", false);
             ImpostorSeeRoles = new CustomToggleOption(num++, "Impostors can see the roles of their team", false);
