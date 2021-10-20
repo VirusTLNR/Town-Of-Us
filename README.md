@@ -57,6 +57,7 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.5 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.5/TOU_235.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.4 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.4/TOU_234.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.3 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.3/TOU_233.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.2 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.2/TOU_232.zip) |
@@ -85,6 +86,16 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.3.5 </summary>
+   <ul>
+     <li> Neutral roles only get an arrow to the Snitch if the Snitch can see the neutral roles. </li>
+     <li> All neutral roles get an arrow to the Snitch when relevant, not just Glitch. </li>
+   </ul>
+ </details>
+ </li>
 
 <li>
  <details>
