@@ -176,7 +176,7 @@ namespace TownOfUs
             foreach (var (type, rpc, _) in GlobalModifiers)
                 Role.Gen<Modifier>(type, canHaveModifier, rpc);
 
-            canHaveModifier.RemoveAll(player => !player.Data.IsImpostor);
+            canHaveModifier.RemoveAll(player => player.Is(Faction.Neutral) || player.Is(Faction.Impostors));
             canHaveModifier.Shuffle();
 
             while (canHaveModifier.Count > 0)
@@ -762,14 +762,14 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.ProphetOn))
                     CrewmateRoles.Add((typeof(Prophet), CustomRPC.SetProphet, CustomGameOptions.ProphetOn));
-
+                #endregion
+                #region Neutral Roles
                 if (Check(CustomGameOptions.ArsonistOn))
                     NeutralRoles.Add((typeof(Arsonist), CustomRPC.SetArsonist, CustomGameOptions.ArsonistOn));
 
                 if (Check(CustomGameOptions.ExecutionerOn))
                     NeutralRoles.Add((typeof(Executioner), CustomRPC.SetExecutioner, CustomGameOptions.ExecutionerOn));
-                #endregion
-                #region Neutral Roles
+
                 if (Check(CustomGameOptions.JesterOn))
                     NeutralRoles.Add((typeof(Jester), CustomRPC.SetJester, CustomGameOptions.JesterOn));
 
