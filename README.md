@@ -57,6 +57,7 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.8 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.8/TOU_2.3.8.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.7 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.7/TOU_2.3.7.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.6 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.6/TOU_2.3.6.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.5 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.5/TOU_235.zip) |
@@ -88,6 +89,15 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.3.8 </summary>
+   <ul>
+     <li> Impostor and Crewmate vision can now be set in 0.125 increments instead of 0.25 (the game view will round) </li>
+   </ul>
+ </details>
+ </li>
 
 <li>
  <details>
