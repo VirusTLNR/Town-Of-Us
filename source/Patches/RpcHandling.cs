@@ -447,6 +447,17 @@ namespace TownOfUs
                         var toDie = Utils.PlayerById(reader.ReadByte());
                         AssassinKill.MurderPlayer(toDie);
                         break;
+                    case CustomRPC.Teleport:
+                        byte teleports = reader.ReadByte();
+                        Dictionary<byte, Vector2> coordinates = new Dictionary<byte, Vector2>();
+                        for (int i = 0; i < teleports; i++)
+                        {
+                            byte playerId = reader.ReadByte();
+                            Vector2 location = reader.ReadVector2();
+                            coordinates.Add(playerId, location);
+                        }
+                        Teleporter.TeleportPlayersToCoordinates(coordinates);
+                        break;
                     case CustomRPC.SetMimic:
                         var glitchPlayer = Utils.PlayerById(reader.ReadByte());
                         var mimicPlayer = Utils.PlayerById(reader.ReadByte());
@@ -671,6 +682,9 @@ namespace TownOfUs
                     case CustomRPC.SetUnderdog:
                         new Underdog(Utils.PlayerById(reader.ReadByte()));
                         break;
+                    case CustomRPC.SetTeleporter:
+                        new Teleporter(Utils.PlayerById(reader.ReadByte()));
+                        break;
                     case CustomRPC.SetPhantom:
                         readByte = reader.ReadByte();
                         SetPhantom.WillBePhantom = readByte == byte.MaxValue ? null : Utils.PlayerById(readByte);
@@ -803,6 +817,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.JanitorOn))
                     ImpostorRoles.Add((typeof(Janitor), CustomRPC.SetJanitor, CustomGameOptions.JanitorOn));
+
+                if (Check(CustomGameOptions.TeleporterOn))
+                    ImpostorRoles.Add((typeof(Teleporter), CustomRPC.SetTeleporter, CustomGameOptions.TeleporterOn));
                 #endregion
                 #region Crewmate Modifiers
                 if (Check(CustomGameOptions.TorchOn))
