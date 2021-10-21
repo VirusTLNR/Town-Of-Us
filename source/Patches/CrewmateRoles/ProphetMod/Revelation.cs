@@ -15,7 +15,9 @@ namespace TownOfUs.CrewmateRoles.ProphetMod
                 || PlayerControl.LocalPlayer.Data == null
                 || MeetingHud.Instance
                 || !PlayerControl.LocalPlayer.CanMove
-                || !PlayerControl.LocalPlayer.Is(RoleEnum.Prophet))
+                || !PlayerControl.LocalPlayer.Is(RoleEnum.Prophet)
+                || PlayerControl.LocalPlayer.Data.IsDead
+                )
             {
                 return;
             }
