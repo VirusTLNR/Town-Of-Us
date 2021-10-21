@@ -68,16 +68,42 @@ namespace TownOfUs.Roles
 
         public static void TeleportPlayersToCoordinates(Dictionary<byte, Vector2> coordinates)
         {
-            Coroutines.Start(Utils.FlashCoroutine(new Color(0.89f, 0.45f, 0f)));
+            if (coordinates.ContainsKey(PlayerControl.LocalPlayer.PlayerId))
+            {
+                Coroutines.Start(Utils.FlashCoroutine(new Color(0.89f, 0.45f, 0f)));
+                if (Minigame.Instance)
+                {
+                    try
+                    {
+                        Minigame.Instance.Close();
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                }
+
+                if (PlayerControl.LocalPlayer.inVent)
+                {
+                    PlayerControl.LocalPlayer.MyPhysics.RpcExitVent(Vent.currentVent.Id);
+                    PlayerControl.LocalPlayer.MyPhysics.ExitAllVents();
+                }
+
+                // TODO: Do we need CustomRPC.FixAnimation or to set collider or ResetMoveState() or anything like that?
+            }
+
+
             foreach ((byte key, Vector2 value) in coordinates)
             {
                 PlayerControl player = Utils.PlayerById(key);
+
                 player.transform.position = value;
             }
         }
 
         private Dictionary<byte, Vector2> GenerateTeleportCoordinates()
         {
+            // TODO: Do we need to check for PlayerControl.LocalPlayer.Mmoverable?
             List<PlayerControl> targets = PlayerControl.AllPlayerControls.ToArray()
                 .Where(player => player.PlayerId != PlayerControl.LocalPlayer.PlayerId)
                 .Where(player => !player.Data.IsDead)
