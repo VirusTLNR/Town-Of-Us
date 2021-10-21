@@ -57,6 +57,7 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.9 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.9/TOU_2.3.9.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.8 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.8/TOU_2.3.8.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.7 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.7/TOU_2.3.7.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.6 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.6/TOU_2.3.6.zip) |
@@ -89,6 +90,18 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.3.9 </summary>
+   <ul>
+     <li> Fix for the Shifter being unable to shift into the Prophet. </li>
+     <li> Stop giving the Prophet sights when they're dead. </li>
+     <li> Fix the Prophet's color being wrong in the Assassin dialogue. </li>
+     <li> Make the Prophet initial reveal come a little sooner. </li>
+   </ul>
+ </details>
+ </li>
 
 <li>
  <details>
