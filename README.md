@@ -94,7 +94,7 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
  <details>
    <summary> v2.3.8 </summary>
    <ul>
-     <li> Impostor and Crewmate vision can now be set in 0.125 increments instead of 0.25 (the game view will round) </li>
+     <li> Impostor and Crewmate vision can now be set in 0.125 increments instead of 0.25 (will show as rounded up in the settings). </li>
    </ul>
  </details>
  </li>

@@ -93,7 +93,6 @@ namespace TownOfUs.Roles
                 crewmates.Remove(player2);
             }
 
-            // These writes appear to be read by `case CustomRPC.SetCouple` in RpcHandling.cs
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.SetCouple, SendOption.Reliable, -1);
             writer.Write(player1.PlayerId);
