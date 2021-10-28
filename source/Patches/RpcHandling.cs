@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using HarmonyLib;
 using Hazel;
 using Reactor;
@@ -38,9 +39,11 @@ namespace TownOfUs
 
         internal static bool Check(int probability)
         {
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [RpcHandling|{ MethodBase.GetCurrentMethod().Name}]");
             if (probability == 0) return false;
             if (probability == 100) return true;
             var num = Random.RandomRangeInt(1, 101);
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [RpcHandling|{ MethodBase.GetCurrentMethod().Name}]");
             return num <= probability;
         }
 
@@ -75,6 +78,7 @@ namespace TownOfUs
 
         private static void SortRoles(List<(Type, CustomRPC, int)> roles, int max = int.MaxValue)
         {
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [RpcHandling|{ MethodBase.GetCurrentMethod().Name}]");
             roles.Shuffle();
             roles.Sort((a, b) =>
             {
@@ -85,10 +89,12 @@ namespace TownOfUs
             if (roles.Count > max)
                 while (roles.Count > max)
                     roles.RemoveAt(roles.Count - 1);
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [RpcHandling|{ MethodBase.GetCurrentMethod().Name}]");
         }
 
         private static void GenEachRole(List<GameData.PlayerInfo> infected)
         {
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [RpcHandling|{ MethodBase.GetCurrentMethod().Name}]");
             var impostors = Utils.GetImpostors(infected);
             var crewmates = Utils.GetCrewmates(impostors);
             crewmates.Shuffle();
@@ -209,6 +215,7 @@ namespace TownOfUs
                 writer.Write(byte.MaxValue);
                 AmongUsClient.Instance.FinishRpcImmediately(writer);
             }
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [RpcHandling|{ MethodBase.GetCurrentMethod().Name}]");
         }
 
 
@@ -217,6 +224,7 @@ namespace TownOfUs
         {
             public static void Postfix([HarmonyArgument(0)] byte callId, [HarmonyArgument(1)] MessageReader reader)
             {
+                Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [HandleRpc|{ MethodBase.GetCurrentMethod().Name}]");
                 //if (callId >= 43) //System.Console.WriteLine("Received " + callId);
                 byte readByte, readByte1, readByte2;
                 sbyte readSByte, readSByte2;
@@ -698,6 +706,7 @@ namespace TownOfUs
                         Role.GetRole<Mayor>(Utils.PlayerById(reader.ReadByte())).VoteBank += reader.ReadInt32();
                         break;
                 }
+                Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [HandleRpc|{ MethodBase.GetCurrentMethod().Name}]");
             }
         }
 
@@ -706,6 +715,7 @@ namespace TownOfUs
         {
             public static void Prefix([HarmonyArgument(0)] ref Il2CppReferenceArray<GameData.PlayerInfo> infected)
             {
+                Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [RpcSetInfected|{ MethodBase.GetCurrentMethod().Name}]");
                 Utils.ShowDeadBodies = false;
                 Role.NobodyWins = false;
                 CrewmateRoles.Clear();
@@ -829,6 +839,7 @@ namespace TownOfUs
                         (typeof(ButtonBarry), CustomRPC.SetButtonBarry, CustomGameOptions.ButtonBarryOn));
                 #endregion
                 GenEachRole(infected.ToList());
+                Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [RpcSetInfected|{ MethodBase.GetCurrentMethod().Name}]");
             }
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using HarmonyLib;
 using Hazel.Udp;
 using Reactor;
@@ -9,6 +10,7 @@ namespace TownOfUs
     {
         public static void Initialize(Harmony harmony)
         {
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [DirtyPatches|{ MethodBase.GetCurrentMethod().Name}]");
             try
             {
                 harmony.Unpatch(
@@ -21,6 +23,7 @@ namespace TownOfUs
             {
                 Logger<TownOfUs>.Instance.LogError($"Exception unpatching Reactor's UdpConnection.HandleSend Prefix: {e.Message}, Stack: {e.StackTrace}");
             }
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [DirtyPatches|{ MethodBase.GetCurrentMethod().Name}]");
         }
     }
 }

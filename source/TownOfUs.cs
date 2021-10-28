@@ -69,6 +69,7 @@ namespace TownOfUs
 
         public override void Load()
         {
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [{this.GetType().ToString()}|{ MethodBase.GetCurrentMethod().Name}]");
             System.Console.WriteLine("000.000.000.000/000000000000000000");
 
             _harmony = new Harmony("com.slushiegoose.townofus");
@@ -130,10 +131,12 @@ namespace TownOfUs
 
             _harmony.PatchAll();
             DirtyPatches.Initialize(_harmony);
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [{this.GetType().ToString()}|{ MethodBase.GetCurrentMethod().Name}]");
         }
 
         public static Sprite CreateSprite(string name)
         {
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [TownOfUs|{ MethodBase.GetCurrentMethod().Name}]");
             var pixelsPerUnit = 100f;
             var pivot = new Vector2(0.5f, 0.5f);
 
@@ -145,14 +148,17 @@ namespace TownOfUs
             tex.DontDestroy();
             var sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), pivot, pixelsPerUnit);
             sprite.DontDestroy();
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [TownOfUs|{ MethodBase.GetCurrentMethod().Name}]");
             return sprite;
         }
 
         public static void LoadImage(Texture2D tex, byte[] data, bool markNonReadable)
         {
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [TownOfUs|{ MethodBase.GetCurrentMethod().Name}]");
             _iCallLoadImage ??= IL2CPP.ResolveICall<DLoadImage>("UnityEngine.ImageConversion::LoadImage");
             var il2CPPArray = (Il2CppStructArray<byte>) data;
             _iCallLoadImage.Invoke(tex.Pointer, il2CPPArray.Pointer, markNonReadable);
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [TownOfUs|{ MethodBase.GetCurrentMethod().Name}]");
         }
 
         private delegate bool DLoadImage(IntPtr tex, IntPtr data, bool markNonReadable);

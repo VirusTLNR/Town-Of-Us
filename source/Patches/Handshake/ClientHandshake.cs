@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using HarmonyLib;
 using Hazel;
 using InnerNet;
@@ -22,6 +23,7 @@ namespace TownOfUs.Handshake
         {
             public static void Postfix(AmongUsClient __instance)
             {
+                Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [AmongUsClient_OnGameJoined|{ MethodBase.GetCurrentMethod().Name}]");
                 if (AmongUsClient.Instance.AmHost)
                     return;
 
@@ -38,6 +40,7 @@ namespace TownOfUs.Handshake
                 messageWriter.EndMessage();
                 __instance.SendOrDisconnect(messageWriter);
                 messageWriter.Recycle();
+                Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [AmongUsClient_OnGameJoined|{ MethodBase.GetCurrentMethod().Name}]");
             }
         }
 
@@ -47,6 +50,7 @@ namespace TownOfUs.Handshake
             public static bool Prefix(InnerNetClient __instance,
                 [HarmonyArgument(0)] MessageReader reader)
             {
+                Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [InnerNetClient_HandleGameData|{ MethodBase.GetCurrentMethod().Name}]");
                 // If i am host, respond to handshake
                 if (__instance.AmHost && reader.BytesRemaining > 3)
                 {
@@ -71,6 +75,7 @@ namespace TownOfUs.Handshake
                         return false;
                     }
                 }
+                Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [InnerNetClient_HandleGameData|{ MethodBase.GetCurrentMethod().Name}]");
 
                 return true;
             }
@@ -80,6 +85,7 @@ namespace TownOfUs.Handshake
         private static HashSet<int> HandshakedClients = new HashSet<int>();
         private static IEnumerator WaitForHandshake(InnerNetClient innerNetClient, int clientId)
         {
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [InnerNetClient_HandleGameData|{ MethodBase.GetCurrentMethod().Name}]");
             PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WaitForHandshake(innerNetClient, clientId = {clientId})");
 
             yield return new WaitForSeconds(5f);
@@ -94,6 +100,7 @@ namespace TownOfUs.Handshake
             {
                 PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WaitForHandshake() - HandshakedClients contained clientId {clientId}");
             }
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [InnerNetClient_HandleGameData|{ MethodBase.GetCurrentMethod().Name}]");
         }
         
         [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerJoined))]
@@ -101,16 +108,19 @@ namespace TownOfUs.Handshake
         {
             public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] ClientData data)
             {
+                Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [AmongUsClient_OnPlayerJoined|{ MethodBase.GetCurrentMethod().Name}]");
                 if (AmongUsClient.Instance.AmHost && __instance.GameState == InnerNetClient.GameStates.Started)
                 {
                     PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"Am host and clientId {data.Id} sent JoinGameResponse");
                     Coroutines.Start(WaitForHandshake(__instance, data.Id));
                 }
+                Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [AmongUsClient_OnPlayerJoined|{ MethodBase.GetCurrentMethod().Name}]");
             }
         }
         
         private static void SendCustomDisconnect(this InnerNetClient innerNetClient, int clientId)
         {
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: Start Of [AmongUsClient_OnPlayerJoined|{ MethodBase.GetCurrentMethod().Name}]");
             var messageWriter = MessageWriter.Get(SendOption.Reliable);
             messageWriter.StartMessage(11);
             messageWriter.Write(innerNetClient.GameId);
@@ -121,6 +131,7 @@ namespace TownOfUs.Handshake
             messageWriter.EndMessage();
             innerNetClient.SendOrDisconnect(messageWriter);
             messageWriter.Recycle();
+            Logger<TownOfUs>.Instance.LogDebug($"[{DateTime.Now.ToString("yyyy-MM-dd@hh:mm:ss")}]: End Of [AmongUsClient_OnPlayerJoined|{ MethodBase.GetCurrentMethod().Name}]");
         }
     }
 }
