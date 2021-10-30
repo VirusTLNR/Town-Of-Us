@@ -2,7 +2,7 @@ namespace TownOfUs
 {
     public enum CustomRPC
     {
-        SetJester = 43,
+        SetJester = 60,
         SetCouple,
         SetMayor,
         SetSheriff,
