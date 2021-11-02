@@ -19,7 +19,6 @@ namespace TownOfUs.Roles
             Color = Palette.ImpostorRed;
             RoleType = RoleEnum.Swooper;
             Faction = Faction.Impostors;
-            LastSwooped = DateTime.UtcNow;
         }
 
         protected override void DoOnGameStart()
@@ -46,37 +45,14 @@ namespace TownOfUs.Roles
 
         public float SwoopTimer()
         {
-            var utcNow = DateTime.UtcNow;
-            var timeSpan = utcNow - LastSwooped;
-            ;
-            var num = CustomGameOptions.SwoopCd * 1000f;
-            var flag2 = num - (float) timeSpan.TotalMilliseconds < 0f;
-            if (flag2) return 0;
-            return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
+            return Utils.GetCooldownTimeRemaining(() => LastSwooped, () => CustomGameOptions.SwoopCd);
         }
 
         public void Swoop()
         {
             Enabled = true;
             TimeRemaining -= Time.deltaTime;
-            var color = Color.clear;
-            if (PlayerControl.LocalPlayer.Data.IsImpostor || PlayerControl.LocalPlayer.Data.IsDead) color.a = 0.1f;
-
-
-            Player.MyRend.color = color;
-
-            Player.HatRenderer.SetHat(0, 0);
-            Player.nameText.text = "";
-            if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
-                .AllSkins.ToArray()[0].ProdId)
-                Player.MyPhysics.SetSkin(0);
-            if (Player.CurrentPet != null) Object.Destroy(Player.CurrentPet.gameObject);
-            Player.CurrentPet =
-                Object.Instantiate(
-                    DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[0]);
-            Player.CurrentPet.transform.position = Player.transform.position;
-            Player.CurrentPet.Source = Player;
-            Player.CurrentPet.Visible = Player.Visible;
+            Utils.MakeInvisible(Player, PlayerControl.LocalPlayer.Data.IsImpostor || PlayerControl.LocalPlayer.Data.IsDead);
         }
 
 

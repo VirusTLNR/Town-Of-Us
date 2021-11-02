@@ -29,6 +29,7 @@ namespace TownOfUs
         SetAssassin,
         SetUnderdog,
         SetTeleporter,
+        SetConcealer,
 
         SetTorch,
         SetDiseased,
@@ -81,6 +82,7 @@ namespace TownOfUs
         Drop,
         AssassinKill,
         Teleport,
+        Conceal,
 
         SetGlitch,
         BypassKill,

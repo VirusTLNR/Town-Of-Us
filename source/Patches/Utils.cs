@@ -32,6 +32,31 @@ namespace TownOfUs
             Player.MyPhysics.SetSkin(skin);
         }
 
+
+        public static void MakeInvisible(PlayerControl player, bool showBlur)
+        {
+            Color color = Color.clear;
+            if (showBlur)
+            {
+                color.a = 0.1f;
+            }
+
+            player.MyRend.color = color;
+
+            player.HatRenderer.SetHat(0, 0);
+            player.nameText.text = "";
+            if (player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
+                .AllSkins.ToArray()[0].ProdId)
+                player.MyPhysics.SetSkin(0);
+            if (player.CurrentPet != null) Object.Destroy(player.CurrentPet.gameObject);
+            player.CurrentPet =
+                Object.Instantiate(
+                    DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[0]);
+            player.CurrentPet.transform.position = player.transform.position;
+            player.CurrentPet.Source = player;
+            player.CurrentPet.Visible = player.Visible;
+        }
+
         public static void Morph(PlayerControl Player, PlayerControl MorphedPlayer, bool resetAnim = false)
         {
             if (CamouflageUnCamouflage.IsCamoed) return;
@@ -75,33 +100,33 @@ namespace TownOfUs
             }*/
         }
 
-        public static void Unmorph(PlayerControl Player)
+        public static void Unmorph(PlayerControl player)
         {
-            var appearance = Player.GetDefaultAppearance();
+            var appearance = player.GetDefaultAppearance();
 
-            Player.nameText.text = Player.Data.PlayerName;
-            PlayerControl.SetPlayerMaterialColors(appearance.ColorId, Player.myRend);
-            Player.HatRenderer.SetHat(appearance.HatId, appearance.ColorId);
-            Player.nameText.transform.localPosition = new Vector3(
+            player.nameText.text = player.Data.PlayerName;
+            PlayerControl.SetPlayerMaterialColors(appearance.ColorId, player.myRend);
+            player.HatRenderer.SetHat(appearance.HatId, appearance.ColorId);
+            player.nameText.transform.localPosition = new Vector3(
                 0f,
                 appearance.HatId == 0U ? 1.5f : 2.0f,
                 -0.5f
             );
 
-            if (Player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
+            if (player.MyPhysics.Skin.skin.ProdId != DestroyableSingleton<HatManager>.Instance
                 .AllSkins.ToArray()[(int)appearance.SkinId].ProdId)
-                SetSkin(Player, appearance.SkinId);
+                SetSkin(player, appearance.SkinId);
 
-            if (Player.CurrentPet != null) Object.Destroy(Player.CurrentPet.gameObject);
+            if (player.CurrentPet != null) Object.Destroy(player.CurrentPet.gameObject);
 
-            Player.CurrentPet =
+            player.CurrentPet =
                 Object.Instantiate(
                     DestroyableSingleton<HatManager>.Instance.AllPets.ToArray()[(int)appearance.PetId]);
-            Player.CurrentPet.transform.position = Player.transform.position;
-            Player.CurrentPet.Source = Player;
-            Player.CurrentPet.Visible = Player.Visible;
+            player.CurrentPet.transform.position = player.transform.position;
+            player.CurrentPet.Source = player;
+            player.CurrentPet.Visible = player.Visible;
 
-            PlayerControl.SetPlayerMaterialColors(appearance.ColorId, Player.CurrentPet.rend);
+            PlayerControl.SetPlayerMaterialColors(appearance.ColorId, player.CurrentPet.rend);
 
             /*if (!Player.inVent)
             {
@@ -308,6 +333,18 @@ namespace TownOfUs
             writer.Write(killer.PlayerId);
             writer.Write(target.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
+        }
+
+        public static float GetCooldownTimeRemaining(Func<DateTime> getLastExecuted, Func<float> getCooldown)
+        {
+            var utcNow = DateTime.UtcNow;
+            var timeSpan = utcNow - getLastExecuted();
+            var num = getCooldown() * 1000f;
+            if (num - (float) timeSpan.TotalMilliseconds < 0f)
+            {
+                return 0;
+            }
+            return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
         }
 
         public static void MurderPlayer(PlayerControl killer, PlayerControl target)
