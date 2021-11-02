@@ -10,7 +10,7 @@ namespace TownOfUs.Roles
         public DateTime LastConcealed { get; set; }
         public float TimeBeforeConcealed { get; private set; }
         public float ConcealTimeRemaining { get; private set; }
-        public PlayerControl Target { get; set; }
+        public PlayerControl Target;
         public PlayerControl Concealed { get; private set; }
 
         public Concealer(PlayerControl player) : base(player)

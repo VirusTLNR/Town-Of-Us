@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
 {
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
-    public class HudManagerUpdate
+    public class ManageConcealButton
     {
         public static void Postfix(HudManager __instance)
         {
