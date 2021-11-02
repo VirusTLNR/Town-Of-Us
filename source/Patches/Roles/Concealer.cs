@@ -8,10 +8,10 @@ namespace TownOfUs.Roles
     {
         private KillButtonManager _concealButton;
         private DateTime _lastConcealed;
-        public float TimeBeforeConcealed;
-        public float ConcealTimeRemaining;
+        public float TimeBeforeConcealed { get; private set; }
+        public float ConcealTimeRemaining { get; private set; }
         public PlayerControl Target;
-        public PlayerControl Concealed;
+        public PlayerControl Concealed { get; private set; }
 
         public Concealer(PlayerControl player) : base(player)
         {
@@ -70,7 +70,8 @@ namespace TownOfUs.Roles
 
             if (TimeBeforeConcealed > 0)
             {
-                TimeBeforeConcealed -= Time.deltaTime;
+                // Prevent this from going negative to avoid cooldown wonkiness
+                TimeBeforeConcealed = Math.Clamp(TimeBeforeConcealed - Time.deltaTime, 0, TimeBeforeConcealed);
                 if (TimeBeforeConcealed <= 0f)
                 {
                     ConcealTimeRemaining = CustomGameOptions.ConcealDuration;
