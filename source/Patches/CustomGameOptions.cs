@@ -126,5 +126,7 @@ namespace TownOfUs
         public static int AssassinKills => (int) Generate.AssassinKills.Get();
         public static bool AssassinMultiKill => Generate.AssassinMultiKill.Get();
         public static float TeleporterCooldown => Generate.TeleporterCooldown.Get();
+        public static bool TeleportSelf => Generate.TeleportSelf.Get();
+        public static bool TeleportOccupiedVents => Generate.TeleportOccupiedVents.Get();
     }
 }

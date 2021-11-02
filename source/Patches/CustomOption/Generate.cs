@@ -176,6 +176,8 @@ namespace TownOfUs.CustomOption
 
         private static CustomHeaderOption Teleporter;
         public static CustomNumberOption TeleporterCooldown;
+        public static CustomToggleOption TeleportSelf;
+        public static CustomToggleOption TeleportOccupiedVents;
 
         private static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
@@ -471,6 +473,8 @@ namespace TownOfUs.CustomOption
             Teleporter = new CustomHeaderOption(num++, "<color=#FF0000FF>Teleporter</color>");
             TeleporterCooldown =
                 new CustomNumberOption(num++, "Teleporter Cooldown", 45, 10, 120, 2.5f, CooldownFormat);
+            TeleportSelf = new CustomToggleOption(num++, "Teleport Teleports Themself", true);
+            TeleportOccupiedVents = new CustomToggleOption(num++, "Allow Occupied Vents", true);
             #endregion
         }
     }

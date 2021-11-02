@@ -96,25 +96,32 @@ namespace TownOfUs.Roles
             foreach ((byte key, Vector2 value) in coordinates)
             {
                 PlayerControl player = Utils.PlayerById(key);
-
                 player.transform.position = value;
             }
         }
 
         private Dictionary<byte, Vector2> GenerateTeleportCoordinates()
         {
-            // TODO: Do we need to check for PlayerControl.LocalPlayer.Mmoverable?
+            // TODO: Do we need to check for PlayerControl.LocalPlayer.Moveble?
             List<PlayerControl> targets = PlayerControl.AllPlayerControls.ToArray()
-                .Where(player => player.PlayerId != PlayerControl.LocalPlayer.PlayerId)
-                .Where(player => !player.Data.IsDead)
+                .Where(player => CustomGameOptions.TeleportSelf || player.PlayerId == PlayerControl.LocalPlayer.PlayerId)
+                //.Where(player => !player.Data.IsDead) Time Lord moves around dead players, so I'll be consistent here
                 .ToList();
 
-            List<Vent> vents = Object.FindObjectsOfType<Vent>().ToList();
+            HashSet<Vent> vents = Object.FindObjectsOfType<Vent>().ToHashSet();
 
             Dictionary<byte, Vector2> coordinates = new Dictionary<byte, Vector2>(targets.Count);
             foreach (PlayerControl target in targets)
             {
                 Vent destination = vents.Random();
+                if (!CustomGameOptions.TeleportOccupiedVents)
+                {
+                    vents.Remove(destination);
+                    if (vents.Count == 0)
+                    {
+                        vents = Object.FindObjectsOfType<Vent>().ToHashSet();
+                    }
+                }
                 coordinates.Add(target.PlayerId, destination.transform.position);
             }
 
@@ -126,8 +133,10 @@ namespace TownOfUs.Roles
             var utcNow = DateTime.UtcNow;
             var timeSpan = utcNow - _lastTeleported;
             var num = CustomGameOptions.TeleporterCooldown * 1000f;
-            var flag2 = num - (float) timeSpan.TotalMilliseconds < 0f;
-            if (flag2) return 0;
+            if (num - (float) timeSpan.TotalMilliseconds < 0f)
+            {
+                return 0;
+            }
             return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
         }
     }

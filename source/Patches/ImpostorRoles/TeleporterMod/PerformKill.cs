@@ -32,6 +32,7 @@ namespace TownOfUs.ImpostorRoles.TeleporterMod
                 __instance.isCoolingDown
                 || !__instance.isActiveAndEnabled
                 || role.TeleportTimer() > 0
+                || Utils.IsSabotageActive()
             )
             {
                 return false;

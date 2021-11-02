@@ -976,6 +976,8 @@ Every living player will get an orange flash and sent to a random vent somewhere
 |----------|:-------------:|:------:|:------:|
 | Teleporter | The percentage probability of the Teleporter appearing | Percentage | 0% |
 | Teleporter Cooldown | The cooldown of the Teleporter's Teleport ability | Time | 45s |
+| Teleport Self | Whether the Teleporter moves themselves as well | Toggle | True |
+| Allow Occupied Vents | Whether the teleported players can be sent to the same vent as another player if there are vents without players | Toggle | True | 
 
 -----------------------
 
