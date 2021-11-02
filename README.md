@@ -58,6 +58,7 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 | Among Us - Version| Mod Version | Link |
 |----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.10 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.10/TOU_2.3.10.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.9 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.9/TOU_2.3.9.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.8 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.8/TOU_2.3.8.zip) |
 | 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.7 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.7/TOU_2.3.7.zip) |
@@ -91,6 +92,15 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.3.10 </summary>
+   <ul>
+     <li> Fix for games geting ended because of "hacking". </li>
+   </ul>
+ </details>
+</li>
 
 <li>
  <details>
