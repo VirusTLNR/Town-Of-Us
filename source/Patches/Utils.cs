@@ -246,6 +246,28 @@ namespace TownOfUs
             }) as Medic;
         }
 
+        /*
+         * TODO
+         * Can we make a clean encapsulation of this that checks for shield, breaks it, and also resets cooldowns
+         * if the setting is on? That would be another step toward reducing boilerplate and making new roles easier.
+         */
+        public static void BreakShield(PlayerControl target)
+        {
+            if (!target.isShielded())
+            {
+                return;
+            }
+
+            byte medicIc = target.getMedic().Player.PlayerId;
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+                (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
+            writer.Write(medicIc);
+            writer.Write(target.PlayerId);
+            AmongUsClient.Instance.FinishRpcImmediately(writer);
+
+            StopKill.BreakShield(medicIc, target.PlayerId, CustomGameOptions.ShieldBreaks);
+        }
+
         public static PlayerControl getClosestPlayer(PlayerControl refPlayer, List<PlayerControl> AllPlayers)
         {
             var num = double.MaxValue;
@@ -286,6 +308,7 @@ namespace TownOfUs
         {
             return getClosestPlayer(refplayer, PlayerControl.AllPlayerControls.ToArray().ToList());
         }
+
         public static void SetTarget(
             ref PlayerControl closestPlayer,
             KillButtonManager button,

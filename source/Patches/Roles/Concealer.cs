@@ -7,10 +7,10 @@ namespace TownOfUs.Roles
     public class Concealer : Role
     {
         private KillButtonManager _concealButton;
-        private DateTime _lastConcealed;
+        public DateTime LastConcealed { get; set; }
         public float TimeBeforeConcealed { get; private set; }
         public float ConcealTimeRemaining { get; private set; }
-        public PlayerControl Target;
+        public PlayerControl Target { get; set; }
         public PlayerControl Concealed { get; private set; }
 
         public Concealer(PlayerControl player) : base(player)
@@ -25,13 +25,13 @@ namespace TownOfUs.Roles
 
         protected override void DoOnGameStart()
         {
-            _lastConcealed = DateTime.UtcNow;
+            LastConcealed = DateTime.UtcNow;
             Target = null;
         }
 
         protected override void DoOnMeetingEnd()
         {
-            _lastConcealed = DateTime.UtcNow;
+            LastConcealed = DateTime.UtcNow;
             Target = null;
         }
 
@@ -48,7 +48,7 @@ namespace TownOfUs.Roles
 
         public float ConcealTimer()
         {
-            return Utils.GetCooldownTimeRemaining(() => _lastConcealed, () => CustomGameOptions.ConcealCooldown);
+            return Utils.GetCooldownTimeRemaining(() => LastConcealed, () => CustomGameOptions.ConcealCooldown);
         }
 
         public void StartConceal(PlayerControl concealed)
@@ -107,7 +107,7 @@ namespace TownOfUs.Roles
 
         private void Unconceal()
         {
-            _lastConcealed = DateTime.UtcNow;
+            LastConcealed = DateTime.UtcNow;
             if (Concealed != null)
             {
                 Utils.Unmorph(Concealed);

@@ -25,16 +25,12 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
             if (!flag3) return false;
             if (role.ClosestPlayer.isShielded())
             {
-                var medic = role.ClosestPlayer.getMedic().Player.PlayerId;
-                var writer1 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                    (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
-                writer1.Write(medic);
-                writer1.Write(role.ClosestPlayer.PlayerId);
-                AmongUsClient.Instance.FinishRpcImmediately(writer1);
+                Utils.BreakShield(role.ClosestPlayer);
 
-                if (CustomGameOptions.ShieldBreaks) role.LastKilled = DateTime.UtcNow;
-
-                StopKill.BreakShield(medic, role.ClosestPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                if (CustomGameOptions.ShieldBreaks)
+                {
+                    role.LastKilled = DateTime.UtcNow;
+                }
 
                 return false;
             }

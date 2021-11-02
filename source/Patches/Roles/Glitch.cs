@@ -485,16 +485,11 @@ namespace TownOfUs.Roles
                 {
                     if (__gInstance.KillTarget.isShielded())
                     {
-                        var medic = __gInstance.HackTarget.getMedic().Player.PlayerId;
-                        var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                            (byte)CustomRPC.AttemptSound, SendOption.Reliable, -1);
-                        writer.Write(medic);
-                        writer.Write(__gInstance.KillTarget.PlayerId);
-                        AmongUsClient.Instance.FinishRpcImmediately(writer);
-                        if (CustomGameOptions.ShieldBreaks) __gInstance.LastKill = DateTime.UtcNow;
-
-                        StopKill.BreakShield(medic, __gInstance.KillTarget.PlayerId,
-                            CustomGameOptions.ShieldBreaks);
+                        Utils.BreakShield(__gInstance.KillTarget);
+                        if (CustomGameOptions.ShieldBreaks)
+                        {
+                            __gInstance.LastKill = DateTime.UtcNow;
+                        }
 
                         return;
                     }
@@ -551,16 +546,11 @@ namespace TownOfUs.Roles
                 {
                     if (__gInstance.HackTarget.isShielded())
                     {
-                        var medic = __gInstance.HackTarget.getMedic().Player.PlayerId;
-                        var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                            (byte)CustomRPC.AttemptSound, SendOption.Reliable, -1);
-                        writer.Write(medic);
-                        writer.Write(__gInstance.HackTarget.PlayerId);
-                        AmongUsClient.Instance.FinishRpcImmediately(writer);
-                        if (CustomGameOptions.ShieldBreaks) __gInstance.LastHack = DateTime.UtcNow;
-
-                        StopKill.BreakShield(medic, __gInstance.HackTarget.PlayerId,
-                            CustomGameOptions.ShieldBreaks);
+                        Utils.BreakShield(__gInstance.HackTarget);
+                        if (CustomGameOptions.ShieldBreaks)
+                        {
+                            __gInstance.LastHack = DateTime.UtcNow;
+                        }
 
                         return;
                     }

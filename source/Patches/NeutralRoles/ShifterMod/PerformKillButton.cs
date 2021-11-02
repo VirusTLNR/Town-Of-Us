@@ -45,15 +45,11 @@ namespace TownOfUs.NeutralRoles.ShifterMod
             var playerId = role.ClosestPlayer.PlayerId;
             if (role.ClosestPlayer.isShielded())
             {
-                var medic = role.ClosestPlayer.getMedic().Player.PlayerId;
-
-                var writer1 = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                    (byte) CustomRPC.AttemptSound, SendOption.Reliable, -1);
-                writer1.Write(medic);
-                writer1.Write(role.ClosestPlayer.PlayerId);
-                AmongUsClient.Instance.FinishRpcImmediately(writer1);
-                if (CustomGameOptions.ShieldBreaks) role.LastShifted = DateTime.UtcNow;
-                StopKill.BreakShield(medic, role.ClosestPlayer.PlayerId, CustomGameOptions.ShieldBreaks);
+                Utils.BreakShield(role.ClosestPlayer);
+                if (CustomGameOptions.ShieldBreaks)
+                {
+                    role.LastShifted = DateTime.UtcNow;
+                }
 
                 return false;
             }

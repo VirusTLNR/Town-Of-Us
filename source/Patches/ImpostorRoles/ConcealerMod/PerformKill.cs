@@ -1,5 +1,7 @@
+using System;
 using HarmonyLib;
 using Hazel;
+using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.Roles;
 
 namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
@@ -34,7 +36,19 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
                 return false;
             }
 
-            var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
+            if (role.Target.isShielded())
+            {
+                Utils.BreakShield(role.Target);
+
+                if (CustomGameOptions.ShieldBreaks)
+                {
+                    role.LastConcealed = DateTime.UtcNow;
+                }
+
+                return false;
+            }
+
+            MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.Conceal,
                 SendOption.Reliable, -1);
             writer.Write(PlayerControl.LocalPlayer.PlayerId);
