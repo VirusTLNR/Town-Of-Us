@@ -1,11 +1,6 @@
- ### Note. The official Town of Us mod was deprecated in favour of Polus.gg. Information on Polus.gg is available at their [steam page](https://store.steampowered.com/app/1653240/Polusgg/) and their [discord](https://discord.gg/polus).
-
 ![LOGO](./Images/TOU-logo.png)
 
 An Among Us mod that adds a bunch of roles, modifiers and game settings
-
-
-
 
 **Crewmate Roles**
 - [Mayor](#mayor)
@@ -56,42 +51,34 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 # Releases
 Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/releases/latest).
 
-| Among Us - Version| Mod Version | Link |
-|----------|-------------|-----------------|
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.10 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.10/TOU_2.3.10.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.9 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.9/TOU_2.3.9.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.8 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.8/TOU_2.3.8.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.7 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.7/TOU_2.3.7.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.6 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.6/TOU_2.3.6.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.5 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.5/TOU_235.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.4 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.4/TOU_234.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.3 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.3/TOU_233.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.2 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.2/TOU_232.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.1 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.1/TOU_231.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.0 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.0-a/TOU_230.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.2 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.2.2a/TOU_222.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.1/TOU_221.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.0/TOU_220.zip) |
-| 2021.6.15s & 2021.6.15e | v2.1.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.4/TOU_214.zip) |
-| 2021.6.15s & 2021.6.15e | v2.1.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.3/TownOfUs213_1.zip) |
-| 2021.6.15s & 2021.6.15e | v2.1.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.2/TownOfUs212_1.zip) |
-| 2021.6.15s & 2021.6.15e | v2.1.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.1/TownOfUs211_1.zip) |
-| 2021.5.10s | v2.0.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.4/TownOfUs-v2.0.4.zip) |
-| 2021.5.10s | v2.0.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.3/TownOfUs-v2.0.3.zip) |
-| 2021.4.12s & 2021.4.14s | v2.0.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.2/TownOfUs-v2.0.2.zip) |
-| 2021.4.12s | v2.0.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.1/TownOfUs-v2.0.1.zip) |
-| 2021.3.31.3s | v2.0.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.0/TownOfUs-v2.0.0.zip) |
-| 2021.3.5s | v1.2.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.2.0/TownOfUs-v1.2.0.zip) |
-| 2021.3.5s | v1.1.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.1.0/TownOfUs-v1.1.0-2021.3.5s.zip) |
-| 2020.12.19s | v1.1.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.1.0/TownOfUs-v1.1.0-2020.12.9s.zip) |
-| 2020.12.19s | v1.0.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.3/TownOfUs-v1.0.3.zip) |
-| 2020.12.19s | v1.0.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.2/TownOfUs-v1.0.2.zip) |
-| 2020.12.19s | v1.0.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.1/TownOfUs-v1.0.1.zip) |
-| 2020.12.19s | v1.0.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.0/TownOfUs-v1.0.0.zip) |
+### Supported versions of Among Us
+
+| Game Version | Supported? |
+| :-----------------: | :------------: |
+|  [Steam](#installation-guide-steam) (v2021.6.30s) | ✔️ |
+|  [Epic Games](#installation-guide-epic-games) (v2021.7.20e) | ✔️ |
+|  [Epic Games](#installation-guide-epic-games) (v2021.6.30e) | ✔️ |
+|  itch.io | ❌ |
+|  Microsoft Store | ❌ |
+|  Android | ❌ |
+|  iOS | ❌ |
+|  XBox | ❌️ |
+|  Playstation | ❌️ |
 
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.4.0 </summary>
+   <ul>
+     <li> Add a new Impostor role: the Teleporter. </li>
+     <li> Change the client handshake to require the clients are on the exact same version. In the past, it was 
+          possible to join the game with slightly mismatched versions. </li>
+   </ul>
+ </details>
+</li>
 
 <li>
  <details>
@@ -189,7 +176,6 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
    </ul>
  </details>
  </li>
-
 
  <li>
  <details>
@@ -452,12 +438,8 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 </ul>
 </details>
 
-
 -----------------------
 # Installation
-## Requirements 
-- Among Us
-- Steam or Epic Games
 
 ## Installation Guide (Steam)
 **1. [Download](#releases) the Town of Us version corresponding to the installed Among Us version.**\
@@ -1072,11 +1054,32 @@ A rainbow color has also been added. Anyone who equips this color will constantl
 ## Custom Hats!
 Custom hats have been added, made by some very talented artists. These are mostly hats for streamers.
 
-
-
 -----------------------
 # Bug / Suggestions
 If you have any bugs or any need to contact me, join the [Discord server](https://discord.gg/polus) or create a ticket on GitHub.
+
+-----------------------
+# Previous versions (pre-Anusien)
+| Among Us - Version| Mod Version | Link |
+|----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.1/TOU_221.zip) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.0/TOU_220.zip) |
+| 2021.6.15s & 2021.6.15e | v2.1.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.4/TOU_214.zip) |
+| 2021.6.15s & 2021.6.15e | v2.1.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.3/TownOfUs213_1.zip) |
+| 2021.6.15s & 2021.6.15e | v2.1.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.2/TownOfUs212_1.zip) |
+| 2021.6.15s & 2021.6.15e | v2.1.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.1/TownOfUs211_1.zip) |
+| 2021.5.10s | v2.0.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.4/TownOfUs-v2.0.4.zip) |
+| 2021.5.10s | v2.0.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.3/TownOfUs-v2.0.3.zip) |
+| 2021.4.12s & 2021.4.14s | v2.0.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.2/TownOfUs-v2.0.2.zip) |
+| 2021.4.12s | v2.0.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.1/TownOfUs-v2.0.1.zip) |
+| 2021.3.31.3s | v2.0.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.0/TownOfUs-v2.0.0.zip) |
+| 2021.3.5s | v1.2.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.2.0/TownOfUs-v1.2.0.zip) |
+| 2021.3.5s | v1.1.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.1.0/TownOfUs-v1.1.0-2021.3.5s.zip) |
+| 2020.12.19s | v1.1.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.1.0/TownOfUs-v1.1.0-2020.12.9s.zip) |
+| 2020.12.19s | v1.0.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.3/TownOfUs-v1.0.3.zip) |
+| 2020.12.19s | v1.0.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.2/TownOfUs-v1.0.2.zip) |
+| 2020.12.19s | v1.0.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.1/TownOfUs-v1.0.1.zip) |
+| 2020.12.19s | v1.0.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.0/TownOfUs-v1.0.0.zip) |
 
 -----------------------
 # Credits & Resources
