@@ -30,6 +30,7 @@ namespace TownOfUs
         Undertaker,
         Assassin,
         Underdog,
+        Teleporter,
 
         Glitch,
 

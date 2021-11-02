@@ -39,6 +39,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Assassin](#assassin)
 - [Underdog](#underdog)
 - [Undertaker](#undertaker)
+- [Teleporter](#teleporter)
 
 **Modifiers**
 - [Torch](#torch)
@@ -962,6 +963,21 @@ When they are the only remaining Impostor, they will have their kill cooldown sh
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Underdog | The percentage probability of the Underdog appearing | Percentage | 0% |
+
+-----------------------
+## Teleporter
+### **Team: Impostors**
+
+The Telepoter is an Impostor that can send the players all over the map.\
+Every living player will get an orange flash and sent to a random vent somewhere on the map.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Teleporter | The percentage probability of the Teleporter appearing | Percentage | 0% |
+| Teleporter Cooldown | The cooldown of the Teleporter's Teleport ability | Time | 45s |
+| Teleport Self | Whether the Teleporter moves themselves as well | Toggle | True |
+| Allow Occupied Vents | Whether the teleported players can be sent to the same vent as another player if there are vents without players | Toggle | True | 
 
 -----------------------
 

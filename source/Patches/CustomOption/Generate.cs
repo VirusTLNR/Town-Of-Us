@@ -41,6 +41,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption UndertakerOn;
         public static CustomNumberOption AssassinOn;
         public static CustomNumberOption UnderdogOn;
+        public static CustomNumberOption TeleporterOn;
 
         private static CustomHeaderOption Modifiers;
         public static CustomNumberOption TorchOn;
@@ -172,6 +173,12 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption AssassinGuessNeutrals;
         public static CustomToggleOption AssassinCrewmateGuess;
         public static CustomToggleOption AssassinMultiKill;
+
+        private static CustomHeaderOption Teleporter;
+        public static CustomNumberOption TeleporterCooldown;
+        public static CustomToggleOption TeleportSelf;
+        public static CustomToggleOption TeleportOccupiedVents;
+
         private static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
 
@@ -244,6 +251,8 @@ namespace TownOfUs.CustomOption
             UndertakerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Undertaker</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             UnderdogOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Underdog</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            TeleporterOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Teleporter</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
             Modifiers = new CustomHeaderOption(num++, "Modifiers");
@@ -460,6 +469,12 @@ namespace TownOfUs.CustomOption
             AssassinCrewmateGuess = new CustomToggleOption(num++, "Assassin can Guess \"Crewmate\"", false);
             AssassinGuessNeutrals = new CustomToggleOption(num++, "Assassin can Guess Neutral roles", false);
             AssassinMultiKill = new CustomToggleOption(num++, "Assassin can kill more than once per meeting");
+
+            Teleporter = new CustomHeaderOption(num++, "<color=#FF0000FF>Teleporter</color>");
+            TeleporterCooldown =
+                new CustomNumberOption(num++, "Teleporter Cooldown", 45, 10, 120, 2.5f, CooldownFormat);
+            TeleportSelf = new CustomToggleOption(num++, "Teleport Teleports Themself", true);
+            TeleportOccupiedVents = new CustomToggleOption(num++, "Allow Occupied Vents", true);
             #endregion
         }
     }

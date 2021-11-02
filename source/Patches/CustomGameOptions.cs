@@ -36,6 +36,7 @@ namespace TownOfUs
         public static int UndertakerOn => (int) Generate.UndertakerOn.Get();
         public static int AssassinOn => (int) Generate.AssassinOn.Get();
         public static int UnderdogOn => (int) Generate.UnderdogOn.Get();
+        public static int TeleporterOn => (int) Generate.TeleporterOn.Get();
         public static int PhantomOn => (int) Generate.PhantomOn.Get();
         public static int TorchOn => (int) Generate.TorchOn.Get();
         public static int DiseasedOn => (int) Generate.DiseasedOn.Get();
@@ -124,5 +125,8 @@ namespace TownOfUs
         public static bool AssassinCrewmateGuess => Generate.AssassinCrewmateGuess.Get();
         public static int AssassinKills => (int) Generate.AssassinKills.Get();
         public static bool AssassinMultiKill => Generate.AssassinMultiKill.Get();
+        public static float TeleporterCooldown => Generate.TeleporterCooldown.Get();
+        public static bool TeleportSelf => Generate.TeleportSelf.Get();
+        public static bool TeleportOccupiedVents => Generate.TeleportOccupiedVents.Get();
     }
 }

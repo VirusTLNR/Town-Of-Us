@@ -135,7 +135,7 @@ namespace TownOfUs.CustomOption
                 var name = splitText[0].Trim();
                 splitText.RemoveAt(0);
                 var option = AllOptions.FirstOrDefault(o => o.Name.Equals(name, StringComparison.Ordinal));
-                if (option == null)
+                if (option == null && splitText.Count > 0)
                 {
                     try
                     {

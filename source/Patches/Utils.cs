@@ -244,6 +244,19 @@ namespace TownOfUs
             return result;
         }
 
+        public static bool IsSabotageActive()
+        {
+            var system = ShipStatus.Instance.Systems[SystemTypes.Sabotage].Cast<SabotageSystemType>();
+            if (system == null)
+            {
+                return false;
+            }
+            var specials = system.specials.ToArray();
+            var dummyActive = system.dummy.IsActive;
+            var sabActive = specials.Any(s => s.IsActive);
+            return sabActive && !dummyActive;
+        }
+
         public static PlayerControl getClosestPlayer(PlayerControl refplayer)
         {
             return getClosestPlayer(refplayer, PlayerControl.AllPlayerControls.ToArray().ToList());
