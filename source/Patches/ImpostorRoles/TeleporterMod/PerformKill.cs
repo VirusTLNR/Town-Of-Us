@@ -8,7 +8,6 @@ namespace TownOfUs.ImpostorRoles.TeleporterMod
     {
         public static bool Prefix(KillButtonManager __instance)
         {
-            // TODO: Disable during a sabotage or solve the sabotage
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Teleporter))
             {
                 return true;
