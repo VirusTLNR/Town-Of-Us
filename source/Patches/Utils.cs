@@ -100,6 +100,12 @@ namespace TownOfUs
             }*/
         }
 
+        public static void MakeVisible(PlayerControl player)
+        {
+            Unmorph(player);
+            player.MyRend.color = Color.white;
+        }
+
         public static void Unmorph(PlayerControl player)
         {
             var appearance = player.GetDefaultAppearance();

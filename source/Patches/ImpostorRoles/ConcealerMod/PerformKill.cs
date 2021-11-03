@@ -48,6 +48,9 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
                 return false;
             }
 
+            // Sets concealed player
+            role.StartConceal(role.Target);
+
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.Conceal,
                 SendOption.Reliable, -1);
@@ -55,7 +58,6 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
             writer.Write(role.Concealed.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
-            role.StartConceal(role.Target);
             return false;
         }
     }

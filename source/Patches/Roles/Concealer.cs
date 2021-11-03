@@ -110,7 +110,7 @@ namespace TownOfUs.Roles
             LastConcealed = DateTime.UtcNow;
             if (Concealed != null)
             {
-                Utils.Unmorph(Concealed);
+                Utils.MakeVisible(Concealed);
                 Concealed = null;
             }
         }

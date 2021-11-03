@@ -55,13 +55,11 @@ namespace TownOfUs.Roles
             Utils.MakeInvisible(Player, PlayerControl.LocalPlayer.Data.IsImpostor || PlayerControl.LocalPlayer.Data.IsDead);
         }
 
-
         public void UnSwoop()
         {
             Enabled = false;
             LastSwooped = DateTime.UtcNow;
-            Utils.Unmorph(Player);
-            Player.MyRend.color = Color.white;
+            Utils.MakeVisible(Player);
         }
     }
 }

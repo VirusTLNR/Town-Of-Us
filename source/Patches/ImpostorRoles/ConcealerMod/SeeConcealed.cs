@@ -33,8 +33,9 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
                 }
 
                 concealed.nameText.transform.localPosition = new Vector3(0f, 2f, -0.5f);
-                concealed.nameText.color = Color.red;
-                concealed.nameText.text = concealed.name + "(Concealed)";
+                concealed.nameText.color = Color.magenta; // TODO is there a better color?
+                concealed.nameText.text =
+                    concealed.name + (role.TimeBeforeConcealed > 0 ? "(Concealing)" : "(Concealed)");
             }
         }
     }
