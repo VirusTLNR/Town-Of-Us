@@ -71,6 +71,15 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 <li>
  <details>
+   <summary> v2.4.2 </summary>
+   <ul>
+     <li> Teleporting to the library vent on Polus no longer sends someone outside the map. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
    <summary> v2.4.1 </summary>
    <ul>
      <li> Fix an error loading saved settings. </li>
