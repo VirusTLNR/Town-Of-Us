@@ -31,6 +31,7 @@ namespace TownOfUs
         Assassin,
         Underdog,
         Teleporter,
+        Concealer,
 
         Glitch,
 

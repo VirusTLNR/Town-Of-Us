@@ -458,6 +458,14 @@ namespace TownOfUs
                         }
                         Teleporter.TeleportPlayersToCoordinates(coordinates);
                         break;
+                    case CustomRPC.Conceal:
+                    {
+                        PlayerControl concealer = Utils.PlayerById(reader.ReadByte());
+                        PlayerControl concealed = Utils.PlayerById(reader.ReadByte());
+                        Concealer role = Role.GetRole<Concealer>(concealer);
+                        role.StartConceal(concealed);
+                        break;
+                    }
                     case CustomRPC.SetMimic:
                         var glitchPlayer = Utils.PlayerById(reader.ReadByte());
                         var mimicPlayer = Utils.PlayerById(reader.ReadByte());
@@ -685,6 +693,9 @@ namespace TownOfUs
                     case CustomRPC.SetTeleporter:
                         new Teleporter(Utils.PlayerById(reader.ReadByte()));
                         break;
+                    case CustomRPC.SetConcealer:
+                        new Concealer(Utils.PlayerById(reader.ReadByte()));
+                        break;
                     case CustomRPC.SetPhantom:
                         readByte = reader.ReadByte();
                         SetPhantom.WillBePhantom = readByte == byte.MaxValue ? null : Utils.PlayerById(readByte);
@@ -820,6 +831,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.TeleporterOn))
                     ImpostorRoles.Add((typeof(Teleporter), CustomRPC.SetTeleporter, CustomGameOptions.TeleporterOn));
+
+                if (Check(CustomGameOptions.ConcealerOn))
+                    ImpostorRoles.Add((typeof(Concealer), CustomRPC.SetConcealer, CustomGameOptions.ConcealerOn));
                 #endregion
                 #region Crewmate Modifiers
                 if (Check(CustomGameOptions.TorchOn))

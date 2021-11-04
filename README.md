@@ -35,6 +35,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Underdog](#underdog)
 - [Undertaker](#undertaker)
 - [Teleporter](#teleporter)
+- [Concealer](#concealer)
 
 **Modifiers**
 - [Torch](#torch)
@@ -978,6 +979,24 @@ Every living player will get an orange flash and sent to a random vent somewhere
 | Teleporter Cooldown | The cooldown of the Teleporter's Teleport ability | Time | 45s |
 | Teleport Self | Whether the Teleporter moves themselves as well | Toggle | True |
 | Allow Occupied Vents | Whether the teleported players can be sent to the same vent as another player if there are vents without players | Toggle | True | 
+
+-----------------------
+## Concealer
+### **Team: Impostors**
+
+The Concealer can temporarily turn non-impostors invisible. \
+After clicking their button, nothing will happen for a few (configurable) seconds, giving them time to get away. \
+Then the player will show up as invisible to everyone *but* themselves. This may cause their story to be suspicious
+and prevent other players from giving them an alibi. \
+The impostors will be able to see them normally and know that the player is concealed to the rest of the game.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Concealer | The percentage probability of the Concealer appearing | Percentage | 0% |
+| Conceal Cooldown | The cooldown of the Concealer's Conceal ability | Time | 30s | 
+| Delay Before Concealing | How long after the Concealer presses the button before the player will become invisible | Time | 5s |
+| Conceal Duration | How long the concealment lasts | Time | 10s |
 
 -----------------------
 

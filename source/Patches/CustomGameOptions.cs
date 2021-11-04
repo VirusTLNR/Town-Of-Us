@@ -37,6 +37,7 @@ namespace TownOfUs
         public static int AssassinOn => (int) Generate.AssassinOn.Get();
         public static int UnderdogOn => (int) Generate.UnderdogOn.Get();
         public static int TeleporterOn => (int) Generate.TeleporterOn.Get();
+        public static int ConcealerOn => (int) Generate.ConcealerOn.Get();
         public static int PhantomOn => (int) Generate.PhantomOn.Get();
         public static int TorchOn => (int) Generate.TorchOn.Get();
         public static int DiseasedOn => (int) Generate.DiseasedOn.Get();
@@ -128,5 +129,8 @@ namespace TownOfUs
         public static float TeleporterCooldown => Generate.TeleporterCooldown.Get();
         public static bool TeleportSelf => Generate.TeleportSelf.Get();
         public static bool TeleportOccupiedVents => Generate.TeleportOccupiedVents.Get();
+        public static float ConcealCooldown => Generate.ConcealCooldown.Get();
+        public static float TimeToConceal => Generate.TimeToConceal.Get();
+        public static float ConcealDuration => Generate.ConcealDuration.Get();
     }
 }
