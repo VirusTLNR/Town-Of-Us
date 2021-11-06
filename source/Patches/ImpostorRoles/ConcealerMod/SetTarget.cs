@@ -14,8 +14,12 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
                 || PlayerControl.LocalPlayer.Data == null
                 || !PlayerControl.LocalPlayer.Is(RoleEnum.Concealer)
                 || target == null
-                || __instance != DestroyableSingleton<HudManager>.Instance.KillButton
             )
+            {
+                return;
+            }
+            Concealer role = Role.GetRole<Concealer>(PlayerControl.LocalPlayer);
+            if (__instance != role.ConcealButton)
             {
                 return;
             }
