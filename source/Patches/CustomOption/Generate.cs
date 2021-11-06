@@ -423,7 +423,7 @@ namespace TownOfUs.CustomOption
 
             Covert = new CustomHeaderOption(num++, "<color=#7B7F1A>Covert</color>");
             CovertCooldown = new CustomNumberOption(num++, "Covert Cooldown", 30f, 10f, 120f, 2.5f, CooldownFormat);
-            CovertDuration = new CustomNumberOption(num++, "Covert Duration", 10f, 5f, 30f, 2.5f, CooldownFormat);
+            CovertDuration = new CustomNumberOption(num++, "Covert Duration", 15f, 5f, 30f, 2.5f, CooldownFormat);
             #endregion
 
 

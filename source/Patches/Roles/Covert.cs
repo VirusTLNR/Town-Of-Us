@@ -8,6 +8,7 @@ namespace TownOfUs.Roles
         private KillButtonManager __covertButton;
         public DateTime LastCovert;
         public float CovertTimeRemaining;
+        public bool IsCovert { get; private set; }
 
         public Covert(PlayerControl player) : base(player)
         {
@@ -42,8 +43,6 @@ namespace TownOfUs.Roles
             }
         }
 
-        public bool IsCovert => CovertTimeRemaining > 0f;
-
         public float CovertTimer()
         {
             return Utils.GetCooldownTimeRemaining(() => LastCovert, () => CustomGameOptions.CovertCooldown);
@@ -51,9 +50,16 @@ namespace TownOfUs.Roles
 
         public void CovertTick()
         {
-            if (IsCovert)
+            if (!IsCovert)
             {
+                return;
+            }
+
+            if (CovertTimeRemaining > 0f)
+            {
+                // We have to apply invisibiility every tick, otherwise the default name color will make the name appear
                 CovertTimeRemaining -= Time.deltaTime;
+                Utils.MakeInvisible(Player, PlayerControl.LocalPlayer.Is(RoleEnum.Covert) || PlayerControl.LocalPlayer.Data.IsDead);
             }
             else
             {
@@ -63,12 +69,14 @@ namespace TownOfUs.Roles
 
         public void GoCovert()
         {
+            IsCovert = true;
             CovertTimeRemaining = CustomGameOptions.CovertDuration;
-            Utils.MakeInvisible(Player, PlayerControl.LocalPlayer.Data.IsDead);
+            //Utils.MakeInvisible(Player, PlayerControl.LocalPlayer.Is(RoleEnum.Covert) || PlayerControl.LocalPlayer.Data.IsDead);
         }
 
-        public void LeaveCovert()
+        private void LeaveCovert()
         {
+            IsCovert = false;
             LastCovert = DateTime.UtcNow;
             Utils.MakeVisible(Player);
         }

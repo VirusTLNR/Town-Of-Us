@@ -39,13 +39,12 @@ namespace TownOfUs.CrewmateRoles.CovertMod
                 return false;
             }
 
-            role.GoCovert();
-
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                 (byte) CustomRPC.GoCovert, SendOption.Reliable, -1);
             writer.Write(PlayerControl.LocalPlayer.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
+            role.GoCovert();
             return false;
         }
     }

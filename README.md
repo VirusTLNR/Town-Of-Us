@@ -797,7 +797,7 @@ The Covert is a Crewmate that can temporarily turn invisible.
 |----------|:-------------:|:------:|:------:|
 | Covert | The percentage probability of the Covert appearing | Percentage | 0% |
 | Covert Cooldown | The cooldown of the Covert's invisibility button | Time | 30s |
-| Covert Cooldown | How long the Covert is invisible | Time | 10s |
+| Covert Cooldown | How long the Covert is invisible | Time | 15s |
 
 
 -----------------------
