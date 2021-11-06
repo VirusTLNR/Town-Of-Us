@@ -26,9 +26,9 @@ namespace TownOfUs.Roles
             LastRevealed = DateTime.UtcNow;
 
             // I think this will trigger a revelation as soon as the HUD hits
-            if (CustomGameOptions.ProphetInitialReveal)
+            if (CustomGameOptions.ProphetInitialReveal && Revealed.Count == 0)
             {
-                LastRevealed = LastRevealed.AddSeconds(CustomGameOptions.ProphetCooldown * -1).AddSeconds(5);
+                LastRevealed = LastRevealed.AddSeconds(CustomGameOptions.ProphetCooldown * -1).AddSeconds(3);
             }
         }
 
@@ -46,7 +46,7 @@ namespace TownOfUs.Roles
             PlayerControl target = allPlayers
                 .Where(player => player.PlayerId != PlayerControl.LocalPlayer.PlayerId)
                 .Where(player => !Revealed.Contains(player.PlayerId))
-                .Where(player => Role.GetRole(player).Faction == Faction.Crewmates)
+                .Where(player => GetRole(player).Faction == Faction.Crewmates)
                 .Random();
 
             if (target == null)

@@ -346,6 +346,8 @@ namespace TownOfUs.Roles
                 RoleEnum.Assassin => "Assassin",
                 RoleEnum.Underdog => "Underdog",
                 RoleEnum.Glitch => "The Glitch",
+                RoleEnum.Teleporter => "Teleporter",
+                RoleEnum.Concealer => "Concealer",
                 RoleEnum.Impostor => "Impostor",
                 _ => "Crewmate",
             };

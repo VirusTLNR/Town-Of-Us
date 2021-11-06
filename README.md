@@ -1,11 +1,6 @@
- ### Note. The official Town of Us mod was deprecated in favour of Polus.gg. Information on Polus.gg is available at their [steam page](https://store.steampowered.com/app/1653240/Polusgg/) and their [discord](https://discord.gg/polus).
-
 ![LOGO](./Images/TOU-logo.png)
 
 An Among Us mod that adds a bunch of roles, modifiers and game settings
-
-
-
 
 **Crewmate Roles**
 - [Mayor](#mayor)
@@ -39,6 +34,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Assassin](#assassin)
 - [Underdog](#underdog)
 - [Undertaker](#undertaker)
+- [Teleporter](#teleporter)
+- [Concealer](#concealer)
 
 **Modifiers**
 - [Torch](#torch)
@@ -55,39 +52,91 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 # Releases
 Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/releases/latest).
 
-| Among Us - Version| Mod Version | Link |
-|----------|-------------|-----------------|
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.7 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.7/TOU_2.3.7.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.6 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.6/TOU_2.3.6.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.5 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.5/TOU_235.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.4 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.4/TOU_234.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.3 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.3/TOU_233.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.2 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.2/TOU_232.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.1 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.1/TOU_231.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.3.0 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.3.0-a/TOU_230.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.2 | [Download](https://github.com/Anusien/Town-Of-Us/releases/download/v2.2.2a/TOU_222.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.1/TOU_221.zip) |
-| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.0/TOU_220.zip) |
-| 2021.6.15s & 2021.6.15e | v2.1.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.4/TOU_214.zip) |
-| 2021.6.15s & 2021.6.15e | v2.1.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.3/TownOfUs213_1.zip) |
-| 2021.6.15s & 2021.6.15e | v2.1.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.2/TownOfUs212_1.zip) |
-| 2021.6.15s & 2021.6.15e | v2.1.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.1/TownOfUs211_1.zip) |
-| 2021.5.10s | v2.0.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.4/TownOfUs-v2.0.4.zip) |
-| 2021.5.10s | v2.0.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.3/TownOfUs-v2.0.3.zip) |
-| 2021.4.12s & 2021.4.14s | v2.0.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.2/TownOfUs-v2.0.2.zip) |
-| 2021.4.12s | v2.0.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.1/TownOfUs-v2.0.1.zip) |
-| 2021.3.31.3s | v2.0.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.0/TownOfUs-v2.0.0.zip) |
-| 2021.3.5s | v1.2.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.2.0/TownOfUs-v1.2.0.zip) |
-| 2021.3.5s | v1.1.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.1.0/TownOfUs-v1.1.0-2021.3.5s.zip) |
-| 2020.12.19s | v1.1.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.1.0/TownOfUs-v1.1.0-2020.12.9s.zip) |
-| 2020.12.19s | v1.0.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.3/TownOfUs-v1.0.3.zip) |
-| 2020.12.19s | v1.0.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.2/TownOfUs-v1.0.2.zip) |
-| 2020.12.19s | v1.0.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.1/TownOfUs-v1.0.1.zip) |
-| 2020.12.19s | v1.0.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.0/TownOfUs-v1.0.0.zip) |
+### Supported versions of Among Us
+
+| Game Version | Supported? |
+| :-----------------: | :------------: |
+|  [Steam](#installation-guide-steam) (v2021.6.30s) | ✔️ |
+|  [Epic Games](#installation-guide-epic-games) (v2021.7.20e) | ✔️ |
+|  [Epic Games](#installation-guide-epic-games) (v2021.6.30e) | ✔️ |
+|  itch.io | ❌ |
+|  Microsoft Store | ❌ |
+|  Android | ❌ |
+|  iOS | ❌ |
+|  XBox | ❌️ |
+|  Playstation | ❌️ |
 
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.5.0 </summary>
+   <ul>
+     <li> Introduce a new impostor role: the Concealer. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.4.2 </summary>
+   <ul>
+     <li> Teleporting to the library vent on Polus no longer sends someone outside the map. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.4.1 </summary>
+   <ul>
+     <li> Fix an error loading saved settings. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.4.0 </summary>
+   <ul>
+     <li> Add a new Impostor role: the Teleporter. </li>
+     <li> Change the client handshake to require the clients are on the exact same version. In the past, it was 
+          possible to join the game with slightly mismatched versions. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.3.10 </summary>
+   <ul>
+     <li> Fix for games geting ended because of "hacking". </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.3.9 </summary>
+   <ul>
+     <li> Fix for the Shifter being unable to shift into the Prophet. </li>
+     <li> Stop giving the Prophet sights when they're dead. </li>
+     <li> Fix the Prophet's color being wrong in the Assassin dialogue. </li>
+     <li> Make the Prophet initial reveal come a little sooner. </li>
+   </ul>
+ </details>
+ </li>
+
+<li>
+ <details>
+   <summary> v2.3.8 </summary>
+   <ul>
+     <li> Impostor and Crewmate vision can now be set in 0.125 increments instead of 0.25 (will show as rounded up in the settings). </li>
+   </ul>
+ </details>
+ </li>
 
 <li>
  <details>
@@ -155,7 +204,6 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
    </ul>
  </details>
  </li>
-
 
  <li>
  <details>
@@ -418,12 +466,8 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 </ul>
 </details>
 
-
 -----------------------
 # Installation
-## Requirements 
-- Among Us
-- Steam or Epic Games
 
 ## Installation Guide (Steam)
 **1. [Download](#releases) the Town of Us version corresponding to the installed Among Us version.**\
@@ -931,6 +975,39 @@ When they are the only remaining Impostor, they will have their kill cooldown sh
 | Underdog | The percentage probability of the Underdog appearing | Percentage | 0% |
 
 -----------------------
+## Teleporter
+### **Team: Impostors**
+
+The Telepoter is an Impostor that can send the players all over the map.\
+Every living player will get an orange flash and sent to a random vent somewhere on the map.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Teleporter | The percentage probability of the Teleporter appearing | Percentage | 0% |
+| Teleporter Cooldown | The cooldown of the Teleporter's Teleport ability | Time | 45s |
+| Teleport Self | Whether the Teleporter moves themselves as well | Toggle | True |
+| Allow Occupied Vents | Whether the teleported players can be sent to the same vent as another player if there are vents without players | Toggle | True | 
+
+-----------------------
+## Concealer
+### **Team: Impostors**
+
+The Concealer can temporarily turn non-impostors invisible. \
+After clicking their button, nothing will happen for a few (configurable) seconds, giving them time to get away. \
+Then the player will show up as invisible to everyone *but* themselves. This may cause their story to be suspicious
+and prevent other players from giving them an alibi. \
+The impostors will be able to see them normally and know that the player is concealed to the rest of the game.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Concealer | The percentage probability of the Concealer appearing | Percentage | 0% |
+| Conceal Cooldown | The cooldown of the Concealer's Conceal ability | Time | 30s | 
+| Delay Before Concealing | How long after the Concealer presses the button before the player will become invisible | Time | 5s |
+| Conceal Duration | How long the concealment lasts | Time | 10s |
+
+-----------------------
 
 # Modifiers
 Modifiers are added on top of players' roles.
@@ -1023,11 +1100,32 @@ A rainbow color has also been added. Anyone who equips this color will constantl
 ## Custom Hats!
 Custom hats have been added, made by some very talented artists. These are mostly hats for streamers.
 
-
-
 -----------------------
 # Bug / Suggestions
 If you have any bugs or any need to contact me, join the [Discord server](https://discord.gg/polus) or create a ticket on GitHub.
+
+-----------------------
+# Previous versions (pre-Anusien)
+| Among Us - Version| Mod Version | Link |
+|----------|-------------|-----------------|
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.1/TOU_221.zip) |
+| 2021.6.30s & 2021.6.30e & 2021.7.20e | v2.2.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.2.0/TOU_220.zip) |
+| 2021.6.15s & 2021.6.15e | v2.1.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.4/TOU_214.zip) |
+| 2021.6.15s & 2021.6.15e | v2.1.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.3/TownOfUs213_1.zip) |
+| 2021.6.15s & 2021.6.15e | v2.1.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.2/TownOfUs212_1.zip) |
+| 2021.6.15s & 2021.6.15e | v2.1.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.1.1/TownOfUs211_1.zip) |
+| 2021.5.10s | v2.0.4 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.4/TownOfUs-v2.0.4.zip) |
+| 2021.5.10s | v2.0.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.3/TownOfUs-v2.0.3.zip) |
+| 2021.4.12s & 2021.4.14s | v2.0.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.2/TownOfUs-v2.0.2.zip) |
+| 2021.4.12s | v2.0.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.1/TownOfUs-v2.0.1.zip) |
+| 2021.3.31.3s | v2.0.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v2.0.0/TownOfUs-v2.0.0.zip) |
+| 2021.3.5s | v1.2.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.2.0/TownOfUs-v1.2.0.zip) |
+| 2021.3.5s | v1.1.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.1.0/TownOfUs-v1.1.0-2021.3.5s.zip) |
+| 2020.12.19s | v1.1.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.1.0/TownOfUs-v1.1.0-2020.12.9s.zip) |
+| 2020.12.19s | v1.0.3 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.3/TownOfUs-v1.0.3.zip) |
+| 2020.12.19s | v1.0.2 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.2/TownOfUs-v1.0.2.zip) |
+| 2020.12.19s | v1.0.1 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.1/TownOfUs-v1.0.1.zip) |
+| 2020.12.19s | v1.0.0 | [Download](https://github.com/polusgg/Town-Of-Us/releases/download/v1.0.0/TownOfUs-v1.0.0.zip) |
 
 -----------------------
 # Credits & Resources

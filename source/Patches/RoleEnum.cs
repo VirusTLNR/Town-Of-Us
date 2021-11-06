@@ -33,6 +33,8 @@ namespace TownOfUs
         Undertaker,
         Assassin,
         Underdog,
+        Teleporter,
+        Concealer,
 
         Glitch,
 

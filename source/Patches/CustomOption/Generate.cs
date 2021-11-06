@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using UnityEngine.UIElements;
 
 namespace TownOfUs.CustomOption
 {
@@ -41,6 +42,8 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption UndertakerOn;
         public static CustomNumberOption AssassinOn;
         public static CustomNumberOption UnderdogOn;
+        public static CustomNumberOption TeleporterOn;
+        public static CustomNumberOption ConcealerOn;
 
         private static CustomHeaderOption Modifiers;
         public static CustomNumberOption TorchOn;
@@ -119,6 +122,11 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption SeerNeutralChance;
         public static CustomNumberOption SeerImpostorChance;
 
+        private static CustomHeaderOption Snitch;
+        public static CustomToggleOption SnitchOnLaunch;
+        public static CustomToggleOption SnitchSeesNeutrals;
+        public static CustomToggleOption SnitchSeesInMeetings;
+
         private static CustomHeaderOption Altruist;
         public static CustomNumberOption ReviveDuration;
         public static CustomToggleOption AltruistTargetBody;
@@ -126,6 +134,7 @@ namespace TownOfUs.CustomOption
         private static CustomHeaderOption Prophet;
         public static CustomNumberOption ProphetCooldown;
         public static CustomToggleOption ProphetInitialReveal;
+
 
         private static CustomHeaderOption TheGlitch;
         public static CustomNumberOption MimicCooldownOption;
@@ -136,22 +145,21 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption InitialGlitchKillCooldownOption;
         public static CustomStringOption GlitchHackDistanceOption;
 
+        private static CustomHeaderOption Arsonist;
+        public static CustomNumberOption DouseCooldown;
+        public static CustomToggleOption ArsonistGameEnd;
 
-        private static CustomHeaderOption Morphling;
-        public static CustomNumberOption MorphlingCooldown;
-        public static CustomNumberOption MorphlingDuration;
+        private static CustomHeaderOption Executioner;
+        public static CustomStringOption OnTargetDead;
+
 
         private static CustomHeaderOption Camouflager;
         public static CustomNumberOption CamouflagerCooldown;
         public static CustomNumberOption CamouflagerDuration;
 
-        private static CustomHeaderOption Executioner;
-        public static CustomStringOption OnTargetDead;
-
-        private static CustomHeaderOption Snitch;
-        public static CustomToggleOption SnitchOnLaunch;
-        public static CustomToggleOption SnitchSeesNeutrals;
-        public static CustomToggleOption SnitchSeesInMeetings;
+        private static CustomHeaderOption Morphling;
+        public static CustomNumberOption MorphlingCooldown;
+        public static CustomNumberOption MorphlingDuration;
 
         private static CustomHeaderOption Miner;
         public static CustomNumberOption MineCooldown;
@@ -159,10 +167,6 @@ namespace TownOfUs.CustomOption
         private static CustomHeaderOption Swooper;
         public static CustomNumberOption SwoopCooldown;
         public static CustomNumberOption SwoopDuration;
-
-        private static CustomHeaderOption Arsonist;
-        public static CustomNumberOption DouseCooldown;
-        public static CustomToggleOption ArsonistGameEnd;
 
         private static CustomHeaderOption Undertaker;
         public static CustomNumberOption DragCooldown;
@@ -172,6 +176,17 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption AssassinGuessNeutrals;
         public static CustomToggleOption AssassinCrewmateGuess;
         public static CustomToggleOption AssassinMultiKill;
+
+        private static CustomHeaderOption Teleporter;
+        public static CustomNumberOption TeleporterCooldown;
+        public static CustomToggleOption TeleportSelf;
+        public static CustomToggleOption TeleportOccupiedVents;
+
+        private static CustomHeaderOption Concealer;
+        public static CustomNumberOption ConcealCooldown;
+        public static CustomNumberOption TimeToConceal;
+        public static CustomNumberOption ConcealDuration;
+
         private static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
 
@@ -228,6 +243,7 @@ namespace TownOfUs.CustomOption
             PhantomOn = new CustomNumberOption(true, num++, "<color=#662962>Phantom</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
+
             ImpostorRoles = new CustomHeaderOption(num++, "Impostor Roles");
             AssassinOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Assassin</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
@@ -245,6 +261,11 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             UnderdogOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Underdog</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
+            TeleporterOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Teleporter</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            ConcealerOn = new CustomNumberOption(true, num++, "<color=#FF0000FF>Concealer</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+
 
             Modifiers = new CustomHeaderOption(num++, "Modifiers");
             TorchOn = new CustomNumberOption(true, num++, "<color=#FFFF99FF>Torch</color>", 0f, 0f, 100f, 10f,
@@ -461,6 +482,17 @@ namespace TownOfUs.CustomOption
             AssassinCrewmateGuess = new CustomToggleOption(num++, "Assassin can Guess \"Crewmate\"", false);
             AssassinGuessNeutrals = new CustomToggleOption(num++, "Assassin can Guess Neutral roles", false);
             AssassinMultiKill = new CustomToggleOption(num++, "Assassin can kill more than once per meeting");
+
+            Teleporter = new CustomHeaderOption(num++, "<color=#FF0000FF>Teleporter</color>");
+            TeleporterCooldown =
+                new CustomNumberOption(num++, "Teleporter Cooldown", 45, 10, 120, 2.5f, CooldownFormat);
+            TeleportSelf = new CustomToggleOption(num++, "Teleport Teleports Themself", true);
+            TeleportOccupiedVents = new CustomToggleOption(num++, "Allow Occupied Vents", true);
+
+            Concealer = new CustomHeaderOption(num++, "<color=#FF0000FF>Concealer</color>");
+            ConcealCooldown = new CustomNumberOption(num++, "Conceal Cooldown", 30, 10, 60, 2.5f, CooldownFormat);
+            TimeToConceal = new CustomNumberOption(num++, "Delay Before Concealing", 5, 2.5f, 15, 2.5f, CooldownFormat);
+            ConcealDuration = new CustomNumberOption(num++, "Conceal Duration", 10, 2.5f, 20f, 2.5f, CooldownFormat);
             #endregion
         }
     }

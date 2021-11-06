@@ -20,12 +20,10 @@ namespace TownOfUs.Roles
             RoleType = RoleEnum.Miner;
             Faction = Faction.Impostors;
             LastMined = DateTime.UtcNow;
-
-
         }
 
         public bool CanPlace { get; set; }
-        public Vector2 VentSize { get; set; }
+        public Vector2 VentSize { get; private set; }
 
         protected override void DoOnGameStart()
         {
