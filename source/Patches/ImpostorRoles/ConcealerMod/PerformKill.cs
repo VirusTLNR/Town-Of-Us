@@ -35,6 +35,7 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
                 || !__instance.isActiveAndEnabled
                 || role.ConcealTimer() != 0
                 || role.Target == null
+                || role.Target.Data.IsImpostor
             )
             {
                 return false;
