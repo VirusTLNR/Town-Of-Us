@@ -72,6 +72,18 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 <li>
  <details>
+   <summary> v2.5.1 </summary>
+   <ul>
+     <li> Fixed bug where non-Concealers had difficulty killing. </li>
+     <li> Concealer is now properly unable to conceal Impostors. </li>
+     <li> Concealer's conceal button will properly be greyed out for impostors. </li>
+     <li> Fixed impostors not seeing the name of concealed players. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
    <summary> v2.5.0 </summary>
    <ul>
      <li> Introduce a new impostor role: the Concealer. </li>
