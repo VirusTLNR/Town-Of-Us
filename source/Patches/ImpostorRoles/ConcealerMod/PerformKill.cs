@@ -11,17 +11,17 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
     {
         public static bool Prefix(KillButtonManager __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Concealer))
+            {
+                return true;
+            }
+
             if (
                 !PlayerControl.LocalPlayer.CanMove
                 || PlayerControl.LocalPlayer.Data.IsDead
                 )
             {
                 return false;
-            }
-
-            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Concealer))
-            {
-                return true;
             }
 
             Concealer role = Role.GetRole<Concealer>(PlayerControl.LocalPlayer);
