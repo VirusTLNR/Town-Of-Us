@@ -22,6 +22,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption SnitchOn;
         public static CustomNumberOption AltruistOn;
         public static CustomNumberOption ProphetOn;
+        public static CustomNumberOption CovertOn;
 
 
         private static CustomHeaderOption NeutralRoles;
@@ -44,6 +45,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption UnderdogOn;
         public static CustomNumberOption TeleporterOn;
         public static CustomNumberOption ConcealerOn;
+
 
         private static CustomHeaderOption Modifiers;
         public static CustomNumberOption TorchOn;
@@ -135,6 +137,9 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ProphetCooldown;
         public static CustomToggleOption ProphetInitialReveal;
 
+        private static CustomHeaderOption Covert;
+        public static CustomNumberOption CovertCooldown;
+        public static CustomNumberOption CovertDuration;
 
         private static CustomHeaderOption TheGlitch;
         public static CustomNumberOption MimicCooldownOption;
@@ -226,6 +231,8 @@ namespace TownOfUs.CustomOption
             AltruistOn = new CustomNumberOption(true, num++, "<color=#660000FF>Altruist</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
             ProphetOn = new CustomNumberOption(true, num++, "<color=#B026FF>Prophet</color>", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            CovertOn = new CustomNumberOption(true, num++, "<color=#7B7F1A>Covert</color>", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
 
@@ -413,6 +420,10 @@ namespace TownOfUs.CustomOption
             ProphetCooldown = new CustomNumberOption(num++, "Prophet Cooldown", 40f, 10f, 120f, 2.5f, CooldownFormat);
             ProphetInitialReveal =
                 new CustomToggleOption(num++, "Prophet starts the game with a player revealed.", false);
+
+            Covert = new CustomHeaderOption(num++, "<color=#7B7F1A>Covert</color>");
+            CovertCooldown = new CustomNumberOption(num++, "Covert Cooldown", 30f, 10f, 120f, 2.5f, CooldownFormat);
+            CovertDuration = new CustomNumberOption(num++, "Covert Duration", 10f, 5f, 30f, 2.5f, CooldownFormat);
             #endregion
 
 
@@ -447,6 +458,7 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(num++, "Douse Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
             ArsonistGameEnd = new CustomToggleOption(num++, "Game keeps going so long as Arsonist is alive", false);
             #endregion
+
 
             #region ImpostorConfiguration
             Morphling =

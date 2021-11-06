@@ -21,6 +21,7 @@ namespace TownOfUs
         Altruist,
         Phantom,
         Prophet,
+        Covert,
 
         Miner,
         Swooper,
