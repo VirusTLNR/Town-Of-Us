@@ -11,9 +11,13 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
     {
         public static bool Prefix(KillButtonManager __instance)
         {
+            if (!PlayerControl.LocalPlayer.Is(RoleEnum.Concealer))
+            {
+                return true;
+            }
+
             if (
-                !PlayerControl.LocalPlayer.Is(RoleEnum.Concealer)
-                || !PlayerControl.LocalPlayer.CanMove
+                !PlayerControl.LocalPlayer.CanMove
                 || PlayerControl.LocalPlayer.Data.IsDead
                 )
             {
@@ -31,6 +35,7 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
                 || !__instance.isActiveAndEnabled
                 || role.ConcealTimer() != 0
                 || role.Target == null
+                || role.Target.Data.IsImpostor
             )
             {
                 return false;
