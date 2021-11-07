@@ -25,6 +25,7 @@ namespace TownOfUs
         SetArsonist,
         SetAltruist,
         SetProphet,
+        SetCovert,
         SetUndertaker,
         SetAssassin,
         SetUnderdog,
@@ -83,6 +84,7 @@ namespace TownOfUs
         AssassinKill,
         Teleport,
         Conceal,
+        GoCovert,
 
         SetGlitch,
         BypassKill,

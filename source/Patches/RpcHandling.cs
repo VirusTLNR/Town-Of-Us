@@ -466,6 +466,13 @@ namespace TownOfUs
                         role.StartConceal(concealed);
                         break;
                     }
+                    case CustomRPC.GoCovert:
+                    {
+                        PlayerControl covert = Utils.PlayerById(reader.ReadByte());
+                        Covert role = Role.GetRole<Covert>(covert);
+                        role.GoCovert();
+                        break;
+                    }
                     case CustomRPC.SetMimic:
                         var glitchPlayer = Utils.PlayerById(reader.ReadByte());
                         var mimicPlayer = Utils.PlayerById(reader.ReadByte());
@@ -605,6 +612,9 @@ namespace TownOfUs
                         break;
                     case CustomRPC.SetProphet:
                         new Prophet(Utils.PlayerById(reader.ReadByte()));
+                        break;
+                    case CustomRPC.SetCovert:
+                        new Covert(Utils.PlayerById(reader.ReadByte()));
                         break;
                     case CustomRPC.SetBigBoi:
                         new BigBoiModifier(Utils.PlayerById(reader.ReadByte()));
@@ -787,6 +797,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.ProphetOn))
                     CrewmateRoles.Add((typeof(Prophet), CustomRPC.SetProphet, CustomGameOptions.ProphetOn));
+
+                if (Check(CustomGameOptions.CovertOn))
+                    CrewmateRoles.Add((typeof(Covert), CustomRPC.SetCovert, CustomGameOptions.CovertOn));
                 #endregion
                 #region Neutral Roles
                 if (Check(CustomGameOptions.ArsonistOn))

@@ -16,6 +16,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Snitch](#snitch)
 - [Altruist](#altruist)
 - [Prophet](#prophet)
+- [Covert](#covert)
 
 **Neutral Roles**
 - [Jester](#jester)
@@ -784,6 +785,19 @@ These revelations can be about players who are living or dead.
 | Prophet | The percentage probability of the Prophet appearing | Percentage | 0% |
 | Prophet Cooldown | The cooldown of how long it takes for the Prophet to be given a revelation | Time | 40s |
 | Prophet Initial Reveal | Whether the Prophet starts the game with a player already revealed to them | Toggle | False |
+
+
+----------------------
+## Covert
+### **Team: Crewmates**
+
+The Covert is a Crewmate that can temporarily turn invisible.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Covert | The percentage probability of the Covert appearing | Percentage | 0% |
+| Covert Cooldown | The cooldown of the Covert's invisibility button | Time | 30s |
+| Covert Cooldown | How long the Covert is invisible | Time | 15s |
 
 
 -----------------------
