@@ -34,6 +34,7 @@ namespace TownOfUs
         public static int ArsonistOn => (int) Generate.ArsonistOn.Get();
         public static int AltruistOn => (int) Generate.AltruistOn.Get();
         public static int ProphetOn => (int) Generate.ProphetOn.Get();
+        public static int CovertOn => (int) Generate.CovertOn.Get();
         public static int UndertakerOn => (int) Generate.UndertakerOn.Get();
         public static int AssassinOn => (int) Generate.AssassinOn.Get();
         public static int UnderdogOn => (int) Generate.UnderdogOn.Get();
@@ -89,6 +90,8 @@ namespace TownOfUs
         public static float SeerImpostorChance => Generate.SeerImpostorChance.Get();
         public static float ProphetCooldown => Generate.ProphetCooldown.Get();
         public static bool ProphetInitialReveal => Generate.ProphetInitialReveal.Get();
+        public static float CovertCooldown => Generate.CovertCooldown.Get();
+        public static float CovertDuration => Generate.CovertDuration.Get();
         public static bool NeutralRed => Generate.NeutralRed.Get();
         public static float MimicCooldown => Generate.MimicCooldownOption.Get();
         public static float MimicDuration => Generate.MimicDurationOption.Get();
@@ -151,6 +154,7 @@ namespace TownOfUs
             if (On(SnitchOn)) enabledRoles.Add(RoleEnum.Snitch);
             if (On(AltruistOn)) enabledRoles.Add(RoleEnum.Altruist);
             if (On(ProphetOn)) enabledRoles.Add(RoleEnum.Prophet);
+            if (On(CovertOn)) enabledRoles.Add(RoleEnum.Covert);
 
             if (includeNeutrals)
             {

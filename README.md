@@ -16,6 +16,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Snitch](#snitch)
 - [Altruist](#altruist)
 - [Prophet](#prophet)
+- [Covert](#covert)
 
 **Neutral Roles**
 - [Jester](#jester)
@@ -69,6 +70,36 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.6.1 </summary>
+   <ul>
+     <li> Assassin can now guess Covert. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.6.0 </summary>
+   <ul>
+     <li> Added the Covert. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.5.1 </summary>
+   <ul>
+     <li> Fixed bug where non-Concealers had difficulty killing. </li>
+     <li> Concealer is now properly unable to conceal Impostors. </li>
+     <li> Concealer's conceal button will properly be greyed out for impostors. </li>
+     <li> Fixed impostors not seeing the name of concealed players. </li>
+   </ul>
+ </details>
+</li>
 
 <li>
  <details>
@@ -772,6 +803,19 @@ These revelations can be about players who are living or dead.
 | Prophet | The percentage probability of the Prophet appearing | Percentage | 0% |
 | Prophet Cooldown | The cooldown of how long it takes for the Prophet to be given a revelation | Time | 40s |
 | Prophet Initial Reveal | Whether the Prophet starts the game with a player already revealed to them | Toggle | False |
+
+
+----------------------
+## Covert
+### **Team: Crewmates**
+
+The Covert is a Crewmate that can temporarily turn invisible.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Covert | The percentage probability of the Covert appearing | Percentage | 0% |
+| Covert Cooldown | The cooldown of the Covert's invisibility button | Time | 30s |
+| Covert Cooldown | How long the Covert is invisible | Time | 15s |
 
 
 -----------------------
