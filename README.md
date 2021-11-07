@@ -73,6 +73,15 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 <li>
  <details>
+   <summary> v2.6.0 </summary>
+   <ul>
+     <li> Added the Covert. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
    <summary> v2.5.1 </summary>
    <ul>
      <li> Fixed bug where non-Concealers had difficulty killing. </li>
