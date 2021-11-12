@@ -73,6 +73,15 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 <li>
  <details>
+   <summary> v2.6.2 </summary>
+   <ul>
+     <li> Covert vision is reduced when invisible. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
    <summary> v2.6.1 </summary>
    <ul>
      <li> Assassin can now guess Covert. </li>
@@ -809,7 +818,7 @@ These revelations can be about players who are living or dead.
 ## Covert
 ### **Team: Crewmates**
 
-The Covert is a Crewmate that can temporarily turn invisible.
+The Covert is a Crewmate that can temporarily turn invisible. Their vision is halved while invisible.
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
