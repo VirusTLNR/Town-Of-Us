@@ -3,6 +3,7 @@ using HarmonyLib;
 using Reactor.Extensions;
 using TMPro;
 using TownOfUs.Extensions;
+using TownOfUs.Patches;
 using TownOfUs.Roles;
 using UnityEngine;
 using UnityEngine.UI;
@@ -101,7 +102,7 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
 
                 var newGuess = role.PossibleGuesses[role.Guesses[voteArea.TargetPlayerId] = currentGuessIdx];
 
-                nameText.text = Role.GetName(newGuess, true);
+                nameText.text = RoleDetailsAttribute.GetRoleDetails(newGuess).GetColoredName();
             }
 
             return Listener;
