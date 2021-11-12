@@ -57,6 +57,8 @@ Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/r
 
 | Game Version | Supported? |
 | :-----------------: | :------------: |
+|  [Steam](#installation-guide-steam) (v2021.11.9.5s) | ❌ |
+|  [Epic Games](#installation-guide-epic-games) (v2021.11.9.5e) | ❌ |
 |  [Steam](#installation-guide-steam) (v2021.6.30s) | ✔️ |
 |  [Epic Games](#installation-guide-epic-games) (v2021.7.20e) | ✔️ |
 |  [Epic Games](#installation-guide-epic-games) (v2021.6.30e) | ✔️ |
