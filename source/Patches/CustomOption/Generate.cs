@@ -419,7 +419,7 @@ namespace TownOfUs.CustomOption
             Prophet = new CustomHeaderOption(num++, "<color=#B026FF>Prophet</color>");
             ProphetCooldown = new CustomNumberOption(num++, "Prophet Cooldown", 40f, 10f, 120f, 2.5f, CooldownFormat);
             ProphetInitialReveal =
-                new CustomToggleOption(num++, "Prophet starts the game with a player revealed.", false);
+                new CustomToggleOption(num++, "Prophet starts the game with a player revealed", false);
 
             Covert = new CustomHeaderOption(num++, "<color=#7B7F1A>Covert</color>");
             CovertCooldown = new CustomNumberOption(num++, "Covert Cooldown", 30f, 10f, 120f, 2.5f, CooldownFormat);
