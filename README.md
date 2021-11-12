@@ -572,7 +572,7 @@ A first launch may take up to 5 minutes, so be patient if it doesn't launch imme
 ![Install](https://i.imgur.com/pvBAyZN.png)
 <br/>
 ## Issues
-If you have issues installing Town of Us, you can join our [Discord](https://discord.gg/polus) to receive help.
+If you have issues installing Town of Us, you can join our [Discord](https://discord.gg/f6ZQgf7dyc) to receive help.
 
 -----------------------
 # Roles
@@ -1155,7 +1155,7 @@ Custom hats have been added, made by some very talented artists. These are mostl
 
 -----------------------
 # Bug / Suggestions
-If you have any bugs or any need to contact me, join the [Discord server](https://discord.gg/polus) or create a ticket on GitHub.
+If you have any bugs or any need to contact me, join the [Discord server](https://discord.gg/f6ZQgf7dyc) or create a ticket on GitHub.
 
 -----------------------
 # Previous versions (pre-Anusien)
