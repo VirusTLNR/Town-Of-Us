@@ -6,11 +6,10 @@ namespace TownOfUs.Roles
 {
     public class TimeLord : Role
     {
-        public TimeLord(PlayerControl player) : base(player)
+        public TimeLord(PlayerControl player) : base(player, RoleEnum.TimeLord)
         {
             ImpostorText = () => "Rewind Time";
             TaskText = () => "Rewind Time!";
-            RoleType = RoleEnum.TimeLord;
         }
 
         public DateTime StartRewind { get; set; }

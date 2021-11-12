@@ -5,11 +5,10 @@ namespace TownOfUs.Roles
 {
     public class Sheriff : Role
     {
-        public Sheriff(PlayerControl player) : base(player)
+        public Sheriff(PlayerControl player) : base(player, RoleEnum.Sheriff)
         {
             ImpostorText = () => "Shoot the <color=#FF0000FF>Impostor</color>";
             TaskText = () => "Kill off the impostor but don't kill crewmates.";
-            RoleType = RoleEnum.Sheriff;
         }
 
         public PlayerControl ClosestPlayer;

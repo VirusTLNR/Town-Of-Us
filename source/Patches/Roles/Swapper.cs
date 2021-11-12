@@ -10,11 +10,10 @@ namespace TownOfUs.Roles
         public readonly List<bool> ListOfActives = new List<bool>();
 
 
-        public Swapper(PlayerControl player) : base(player)
+        public Swapper(PlayerControl player) : base(player, RoleEnum.Swapper)
         {
             ImpostorText = () => "Swap the votes of two people";
             TaskText = () => "Swap two people's votes and wreak havoc!";
-            RoleType = RoleEnum.Swapper;
         }
     }
 }

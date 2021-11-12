@@ -8,14 +8,12 @@ namespace TownOfUs.Roles
 {
     public class Lover : Role
     {
-        public Lover(PlayerControl player, bool impostor, bool eitherLoverImpostor) : base(player)
+        public Lover(PlayerControl player, bool impostor, bool eitherLoverImpostor) : base(player, impostor ? RoleEnum.LoverImpostor : RoleEnum.Lover)
         {
             ImpostorText = () =>
                 "You are in " + ColorString + "Love</color> with " + ColorString + OtherLover.Player.name;
             TaskText = () => $"Stay alive with your love {OtherLover.Player.name} \n and win together";
-            RoleType = impostor ? RoleEnum.LoverImpostor : RoleEnum.Lover;
             LoverImpostor = eitherLoverImpostor;
-            Faction = impostor ? Faction.Impostors : Faction.Crewmates;
         }
 
         public Lover OtherLover { get; set; }

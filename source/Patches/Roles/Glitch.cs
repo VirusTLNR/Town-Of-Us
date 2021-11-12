@@ -24,7 +24,7 @@ namespace TownOfUs.Roles
 
         public bool lastMouse;
 
-        public Glitch(PlayerControl owner) : base(owner)
+        public Glitch(PlayerControl owner) : base(owner, RoleEnum.Glitch)
         {
             LastHack = DateTime.UtcNow;
             LastMimic = DateTime.UtcNow;
@@ -35,10 +35,8 @@ namespace TownOfUs.Roles
             HackTarget = null;
             MimicList = null;
             IsUsingMimic = false;
-            RoleType = RoleEnum.Glitch;
             ImpostorText = () => "You are the glitch";
             TaskText = () => "Murder players as the Glitch:";
-            Faction = Faction.Neutral;
         }
 
         public PlayerControl ClosestPlayer;

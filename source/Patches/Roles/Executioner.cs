@@ -8,7 +8,7 @@ namespace TownOfUs.Roles
         public PlayerControl target;
         public bool TargetVotedOut;
 
-        public Executioner(PlayerControl player) : base(player)
+        public Executioner(PlayerControl player) : base(player, RoleEnum.Executioner)
         {
             ImpostorText = () =>
                 target == null ? "You don't have a target for some reason... weird..." : $"Vote {target.name} out";
@@ -16,8 +16,6 @@ namespace TownOfUs.Roles
                 target == null
                     ? "You don't have a target for some reason... weird..."
                     : $"Vote {target.name} out\nFake Tasks:";
-            RoleType = RoleEnum.Executioner;
-            Faction = Faction.Neutral;
         }
 
         protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)

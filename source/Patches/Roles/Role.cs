@@ -6,6 +6,7 @@ using System.Linq;
 using Reactor.Extensions;
 using TMPro;
 using TownOfUs.ImpostorRoles.CamouflageMod;
+using TownOfUs.Patches;
 using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;
 using UnityEngine;
@@ -20,15 +21,17 @@ namespace TownOfUs.Roles
 
         public static bool NobodyWins;
 
-        public List<KillButtonManager> ExtraButtons = new List<KillButtonManager>();
+        public readonly List<KillButtonManager> ExtraButtons = new List<KillButtonManager>();
 
         protected Func<string> ImpostorText;
         protected Func<string> TaskText;
 
-        protected Role(PlayerControl player)
+        protected Role(PlayerControl player, RoleEnum roleEnum)
         {
             Player = player;
             RoleDictionary.Add(player.PlayerId, this);
+            RoleType = roleEnum;
+            RoleDetailsAttribute = RoleDetailsAttribute.GetRoleDetails(roleEnum);
         }
 
         public static IEnumerable<Role> AllRoles => RoleDictionary.Values.ToList();
@@ -47,13 +50,14 @@ namespace TownOfUs.Roles
             }
         }
 
-        public string Name => GetName(RoleType, false);
-        public Color Color => GetColor(RoleType);
-        protected internal RoleEnum RoleType { get; protected set; }
+        public string Name => RoleDetailsAttribute.Name;
+        public Color Color => RoleDetailsAttribute.ColorObject;
+        protected internal RoleEnum RoleType { get; }
+        private RoleDetailsAttribute RoleDetailsAttribute { get; }
 
         protected internal bool Hidden { get; set; } = false;
 
-        protected internal Faction Faction { get; protected set; } = Faction.Crewmates;
+        protected internal Faction Faction => RoleDetailsAttribute.Faction;
 
         protected internal Color FactionColor
         {

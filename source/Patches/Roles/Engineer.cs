@@ -4,11 +4,10 @@ namespace TownOfUs.Roles
 {
     public class Engineer : Role
     {
-        public Engineer(PlayerControl player) : base(player)
+        public Engineer(PlayerControl player) : base(player, RoleEnum.Engineer)
         {
             ImpostorText = () => "Maintain important systems on the ship";
             TaskText = () => "Vent and fix a sabotage from anywhere!";
-            RoleType = RoleEnum.Engineer;
         }
 
         protected override void DoOnMeetingEnd()

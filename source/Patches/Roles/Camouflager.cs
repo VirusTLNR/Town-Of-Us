@@ -11,12 +11,10 @@ namespace TownOfUs.Roles
         public DateTime LastCamouflaged;
         public float TimeRemaining;
 
-        public Camouflager(PlayerControl player) : base(player)
+        public Camouflager(PlayerControl player) : base(player, RoleEnum.Camouflager)
         {
             ImpostorText = () => "Camouflage and turn everyone grey";
             TaskText = () => "Camouflage and get secret kills";
-            RoleType = RoleEnum.Camouflager;
-            Faction = Faction.Impostors;
         }
 
         protected override void DoOnGameStart()

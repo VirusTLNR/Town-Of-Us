@@ -9,11 +9,10 @@ namespace TownOfUs.Roles
     {
         public readonly Dictionary<byte, bool> Investigated = new Dictionary<byte, bool>();
 
-        public Seer(PlayerControl player) : base(player)
+        public Seer(PlayerControl player) : base(player, RoleEnum.Seer)
         {
             ImpostorText = () => "Investigate roles";
             TaskText = () => "Investigate roles and find the Impostor";
-            RoleType = RoleEnum.Seer;
             LastInvestigated = DateTime.UtcNow;
         }
 

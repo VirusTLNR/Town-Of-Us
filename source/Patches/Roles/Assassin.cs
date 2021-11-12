@@ -12,12 +12,10 @@ namespace TownOfUs.Roles
         public Dictionary<byte, int> Guesses = new Dictionary<byte, int>();
 
         public List<RoleEnum> PossibleGuesses = new List<RoleEnum>();
-        public Assassin(PlayerControl player) : base(player)
+        public Assassin(PlayerControl player) : base(player, RoleEnum.Assassin)
         {
             ImpostorText = () => "Kill during meetings if you can guess their roles";
             TaskText = () => "Guess the roles of the people and kill them mid-meeting";
-            RoleType = RoleEnum.Assassin;
-            Faction = Faction.Impostors;
 
             RemainingKills = CustomGameOptions.AssassinKills;
 

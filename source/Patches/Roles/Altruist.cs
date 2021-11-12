@@ -9,11 +9,10 @@ namespace TownOfUs.Roles
 
         public bool ReviveUsed;
 
-        public Altruist(PlayerControl player) : base(player)
+        public Altruist(PlayerControl player) : base(player, RoleEnum.Altruist)
         {
             ImpostorText = () => "Sacrifice yourself to save another";
             TaskText = () => "Revive a dead body at the cost of your own life.";
-            RoleType = RoleEnum.Altruist;
         }
     }
 }

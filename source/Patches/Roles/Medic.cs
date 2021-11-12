@@ -4,11 +4,10 @@ namespace TownOfUs.Roles
 {
     public class Medic : Role
     {
-        public Medic(PlayerControl player) : base(player)
+        public Medic(PlayerControl player) : base(player, RoleEnum.Medic)
         {
             ImpostorText = () => "Create a shield to protect a crewmate";
             TaskText = () => "Protect a crewmate with a shield";
-            RoleType = RoleEnum.Medic;
             ShieldedPlayer = null;
         }
 

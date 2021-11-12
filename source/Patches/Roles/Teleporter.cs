@@ -15,12 +15,10 @@ namespace TownOfUs.Roles
         private KillButtonManager _teleportButton;
         private DateTime _lastTeleported;
 
-        public Teleporter(PlayerControl player) : base(player)
+        public Teleporter(PlayerControl player) : base(player, RoleEnum.Teleporter)
         {
             ImpostorText = () => "Play fifty-two crew pickup";
             TaskText = () => "Play fifty-two crew pickup";
-            RoleType = RoleEnum.Teleporter;
-            Faction = Faction.Impostors;
         }
 
         protected override void DoOnGameStart()

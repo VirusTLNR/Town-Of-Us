@@ -14,7 +14,7 @@ namespace TownOfUs.Roles
 
         public int TasksLeft = int.MaxValue;
 
-        public Snitch(PlayerControl player) : base(player)
+        public Snitch(PlayerControl player) : base(player, RoleEnum.Snitch)
         {
             ImpostorText = () => "Complete all your tasks to discover the Impostors";
             TaskText = () =>
@@ -22,7 +22,6 @@ namespace TownOfUs.Roles
                     ? "Find the arrows pointing to the Impostors!"
                     : "Complete all your tasks to discover the Impostors!";
             Hidden = !CustomGameOptions.SnitchOnLaunch;
-            RoleType = RoleEnum.Snitch;
         }
 
         public bool OneTaskLeft => TasksLeft <= 1;

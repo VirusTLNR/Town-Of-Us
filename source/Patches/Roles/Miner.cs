@@ -13,12 +13,10 @@ namespace TownOfUs.Roles
         public DateTime LastMined;
 
 
-        public Miner(PlayerControl player) : base(player)
+        public Miner(PlayerControl player) : base(player, RoleEnum.Miner)
         {
             ImpostorText = () => "From the top, make it drop, that's a vent";
             TaskText = () => "From the top, make it drop, that's a vent";
-            RoleType = RoleEnum.Miner;
-            Faction = Faction.Impostors;
             LastMined = DateTime.UtcNow;
         }
 

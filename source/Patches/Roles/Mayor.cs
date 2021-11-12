@@ -7,11 +7,10 @@ namespace TownOfUs.Roles
     {
         public List<byte> ExtraVotes = new List<byte>();
 
-        public Mayor(PlayerControl player) : base(player)
+        public Mayor(PlayerControl player) : base(player, RoleEnum.Mayor)
         {
             ImpostorText = () => "Save your votes to double vote";
             TaskText = () => "Save your votes to vote multiple times";
-            RoleType = RoleEnum.Mayor;
             VoteBank = CustomGameOptions.MayorVoteBank;
         }
 

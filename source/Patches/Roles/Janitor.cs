@@ -4,12 +4,10 @@
     {
         public KillButtonManager _cleanButton;
 
-        public Janitor(PlayerControl player) : base(player)
+        public Janitor(PlayerControl player) : base(player, RoleEnum.Janitor)
         {
             ImpostorText = () => "Clean up bodies";
             TaskText = () => "Clean bodies to prevent Crewmates from discovering them.";
-            RoleType = RoleEnum.Janitor;
-            Faction = Faction.Impostors;
         }
 
         public DeadBody CurrentTarget { get; set; }
