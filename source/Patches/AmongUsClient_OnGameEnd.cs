@@ -92,6 +92,17 @@ namespace TownOfUs
                 var winners = Utils.potentialWinners.Where(x => x.Name == phantom.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) TempData.winners.Add(win);
+                return;
+            }
+
+            var analyst =
+                Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Analyst && ((Analyst) x).AnalystWins);
+            if (analyst != null)
+            {
+                var winners = Utils.potentialWinners.Where(x => x.Name == analyst.PlayerName).ToList();
+                TempData.winners = new List<WinningPlayerData>();
+                foreach (var win in winners) TempData.winners.Add(win);
+                return;
             }
         }
     }

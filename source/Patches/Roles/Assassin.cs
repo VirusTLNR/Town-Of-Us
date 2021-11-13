@@ -5,13 +5,11 @@ using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class Assassin : Role
+    public class Assassin : Role, IMeetingGuesser
     {
-        public Dictionary<byte, (GameObject, GameObject, TMP_Text)> Buttons = new Dictionary<byte, (GameObject, GameObject, TMP_Text)>();
-
-        public Dictionary<byte, int> Guesses = new Dictionary<byte, int>();
-
-        public List<RoleEnum> PossibleGuesses = new List<RoleEnum>();
+        public Dictionary<byte, (GameObject, GameObject, TMP_Text)> Buttons { get; } = new Dictionary<byte, (GameObject, GameObject, TMP_Text)>();
+        public Dictionary<byte, int> Guesses { get; } = new Dictionary<byte, int>();
+        public List<RoleEnum> PossibleGuesses { get; }
         public Assassin(PlayerControl player) : base(player, RoleEnum.Assassin)
         {
             ImpostorText = () => "Kill during meetings if you can guess their roles";
@@ -19,17 +17,16 @@ namespace TownOfUs.Roles
 
             RemainingKills = CustomGameOptions.AssassinKills;
 
-            PossibleGuesses = CustomGameOptions.GetEnabledRoles(
-                CustomGameOptions.AssassinGuessNeutrals
-            );
+            PossibleGuesses = CustomGameOptions.AssassinGuessNeutrals
+                ? CustomGameOptions.GetEnabledRoles(Faction.Crewmates)
+                : CustomGameOptions.GetEnabledRoles(Faction.Crewmates, Faction.Neutral);
 
             if (CustomGameOptions.AssassinCrewmateGuess)
                 PossibleGuesses.Add(RoleEnum.Crewmate);
-
         }
 
-        public bool GuessedThisMeeting { get; set; } = false;
-
         public int RemainingKills { get; set; }
+
+        public bool CanKeepGuessing() => RemainingKills > 0;
     }
 }

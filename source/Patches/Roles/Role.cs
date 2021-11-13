@@ -143,6 +143,7 @@ namespace TownOfUs.Roles
 
         internal static bool NobodyEndCriteria(ShipStatus __instance)
         {
+            // TODO
             bool CheckNoImpsNoCrews()
             {
                 var alives = PlayerControl.AllPlayerControls.ToArray()

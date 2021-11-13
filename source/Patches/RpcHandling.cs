@@ -588,6 +588,22 @@ namespace TownOfUs
                         global::TownOfUs.NeutralRoles.ArsonistMod.PerformKill.Ignite(theArsonistRole);
                         break;
 
+                    case CustomRPC.AnalystWin:
+                    {
+                        Role analyst = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Analyst);
+                        ((Analyst) analyst)?.Wins();
+                        break;
+                    }
+                    case CustomRPC.AnalystLose:
+                    {
+                        foreach (Role role in Role.GetRoles(RoleEnum.Analyst))
+                        {
+                            Analyst analyst = (Analyst) role;
+                            analyst.Loses();
+                        }
+
+                        break;
+                    }
                     case CustomRPC.ArsonistWin:
                         var theArsonistTheRole = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Arsonist);
                         ((Arsonist) theArsonistTheRole)?.Wins();
@@ -641,12 +657,14 @@ namespace TownOfUs
                         break;
                     }
                     case CustomRPC.FixAnimation:
+                    {
                         var player = Utils.PlayerById(reader.ReadByte());
                         player.MyPhysics.ResetMoveState();
                         player.Collider.enabled = true;
                         player.moveable = true;
                         player.NetTransform.enabled = true;
                         break;
+                    }
                     case CustomRPC.SetButtonBarry:
                         new ButtonBarry(Utils.PlayerById(reader.ReadByte()));
                         break;
@@ -705,6 +723,9 @@ namespace TownOfUs
                         break;
                     case CustomRPC.SetConcealer:
                         new Concealer(Utils.PlayerById(reader.ReadByte()));
+                        break;
+                    case CustomRPC.SetAnalyst:
+                        new Analyst(Utils.PlayerById(reader.ReadByte()));
                         break;
                     case CustomRPC.SetPhantom:
                         readByte = reader.ReadByte();
@@ -816,6 +837,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.GlitchOn))
                     NeutralRoles.Add((typeof(Glitch), CustomRPC.SetGlitch, CustomGameOptions.GlitchOn));
+
+                if (Check(CustomGameOptions.AnalystOn))
+                    NeutralRoles.Add((typeof(Analyst), CustomRPC.SetAnalyst, CustomGameOptions.AnalystOn));
                 #endregion
                 #region Impostor Roles
                 if (Check(CustomGameOptions.UndertakerOn))
