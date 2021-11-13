@@ -14,7 +14,9 @@ using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 using PerformKill = TownOfUs.ImpostorRoles.UnderdogMod.PerformKill;
+using Reactor;
 
 namespace TownOfUs
 {
@@ -274,6 +276,8 @@ namespace TownOfUs
             StopKill.BreakShield(medicIc, target.PlayerId, CustomGameOptions.ShieldBreaks);
         }
 
+        
+
         public static PlayerControl getClosestPlayer(PlayerControl refPlayer, List<PlayerControl> AllPlayers)
         {
             var num = double.MaxValue;
@@ -295,6 +299,122 @@ namespace TownOfUs
             }
 
             return result;
+        }
+
+        public static void ModifyTaskCount(PlayerControl player, int taskpercentage)
+        {
+            if (PlayerControl.LocalPlayer.Is(RoleEnum.Phantom))
+            {
+                Logger<TownOfUs>.Instance.LogDebug($"taskpercentagechange=" + taskpercentage);
+
+                int CT = PlayerControl.GameOptions.NumCommonTasks;
+                int LT = PlayerControl.GameOptions.NumLongTasks;
+                int ST = PlayerControl.GameOptions.NumShortTasks;
+
+                #region weighting calcuation
+                //this whole region is all weighting calculation.. the calculation works, but no clue how to add/remove individual task types so this is currently pointless.
+                int CTWeight = 6; // should be 1 of these for 2 LT for 3 ST
+                int LTWeight = 3;
+                int STWeight = 1;
+
+
+                int WeightedTasksValue = (CT * CTWeight) + (LT * LTWeight) +
+                     (ST * STWeight);
+                Logger<TownOfUs>.Instance.LogDebug($"weightedtaskvalue=" + WeightedTasksValue.ToString());
+
+                float NewWeightedTasksValue = (WeightedTasksValue * taskpercentage) / 100;
+
+                Logger<TownOfUs>.Instance.LogDebug($"newweightedtaskvalue=" + NewWeightedTasksValue.ToString());
+
+
+                int NewWTV = (int)Math.Ceiling(NewWeightedTasksValue);
+                Logger<TownOfUs>.Instance.LogDebug($"newWTV=" + NewWTV.ToString());
+                int NewCT = 0;
+                int NewLT = 0;
+                int NewST = 0;
+
+                bool CTB = true, LTB = true, STB = false;
+                for (int w = 0; w <= NewWTV; w++)
+                {
+
+                    Logger<TownOfUs>.Instance.LogDebug($"w=" + w.ToString());
+                    Logger<TownOfUs>.Instance.LogDebug($"CTB=" + CTB.ToString());
+                    Logger<TownOfUs>.Instance.LogDebug($"LTB=" + LTB.ToString());
+                    Logger<TownOfUs>.Instance.LogDebug($"STB=" + STB.ToString());
+                    if (w + CTWeight <= NewWTV && NewCT < CT && CTB == false)
+                    {
+                        NewCT += 1;
+                        Logger<TownOfUs>.Instance.LogDebug($"NewCT=" + NewCT.ToString());
+                        w += CTWeight - 1;
+                        CTB = true;
+                        LTB = true;
+                        STB = false;
+                    }
+                    else if (w + LTWeight <= NewWTV && NewLT < LT && LTB == false)
+                    {
+                        NewLT += 1;
+                        Logger<TownOfUs>.Instance.LogDebug($"NewLT=" + NewLT.ToString());
+                        w += LTWeight - 1;
+                        CTB = true;
+                        LTB = true;
+                        STB = false;
+                    }
+                    else if (w + STWeight <= NewWTV && NewST < ST && STB == false)
+                    {
+                        NewST += 1;
+                        Logger<TownOfUs>.Instance.LogDebug($"NewST=" + NewST.ToString());
+                        w += STWeight - 1;
+                        CTB = false;
+                        LTB = false;
+                        STB = true;
+                    }
+                    else
+                    {
+                        Logger<TownOfUs>.Instance.LogDebug($"None Added");
+                        CTB = false;
+                        LTB = false;
+                        STB = false;
+                    }
+                }
+                Logger<TownOfUs>.Instance.LogMessage($"OLD Tasks Count (ST/LT/CT)=" + ST + "/" + LT + "/" + CT);
+                Logger<TownOfUs>.Instance.LogMessage($"NEW Tasks Count (ST/LT/CT)=" + NewST + "/" + NewLT + "/" + NewCT);
+                //TODO: not weighted properly yet so tasks removed will be random.
+                int TaskDifference = NewST + NewLT + NewCT - ST - LT - CT;
+
+                #endregion weighting calculation
+                Logger<TownOfUs>.Instance.LogDebug($"TaskDifference=" + TaskDifference);
+                if (TaskDifference == 0)
+                {
+                    //do nothing
+                }
+                else if (TaskDifference < 0)
+                {
+                    int TasksToMod = TaskDifference * -1;
+
+                    Logger<TownOfUs>.Instance.LogDebug($"TaskToMod=" + TasksToMod);
+                    List<int> ptaskcount = new List<int>();
+
+                    for (int i = 1; i <= TasksToMod; i++)
+                    {
+                        ptaskcount.Add(Random.Range(i, (ST + LT + CT) - ptaskcount.Count));
+                    }
+
+                    //sorting list descending
+                    ptaskcount.Sort((a, b) => b.CompareTo(a));
+
+                    foreach (int tasknum in ptaskcount)
+                    {
+                        Logger<TownOfUs>.Instance.LogDebug($"RemoveRandomTaskNum=" + tasknum);
+                        //TODO:- removeing specific task types rather than random like we do here, this is lazy, but works.
+                        player.myTasks.RemoveAt(tasknum);
+
+                    }
+                }
+                else if (TaskDifference > 0)
+                {
+                    //TODO: dont know yet how this would be handled so percentages higher than 100% should be disabled for now
+                }
+            }
         }
 
         public static bool IsSabotageActive()

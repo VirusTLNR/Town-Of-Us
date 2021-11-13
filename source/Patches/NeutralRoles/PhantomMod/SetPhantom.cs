@@ -1,6 +1,7 @@
 using System;
 using HarmonyLib;
 using Hazel;
+using Reactor;
 using TownOfUs.Roles;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,9 +48,21 @@ namespace TownOfUs.NeutralRoles.PhantomMod
             }
 
             if (Role.GetRole<Phantom>(PlayerControl.LocalPlayer).Caught) return;
+
+            //for testing buggy office vent on polus only.
+            //var startingVent = ShipStatus.Instance.AllVents[5];
             var startingVent =
                 ShipStatus.Instance.AllVents[Random.RandomRangeInt(0, ShipStatus.Instance.AllVents.Count)];
-            PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(startingVent.transform.position);
+
+            Logger<TownOfUs>.Instance.LogDebug($"MapID=" + PlayerControl.GameOptions.MapId.ToString());
+            Logger<TownOfUs>.Instance.LogDebug($"StartingVent.Id=" + startingVent.Id.ToString());
+            Vector2 ventpos = startingVent.transform.position;
+            if(PlayerControl.GameOptions.MapId==2 && startingVent.Id==5)
+            {
+                //fixing bugged vent on polus next to admin table
+                ventpos.y = ventpos.y - -1;
+            }
+            PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(ventpos);
             PlayerControl.LocalPlayer.MyPhysics.RpcEnterVent(startingVent.Id);
         }
 
@@ -81,6 +94,8 @@ namespace TownOfUs.NeutralRoles.PhantomMod
                     var taskInfo = player.Data.FindTaskById(task.Id);
                     taskInfo.Complete = false;
                 }
+            //TODO: this works here, but should also work if placed at the start of this method.
+            Utils.ModifyTaskCount(player, CustomGameOptions.PhantomTaskWin);
         }
 
         /*public static void ResetTowels(NormalPlayerTask task)
