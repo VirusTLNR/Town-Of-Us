@@ -74,9 +74,9 @@ namespace TownOfUs
         Concealer,
 
 
-        [RoleDetails("Crewmate", "FFFFFFFF", Faction.Crewmates)]
+        [RoleDetails("Crewmate", "#FFFFFFFF", Faction.Crewmates)]
         Crewmate,
-        [RoleDetails("Impostor", "FF0000FF", Faction.Impostors)]
+        [RoleDetails("Impostor", "#FF0000FF", Faction.Impostors)]
         Impostor,
         None
     }
