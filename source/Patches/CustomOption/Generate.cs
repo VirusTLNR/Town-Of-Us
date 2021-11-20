@@ -251,7 +251,7 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             PhantomOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Phantom).GetColoredName()}", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            AnalystOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Phantom).GetColoredName()}", 0f, 0f, 100f, 10f,
+            AnalystOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Analyst).GetColoredName()}", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
 
