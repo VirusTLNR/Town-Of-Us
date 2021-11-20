@@ -47,7 +47,7 @@ namespace TownOfUs
         Arsonist,
         [RoleDetails("Phantom", "#662962", Faction.Neutral)]
         Phantom,
-        [RoleDetails("Analyst", "#000000", Faction.Neutral)]
+        [RoleDetails("Analyst", "#89A203", Faction.Neutral)]
         Analyst,
 
         [RoleDetails("Loving Impostor", "#FF0000FF", Faction.Impostors)]

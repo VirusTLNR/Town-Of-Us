@@ -119,7 +119,7 @@ namespace TownOfUs.Roles
                 IMeetingGuesser.GenButton(
                     analyst,
                     voteArea,
-                    playerControl => true,
+                    playerControl => playerControl.PlayerId != PlayerControl.LocalPlayer.PlayerId,
                     (playerControl, role) => analyst.GuessCorrectly()
                 );
             }
