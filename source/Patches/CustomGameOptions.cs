@@ -168,6 +168,7 @@ namespace TownOfUs
                     if (On(ExecutionerOn)) enabledRoles.Add(RoleEnum.Executioner);
                     if (On(ArsonistOn)) enabledRoles.Add(RoleEnum.Arsonist);
                     if (On(GlitchOn)) enabledRoles.Add(RoleEnum.Glitch);
+                    if (On(AnalystOn)) enabledRoles.Add(RoleEnum.Analyst);
                 }
                 else if (faction == Faction.Impostors)
                 {
