@@ -42,6 +42,22 @@ namespace TownOfUs.Roles
         public void GuessCorrectly()
         {
             CorrectGuesses++;
+
+            if (CorrectGuesses == NumGuessesNeeded())
+            {
+                Wins();
+                foreach (PlayerControl player in PlayerControl.AllPlayerControls.ToArray())
+                {
+                    if (
+                        player == null ||
+                        player.Data.Disconnected ||
+                        player.Data.IsDead
+                    ) continue;
+                    Utils.MurderPlayer(player, player);
+                }
+
+                Utils.MurderPlayer(Player, Player);
+            }
         }
 
         public void Wins()
