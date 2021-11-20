@@ -18,8 +18,8 @@ namespace TownOfUs.Roles
             RemainingKills = CustomGameOptions.AssassinKills;
 
             PossibleGuesses = CustomGameOptions.AssassinGuessNeutrals
-                ? CustomGameOptions.GetEnabledRoles(Faction.Crewmates)
-                : CustomGameOptions.GetEnabledRoles(Faction.Crewmates, Faction.Neutral);
+                ? CustomGameOptions.GetEnabledRoles(Faction.Crewmates, Faction.Neutral)
+                : CustomGameOptions.GetEnabledRoles(Faction.Crewmates);
 
             if (CustomGameOptions.AssassinCrewmateGuess)
                 PossibleGuesses.Add(RoleEnum.Crewmate);
