@@ -1,4 +1,9 @@
 ![LOGO](./Images/TOU-logo.png)
+[![Release Version](https://img.shields.io/github/v/release/Anusien/Town-of-Us?style=plastic)](https://github.com/Anusien/Town-of-Us/releases/latest)
+[![Release Date](https://img.shields.io/github/release-date/Anusien/Town-of-Us?style=plastic)](https://github.com/Anusien/Town-of-Us/releases/latest)
+[![Total Downloads](https://img.shields.io/github/downloads/Anusien/Town-of-Us/total?style=plastic)](https://github.com/Anusien/Town-of-Us/releases/latest)
+[![Total Downloads](https://img.shields.io/github/downloads/Anusien/Town-of-Us/latest/total?style=plastic)](https://github.com/Anusien/Town-of-Us/releases/latest)
+[![Discord](https://img.shields.io/discord/900092600848113706?color=7289DA&label=%20&logo=discord&logoColor=ffffff&style=plastic)](https://discord.gg/f6ZQgf7dyc)
 
 An Among Us mod that adds a bunch of roles, modifiers and game settings
 
@@ -51,7 +56,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 -----------------------
 # Releases
-Make sure you're on the [latest release](https://github.com/Anusien/Town-Of-Us/releases/latest).
+[![Release Version](https://img.shields.io/github/v/release/Anusien/Town-of-Us?style=plastic)](https://github.com/Anusien/Town-of-Us/releases/latest)
+[![Release Date](https://img.shields.io/github/release-date/Anusien/Town-of-Us?style=plastic)](https://github.com/Anusien/Town-of-Us/releases/latest)
 
 ### Supported versions of Among Us
 
