@@ -33,7 +33,7 @@ namespace TownOfUs.CrewmateRoles.CovertMod
             if (
                 __instance.isCoolingDown
                 || !__instance.isActiveAndEnabled
-                || role.CovertTimer() != 0
+                || role.CooldownTimer() != 0
             )
             {
                 return false;

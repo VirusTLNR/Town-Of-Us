@@ -16,7 +16,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer)) return true;
             var role = Role.GetRole<Seer>(PlayerControl.LocalPlayer);
             if (!PlayerControl.LocalPlayer.CanMove || role.ClosestPlayer == null) return false;
-            if (role.SeerTimer() != 0f) return false;
+            if (role.CooldownTimer() != 0f) return false;
             if (!__instance.enabled) return false;
             var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
             if (Vector2.Distance(role.ClosestPlayer.GetTruePosition(),
@@ -33,7 +33,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             writer.Write(successfulSee);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
-            role.LastInvestigated = DateTime.UtcNow;
+            role.LastUsedAbility = DateTime.UtcNow;
             role.Investigated.Add(role.ClosestPlayer.PlayerId, successfulSee);
 
             return false;

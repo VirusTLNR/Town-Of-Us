@@ -36,7 +36,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
             var role = Role.GetRole<Shifter>(PlayerControl.LocalPlayer);
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
-            if (role.ShifterShiftTimer() != 0f) return false;
+            if (role.CooldownTimer() != 0f) return false;
             if (!__instance.enabled) return false;
             var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
             if (Vector2.Distance(role.ClosestPlayer.GetTruePosition(),

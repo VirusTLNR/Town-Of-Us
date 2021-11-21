@@ -34,7 +34,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
             {
                 shiftButton.gameObject.SetActive(!MeetingHud.Instance);
                 shiftButton.isActive = !MeetingHud.Instance;
-                shiftButton.SetCoolDown(role.ShifterShiftTimer(), CustomGameOptions.ShifterCd);
+                shiftButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.ShifterCd);
 
                 Utils.SetTarget(ref role.ClosestPlayer, shiftButton);
             }

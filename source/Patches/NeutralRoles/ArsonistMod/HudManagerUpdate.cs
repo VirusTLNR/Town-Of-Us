@@ -43,7 +43,7 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
             role.IgniteButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
             __instance.KillButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
             role.IgniteButton.SetCoolDown(0f, 1f);
-            __instance.KillButton.SetCoolDown(role.DouseTimer(), CustomGameOptions.DouseCd);
+            __instance.KillButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.DouseCd);
 
             var notDoused = PlayerControl.AllPlayerControls.ToArray().Where(
                 player => !role.DousedPlayers.Contains(player.PlayerId)

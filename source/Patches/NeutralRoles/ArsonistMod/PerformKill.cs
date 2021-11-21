@@ -31,7 +31,7 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
             if (__instance != DestroyableSingleton<HudManager>.Instance.KillButton) return true;
             if (!__instance.isActiveAndEnabled) return false;
             if (role.ClosestPlayer == null) return false;
-            if (role.DouseTimer() != 0) return false;
+            if (role.CooldownTimer() != 0) return false;
             if (role.DousedPlayers.Contains(role.ClosestPlayer.PlayerId)) return false;
             var distBetweenPlayers = Utils.getDistBetweenPlayers(PlayerControl.LocalPlayer, role.ClosestPlayer);
             var flag3 = distBetweenPlayers <
@@ -43,7 +43,7 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
             writer2.Write(role.ClosestPlayer.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer2);
             role.DousedPlayers.Add(role.ClosestPlayer.PlayerId);
-            role.LastDoused = DateTime.UtcNow;
+            role.LastUsedAbility = DateTime.UtcNow;
 
             __instance.SetTarget(null);
             return false;

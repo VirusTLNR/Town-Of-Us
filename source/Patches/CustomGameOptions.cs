@@ -100,7 +100,6 @@ namespace TownOfUs
         public static float HackCooldown => Generate.HackCooldownOption.Get();
         public static float HackDuration => Generate.HackDurationOption.Get();
         public static float GlitchKillCooldown => Generate.GlitchKillCooldownOption.Get();
-        public static float InitialGlitchKillCooldown => Generate.InitialGlitchKillCooldownOption.Get();
         public static int GlitchHackDistance => Generate.GlitchHackDistanceOption.Get();
         public static float MorphlingCd => Generate.MorphlingCooldown.Get();
         public static float MorphlingDuration => Generate.MorphlingDuration.Get();

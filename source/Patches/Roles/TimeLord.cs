@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class TimeLord : Role
+    // TODO
+    public class TimeLord : RoleWithCooldown
     {
-        public TimeLord(PlayerControl player) : base(player, RoleEnum.TimeLord)
+        public TimeLord(PlayerControl player) : base(player, RoleEnum.TimeLord, CustomGameOptions.RewindCooldown)
         {
             ImpostorText = () => "Rewind Time";
             TaskText = () => "Rewind Time!";

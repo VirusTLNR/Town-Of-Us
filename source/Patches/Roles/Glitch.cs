@@ -98,8 +98,8 @@ namespace TownOfUs.Roles
         {
             LastMimic = DateTime.UtcNow;
             LastHack = DateTime.UtcNow;
-            LastKill = DateTime.UtcNow.AddSeconds(CustomGameOptions.InitialGlitchKillCooldown +
-                                                                    CustomGameOptions.GlitchKillCooldown * -1);
+            LastKill = DateTime.UtcNow.AddSeconds(
+                -1 * (PlayerControl.GameOptions.KillCooldown - CustomGameOptions.InitialImpostorKillCooldown));
         }
 
         protected override void DoOnMeetingEnd()
