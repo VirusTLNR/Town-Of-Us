@@ -16,14 +16,10 @@ namespace TownOfUs.Roles
         public DateTime LastDoused;
 
 
-        public Arsonist(PlayerControl player) : base(player)
+        public Arsonist(PlayerControl player) : base(player, RoleEnum.Arsonist)
         {
-            Name = "Arsonist";
             ImpostorText = () => "Douse players and ignite the light";
             TaskText = () => "Douse players and ignite to kill everyone\nFake Tasks:";
-            Color = new Color(1f, 0.3f, 0f);
-            RoleType = RoleEnum.Arsonist;
-            Faction = Faction.Neutral;
         }
 
         protected override void DoOnGameStart()

@@ -13,13 +13,10 @@ namespace TownOfUs.Roles
 
         public DateTime LastRevealed { get; set; }
 
-        public Prophet(PlayerControl player) : base(player)
+        public Prophet(PlayerControl player) : base(player, RoleEnum.Prophet)
         {
-            Name = "Prophet";
             ImpostorText = () => "Survive and find crewmates";
             TaskText = () => "Survive to find all the crewmates";
-            Color = new Color(0.69f, 0.15f, 1f, 1f);
-            RoleType = RoleEnum.Prophet;
             LastRevealed = DateTime.UtcNow; // We shouldn't have to do this, but the revelation is firing before the DoOnGameStart() hits
         }
 

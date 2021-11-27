@@ -1,4 +1,4 @@
-using HarmonyLib;
+﻿using HarmonyLib;
 using Hazel;
 using System;
 using System.Collections.Generic;
@@ -6,6 +6,7 @@ using System.Linq;
 using Reactor.Extensions;
 using TMPro;
 using TownOfUs.ImpostorRoles.CamouflageMod;
+using TownOfUs.Patches;
 using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;
 using UnityEngine;
@@ -20,19 +21,20 @@ namespace TownOfUs.Roles
 
         public static bool NobodyWins;
 
-        public List<KillButtonManager> ExtraButtons = new List<KillButtonManager>();
+        public readonly List<KillButtonManager> ExtraButtons = new List<KillButtonManager>();
 
         protected Func<string> ImpostorText;
         protected Func<string> TaskText;
 
-        protected Role(PlayerControl player)
+        protected Role(PlayerControl player, RoleEnum roleEnum)
         {
             Player = player;
             RoleDictionary.Add(player.PlayerId, this);
+            RoleType = roleEnum;
+            RoleDetailsAttribute = RoleDetailsAttribute.GetRoleDetails(roleEnum);
         }
 
         public static IEnumerable<Role> AllRoles => RoleDictionary.Values.ToList();
-        protected internal string Name { get; set; }
 
         private PlayerControl _player { get; set; }
 
@@ -48,19 +50,14 @@ namespace TownOfUs.Roles
             }
         }
 
-        /*
-         * Appears to be used in the screen where the player finds out their role. Used to scale
-         * up or down the font size of the player's role based on the length of the name of their
-         * role. "CREWMATE" and "IMPOSTOR" which both have 8 letters, so they are the baseline.
-         */
-        protected float Scale { get; set; } = 1f;
-        protected internal Color Color { get; set; }
-        protected internal RoleEnum RoleType { get; set; }
+        public string Name => RoleDetailsAttribute.Name;
+        public Color Color => RoleDetailsAttribute.ColorObject;
+        protected internal RoleEnum RoleType { get; }
+        private RoleDetailsAttribute RoleDetailsAttribute { get; }
 
         protected internal bool Hidden { get; set; } = false;
 
-        //public static Faction Faction;
-        protected internal Faction Faction { get; set; } = Faction.Crewmates;
+        protected internal Faction Faction => RoleDetailsAttribute.Faction;
 
         protected internal Color FactionColor
         {
@@ -76,8 +73,7 @@ namespace TownOfUs.Roles
             }
         }
 
-        public static uint NetId => PlayerControl.LocalPlayer.NetId;
-        public string PlayerName { get; set; }
+        public string PlayerName { get; private set; }
 
         public string ColorString => "<color=#" + Color.ToHtmlStringRGBA() + ">";
 
@@ -147,6 +143,7 @@ namespace TownOfUs.Roles
 
         internal static bool NobodyEndCriteria(ShipStatus __instance)
         {
+            // TODO
             bool CheckNoImpsNoCrews()
             {
                 var alives = PlayerControl.AllPlayerControls.ToArray()

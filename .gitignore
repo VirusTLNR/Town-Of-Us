@@ -405,3 +405,5 @@ Desktop.ini
 
 .editorconfig
 TownOfUs.sln
+
+*.swp

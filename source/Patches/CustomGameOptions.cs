@@ -1,9 +1,10 @@
-using TownOfUs.CrewmateRoles.EngineerMod;
+﻿using TownOfUs.CrewmateRoles.EngineerMod;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.CrewmateRoles.SeerMod;
 using TownOfUs.CustomOption;
 using TownOfUs.NeutralRoles.ExecutionerMod;
 using TownOfUs.NeutralRoles.ShifterMod;
+using System.Collections.Generic;
 using TownOfUs.Roles;
 
 namespace TownOfUs
@@ -40,6 +41,7 @@ namespace TownOfUs
         public static int TeleporterOn => (int) Generate.TeleporterOn.Get();
         public static int ConcealerOn => (int) Generate.ConcealerOn.Get();
         public static int PhantomOn => (int) Generate.PhantomOn.Get();
+        public static int AnalystOn => (int) Generate.AnalystOn.Get();
         public static int TorchOn => (int) Generate.TorchOn.Get();
         public static int DiseasedOn => (int) Generate.DiseasedOn.Get();
         public static int FlashOn => (int) Generate.FlashOn.Get();
@@ -57,6 +59,7 @@ namespace TownOfUs
         public static bool SheriffKillsGlitch => Generate.SheriffKillsGlitch.Get();
         public static bool SheriffKillsExecutioner => Generate.SheriffKillsExecutioner.Get();
         public static bool SheriffKillsArsonist => Generate.SheriffKillsArsonist.Get();
+        public static bool SheriffKillsAnalyst => Generate.SheriffKillsAnalyst.Get();
         public static float SheriffKillCd => Generate.SheriffKillCd.Get();
         public static int MayorVoteBank => (int) Generate.MayorVoteBank.Get();
         public static bool MayorAnonymous => Generate.MayorAnonymous.Get();
@@ -135,5 +138,56 @@ namespace TownOfUs
         public static float ConcealCooldown => Generate.ConcealCooldown.Get();
         public static float TimeToConceal => Generate.TimeToConceal.Get();
         public static float ConcealDuration => Generate.ConcealDuration.Get();
+
+        public static List<RoleEnum> GetEnabledRoles(params Faction[] factions)
+        {
+            bool On(int role) => role > 0;
+            var enabledRoles = new List<RoleEnum>();
+            foreach (Faction faction in factions)
+            {
+                if (faction == Faction.Crewmates)
+                {
+                    if (On(SheriffOn)) enabledRoles.Add(RoleEnum.Sheriff);
+                    if (On(EngineerOn)) enabledRoles.Add(RoleEnum.Engineer);
+                    if (On(LoversOn)) enabledRoles.Add(RoleEnum.Lover);
+                    if (On(MayorOn)) enabledRoles.Add(RoleEnum.Mayor);
+                    if (On(SwapperOn)) enabledRoles.Add(RoleEnum.Swapper);
+                    if (On(InvestigatorOn)) enabledRoles.Add(RoleEnum.Investigator);
+                    if (On(TimeLordOn)) enabledRoles.Add(RoleEnum.TimeLord);
+                    if (On(MedicOn)) enabledRoles.Add(RoleEnum.Medic);
+                    if (On(SeerOn)) enabledRoles.Add(RoleEnum.Seer);
+                    if (On(SpyOn)) enabledRoles.Add(RoleEnum.Spy);
+                    if (On(SnitchOn)) enabledRoles.Add(RoleEnum.Snitch);
+                    if (On(AltruistOn)) enabledRoles.Add(RoleEnum.Altruist);
+                    if (On(ProphetOn)) enabledRoles.Add(RoleEnum.Prophet);
+                    if (On(CovertOn)) enabledRoles.Add(RoleEnum.Covert);
+                }
+                else if (faction == Faction.Neutral)
+                {
+                    if (On(JesterOn)) enabledRoles.Add(RoleEnum.Jester);
+                    if (On(ShifterOn)) enabledRoles.Add(RoleEnum.Shifter);
+                    if (On(ExecutionerOn)) enabledRoles.Add(RoleEnum.Executioner);
+                    if (On(ArsonistOn)) enabledRoles.Add(RoleEnum.Arsonist);
+                    if (On(GlitchOn)) enabledRoles.Add(RoleEnum.Glitch);
+                    if (On(AnalystOn)) enabledRoles.Add(RoleEnum.Analyst);
+                }
+                else if (faction == Faction.Impostors)
+                {
+                    if (On(LoversOn) && On(LovingImpostorOn)) enabledRoles.Add(RoleEnum.LoverImpostor);
+                    if (On(MinerOn)) enabledRoles.Add(RoleEnum.Miner);
+                    if (On(SwooperOn)) enabledRoles.Add(RoleEnum.Swooper);
+                    if (On(MorphlingOn)) enabledRoles.Add(RoleEnum.Morphling);
+                    if (On(CamouflagerOn)) enabledRoles.Add(RoleEnum.Camouflager);
+                    if (On(JanitorOn)) enabledRoles.Add(RoleEnum.Janitor);
+                    if (On(UndertakerOn)) enabledRoles.Add(RoleEnum.Undertaker);
+                    if (On(AssassinOn)) enabledRoles.Add(RoleEnum.Assassin);
+                    if (On(UnderdogOn)) enabledRoles.Add(RoleEnum.Underdog);
+                    if (On(TeleporterOn)) enabledRoles.Add(RoleEnum.Teleporter);
+                    if (On(ConcealerOn)) enabledRoles.Add(RoleEnum.Concealer);
+                }
+            }
+
+            return enabledRoles;
+        }
     }
 }

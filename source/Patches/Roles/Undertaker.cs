@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace TownOfUs.Roles
 {
@@ -6,14 +6,10 @@ namespace TownOfUs.Roles
     {
         public KillButtonManager _dragDropButton;
 
-        public Undertaker(PlayerControl player) : base(player)
+        public Undertaker(PlayerControl player) : base(player, RoleEnum.Undertaker)
         {
-            Name = "Undertaker";
             ImpostorText = () => "Drag bodies and hide them";
             TaskText = () => "Drag bodies around to hide them from being reported";
-            Color = Palette.ImpostorRed;
-            RoleType = RoleEnum.Undertaker;
-            Faction = Faction.Impostors;
         }
 
         public DateTime LastDragged { get; set; }

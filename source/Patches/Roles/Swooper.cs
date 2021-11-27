@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -11,14 +11,10 @@ namespace TownOfUs.Roles
         public DateTime LastSwooped;
         public float TimeRemaining;
 
-        public Swooper(PlayerControl player) : base(player)
+        public Swooper(PlayerControl player) : base(player, RoleEnum.Swooper)
         {
-            Name = "Swooper";
             ImpostorText = () => "Turn invisible temporarily";
             TaskText = () => "Turn invisible and sneakily kill";
-            Color = Palette.ImpostorRed;
-            RoleType = RoleEnum.Swooper;
-            Faction = Faction.Impostors;
         }
 
         protected override void DoOnGameStart()

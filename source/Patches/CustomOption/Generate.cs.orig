@@ -33,7 +33,6 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ExecutionerOn;
         public static CustomNumberOption ArsonistOn;
         public static CustomNumberOption PhantomOn;
-        public static CustomNumberOption AnalystOn;
 
 
         private static CustomHeaderOption ImpostorRoles;
@@ -86,7 +85,6 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption SheriffKillsGlitch;
         public static CustomToggleOption SheriffKillsExecutioner;
         public static CustomToggleOption SheriffKillsArsonist;
-        public static CustomToggleOption SheriffKillsAnalyst;
         public static CustomNumberOption SheriffKillCd;
         public static CustomToggleOption SheriffBodyReport;
 
@@ -252,8 +250,6 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             PhantomOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Phantom).GetColoredName()}", 0f, 0f, 100f, 10f,
                 PercentFormat);
-            AnalystOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Analyst).GetColoredName()}", 0f, 0f, 100f, 10f,
-                PercentFormat);
 
 
             ImpostorRoles = new CustomHeaderOption(num++, "Impostor Roles");
@@ -348,8 +344,6 @@ namespace TownOfUs.CustomOption
                 new CustomToggleOption(num++, "Sheriff Kills Executioner", false);
             SheriffKillsArsonist =
                 new CustomToggleOption(num++, "Sheriff Kills Arsonist", false);
-            SheriffKillsAnalyst =
-                new CustomToggleOption(num++, "Sheriff Kills Analyst", false);
             SheriffKillCd =
                 new CustomNumberOption(num++, "Sheriff Kill Cooldown", 25f, 10f, 40f, 2.5f, CooldownFormat);
             SheriffBodyReport = new CustomToggleOption(num++, "Sheriff can report who they've killed");
@@ -411,7 +405,13 @@ namespace TownOfUs.CustomOption
             SeerImpostorChance = new CustomNumberOption(num++,
                 "Chance to successfully reveal an Impostor", 100f, 0f, 100f, 10f, PercentFormat);
 
+<<<<<<< .merge_file_0vPlan
+            Snitch = new CustomHeaderOption(num++, "<color=#D4AF37FF>Snitch</color>");
+||||||| .merge_file_uaGUlm
+                Snitch = new CustomHeaderOption(num++, "<color=#D4AF37FF>Snitch</color>");
+=======
             Snitch = new CustomHeaderOption(num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Snitch).GetColoredName()}");
+>>>>>>> .merge_file_97Cajn
             SnitchOnLaunch =
                 new CustomToggleOption(num++, "Snitch knows who they are on Game Start", false);
             SnitchSeesNeutrals = new CustomToggleOption(num++, "Snitch sees neutral roles", false);
