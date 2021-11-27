@@ -32,6 +32,7 @@ namespace TownOfUs
         SetTeleporter,
         SetConcealer,
         SetAnalyst,
+        SetGrenadier,
 
         SetTorch,
         SetDiseased,
@@ -88,6 +89,7 @@ namespace TownOfUs
         Teleport,
         Conceal,
         GoCovert,
+        FlashGrenade,
 
         SetGlitch,
         BypassKill,
@@ -102,6 +104,6 @@ namespace TownOfUs
         SyncCustomSettings,
         FixAnimation,
 
-        AddMayorVoteBank
+        AddMayorVoteBank,
     }
 }
