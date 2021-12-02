@@ -196,10 +196,9 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption TimeToConceal;
         public static CustomNumberOption ConcealDuration;
 
-        public static CustomHeaderOption Grenadier;
+        private static CustomHeaderOption Grenadier;
         public static CustomNumberOption GrenadeCooldown;
         public static CustomNumberOption GrenadeDuration;
-        public static CustomToggleOption GrenadierVent;
 
         private static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";

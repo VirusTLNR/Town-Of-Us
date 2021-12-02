@@ -48,7 +48,6 @@ namespace TownOfUs.Roles
         {
             var utcNow = DateTime.UtcNow;
             var timeSpan = utcNow - _lastFlashed;
-            ;
             var num = CustomGameOptions.GrenadeCooldown * 1000f;
             var flag2 = num - (float)timeSpan.TotalMilliseconds < 0f;
             if (flag2) return 0;
