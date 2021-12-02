@@ -14,7 +14,7 @@ namespace TownOfUs.NeutralRoles.PhantomMod
     {
         public static void Postfix(AirshipExileController __instance) => SetPhantom.ExileControllerPostfix(__instance);
     }
-    
+
     [HarmonyPatch(typeof(ExileController), nameof(ExileController.WrapUp))]
     public class SetPhantom
     {
@@ -47,9 +47,10 @@ namespace TownOfUs.NeutralRoles.PhantomMod
             }
 
             if (Role.GetRole<Phantom>(PlayerControl.LocalPlayer).Caught) return;
-            var startingVent =
+            Vent startingVent =
                 ShipStatus.Instance.AllVents[Random.RandomRangeInt(0, ShipStatus.Instance.AllVents.Count)];
-            PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(startingVent.transform.position);
+            Vector3 destination = Utils.GetCoordinatesToSendPlayerToVent(startingVent);
+            PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(destination);
             PlayerControl.LocalPlayer.MyPhysics.RpcEnterVent(startingVent.Id);
         }
 

@@ -376,6 +376,18 @@ namespace TownOfUs
             return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
         }
 
+        /* There's a bug on Polus; the bottom of the vent in Admin (in the library) is right next to the bottom wall
+         * of the room. This means that attempting to send the player there often ends up with them stuck in the wall,
+         * unable to move. We need to instead use coordinates that put them in the middle of the vent instead.
+         */
+        public static Vector3 GetCoordinatesToSendPlayerToVent(Vent vent)
+        {
+            Vector2 size = vent.GetComponent<BoxCollider2D>().size;
+            Vector3 destination = vent.transform.position;
+            destination.y += size.y / 2;
+            return destination;
+        }
+
         public static void MurderPlayer(PlayerControl killer, PlayerControl target)
         {
             var data = target.Data;
