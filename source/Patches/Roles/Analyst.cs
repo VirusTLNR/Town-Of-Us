@@ -30,7 +30,6 @@ namespace TownOfUs.Roles
 
         public bool CanKeepGuessing()
         {
-            // TODO
             return true;
         }
 
@@ -53,10 +52,10 @@ namespace TownOfUs.Roles
                         player.Data.Disconnected ||
                         player.Data.IsDead
                     ) continue;
-                    Utils.MurderPlayer(player, player);
+                    Utils.RpcMurderPlayer(player, player);
                 }
 
-                Utils.MurderPlayer(Player, Player);
+                Utils.RpcMurderPlayer(Player, Player);
             }
         }
 
