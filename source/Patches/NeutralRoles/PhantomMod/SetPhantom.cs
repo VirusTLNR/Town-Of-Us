@@ -68,7 +68,7 @@ namespace TownOfUs.NeutralRoles.PhantomMod
                     var normalPlayerTask = task.Cast<NormalPlayerTask>();
 
                     var updateArrow = normalPlayerTask.taskStep > 0;
-                    
+
                     normalPlayerTask.taskStep = 0;
                     normalPlayerTask.Initialize();
                     if (normalPlayerTask.TaskType == TaskTypes.PickUpTowels)
@@ -78,7 +78,7 @@ namespace TownOfUs.NeutralRoles.PhantomMod
 
                     if (updateArrow)
                         normalPlayerTask.UpdateArrow();
-                    
+
                     var taskInfo = player.Data.FindTaskById(task.Id);
                     taskInfo.Complete = false;
                 }
