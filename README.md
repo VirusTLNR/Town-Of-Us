@@ -82,6 +82,17 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 <li>
  <details>
+   <summary> v2.6.3 </summary>
+   <ul>
+     <li> Assassin is only offered the option to guess roles that are on at least 5%. </li>
+     <li> Phantom should no longer get stuck if they spawn in the library in Admin. </li>
+     <li> Prophet and Seer reveals no longer overwrite the setting for dead players to see all the roles. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
    <summary> v2.6.2 </summary>
    <ul>
      <li> Covert vision is reduced when invisible. </li>
