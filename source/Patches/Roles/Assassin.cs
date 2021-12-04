@@ -5,16 +5,16 @@ using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class Assassin : Role, IMeetingGuesser
+    public class Assassin : IMeetingGuesser
     {
+        public static Assassin AssassinState { get; set; }
         public Dictionary<byte, (GameObject, GameObject, TMP_Text)> Buttons { get; } = new Dictionary<byte, (GameObject, GameObject, TMP_Text)>();
         public Dictionary<byte, int> Guesses { get; } = new Dictionary<byte, int>();
-        public List<RoleEnum> PossibleGuesses { get; }
-        public Assassin(PlayerControl player) : base(player, RoleEnum.Assassin)
-        {
-            ImpostorText = () => "Kill during meetings if you can guess their roles";
-            TaskText = () => "Guess the roles of the people and kill them mid-meeting";
 
+        public List<RoleEnum> PossibleGuesses { get; }
+
+        public Assassin()
+        {
             RemainingKills = CustomGameOptions.AssassinKills;
 
             PossibleGuesses = CustomGameOptions.AssassinGuessNeutrals
@@ -27,6 +27,7 @@ namespace TownOfUs.Roles
 
         public int RemainingKills { get; set; }
 
-        public bool CanKeepGuessing() => RemainingKills > 0;
+        public bool CanKeepGuessing() => RemainingKills > 0
+                                         && !CustomGameOptions.AssassinMultiKill;
     }
 }

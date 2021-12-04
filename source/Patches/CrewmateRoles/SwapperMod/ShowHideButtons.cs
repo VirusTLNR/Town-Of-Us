@@ -5,6 +5,7 @@ using Hazel;
 using Reactor;
 using TownOfUs.CrewmateRoles.MayorMod;
 using TownOfUs.Extensions;
+using TownOfUs.Patches;
 using TownOfUs.Roles;
 using UnhollowerBaseLib;
 using UnityEngine;
@@ -89,24 +90,24 @@ namespace TownOfUs.CrewmateRoles.SwapperMod
             {
                 if (playerVoteArea.AmDead || playerVoteArea.DidVote)
                     return true;
-                    
+
                 var playerInfo = GameData.Instance.GetPlayerById(playerVoteArea.TargetPlayerId);
                 if (playerInfo == null)
                     return true;
 
                 var playerControl = playerInfo.Object;
-                
-                if (playerControl.Is(RoleEnum.Assassin) && playerInfo.IsDead)
+
+                if (playerControl.Is(Faction.Impostors) && playerInfo.IsDead)
                 {
                     playerVoteArea.VotedFor = PlayerVoteArea.DeadVote;
                     playerVoteArea.SetDead(false, true);
                     return true;
                 }
-                    
-                
+
+
                 return true;
             }
-            
+
             public static bool Prefix(MeetingHud __instance)
             {
                 if (__instance.playerStates.All(ps => ps.AmDead || ps.DidVote && CheckVoted(ps)))

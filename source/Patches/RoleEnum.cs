@@ -62,8 +62,6 @@ namespace TownOfUs
         Janitor,
         [RoleDetails("Undertaker", "#FF0000FF", Faction.Impostors)]
         Undertaker,
-        [RoleDetails("Assassin", "#FF0000FF", Faction.Impostors)]
-        Assassin,
         [RoleDetails("Underdog", "#FF0000FF", Faction.Impostors)]
         Underdog,
         [RoleDetails("Teleporter", "#FF0000FF", Faction.Impostors)]

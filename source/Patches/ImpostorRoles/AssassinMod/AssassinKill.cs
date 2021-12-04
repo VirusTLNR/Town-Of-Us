@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Hazel;
-using Reactor;
 using TownOfUs.Roles;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,7 +16,8 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
             );
             RpcMurderPlayer(voteArea, player);
         }
-        public static void RpcMurderPlayer(PlayerVoteArea voteArea, PlayerControl player)
+
+        private static void RpcMurderPlayer(PlayerVoteArea voteArea, PlayerControl player)
         {
             MurderPlayer(voteArea, player);
             MessageWriter writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
@@ -33,12 +33,15 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
             );
             MurderPlayer(voteArea, player, checkLover);
         }
-        public static void MurderPlayer(
+
+        private static void MurderPlayer(
             PlayerVoteArea voteArea,
             PlayerControl player,
             bool checkLover = true
         )
         {
+            Assassin.AssassinState.RemainingKills--;
+
             var hudManager = DestroyableSingleton<HudManager>.Instance;
             if (checkLover)
             {
