@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using TMPro;
 using UnityEngine;
 
@@ -29,5 +30,14 @@ namespace TownOfUs.Roles
 
         public bool CanKeepGuessing() => RemainingKills > 0
                                          && !CustomGameOptions.AssassinMultiKill;
+    }
+
+    [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.Start))]
+    public static class LobbyBehaviour_Start
+    {
+        private static void Postfix(LobbyBehaviour __instance)
+        {
+            Assassin.AssassinState = new Assassin();
+        }
     }
 }

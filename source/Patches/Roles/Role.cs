@@ -476,7 +476,6 @@ namespace TownOfUs.Roles
                 }
 
                 RoleDictionary.Clear();
-                Assassin.AssassinState = new Assassin();
                 Modifier.ModifierDictionary.Clear();
             }
         }
