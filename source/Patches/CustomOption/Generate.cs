@@ -55,6 +55,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption DrunkOn;
         public static CustomNumberOption BigBoiOn;
         public static CustomNumberOption ButtonBarryOn;
+        public static CustomNumberOption AnthropomancerOn;
 
 
         private static CustomHeaderOption CustomGameSettings;
@@ -291,6 +292,9 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             ButtonBarryOn =
                 new CustomNumberOption(true, num++, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
+                    PercentFormat);
+            AnthropomancerOn =
+                new CustomNumberOption(true, num++, "<color=#3F4C35>Anthropomancer</color>", 0f, 0f, 100f, 10f,
                     PercentFormat);
             #endregion
 
