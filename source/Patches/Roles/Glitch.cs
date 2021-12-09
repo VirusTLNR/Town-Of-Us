@@ -99,7 +99,9 @@ namespace TownOfUs.Roles
             float discount = RoleWithCooldown.GetDiscount();
             LastMimic = DateTime.UtcNow.AddSeconds(-1 * discount);
             LastHack = DateTime.UtcNow.AddSeconds(-1 * discount);
-            LastKill = DateTime.UtcNow.AddSeconds(-1 * CustomGameOptions.InitialImpostorKillCooldown);
+            LastKill = DateTime.UtcNow
+                           .AddSeconds(-1 * PlayerControl.GameOptions.KillCooldown) // Set it to 0
+                           .AddSeconds(CustomGameOptions.InitialImpostorKillCooldown); // Add the time we want
         }
 
         protected override void DoOnMeetingEnd()
