@@ -96,10 +96,10 @@ namespace TownOfUs.Roles
 
         protected override void DoOnGameStart()
         {
-            LastMimic = DateTime.UtcNow;
-            LastHack = DateTime.UtcNow;
-            LastKill = DateTime.UtcNow.AddSeconds(
-                -1 * (PlayerControl.GameOptions.KillCooldown - CustomGameOptions.InitialImpostorKillCooldown));
+            float discount = RoleWithCooldown.GetDiscount();
+            LastMimic = DateTime.UtcNow.AddSeconds(-1 * discount);
+            LastHack = DateTime.UtcNow.AddSeconds(-1 * discount);
+            LastKill = DateTime.UtcNow.AddSeconds(-1 * CustomGameOptions.InitialImpostorKillCooldown);
         }
 
         protected override void DoOnMeetingEnd()
@@ -458,9 +458,9 @@ namespace TownOfUs.Roles
                 __instance.KillButton.gameObject.SetActive(__instance.UseButton.isActiveAndEnabled &&
                                                            !__gInstance.Player.Data.IsDead);
                 __instance.KillButton.SetCoolDown(
-                    CustomGameOptions.GlitchKillCooldown -
+                    PlayerControl.GameOptions.KillCooldown -
                     (float)(DateTime.UtcNow - __gInstance.LastKill).TotalSeconds,
-                    CustomGameOptions.GlitchKillCooldown);
+                    PlayerControl.GameOptions.KillCooldown);
 
                 __instance.KillButton.SetTarget(null);
                 __gInstance.KillTarget = null;
@@ -491,7 +491,7 @@ namespace TownOfUs.Roles
                     }
 
                     __gInstance.LastKill = DateTime.UtcNow;
-                    __gInstance.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown);
+                    __gInstance.Player.SetKillTimer( PlayerControl.GameOptions.KillCooldown);
                     Utils.RpcMurderPlayer(__gInstance.Player, __gInstance.KillTarget);
                 }
             }

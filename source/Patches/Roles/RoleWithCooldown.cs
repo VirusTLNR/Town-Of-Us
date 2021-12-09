@@ -13,7 +13,7 @@ namespace TownOfUs.Roles
 
         protected override void DoOnGameStart()
         {
-            float discount = PlayerControl.GameOptions.KillCooldown - CustomGameOptions.InitialImpostorKillCooldown;
+            float discount = GetDiscount();
             LastUsedAbility = DateTime.UtcNow.AddSeconds(-1 * discount);
         }
 
@@ -40,6 +40,11 @@ namespace TownOfUs.Roles
             LastUsedAbility = DateTime.UtcNow
                 .AddSeconds(-1 * _cooldown) // Set it to 0
                 .AddSeconds(seconds); // Add the timer you want
+        }
+
+        public static float GetDiscount()
+        {
+            return PlayerControl.GameOptions.KillCooldown - CustomGameOptions.InitialImpostorKillCooldown;
         }
     }
 }
