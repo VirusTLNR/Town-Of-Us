@@ -4,7 +4,7 @@ namespace TownOfUs.Roles
 {
     public abstract class RoleWithCooldown : Role
     {
-        public DateTime LastUsedAbility { get; private set; }
+        private DateTime LastUsedAbility { get; set; }
         private readonly float _cooldown;
         protected RoleWithCooldown(PlayerControl player, RoleEnum roleEnum, float cooldown) : base(player, roleEnum)
         {
