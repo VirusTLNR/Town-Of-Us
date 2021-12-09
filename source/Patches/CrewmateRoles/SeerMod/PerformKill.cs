@@ -33,7 +33,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             writer.Write(successfulSee);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
-            role.LastUsedAbility = DateTime.UtcNow;
+            role.ResetCooldownTimer();
             role.Investigated.Add(role.ClosestPlayer.PlayerId, successfulSee);
 
             return false;

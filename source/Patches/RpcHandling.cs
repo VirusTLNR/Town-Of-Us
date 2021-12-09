@@ -502,12 +502,15 @@ namespace TownOfUs
 
                         break;
                     case CustomRPC.Investigate:
+                    {
                         var seer = Utils.PlayerById(reader.ReadByte());
                         var otherPlayer = Utils.PlayerById(reader.ReadByte());
                         bool successfulSee = reader.ReadByte() == 1; // TODO: Can this be readBoolean()?
-                        Role.GetRole<Seer>(seer).Investigated.Add(otherPlayer.PlayerId, successfulSee);
-                        Role.GetRole<Seer>(seer).LastInvestigated = DateTime.UtcNow;
+                        Seer role = Role.GetRole<Seer>(seer);
+                        role.Investigated.Add(otherPlayer.PlayerId, successfulSee);
+                        role.ResetCooldownTimer();
                         break;
+                    }
                     case CustomRPC.SetSeer:
                         new Seer(Utils.PlayerById(reader.ReadByte()));
                         break;
@@ -579,8 +582,7 @@ namespace TownOfUs
                         var douseTarget = Utils.PlayerById(reader.ReadByte());
                         var arsonistRole = Role.GetRole<Arsonist>(arsonist);
                         arsonistRole.DousedPlayers.Add(douseTarget.PlayerId);
-                        arsonistRole.LastDoused = DateTime.UtcNow;
-
+                        arsonistRole.ResetCooldownTimer();
                         break;
                     case CustomRPC.Ignite:
                         var theArsonist = Utils.PlayerById(reader.ReadByte());

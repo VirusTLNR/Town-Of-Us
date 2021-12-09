@@ -45,7 +45,7 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
                     return;
                 }
 
-                role.MorphButton.SetCoolDown(role.MorphTimer(), CustomGameOptions.MorphlingCd);
+                role.MorphButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.MorphlingCd);
                 role.MorphButton.renderer.color = Palette.EnabledColor;
                 role.MorphButton.renderer.material.SetFloat("_Desat", 0f);
             }

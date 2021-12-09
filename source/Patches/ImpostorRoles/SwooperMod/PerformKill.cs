@@ -18,7 +18,7 @@ namespace TownOfUs.ImpostorRoles.SwooperMod
             {
                 if (__instance.isCoolingDown) return false;
                 if (!__instance.isActiveAndEnabled) return false;
-                if (role.SwoopTimer() != 0) return false;
+                if (role.CooldownTimer() != 0) return false;
 
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.Swoop, SendOption.Reliable, -1);

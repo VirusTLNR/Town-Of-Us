@@ -5,7 +5,7 @@ namespace TownOfUs.Roles
 {
     public class Covert : RoleWithCooldown
     {
-        private KillButtonManager __covertButton;
+        private KillButtonManager _covertButton;
         public float CovertTimeRemaining;
         public bool IsCovert { get; private set; }
 
@@ -29,10 +29,10 @@ namespace TownOfUs.Roles
 
         public KillButtonManager CovertButton
         {
-            get => __covertButton;
+            get => _covertButton;
             set
             {
-                __covertButton = value;
+                _covertButton = value;
                 ExtraButtons.Clear();
                 ExtraButtons.Add(value);
             }
@@ -67,7 +67,7 @@ namespace TownOfUs.Roles
         private void LeaveCovert()
         {
             IsCovert = false;
-            LastUsedAbility = DateTime.UtcNow;
+            ResetCooldownTimer();
             Utils.MakeVisible(Player);
         }
     }

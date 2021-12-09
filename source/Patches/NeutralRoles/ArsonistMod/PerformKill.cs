@@ -43,7 +43,7 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
             writer2.Write(role.ClosestPlayer.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer2);
             role.DousedPlayers.Add(role.ClosestPlayer.PlayerId);
-            role.LastUsedAbility = DateTime.UtcNow;
+            role.ResetCooldownTimer();
 
             __instance.SetTarget(null);
             return false;

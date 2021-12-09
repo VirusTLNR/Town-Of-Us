@@ -4,7 +4,7 @@ namespace TownOfUs.Roles
 {
     public abstract class RoleWithCooldown : Role
     {
-        public DateTime LastUsedAbility;
+        public DateTime LastUsedAbility { get; private set; }
         private readonly float _cooldown;
         protected RoleWithCooldown(PlayerControl player, RoleEnum roleEnum, float cooldown) : base(player, roleEnum)
         {
@@ -25,6 +25,21 @@ namespace TownOfUs.Roles
         public float CooldownTimer()
         {
             return Utils.GetCooldownTimeRemaining(() => LastUsedAbility, () => _cooldown);
+        }
+
+        public void ResetCooldownTimer()
+        {
+            LastUsedAbility = DateTime.UtcNow;
+        }
+
+        /*
+         * Used when you want the cooldown timer to read a specific number.
+         */
+        public void SetCooldownTimer(float seconds)
+        {
+            LastUsedAbility = DateTime.UtcNow
+                .AddSeconds(-1 * _cooldown) // Set it to 0
+                .AddSeconds(seconds); // Add the timer you want
         }
     }
 }

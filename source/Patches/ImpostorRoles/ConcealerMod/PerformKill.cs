@@ -33,7 +33,7 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
             if (
                 __instance.isCoolingDown
                 || !__instance.isActiveAndEnabled
-                || role.ConcealTimer() != 0
+                || role.CooldownTimer() != 0
                 || role.Target == null
                 || role.Target.Data.IsImpostor
             )
@@ -47,7 +47,7 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
 
                 if (CustomGameOptions.ShieldBreaks)
                 {
-                    role.LastConcealed = DateTime.UtcNow;
+                    role.ResetCooldownTimer();
                 }
 
                 return false;

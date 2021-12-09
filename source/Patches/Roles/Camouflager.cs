@@ -3,28 +3,17 @@ using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class Camouflager : Role
+    public class Camouflager : RoleWithCooldown
 
     {
         public KillButtonManager _camouflageButton;
         public bool Enabled;
-        public DateTime LastCamouflaged;
         public float TimeRemaining;
 
-        public Camouflager(PlayerControl player) : base(player, RoleEnum.Camouflager)
+        public Camouflager(PlayerControl player) : base(player, RoleEnum.Camouflager, CustomGameOptions.CamouflagerDuration)
         {
             ImpostorText = () => "Camouflage and turn everyone grey";
             TaskText = () => "Camouflage and get secret kills";
-        }
-
-        protected override void DoOnGameStart()
-        {
-            LastCamouflaged = DateTime.UtcNow;
-        }
-
-        protected override void DoOnMeetingEnd()
-        {
-            LastCamouflaged = DateTime.UtcNow;
         }
 
         public bool Camouflaged => TimeRemaining > 0f;
@@ -50,18 +39,8 @@ namespace TownOfUs.Roles
         public void UnCamouflage()
         {
             Enabled = false;
-            LastCamouflaged = DateTime.UtcNow;
+            ResetCooldownTimer();
             Utils.UnCamouflage();
-        }
-
-        public float CamouflageTimer()
-        {
-            var utcNow = DateTime.UtcNow;
-            var timeSpan = utcNow - LastCamouflaged;
-            var num = CustomGameOptions.CamouflagerCd * 1000f;
-            var flag2 = num - (float) timeSpan.TotalMilliseconds < 0f;
-            if (flag2) return 0;
-            return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
         }
     }
 }

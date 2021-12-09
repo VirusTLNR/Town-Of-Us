@@ -29,7 +29,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
 
                 if (CustomGameOptions.ShieldBreaks)
                 {
-                    role.LastUsedAbility = DateTime.UtcNow;
+                    role.ResetCooldownTimer();
                 }
 
                 return false;
@@ -53,7 +53,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
                 Utils.RpcMurderPlayer(PlayerControl.LocalPlayer, role.ClosestPlayer);
             }
 
-            role.LastUsedAbility = DateTime.UtcNow;
+            role.ResetCooldownTimer();
 
             return false;
         }

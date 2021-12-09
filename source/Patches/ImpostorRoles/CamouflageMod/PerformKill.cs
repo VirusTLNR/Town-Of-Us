@@ -19,7 +19,7 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
             {
                 if (__instance.isCoolingDown) return false;
                 if (!__instance.isActiveAndEnabled) return false;
-                if (role.CamouflageTimer() != 0) return false;
+                if (role.CooldownTimer() != 0) return false;
 
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.Camouflage,

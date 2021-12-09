@@ -28,7 +28,7 @@ namespace TownOfUs.ImpostorRoles.MinerMod
             var position = __instance.KillButton.transform.localPosition;
             role.MineButton.transform.localPosition = new Vector3(position.x,
                 __instance.ReportButton.transform.localPosition.y, position.z);
-            role.MineButton.SetCoolDown(role.MineTimer(), CustomGameOptions.MineCd);
+            role.MineButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.MineCd);
 
             var hits = Physics2D.OverlapBoxAll(PlayerControl.LocalPlayer.transform.position, role.VentSize, 0);
             hits = hits.ToArray().Where(c =>
