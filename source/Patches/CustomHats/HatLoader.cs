@@ -25,7 +25,7 @@ namespace TownOfUs.Patches.CustomHats
             try
             {
                 var hatJson = LoadJson();
-                
+
                 var hatBehaviours = DiscoverHatBehaviours(hatJson);
 
                 DestroyableSingleton<HatManager>.Instance.AllHats.ForEach(
@@ -36,7 +36,7 @@ namespace TownOfUs.Patches.CustomHats
                     hatBehaviours[i].Order = HAT_ORDER_BASELINE + i;
                     HatManager.Instance.AllHats.Add(hatBehaviours[i]);
                 }
-            
+
             }
             catch (Exception e)
             {
@@ -69,9 +69,8 @@ namespace TownOfUs.Patches.CustomHats
                 }
                 catch (Exception e)
                 {
-                    // Log.LogError(
-                    //     $"Error loading hat {hatCredit.Id} in metadata file ({HAT_METADATA_JSON})");
-                    // Log.LogError($"{e.Message}\nStack:{e.StackTrace}");
+                    PluginSingleton<TownOfUs>.Instance.Log.LogError($"Error loading hat {hatCredit.Id} in metadata file ({HAT_METADATA_JSON})");
+                    PluginSingleton<TownOfUs>.Instance.Log.LogError($"{e.Message}\nStack:{e.StackTrace}");
                 }
             }
 
@@ -80,13 +79,12 @@ namespace TownOfUs.Patches.CustomHats
 
         private static HatBehaviour GenerateHatBehaviour(byte[] mainImg)
         {
-            
+
             //TODO: Move to Graphics Utils class
             var tex2D = new Texture2D(1, 1, TextureFormat.ARGB32, false);
             TownOfUs.LoadImage(tex2D, mainImg, false);
             var sprite = Sprite.Create(tex2D, new Rect(0.0f, 0.0f, tex2D.width, tex2D.height), new Vector2(0.5f, 0.5f), 100);
-            
-            
+
             var hat = ScriptableObject.CreateInstance<HatBehaviour>();
             hat.MainImage = sprite;
             hat.ChipOffset = new Vector2(-0.1f, 0.35f);
