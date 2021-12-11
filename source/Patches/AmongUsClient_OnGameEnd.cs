@@ -17,6 +17,15 @@ namespace TownOfUs
         }
     }
 
+    [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.SetEverythingUp))]
+    public class EndGameManagerSetUpPatch
+    {
+        public static void Postfix(EndGameManager __instance)
+        {
+            Patches.EndGameSummary.LoadGameSummary(__instance);
+        }
+    }
+
     [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.Start))]
     public class EndGameManager_SetEverythingUp
     {

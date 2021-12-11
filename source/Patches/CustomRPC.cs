@@ -99,6 +99,7 @@ namespace TownOfUs
         SyncCustomSettings,
         FixAnimation,
 
-        AddMayorVoteBank
+        AddMayorVoteBank,
+        UpdateGamePlayerControlData
     }
 }

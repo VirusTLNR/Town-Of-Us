@@ -29,6 +29,7 @@ namespace TownOfUs
                         }
                 }
 
+                Patches.EndGameSummary.UpdatePlayerDataRPCCall();
                 return false;
             }
         }
