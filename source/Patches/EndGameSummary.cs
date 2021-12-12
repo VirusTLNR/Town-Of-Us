@@ -110,14 +110,7 @@ namespace TownOfUs.Patches
 
         public static bool HasTasks(Faction faction)
         {
-            if (faction == Faction.Crewmates)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return faction == Faction.Crewmates;
         }
 
         static bool IsNull(AdditionalTempData.PlayerInfo pinfo, string type)
