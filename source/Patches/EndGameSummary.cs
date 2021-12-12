@@ -138,7 +138,7 @@ namespace TownOfUs.Patches
                 var nameinfo = data.PlayerName;
 
 
-                var taskInfo = !HasTasks(data.Faction) ? "" : $" <color=#FAD934FF>({data.TasksCompleted}/{data.TasksTotal})";
+                var taskInfo = !HasTasks(data.Faction) ? "" : $" <color=#FAD934FF>({data.TasksCompleted}/{data.TasksTotal})</color>";
 
                 var roleInfo = "";
                 var modifierInfo = "";
@@ -155,7 +155,6 @@ namespace TownOfUs.Patches
             TMPro.TMP_Text roleSummaryTextMesh = roleSummary.GetComponent<TMPro.TMP_Text>();
             roleSummaryTextMesh.alignment = TMPro.TextAlignmentOptions.TopLeft;
             roleSummaryTextMesh.color = Color.white;
-            roleSummaryTextMesh.faceColor = Color.gray;
             roleSummaryTextMesh.fontSizeMin = 1.5f;
             roleSummaryTextMesh.fontSizeMax = 1.5f;
             roleSummaryTextMesh.fontSize = 1.5f;
