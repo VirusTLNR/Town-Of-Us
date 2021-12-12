@@ -115,32 +115,11 @@ namespace TownOfUs.Patches
 
         static bool IsNull(AdditionalTempData.PlayerInfo pinfo, string type)
         {
-            if (type == "Role")
-            {
-                if (pinfo.CurrentRole != null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            else if (type == "Mod")
-            {
-                if (pinfo.Modifier != null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                return true;
-            }
+            return type switch {
+                "Role" => pinfo.CurrentRole == null,
+                "Mod" => pinfo.Modifier == null,
+                _ => true
+            };
 
         }
 
