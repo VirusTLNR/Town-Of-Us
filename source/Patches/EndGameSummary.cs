@@ -147,11 +147,7 @@ namespace TownOfUs.Patches
                 var nameinfo = data.PlayerName;
 
 
-                var taskInfo = "";//GameData.Instance.AllPlayers[data.PlayerId].PlayerName;
-                                  //if (HasTasks(data.Faction))
-                                  //{
-                taskInfo = data.Faction > 0 ? $"" : $" <color=#FAD934FF>({data.TasksCompleted}/{data.TasksTotal})</color>";
-                //}
+                var taskInfo = !HasTasks(data.Faction) ? "" : $" <color=#FAD934FF>({data.TasksCompleted}/{data.TasksTotal})";
 
                 var roleInfo = "";
                 var modifierInfo = "";
