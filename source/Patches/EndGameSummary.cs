@@ -79,13 +79,6 @@ namespace TownOfUs.Patches
                 {
                     var firstText = task.name;//.Cast<ImportantTextTask>();
                     PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"TaskName:- " + task.name);
-                    var modname = "junktonull";
-                    var rolename = "junktonull";
-                    if (!IsNull(pinfo, "Mod"))
-                        modname = modifier.Name;
-
-                    if (!IsNull(pinfo, "Role"))
-                        rolename = role.Name;
 
                     if (!firstText.Contains(modifier.Name) && !firstText.Contains(role.Name) && !firstText.Contains("_Player"))
                     {
@@ -102,8 +95,6 @@ namespace TownOfUs.Patches
                 pinfo.TasksCompleted = tasksdone;
                 pinfo.TasksTotal = taskstotal;
                 pinfolist.Add(pinfo);
-                tasksdone = 0;
-                taskstotal = 0;
                 AdditionalTempData.playerData = pinfolist;
             }
         }
