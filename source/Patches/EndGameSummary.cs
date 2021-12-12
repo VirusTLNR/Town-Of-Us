@@ -144,9 +144,7 @@ namespace TownOfUs.Patches
                         won = $"[<color=#FAD934FF>W</color>]";
                     }
                 }
-                var nameinfo = "";
-
-                nameinfo = $"{data.PlayerName}";
+                var nameinfo = data.PlayerName;
 
 
                 var taskInfo = "";//GameData.Instance.AllPlayers[data.PlayerId].PlayerName;
