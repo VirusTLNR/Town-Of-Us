@@ -95,8 +95,8 @@ namespace TownOfUs.Patches
                 pinfo.TasksCompleted = tasksdone;
                 pinfo.TasksTotal = taskstotal;
                 pinfolist.Add(pinfo);
-                AdditionalTempData.playerData = pinfolist;
             }
+            AdditionalTempData.playerData = pinfolist;
         }
 
         public static bool HasTasks(Faction faction)
