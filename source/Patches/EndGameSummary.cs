@@ -36,8 +36,6 @@ namespace TownOfUs.Patches
         }
 
         public static System.Collections.Generic.List<PlayerControl> allPlayers = new System.Collections.Generic.List<PlayerControl>();
-        public static bool playerInfoUpdateFlag1Updating = false;
-        public static bool playerInfoUpdateFlag2EndOfGame = false;
 
         public static void UpdatePlayerDataRPCCall()
         {
