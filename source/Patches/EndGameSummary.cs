@@ -56,8 +56,7 @@ namespace TownOfUs.Patches
 
         public static void UpdatePlayerInfo(List<PlayerControl> players)
         {
-            List<AdditionalTempData.PlayerInfo> pinfolist = new List<AdditionalTempData.PlayerInfo>();
-            pinfolist.Clear();
+            var pinfolist = new List<AdditionalTempData.PlayerInfo>();
 
             foreach (PlayerControl player in players)
             {
