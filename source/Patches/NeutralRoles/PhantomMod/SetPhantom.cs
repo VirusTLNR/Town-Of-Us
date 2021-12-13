@@ -47,9 +47,6 @@ namespace TownOfUs.NeutralRoles.PhantomMod
             }
 
             if (Role.GetRole<Phantom>(PlayerControl.LocalPlayer).Caught) return;
-
-            //for testing buggy office vent on polus only.
-            //var startingVent = ShipStatus.Instance.AllVents[5];
             var startingVent =
                 ShipStatus.Instance.AllVents[Random.RandomRangeInt(0, ShipStatus.Instance.AllVents.Count)];
             PlayerControl.LocalPlayer.NetTransform.RpcSnapTo(startingVent.transform.position);
