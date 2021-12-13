@@ -11,7 +11,6 @@ namespace TownOfUs
         public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] GameOverReason reason,
             [HarmonyArgument(0)] bool showAd)
         {
-            //Patches.EndGameSummary.GatherPlayerData();
             Utils.potentialWinners.Clear();
             foreach (var player in PlayerControl.AllPlayerControls)
                 Utils.potentialWinners.Add(new WinningPlayerData(player.Data));

@@ -28,8 +28,7 @@ namespace TownOfUs
                             if (playerInfo.Tasks.ToArray()[j].Complete) __instance.CompletedTasks++;
                         }
                 }
-                Patches.EndGameSummary.GatherPlayerData();
-                //Patches.EndGameSummary.UpdatePlayerDataRPCCall();
+                Patches.EndGameSummary.UpdatePlayerInfo();
 
                 return false;
             }
