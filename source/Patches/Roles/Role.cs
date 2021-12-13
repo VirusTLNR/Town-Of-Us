@@ -270,7 +270,16 @@ namespace TownOfUs.Roles
 
             return null;
         }
-        
+
+        public static Role GetRole(GameData.PlayerInfo player)
+        {
+            if (player == null) return null;
+            if (RoleDictionary.TryGetValue(player.PlayerId, out var role))
+                return role;
+
+            return null;
+        }
+
         public static T GetRole<T>(PlayerControl player) where T : Role
         {
             return GetRole(player) as T;

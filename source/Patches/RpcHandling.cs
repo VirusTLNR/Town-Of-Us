@@ -734,7 +734,7 @@ namespace TownOfUs
                         break;
 
                     case CustomRPC.UpdateGamePlayerControlData:
-                        Patches.EndGameSummary.GatherPlayerData(callId);
+                        Patches.EndGameSummary.GatherPlayerData();
                         break;
                 }
             }

@@ -25,7 +25,7 @@ namespace TownOfUs.Patches
 
             internal class PlayerInfo
             {
-                public int PlayerId { get; set; }
+                public byte PlayerId { get; set; }
                 public string PlayerName { get; set; }
                 public Faction Faction { get; set; }
                 public Role CurrentRole { get; set; }
@@ -35,7 +35,8 @@ namespace TownOfUs.Patches
             }
         }
 
-        public static System.Collections.Generic.List<PlayerControl> allPlayers = new System.Collections.Generic.List<PlayerControl>();
+        //public static System.Collections.Generic.List<PlayerControl> allPlayers = new System.Collections.Generic.List<PlayerControl>();
+        public static System.Collections.Generic.List<GameData.PlayerInfo> allPlayers = new System.Collections.Generic.List<GameData.PlayerInfo>();
 
         public static void UpdatePlayerDataRPCCall()
         {
@@ -44,15 +45,88 @@ namespace TownOfUs.Patches
             AmongUsClient.Instance.FinishRpcImmediately(writer);
         }
 
-        public static void GatherPlayerData(byte rpccallid)
+        public static void GatherPlayerData()
         {
             EndGameSummary.allPlayers.Clear();
-            EndGameSummary.allPlayers = EndGameSummary.GetAllPlayers();
-            List<PlayerControl> allplayersList = EndGameSummary.allPlayers;
+            //EndGameSummary.allPlayers = EndGameSummary.GetAllPlayers();
+
+            Il2CppSystem.Collections.Generic.List<GameData.PlayerInfo> allplayersList = GameData.Instance.AllPlayers;
+            //List<PlayerControl> allplayersList = EndGameSummary.allPlayers;
             UpdatePlayerInfo(allplayersList);
         }
 
-        public static void UpdatePlayerInfo(List<PlayerControl> players)
+
+
+        public static void UpdatePlayerInfo(Il2CppSystem.Collections.Generic.List<GameData.PlayerInfo> players)
+        {
+            var pinfolist = new List<AdditionalTempData.PlayerInfo>();
+
+            foreach (GameData.PlayerInfo player in players)
+            {
+                byte pid = player.PlayerId;
+                string name = player.PlayerName;
+                Role role = Role.GetRole(player);
+                Modifier modifier = Modifier.GetModifier(player);
+                Faction faction = role.Faction;
+                int tasksdone = 0;
+                int taskstotal = 0;
+
+                AdditionalTempData.PlayerInfo pinfo = new AdditionalTempData.PlayerInfo();
+                pinfo.PlayerName = name;
+                pinfo.CurrentRole = role;
+                pinfo.Faction = faction;
+                pinfo.Modifier = modifier;
+
+                PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"PlayerName:- " + player.PlayerName);
+
+                PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"player.Tasks.Count:- " + player.Tasks.Count);
+                /*foreach(var task in player.Tasks)
+                {
+                    PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"taskid:- " + task.Id);
+                    PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"tasktypeid:- " + task.TypeId);
+                }*/
+                foreach (var task in player.Tasks)
+                {
+                        if (task.Complete == true)
+                        {
+                            tasksdone++;
+                        }
+                        taskstotal++;
+                }
+                //tasksdone = 3;
+                //taskstotal = 10;
+                /*foreach (PlayerControl playercontrol in PlayerControl.AllPlayerControls)
+                {
+                    if (playercontrol.PlayerId == pid)
+                    {
+                        foreach (var task in playercontrol.myTasks)
+                        {
+                            var firstText = task.name;//.Cast<ImportantTextTask>();
+                            PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"TaskName:- " + task.name);
+
+                            if (!firstText.Contains(modifier.Name) && !firstText.Contains(role.Name) && !firstText.Contains("_Player"))
+                            {
+                                if (task.IsComplete == true)
+                                {
+                                    tasksdone++;
+                                }
+                                taskstotal++;
+                            }
+                        }
+                    }
+                }*/
+
+                PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"TaskDone:- " + tasksdone);
+                PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"TaskTotal:- " + taskstotal);
+                pinfo.TasksCompleted = tasksdone;
+                pinfo.TasksTotal = taskstotal;
+                pinfolist.Add(pinfo);
+            }
+            AdditionalTempData.playerData = pinfolist;
+        }
+
+        //this works, but not with disconnected players
+ /*       public static void UpdatePlayerInfo(List<PlayerControl> players)
         {
             var pinfolist = new List<AdditionalTempData.PlayerInfo>();
 
@@ -95,9 +169,9 @@ namespace TownOfUs.Patches
                 pinfolist.Add(pinfo);
             }
             AdditionalTempData.playerData = pinfolist;
-        }
+        }*/
 
-        public static bool HasTasks(Faction faction)
+            public static bool HasTasks(Faction faction)
         {
             return faction == Faction.Crewmates;
         }
@@ -135,8 +209,11 @@ namespace TownOfUs.Patches
                 }
                 var nameinfo = data.PlayerName;
 
+                List<string> noncrewroleswithtasks = new List<string>();
 
-                var taskInfo = !HasTasks(data.Faction) ? "" : $" <color=#FAD934FF>({data.TasksCompleted}/{data.TasksTotal})</color>";
+                noncrewroleswithtasks.Add("Phantom");
+
+                var taskInfo = (!HasTasks(data.Faction) && !noncrewroleswithtasks.Contains(data.CurrentRole.Name)) ? "" : $" <color=#FAD934FF>({data.TasksCompleted}/{data.TasksTotal})</color>";
 
                 var roleInfo = "";
                 var modifierInfo = "";
@@ -163,9 +240,9 @@ namespace TownOfUs.Patches
         }
        
 
-        public static List<PlayerControl> GetAllPlayers()
+        /*public static List<PlayerControl> GetAllPlayers()
         {
             return PlayerControl.AllPlayerControls.ToArray().ToList();
-        }
+        }*/
     }
 }
