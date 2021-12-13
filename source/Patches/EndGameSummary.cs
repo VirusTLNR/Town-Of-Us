@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-//using Il2CppSystem.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using Reactor;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
-using System.Linq;
 using HarmonyLib;
 
 namespace TownOfUs.Patches
@@ -18,6 +15,7 @@ namespace TownOfUs.Patches
         {
             public static List<PlayerInfo> playerData = new List<PlayerInfo>();
 
+            //leaving this in as i assume it maybe needed in future, feel free to remove if you think otherwise.
             public static void clear()
             {
                 playerData.Clear();
