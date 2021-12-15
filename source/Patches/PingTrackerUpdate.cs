@@ -31,7 +31,7 @@ namespace TownOfUs
                 "<color=#00FF00FF>TownOfUs " + TownOfUs.GetVersion() + "</color>\n" +
                 $"Ping: {AmongUsClient.Instance.Ping}ms\n" +
                 (!MeetingHud.Instance
-                    ? "https://github.com/anusien/Town-Of-Us"
+                    ? "tinyurl.com/Town-Of-Us"
                     : "");
         }
     }
