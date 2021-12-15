@@ -81,6 +81,16 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 <li>
  <details>
+   <summary> v2.6.4 </summary>
+   <ul>
+     <li> Investigator's footprints no longer lag. </li>
+     <li> Summary of roles and tasks shows after the game ends. First PR from <a href="https://github.com/VirusTLNR">VirusTLNR</a>! </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
    <summary> v2.6.3 </summary>
    <ul>
      <li> Assassin is only offered the option to guess roles that are on at least 5%. </li>
