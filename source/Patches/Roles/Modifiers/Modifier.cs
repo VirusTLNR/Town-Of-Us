@@ -61,12 +61,14 @@ namespace TownOfUs.Roles.Modifiers
 
         public static Modifier GetModifier(PlayerControl player)
         {
+            if (player == null) return null;
             return (from entry in ModifierDictionary where entry.Key == player.PlayerId select entry.Value)
                 .FirstOrDefault();
         }
 
         public static Modifier GetModifier(GameData.PlayerInfo player)
         {
+            if (player == null) return null;
             return (from entry in ModifierDictionary where entry.Key == player.PlayerId select entry.Value)
                 .FirstOrDefault();
         }

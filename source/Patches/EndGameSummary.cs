@@ -37,52 +37,30 @@ namespace TownOfUs.Patches
         {
             Il2CppSystem.Collections.Generic.List<GameData.PlayerInfo> players = GameData.Instance.AllPlayers;
 
-            var pinfolist = new List<AdditionalTempData.PlayerInfo>();
+            List<AdditionalTempData.PlayerInfo> pinfolist = new List<AdditionalTempData.PlayerInfo>();
 
             foreach (GameData.PlayerInfo player in players)
             {
-                byte pid = player.PlayerId;
-                string name = player.PlayerName;
-                Role role = Role.GetRole(player);
-                Modifier modifier = Modifier.GetModifier(player);
-                Faction faction = role.Faction;
-                int tasksdone = 0;
-                int taskstotal = 0;
-
                 AdditionalTempData.PlayerInfo pinfo = new AdditionalTempData.PlayerInfo();
-                pinfo.PlayerName = name;
-                pinfo.CurrentRole = role;
-                pinfo.Faction = faction;
-                pinfo.Modifier = modifier;
+                byte pid = player.PlayerId;
+                pinfo.PlayerName = player.PlayerName;
+                pinfo.CurrentRole = Role.GetRole(player);
+                pinfo.Faction = pinfo.CurrentRole.Faction;
+                pinfo.Modifier = Modifier.GetModifier(player);
+                pinfo.TasksCompleted = 0;
+                pinfo.TasksTotal = 0;
 
                 foreach (var task in player.Tasks)
                 {
-                        if (task.Complete == true)
-                        {
-                            tasksdone++;
-                        }
-                        taskstotal++;
+                    if (task.Complete == true)
+                    {
+                        pinfo.TasksCompleted++;
+                    }
+                    pinfo.TasksTotal++;
                 }
-                
-                pinfo.TasksCompleted = tasksdone;
-                pinfo.TasksTotal = taskstotal;
                 pinfolist.Add(pinfo);
             }
             AdditionalTempData.playerData = pinfolist;
-        }
-
-        public static bool HasTasks(Faction faction)
-        {
-            return faction == Faction.Crewmates;
-        }
-
-        static bool IsNull(AdditionalTempData.PlayerInfo pinfo, string type)
-        {
-            return type switch {
-                "Role" => pinfo.CurrentRole == null,
-                "Mod" => pinfo.Modifier == null,
-                _ => true
-            };
         }
 
         public static void LoadGameSummary(EndGameManager __instance)
@@ -98,29 +76,51 @@ namespace TownOfUs.Patches
 
             foreach (var data in AdditionalTempData.playerData)
             {
+
+                //this way works, dont know why the other doesnt tbh.
                 var won = "   ";
-                foreach (var winner in TempData.winners)
+                foreach (WinningPlayerData winner in TempData.winners)
                 {
+                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"WinnerName=#{winner.Name}# vs PlayerName=#{data.PlayerName}#");
                     if (winner.Name == data.PlayerName)
                     {
+                        Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"TRUE");
                         won = $"[<color=#FAD934FF>W</color>]";
                     }
                 }
-                var nameinfo = data.PlayerName;
 
-                List<string> noncrewroleswithtasks = new List<string>();
+                //this doesnt work for some reason, it stops both lovers from showing as winners.
+                /*var won = "";
+                foreach (WinningPlayerData winner in TempData.winners)
+                {
+                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WinnerName=#{winner.Name}# vs PlayerName=#{data.PlayerName}#");
+                    if (winner.Name == data.PlayerName)
+                    {
+                        Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"TRUE");
+                        won = $"[<color=#FAD934FF>W</color>]";
+                    }
+                    else
+                    {
+                        Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"FALSE");
+                        won = "   ";
+                    }
+                }*/
 
-                noncrewroleswithtasks.Add("Phantom");
+                string nameinfo = data.PlayerName;
 
-                var taskInfo = (!HasTasks(data.Faction) && !noncrewroleswithtasks.Contains(data.CurrentRole.Name)) ? "" : $" <color=#FAD934FF>({data.TasksCompleted}/{data.TasksTotal})</color>";
+                List<string> nonCrewRolesWithTasks = new List<string>();
 
-                var roleInfo = "";
-                var modifierInfo = "";
-                if (!IsNull(data, "Role"))
+                nonCrewRolesWithTasks.Add("Phantom");
+
+                string taskInfo = ((data.Faction != Faction.Crewmates) && !nonCrewRolesWithTasks.Contains(data.CurrentRole.Name)) ? "" : $" <color=#FAD934FF>({data.TasksCompleted}/{data.TasksTotal})</color>";
+
+                string roleInfo = "";
+                string modifierInfo = "";
+                if (data.CurrentRole!=null)
                 {
                     roleInfo = $"{data.CurrentRole.ColorString}{data.CurrentRole.Name}</color>";
                 }
-                if (!IsNull(data, "Mod"))
+                if (data.Modifier!=null)
                 {
                     modifierInfo = $"{data.Modifier.ColorString}{data.Modifier.Name}</color> ";
                 }
