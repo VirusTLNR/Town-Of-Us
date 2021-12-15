@@ -35,11 +35,9 @@ namespace TownOfUs.Patches
 
         public static void UpdatePlayerInfo()
         {
-            Il2CppSystem.Collections.Generic.List<GameData.PlayerInfo> players = GameData.Instance.AllPlayers;
-
             List<AdditionalTempData.PlayerInfo> pinfolist = new List<AdditionalTempData.PlayerInfo>();
 
-            foreach (GameData.PlayerInfo player in players)
+            foreach (GameData.PlayerInfo player in GameData.Instance.AllPlayers)
             {
                 AdditionalTempData.PlayerInfo pinfo = new AdditionalTempData.PlayerInfo();
                 byte pid = player.PlayerId;
@@ -60,6 +58,9 @@ namespace TownOfUs.Patches
                 }
                 pinfolist.Add(pinfo);
             }
+            //added this in so when the summary is shown it does not reveal the player join order
+            //, which can be used to decipher who is crew (for example on the keys task on polus)
+            pinfolist.Shuffle();
             AdditionalTempData.playerData = pinfolist;
         }
 
@@ -77,8 +78,8 @@ namespace TownOfUs.Patches
             foreach (var data in AdditionalTempData.playerData)
             {
 
-                //this way works, dont know why the other doesnt tbh.
-                var won = "   ";
+                //this way works 100%.
+                /*var won = "   ";
                 foreach (WinningPlayerData winner in TempData.winners)
                 {
                     Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"WinnerName=#{winner.Name}# vs PlayerName=#{data.PlayerName}#");
@@ -87,24 +88,25 @@ namespace TownOfUs.Patches
                         Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"TRUE");
                         won = $"[<color=#FAD934FF>W</color>]";
                     }
-                }
+                }*/
 
-                //this doesnt work for some reason, it stops both lovers from showing as winners.
-                /*var won = "";
+                //this now works, left in the old code incase future bugs arise as the old code 100% works
+                var won = "";
                 foreach (WinningPlayerData winner in TempData.winners)
                 {
-                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"WinnerName=#{winner.Name}# vs PlayerName=#{data.PlayerName}#");
+                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"WinnerName=#{winner.Name}# vs PlayerName=#{data.PlayerName}#");
                     if (winner.Name == data.PlayerName)
                     {
-                        Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"TRUE");
+                        Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"TRUE");
                         won = $"[<color=#FAD934FF>W</color>]";
+                        break;
                     }
                     else
                     {
-                        Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"FALSE");
+                        Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"FALSE");
                         won = "   ";
                     }
-                }*/
+                }
 
                 string nameinfo = data.PlayerName;
 
