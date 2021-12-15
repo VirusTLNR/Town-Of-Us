@@ -1027,7 +1027,7 @@ If they guessed wrong, they die instead.
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Assassin | The percentage probability of the Assassin appearing | Percentage | 0% |
-| Assassin Kill | The number of kill the Assassin can do with his ability | Number | 1 |
+| Assassin Kill | The number of kill the Assassin can do with their ability | Number | 1 |
 | Assassin Guess Crewmate | Whether the Assassin can Guess "Crewmate" | Toggle | False |
 | Assassin Guess Neutral  | Whether the Assassin can Guess Neutral roles | Toggle | False |
 | Assassin Multiple Kill  | Whether the Assassin can kill more than once per meeting | Toggle | True |
