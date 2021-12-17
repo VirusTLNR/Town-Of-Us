@@ -46,12 +46,7 @@ namespace TownOfUs.Roles
 
         public float FlashTimer()
         {
-            var utcNow = DateTime.UtcNow;
-            var timeSpan = utcNow - _lastFlashed;
-            var num = CustomGameOptions.GrenadeCooldown * 1000f;
-            var flag2 = num - (float)timeSpan.TotalMilliseconds < 0f;
-            if (flag2) return 0;
-            return (num - (float)timeSpan.TotalMilliseconds) / 1000f;
+            return Utils.GetCooldownTimeRemaining(() => _lastFlashed, () => CustomGameOptions.GrenadeCooldown);
         }
 
         public void Flash()
@@ -166,7 +161,7 @@ namespace TownOfUs.Roles
             DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(0.83f, 0.83f, 0.83f, 0f);
         }
 
-        public static Il2CppSystem.Collections.Generic.List<PlayerControl> FindClosestPlayers(PlayerControl player)
+        private static Il2CppSystem.Collections.Generic.List<PlayerControl> FindClosestPlayers(PlayerControl player)
         {
             Il2CppSystem.Collections.Generic.List<PlayerControl> playerControlList = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             float impostorLightMod = PlayerControl.GameOptions.ImpostorLightMod;
