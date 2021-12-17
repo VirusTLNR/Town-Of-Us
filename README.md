@@ -82,6 +82,15 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 <li>
  <details>
+   <summary> v2.7.0 </summary>
+   <ul>
+     <li> Add the Grenadier. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
    <summary> v2.6.4 </summary>
    <ul>
      <li> Investigator's footprints no longer lag. </li>
