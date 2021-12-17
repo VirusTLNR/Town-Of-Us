@@ -85,6 +85,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
    <summary> v2.7.0 </summary>
    <ul>
      <li> Add the Grenadier. </li>
+     <li> New options will automatically be visible in the game settings window. First PR from <a href="https://github.com/VincentVision">VincentVision</a>! </li>
    </ul>
  </details>
 </li>
