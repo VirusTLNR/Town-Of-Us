@@ -21,7 +21,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             return player.name + str;
         }
 
-        private static void UpdateMeeting(MeetingHud __instance)
+        private static void RevealSeerInMeeting(MeetingHud __instance)
         {
             foreach (var role in Role.GetRoles(RoleEnum.Seer))
             {
@@ -34,7 +34,8 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             }
         }
 
-        private static void UpdateMeeting(MeetingHud __instance, Seer seer)
+        // Assumes the local player is the Seer
+        private static void RevealSightsInMeeting(MeetingHud __instance, Seer seer)
         {
             foreach (var player in PlayerControl.AllPlayerControls)
             {
@@ -73,11 +74,16 @@ namespace TownOfUs.CrewmateRoles.SeerMod
 
         [HarmonyPriority(Priority.Last)]
         private static void Postfix(HudManager __instance)
-
         {
-            if (PlayerControl.AllPlayerControls.Count <= 1) return;
-            if (PlayerControl.LocalPlayer == null) return;
-            if (PlayerControl.LocalPlayer.Data == null) return;
+            if (
+                PlayerControl.AllPlayerControls.Count <= 1
+                || PlayerControl.LocalPlayer == null
+                || PlayerControl.LocalPlayer.Data == null
+                || (PlayerControl.LocalPlayer.Data.IsDead && CustomGameOptions.DeadSeeRoles)
+            )
+            {
+                return;
+            }
             foreach (var role in Role.GetRoles(RoleEnum.Seer))
             {
                 var seerRole = (Seer) role;
@@ -88,10 +94,10 @@ namespace TownOfUs.CrewmateRoles.SeerMod
                 seerRole.Player.nameText.text = NameText(seerRole.Player, " (Seer)");
             }
 
-            if (MeetingHud.Instance != null) UpdateMeeting(MeetingHud.Instance);
+            if (MeetingHud.Instance != null) RevealSeerInMeeting(MeetingHud.Instance);
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Seer)) return;
             var seer = Role.GetRole<Seer>(PlayerControl.LocalPlayer);
-            if (MeetingHud.Instance != null) UpdateMeeting(MeetingHud.Instance, seer);
+            if (MeetingHud.Instance != null) RevealSightsInMeeting(MeetingHud.Instance, seer);
 
 
             foreach (var player in PlayerControl.AllPlayerControls)

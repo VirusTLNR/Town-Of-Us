@@ -60,7 +60,6 @@ namespace TownOfUs
         public static bool SheriffKillsGlitch => Generate.SheriffKillsGlitch.Get();
         public static bool SheriffKillsExecutioner => Generate.SheriffKillsExecutioner.Get();
         public static bool SheriffKillsArsonist => Generate.SheriffKillsArsonist.Get();
-        public static bool SheriffKillsAnalyst => Generate.SheriffKillsAnalyst.Get();
         public static float SheriffKillCd => Generate.SheriffKillCd.Get();
         public static int MayorVoteBank => (int) Generate.MayorVoteBank.Get();
         public static bool MayorAnonymous => Generate.MayorAnonymous.Get();
@@ -172,7 +171,6 @@ namespace TownOfUs
                     if (On(ExecutionerOn)) enabledRoles.Add(RoleEnum.Executioner);
                     if (On(ArsonistOn)) enabledRoles.Add(RoleEnum.Arsonist);
                     if (On(GlitchOn)) enabledRoles.Add(RoleEnum.Glitch);
-                    if (On(AnalystOn)) enabledRoles.Add(RoleEnum.Analyst);
                 }
                 else if (faction == Faction.Impostors)
                 {

@@ -30,7 +30,6 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Executioner](#executioner)
 - [Arsonist](#arsonist)
 - [Phantom](#phantom)
-- [Analyst](#analyst)
 
 **Impostor Roles**
 - [Janitor](#janitor)
@@ -80,6 +79,27 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.6.4 </summary>
+   <ul>
+     <li> Investigator's footprints no longer lag. </li>
+     <li> Summary of roles and tasks shows after the game ends. First PR from <a href="https://github.com/VirusTLNR">VirusTLNR</a>! </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.6.3 </summary>
+   <ul>
+     <li> Assassin is only offered the option to guess roles that are on at least 5%. </li>
+     <li> Phantom should no longer get stuck if they spawn in the library in Admin. </li>
+     <li> Prophet and Seer reveals no longer overwrite the setting for dead players to see all the roles. </li>
+   </ul>
+ </details>
+</li>
 
 <li>
  <details>
@@ -929,18 +949,6 @@ They become half-invisible when they die and has to complete all their tasks wit
 | Phantom | The percentage probability of the Phantom appearing | Percentage | 0% |
 
 -----------------------
-## Analyst
-### **Team: Neutral**
-
-The Analyst is a Neutral role with its own win condition.\
-During meetings, they can guess the roles of other players. If they guess enough correctly (2) in the same meeting, they win.
-If they guess wrong, they die.\
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Analyst | The percentage probability of the Analyst appearing | Percentage | 0% |
-
------------------------
 # Impostor Roles
 ## Janitor
 ### **Team: Impostors**
@@ -1020,7 +1028,7 @@ If they guessed wrong, they die instead.
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Assassin | The percentage probability of the Assassin appearing | Percentage | 0% |
-| Assassin Kill | The number of kill the Assassin can do with his ability | Number | 1 |
+| Assassin Kill | The number of kill the Assassin can do with their ability | Number | 1 |
 | Assassin Guess Crewmate | Whether the Assassin can Guess "Crewmate" | Toggle | False |
 | Assassin Guess Neutral  | Whether the Assassin can Guess Neutral roles | Toggle | False |
 | Assassin Multiple Kill  | Whether the Assassin can kill more than once per meeting | Toggle | True |

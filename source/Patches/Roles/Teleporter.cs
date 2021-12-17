@@ -119,13 +119,7 @@ namespace TownOfUs.Roles
                     }
                 }
 
-                /* On Polus, the game sets the position of the vent as horizontally in the middle of the vent
-                 * but vertically at the very bottom. This actually puts the player out of bounds.
-                 * So we need to reposition them vertically to be in the middle of the vent.
-                 */
-                Vector2 size = vent.GetComponent<BoxCollider2D>().size;
-                Vector2 destination = vent.transform.position;
-                destination.y += size.y / 2;
+                Vector3 destination = Utils.GetCoordinatesToSendPlayerToVent(vent);
                 coordinates.Add(target.PlayerId, destination);
             }
             return coordinates;

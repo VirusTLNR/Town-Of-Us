@@ -11,9 +11,19 @@ namespace TownOfUs
         public static void Postfix(AmongUsClient __instance, [HarmonyArgument(0)] GameOverReason reason,
             [HarmonyArgument(0)] bool showAd)
         {
+            Patches.EndGameSummary.UpdatePlayerInfo();
             Utils.potentialWinners.Clear();
             foreach (var player in PlayerControl.AllPlayerControls)
                 Utils.potentialWinners.Add(new WinningPlayerData(player.Data));
+        }
+    }
+
+    [HarmonyPatch(typeof(EndGameManager), nameof(EndGameManager.SetEverythingUp))]
+    public class EndGameManagerSetUpPatch
+    {
+        public static void Postfix(EndGameManager __instance)
+        {
+            Patches.EndGameSummary.LoadGameSummary(__instance);
         }
     }
 
@@ -90,16 +100,6 @@ namespace TownOfUs
             if (phantom != null)
             {
                 var winners = Utils.potentialWinners.Where(x => x.Name == phantom.PlayerName).ToList();
-                TempData.winners = new List<WinningPlayerData>();
-                foreach (var win in winners) TempData.winners.Add(win);
-                return;
-            }
-
-            var analyst =
-                Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Analyst && ((Analyst) x).AnalystWins);
-            if (analyst != null)
-            {
-                var winners = Utils.potentialWinners.Where(x => x.Name == analyst.PlayerName).ToList();
                 TempData.winners = new List<WinningPlayerData>();
                 foreach (var win in winners) TempData.winners.Add(win);
                 return;

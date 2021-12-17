@@ -596,23 +596,6 @@ namespace TownOfUs
                         var theArsonistRole = Role.GetRole<Arsonist>(theArsonist);
                         global::TownOfUs.NeutralRoles.ArsonistMod.PerformKill.Ignite(theArsonistRole);
                         break;
-
-                    case CustomRPC.AnalystWin:
-                    {
-                        Role analyst = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Analyst);
-                        ((Analyst) analyst)?.Wins();
-                        break;
-                    }
-                    case CustomRPC.AnalystLose:
-                    {
-                        foreach (Role role in Role.GetRoles(RoleEnum.Analyst))
-                        {
-                            Analyst analyst = (Analyst) role;
-                            analyst.Loses();
-                        }
-
-                        break;
-                    }
                     case CustomRPC.ArsonistWin:
                         var theArsonistTheRole = Role.AllRoles.FirstOrDefault(x => x.RoleType == RoleEnum.Arsonist);
                         ((Arsonist) theArsonistTheRole)?.Wins();
@@ -733,9 +716,6 @@ namespace TownOfUs
                     case CustomRPC.SetConcealer:
                         new Concealer(Utils.PlayerById(reader.ReadByte()));
                         break;
-                    case CustomRPC.SetAnalyst:
-                        new Analyst(Utils.PlayerById(reader.ReadByte()));
-                        break;
                     case CustomRPC.SetPhantom:
                         readByte = reader.ReadByte();
                         SetPhantom.WillBePhantom = readByte == byte.MaxValue ? null : Utils.PlayerById(readByte);
@@ -846,9 +826,6 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.GlitchOn))
                     NeutralRoles.Add((typeof(Glitch), CustomRPC.SetGlitch, CustomGameOptions.GlitchOn));
-
-                if (Check(CustomGameOptions.AnalystOn))
-                    NeutralRoles.Add((typeof(Analyst), CustomRPC.SetAnalyst, CustomGameOptions.AnalystOn));
                 #endregion
                 #region Impostor Roles
                 if (Check(CustomGameOptions.UndertakerOn))
