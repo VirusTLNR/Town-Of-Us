@@ -70,6 +70,8 @@ namespace TownOfUs
         Teleporter,
         [RoleDetails("Concealer", "#FF0000FF", Faction.Impostors)]
         Concealer,
+        [RoleDetails("Grenadier", "#FF0000FF", Faction.Impostors)]
+        Grenadier,
 
 
         [RoleDetails("Crewmate", "#FFFFFFFF", Faction.Crewmates)]

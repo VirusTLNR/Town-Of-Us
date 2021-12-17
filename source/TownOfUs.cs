@@ -47,12 +47,12 @@ namespace TownOfUs
         public static Sprite DouseSprite;
         public static Sprite IgniteSprite;
         public static Sprite ReviveSprite;
+        public static Sprite FlashSprite;
         public static Sprite ButtonSprite;
         public static Sprite PolusSprite;
 
         public static Sprite CycleSprite;
         public static Sprite GuessSprite;
-
 
         public static Sprite DragSprite;
         public static Sprite DropSprite;
@@ -96,6 +96,7 @@ namespace TownOfUs
             DouseSprite = CreateSprite("TownOfUs.Resources.Douse.png");
             IgniteSprite = CreateSprite("TownOfUs.Resources.Ignite.png");
             ReviveSprite = CreateSprite("TownOfUs.Resources.Revive.png");
+            FlashSprite = CreateSprite("TownOfUs.Resources.Flash.png");
             ButtonSprite = CreateSprite("TownOfUs.Resources.Button.png");
             DragSprite = CreateSprite("TownOfUs.Resources.Drag.png");
             DropSprite = CreateSprite("TownOfUs.Resources.Drop.png");

@@ -110,7 +110,7 @@ namespace TownOfUs
         {
             public static void Postfix(ref GameOptionsMenu __instance)
             {
-                __instance.GetComponentInParent<Scroller>().YBounds.max = 84;
+                __instance.GetComponentInParent<Scroller>().YBounds.max = 86;
             }
         }
     }

@@ -35,12 +35,13 @@ namespace TownOfUs
         public static int AltruistOn => (int) Generate.AltruistOn.Get();
         public static int ProphetOn => (int) Generate.ProphetOn.Get();
         public static int CovertOn => (int) Generate.CovertOn.Get();
+        public static int PhantomOn => (int) Generate.PhantomOn.Get();
         public static int UndertakerOn => (int) Generate.UndertakerOn.Get();
         public static int AssassinOn => (int) Generate.AssassinOn.Get();
         public static int UnderdogOn => (int) Generate.UnderdogOn.Get();
         public static int TeleporterOn => (int) Generate.TeleporterOn.Get();
         public static int ConcealerOn => (int) Generate.ConcealerOn.Get();
-        public static int PhantomOn => (int) Generate.PhantomOn.Get();
+        public static int GrenadierOn => (int) Generate.GrenadierOn.Get();
         public static int TorchOn => (int) Generate.TorchOn.Get();
         public static int DiseasedOn => (int) Generate.DiseasedOn.Get();
         public static int FlashOn => (int) Generate.FlashOn.Get();
@@ -136,6 +137,8 @@ namespace TownOfUs
         public static float ConcealCooldown => Generate.ConcealCooldown.Get();
         public static float TimeToConceal => Generate.TimeToConceal.Get();
         public static float ConcealDuration => Generate.ConcealDuration.Get();
+        public static float GrenadeCooldown => Generate.GrenadeCooldown.Get();
+        public static float GrenadeDuration => Generate.GrenadeDuration.Get();
 
         public static List<RoleEnum> GetEnabledRoles(params Faction[] factions)
         {
@@ -181,6 +184,7 @@ namespace TownOfUs
                     if (On(UnderdogOn)) enabledRoles.Add(RoleEnum.Underdog);
                     if (On(TeleporterOn)) enabledRoles.Add(RoleEnum.Teleporter);
                     if (On(ConcealerOn)) enabledRoles.Add(RoleEnum.Concealer);
+                    if (On(GrenadierOn)) enabledRoles.Add(RoleEnum.Grenadier);
                 }
             }
 
