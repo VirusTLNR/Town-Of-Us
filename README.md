@@ -42,6 +42,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Undertaker](#undertaker)
 - [Teleporter](#teleporter)
 - [Concealer](#concealer)
+- [Grenadier](#grenadier)
 
 **Modifiers**
 - [Torch](#torch)
@@ -78,6 +79,25 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.7.0 </summary>
+   <ul>
+     <li> Add the Grenadier. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.6.4 </summary>
+   <ul>
+     <li> Investigator's footprints no longer lag. </li>
+     <li> Summary of roles and tasks shows after the game ends. First PR from <a href="https://github.com/VirusTLNR">VirusTLNR</a>! </li>
+   </ul>
+ </details>
+</li>
 
 <li>
  <details>
@@ -1017,7 +1037,7 @@ If they guessed wrong, they die instead.
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Assassin | The percentage probability of the Assassin appearing | Percentage | 0% |
-| Assassin Kill | The number of kill the Assassin can do with his ability | Number | 1 |
+| Assassin Kill | The number of kill the Assassin can do with their ability | Number | 1 |
 | Assassin Guess Crewmate | Whether the Assassin can Guess "Crewmate" | Toggle | False |
 | Assassin Guess Neutral  | Whether the Assassin can Guess Neutral roles | Toggle | False |
 | Assassin Multiple Kill  | Whether the Assassin can kill more than once per meeting | Toggle | True |
@@ -1078,6 +1098,21 @@ The impostors will be able to see them normally and know that the player is conc
 | Conceal Cooldown | The cooldown of the Concealer's Conceal ability | Time | 30s | 
 | Delay Before Concealing | How long after the Concealer presses the button before the player will become invisible | Time | 5s |
 | Conceal Duration | How long the concealment lasts | Time | 10s |
+
+-----------------------
+## Grenadier
+### **Team: Impostors**
+
+The Grenadier is an Impostor that can throw smoke grenades.\
+During the game, the Grenadier has the option to throw down a smoke grenade which blinds crewmates so they can't see.\
+However, a sabotage and a smoke grenade can not be active at the same time.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Grenadier | The percentage probability of the Grenadier appearing | Percentage | 0% |
+| Flash Grenade Cooldown | The cooldown of the Grenadier's Flash button | Time | 25s |
+| Flash Grenade Duration | How long the Flash Grenade lasts for | Time | 10s |
 
 -----------------------
 
