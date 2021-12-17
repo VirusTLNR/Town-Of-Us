@@ -89,6 +89,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
      <li> Add the Grenadier. </li>
      <li> New options will automatically be visible in the game settings window. First PR from <a href="https://github.com/VincentVision">VincentVision</a>! </li>
      <li> Add the Anthropomancer. </li>
+     <li> Add the Carnivore. </li>
    </ul>
  </details>
 </li>
