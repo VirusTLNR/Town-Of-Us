@@ -40,7 +40,6 @@ namespace TownOfUs.ImpostorRoles.GrenadierMod
                 role.FlashButton.enabled
                 && !role.FlashButton.isCoolingDown
                 && !Utils.IsSabotageActive()
-                && !role.Flashed
             )
             {
 
