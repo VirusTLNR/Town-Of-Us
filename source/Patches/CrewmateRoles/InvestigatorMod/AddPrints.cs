@@ -22,7 +22,8 @@ namespace TownOfUs.CrewmateRoles.InvestigatorMod
 
         public static void Postfix(PlayerControl __instance)
         {
-            if (AmongUsClient.Instance.GameState != InnerNet.InnerNetClient.GameStates.Started || !PlayerControl.LocalPlayer.Is(RoleEnum.Investigator)) return;
+            if (AmongUsClient.Instance.GameState != InnerNet.InnerNetClient.GameStates.Started ||
+                !PlayerControl.LocalPlayer.Is(RoleEnum.Investigator)) return;
             // New Footprint
             var investigator = Role.GetRole<Investigator>(PlayerControl.LocalPlayer);
             _time += Time.deltaTime;
@@ -45,14 +46,14 @@ namespace TownOfUs.CrewmateRoles.InvestigatorMod
 
                     if (canPlace) new Footprint(player, investigator);
                 }
-            }
 
-            // Update
+                // Update
 
-            for (var i = 0; i < investigator.AllPrints.Count; i++)
-            {
-                var footprint = investigator.AllPrints[i];
-                if (footprint.Update()) i--;
+                for (var i = 0; i < investigator.AllPrints.Count; i++)
+                {
+                    var footprint = investigator.AllPrints[i];
+                    if (footprint.Update()) i--;
+                }
             }
         }
     }

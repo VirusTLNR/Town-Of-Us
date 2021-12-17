@@ -565,6 +565,15 @@ namespace TownOfUs
                         swooperRole.TimeRemaining = CustomGameOptions.SwoopDuration;
                         swooperRole.Swoop();
                         break;
+                    case CustomRPC.SetGrenadier:
+                        new Grenadier(Utils.PlayerById(reader.ReadByte()));
+                        break;
+                    case CustomRPC.FlashGrenade:
+                        PlayerControl grenadier = Utils.PlayerById(reader.ReadByte());
+                        Grenadier grenadierRole = Role.GetRole<Grenadier>(grenadier);
+                        grenadierRole.TimeRemaining = CustomGameOptions.GrenadeDuration;
+                        grenadierRole.Flash();
+                        break;
                     case CustomRPC.SetTiebreaker:
                         new Tiebreaker(Utils.PlayerById(reader.ReadByte()));
                         break;
@@ -851,6 +860,9 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.ConcealerOn))
                     ImpostorRoles.Add((typeof(Concealer), CustomRPC.SetConcealer, CustomGameOptions.ConcealerOn));
+
+                if (Check(CustomGameOptions.GrenadierOn))
+                    ImpostorRoles.Add((typeof(Grenadier), CustomRPC.SetGrenadier, CustomGameOptions.GrenadierOn));
                 #endregion
                 #region Crewmate Modifiers
                 if (Check(CustomGameOptions.TorchOn))
