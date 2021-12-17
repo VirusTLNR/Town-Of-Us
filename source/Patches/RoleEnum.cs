@@ -89,6 +89,7 @@ namespace TownOfUs
         Tiebreaker,
         Drunk,
         BigBoi,
-        ButtonBarry
+        ButtonBarry,
+        Anthropomancer,
     }
 }

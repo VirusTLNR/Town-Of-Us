@@ -660,6 +660,9 @@ namespace TownOfUs
                     case CustomRPC.SetButtonBarry:
                         new ButtonBarry(Utils.PlayerById(reader.ReadByte()));
                         break;
+                    case CustomRPC.SetAnthropomancer:
+                        new Anthropomancer(Utils.PlayerById(reader.ReadByte()));
+                        break;
                     case CustomRPC.BarryButton:
                         var buttonBarry = Utils.PlayerById(reader.ReadByte());
                         if (AmongUsClient.Instance.AmHost)
@@ -675,7 +678,14 @@ namespace TownOfUs
                         }
 
                         break;
-
+                    case CustomRPC.AnthropomancerEat:
+                    {
+                        PlayerControl player = Utils.PlayerById(reader.ReadByte());
+                        Anthropomancer anthropomancer = Modifier.GetModifier<Anthropomancer>(player);
+                        byte eatenId = reader.ReadByte();
+                        anthropomancer.Eat(eatenId);
+                        break;
+                    }
                     case CustomRPC.SetUndertaker:
                         new Undertaker(Utils.PlayerById(reader.ReadByte()));
                         break;
@@ -884,6 +894,10 @@ namespace TownOfUs
                 if (Check(CustomGameOptions.ButtonBarryOn))
                     GlobalModifiers.Add(
                         (typeof(ButtonBarry), CustomRPC.SetButtonBarry, CustomGameOptions.ButtonBarryOn));
+
+                if (Check(CustomGameOptions.AnthropomancerOn))
+                    GlobalModifiers.Add(
+                        (typeof(Anthropomancer), CustomRPC.SetAnthropomancer, CustomGameOptions.AnthropomancerOn));
                 #endregion
                 GenEachRole(infected.ToList());
             }

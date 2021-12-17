@@ -40,6 +40,7 @@ namespace TownOfUs
         SetDrunk,
         SetBigBoi,
         SetButtonBarry,
+        SetAnthropomancer,
 
         SetPhantom,
         PhantomDied,
@@ -80,6 +81,7 @@ namespace TownOfUs
         Ignite,
         AltruistRevive,
         BarryButton,
+        AnthropomancerEat,
         Drag,
         Drop,
         AssassinKill,
@@ -95,7 +97,6 @@ namespace TownOfUs
         SetHacked,
 
         ExecutionerToJester,
-
 
         Start,
         SyncCustomSettings,

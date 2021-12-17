@@ -5,14 +5,13 @@ namespace TownOfUs.Roles.Modifiers
 {
     public class BigBoiModifier : Modifier, IVisualAlteration
     {
-        public static float SpeedFactor = 0.7f;
-        
-        public BigBoiModifier(PlayerControl player) : base(player)
+        private static readonly float SpeedFactor = 0.7f;
+
+        public BigBoiModifier(PlayerControl player) : base(player, ModifierEnum.BigBoi)
         {
             Name = "Giant";
             TaskText = () => "Super slow!";
             Color = new Color(1f, 0.5f, 0.5f, 1f);
-            ModifierType = ModifierEnum.BigBoi;
         }
 
         public bool TryGetModifiedAppearance(out VisualAppearance appearance)

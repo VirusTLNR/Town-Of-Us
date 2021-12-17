@@ -52,6 +52,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Drunk](#drunk)
 - [Giant](#giant)
 - [Button Barry](#button-barry)
+- [Anthropomancer](#anthropomancer)
 
 
 
@@ -1184,6 +1185,16 @@ After the first time they use this ability, their vision is halved for the rest 
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Button Barry | The percentage probability of Button Barry appearing | Percentage | 0% |
+
+-----------------------
+## Anthropomancer
+### **Applied to: All**
+Anthropomancer has the ability to divine the roles of dead players.\
+During meetings, they will be able to see the roles of players whose dead bodies they report.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Anthropomancer | The percentage probability of Anthropomancer appearing | Percentage | 0% |
 
 -----------------------
 # Custom Game Options

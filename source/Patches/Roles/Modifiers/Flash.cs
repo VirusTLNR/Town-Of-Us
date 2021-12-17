@@ -7,12 +7,11 @@ namespace TownOfUs.Roles.Modifiers
     {
         public static float SpeedFactor = 1.23f;
 
-        public Flash(PlayerControl player) : base(player)
+        public Flash(PlayerControl player) : base(player, ModifierEnum.Flash)
         {
             Name = "Flash";
             TaskText = () => "Superspeed!";
             Color = new Color(1f, 0.5f, 0.5f, 1f);
-            ModifierType = ModifierEnum.Flash;
         }
 
         public bool TryGetModifiedAppearance(out VisualAppearance appearance)
