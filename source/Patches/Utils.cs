@@ -303,6 +303,7 @@ namespace TownOfUs
 
         public static void ModifyTaskCount(PlayerControl player, int taskpercentage)
         {
+            //should this really be limited to only phantom? this could have other purposes.
             if (PlayerControl.LocalPlayer.Is(RoleEnum.Phantom))
             {
                 Logger<TownOfUs>.Instance.LogDebug($"taskpercentagechange=" + taskpercentage);
@@ -378,10 +379,90 @@ namespace TownOfUs
                 }
                 Logger<TownOfUs>.Instance.LogMessage($"OLD Tasks Count (ST/LT/CT)=" + ST + "/" + LT + "/" + CT);
                 Logger<TownOfUs>.Instance.LogMessage($"NEW Tasks Count (ST/LT/CT)=" + NewST + "/" + NewLT + "/" + NewCT);
+
+                #endregion weighting calculation
+
+                //WIP:- new task removal, not working yet
+                /*int STdiff = 0;
+                int LTdiff = 0;
+                int CTdiff = 0;
+                int totaldiff = 0;
+                STdiff = ST - NewST;
+                LTdiff = LT - NewLT;
+                CTdiff = CT - NewCT;
+                totaldiff = STdiff + LTdiff + CTdiff;
+                int flag = -1;
+
+                List<string> mytasks = new List<string>();
+                List<Tuple<string,string>> alltasks = new List<Tuple<string,string>>();
+
+                foreach (var task in player.myTasks)
+                {
+                    mytasks.Add(task.name);
+                    if (flag == -1)
+                    {
+                        foreach (var shorttask in ShipStatus.Instance.NormalTasks)
+                        {
+                            alltasks.Add(new Tuple<string, string>("Short", shorttask.name));
+                            if (STdiff > 0 && task.name.Contains(shorttask.name))
+                            {
+                                Logger<TownOfUs>.Instance.LogMessage($"ShortTaskRemoved:- {task.name} aka {shorttask.name}");
+                                player.myTasks.Remove(task);
+                                STdiff--;
+                                flag = 0;
+                                //break;
+                            }
+                        }
+                    }
+                    if (flag == -1)
+                    {
+                        foreach (var longtask in ShipStatus.Instance.LongTasks)
+                        {
+                            alltasks.Add(new Tuple<string, string>("Long", longtask.name));
+                            if (LTdiff > 0 && task.name.Contains(longtask.name))
+                            {
+                                Logger<TownOfUs>.Instance.LogMessage($"LongTaskRemoved:- {task.name} aka {longtask.name}");
+                                player.myTasks.Remove(task);
+                                LTdiff--;
+                                flag = 1;
+                                //break;
+                            }
+                        }
+                    }
+                    if (flag == -1)
+                    {
+                        foreach (var specialtask in ShipStatus.Instance.SpecialTasks)
+                        {
+                            alltasks.Add(new Tuple<string, string>("Special", specialtask.name));
+                            if (CTdiff > 0 && task.name.Contains(specialtask.name))
+                            {
+                                Logger<TownOfUs>.Instance.LogMessage($"SpecialTaskRemoved:- {task.name} aka {specialtask.name}");
+                                player.myTasks.Remove(task);
+                                CTdiff--;
+                                flag = 2;
+                                //break;
+                            }
+                        }
+                    }
+                    Logger<TownOfUs>.Instance.LogMessage($"Tasks To Remove Count (ST/LT/CT)=" + STdiff + "/" + LTdiff + "/" + CTdiff);
+                    flag = -1;
+                }
+                Logger<TownOfUs>.Instance.LogMessage($"Task Removal Ended!");
+
+                foreach (var t in mytasks)
+                {
+                    Logger<TownOfUs>.Instance.LogMessage($"MyTasks:- {t}");
+                }
+
+                Logger<TownOfUs>.Instance.LogMessage($" ----- ");
+                foreach (var t in alltasks)
+                {
+                    Logger<TownOfUs>.Instance.LogMessage($"AllTasks:- {t.Item1}/{t.Item2}");
+                }*/
+
                 //TODO: not weighted properly yet so tasks removed will be random.
                 int TaskDifference = NewST + NewLT + NewCT - ST - LT - CT;
 
-                #endregion weighting calculation
                 Logger<TownOfUs>.Instance.LogDebug($"TaskDifference=" + TaskDifference);
                 if (TaskDifference == 0)
                 {
@@ -413,7 +494,7 @@ namespace TownOfUs
                 else if (TaskDifference > 0)
                 {
                     //TODO: dont know yet how this would be handled so percentages higher than 100% should be disabled for now
-                }
+                }/**/
             }
         }
 
