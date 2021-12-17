@@ -81,6 +81,7 @@ namespace TownOfUs
         Ignite,
         AltruistRevive,
         BarryButton,
+        AnthropomancerEat,
         Drag,
         Drop,
         AssassinKill,
@@ -96,7 +97,6 @@ namespace TownOfUs
         SetHacked,
 
         ExecutionerToJester,
-
 
         Start,
         SyncCustomSettings,

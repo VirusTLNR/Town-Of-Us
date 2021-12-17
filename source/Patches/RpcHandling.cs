@@ -678,7 +678,14 @@ namespace TownOfUs
                         }
 
                         break;
-
+                    case CustomRPC.AnthropomancerEat:
+                    {
+                        PlayerControl player = Utils.PlayerById(reader.ReadByte());
+                        Anthropomancer anthropomancer = Modifier.GetModifier<Anthropomancer>(player);
+                        byte eatenId = reader.ReadByte();
+                        anthropomancer.Eat(eatenId);
+                        break;
+                    }
                     case CustomRPC.SetUndertaker:
                         new Undertaker(Utils.PlayerById(reader.ReadByte()));
                         break;
