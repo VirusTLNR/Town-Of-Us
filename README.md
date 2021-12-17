@@ -53,6 +53,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Giant](#giant)
 - [Button Barry](#button-barry)
 - [Anthropomancer](#anthropomancer)
+- [Carnivore](#carnivore)
 
 
 
@@ -1196,6 +1197,16 @@ During meetings, they will be able to see the roles of players whose dead bodies
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
 | Anthropomancer | The percentage probability of Anthropomancer appearing | Percentage | 0% |
+
+-----------------------
+## Carnivore
+### **Applied to: Impostors**
+Carnivore has the ability to learn from the corpses of the people it kills.\
+During meetings, they will be able to see the roles of players who they killed.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Carnivore | The percentage probability of Carnivore appearing | Percentage | 0% |
 
 -----------------------
 # Custom Game Options

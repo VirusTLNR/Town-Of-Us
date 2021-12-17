@@ -57,6 +57,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption BigBoiOn;
         public static CustomNumberOption ButtonBarryOn;
         public static CustomNumberOption AnthropomancerOn;
+        public static CustomNumberOption CarnivoreOn;
 
 
         private static CustomHeaderOption CustomGameSettings;
@@ -301,8 +302,10 @@ namespace TownOfUs.CustomOption
                 new CustomNumberOption(true, num++, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
                     PercentFormat);
             AnthropomancerOn =
-                new CustomNumberOption(true, num++, "<color=#3F4C35>Anthropomancer</color>", 0f, 0f, 100f, 10f,
+                new CustomNumberOption(true, num++, "<color=#336629>Anthropomancer</color>", 0f, 0f, 100f, 10f,
                     PercentFormat);
+            CarnivoreOn =
+                new CustomNumberOption(true, num++, "<color=#640000>Carnivore</color>", 0f, 0f, 100f, 10f, PercentFormat);
             #endregion
 
 

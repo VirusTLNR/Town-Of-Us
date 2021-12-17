@@ -91,5 +91,6 @@ namespace TownOfUs
         BigBoi,
         ButtonBarry,
         Anthropomancer,
+        Carnivore,
     }
 }

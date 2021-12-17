@@ -41,6 +41,7 @@ namespace TownOfUs
         SetBigBoi,
         SetButtonBarry,
         SetAnthropomancer,
+        SetCarnivore,
 
         SetPhantom,
         PhantomDied,
@@ -82,6 +83,7 @@ namespace TownOfUs
         AltruistRevive,
         BarryButton,
         AnthropomancerEat,
+        CarnivoreEat,
         Drag,
         Drop,
         AssassinKill,
