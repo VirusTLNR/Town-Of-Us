@@ -1,22 +1,31 @@
 using System.Collections.Generic;
-using DepotDownloader;
 using HarmonyLib;
 using Hazel;
-using Rewired;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
 
 namespace TownOfUs.Roles.Modifiers
 {
-    public class Anthropomancer : Modifier
+    public class Carnivore : Modifier
     {
         private readonly HashSet<byte> _eaten = new HashSet<byte>();
-
-        public Anthropomancer(PlayerControl player) : base(player, ModifierEnum.Anthropomancer)
+        public Carnivore(PlayerControl player) : base(player, ModifierEnum.Carnivore)
         {
-            Name = "Anthropomancer";
-            TaskText = () => "Read the entrails of dead players to discover their role.";
-            Color = new Color(0.20f, 0.40f, 0.16f);
+            Name = "Carnivore";
+            TaskText = () => "Kill players to learn their identity.";
+            Color = new Color(0.55f, 0.20f, 0.07f);
+        }
+
+        // Exists to make it easier to change to a role instead of a modifier
+        public static Carnivore Get(PlayerControl player)
+        {
+            return Modifier.GetModifier<Carnivore>(player);
+        }
+
+        // Exists to make it easier to change to a role instead of a modifier
+        public static bool IsCarnivore(PlayerControl player)
+        {
+            return Get(player)?.ModifierType == ModifierEnum.Carnivore;
         }
 
         public void Eat(byte playerId)
@@ -30,33 +39,30 @@ namespace TownOfUs.Roles.Modifiers
         }
     }
 
-    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CmdReportDeadBody))]
-    public class BodyReportPatch
+    [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.RpcMurderPlayer))]
+    public class CarnivoreKill
     {
-        private static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] GameData.PlayerInfo info)
+        public static void Postfix(PlayerControl __instance, [HarmonyArgument(0)] PlayerControl target)
         {
-            Modifier modifier = Modifier.GetModifier(__instance);
-            if (
-                info == null
-                || modifier == null
-                || modifier.ModifierType != ModifierEnum.Anthropomancer
-                )
+            if (!Carnivore.IsCarnivore(__instance))
             {
                 return;
             }
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                (byte)CustomRPC.AnthropomancerEat, SendOption.Reliable, -1);
+                (byte)CustomRPC.CarnivoreEat, SendOption.Reliable, -1);
             writer.Write(PlayerControl.LocalPlayer.PlayerId);
-            writer.Write(info.PlayerId);
+            writer.Write(target.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
-            ((Anthropomancer) modifier).Eat(info.PlayerId);
+            Carnivore carnivore = Carnivore.Get(__instance);
+            carnivore.Eat(target.PlayerId);
         }
     }
 
+    // TODO: Refactor with the Anthropomancer to share code
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
-    public class ShowAnthropomancerPlayers
+    public class ShowCarnivorePlayers
     {
         [HarmonyPriority(Priority.Last)]
         private static void Postfix(HudManager __instance)
@@ -66,7 +72,7 @@ namespace TownOfUs.Roles.Modifiers
                 || PlayerControl.AllPlayerControls.Count <= 1
                 || PlayerControl.LocalPlayer == null
                 || PlayerControl.LocalPlayer.Data == null
-                || Modifier.GetModifier(PlayerControl.LocalPlayer)?.ModifierType != ModifierEnum.Anthropomancer
+                || !Carnivore.IsCarnivore(PlayerControl.LocalPlayer)
                 || (PlayerControl.LocalPlayer.Data.IsDead && CustomGameOptions.DeadSeeRoles)
             )
             {
@@ -78,10 +84,10 @@ namespace TownOfUs.Roles.Modifiers
 
         private static void UpdateMeeting(MeetingHud __instance)
         {
-            Anthropomancer anthropomancer = Modifier.GetModifier<Anthropomancer>(PlayerControl.LocalPlayer);
+            Carnivore carnivore = Carnivore.Get(PlayerControl.LocalPlayer);
             foreach (PlayerVoteArea voteArea in __instance.playerStates)
             {
-                if (!anthropomancer.HasEaten(voteArea.TargetPlayerId))
+                if (!carnivore.HasEaten(voteArea.TargetPlayerId))
                 {
                     continue;
                 }

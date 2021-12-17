@@ -5,7 +5,6 @@ using HarmonyLib;
 using Hazel;
 using Reactor;
 using Reactor.Extensions;
-using Reactor.Networking;
 using TownOfUs.CrewmateRoles.AltruistMod;
 using TownOfUs.CrewmateRoles.MedicMod;
 using TownOfUs.CrewmateRoles.SwapperMod;
@@ -32,6 +31,7 @@ namespace TownOfUs
         private static readonly List<(Type, CustomRPC, int)> NeutralRoles = new List<(Type, CustomRPC, int)>();
         private static readonly List<(Type, CustomRPC, int)> ImpostorRoles = new List<(Type, CustomRPC, int)>();
         private static readonly List<(Type, CustomRPC, int)> CrewmateModifiers = new List<(Type, CustomRPC, int)>();
+        private static readonly List<(Type, CustomRPC, int)> ImpostorModifiers = new List<(Type, CustomRPC, int)>();
         private static readonly List<(Type, CustomRPC, int)> GlobalModifiers = new List<(Type, CustomRPC, int)>();
         private static bool LoversOn;
         private static bool PhantomOn;
@@ -98,6 +98,7 @@ namespace TownOfUs
             SortRoles(NeutralRoles, CustomGameOptions.MaxNeutralRoles);
             SortRoles(ImpostorRoles, Math.Min(impostors.Count, CustomGameOptions.MaxImpostorRoles));
             SortRoles(CrewmateModifiers, crewmates.Count);
+            SortRoles(CrewmateModifiers, impostors.Count);
             SortRoles(GlobalModifiers, crewmates.Count + impostors.Count);
 
             var crewAndNeutralRoles = new List<(Type, CustomRPC, int)>();
@@ -110,6 +111,7 @@ namespace TownOfUs
                 CrewmateRoles.Clear();
                 NeutralRoles.Clear();
                 CrewmateModifiers.Clear();
+                ImpostorModifiers.Clear();
                 GlobalModifiers.Clear();
                 ImpostorRoles.Clear();
                 LoversOn = false;
@@ -175,6 +177,14 @@ namespace TownOfUs
 
             foreach (var (type, rpc, _) in GlobalModifiers)
                 Role.Gen<Modifier>(type, canHaveModifier, rpc);
+
+            List<PlayerControl> impostorsCanBeModified = canHaveModifier.FindAll(player => player.Is(Faction.Impostors));
+            impostorsCanBeModified.Shuffle();
+            while (impostorsCanBeModified.Count > 0 && ImpostorModifiers.Count > 0)
+            {
+                var (type, rpc, _) = ImpostorModifiers.TakeFirst();
+                Role.Gen<Modifier>(type, impostorsCanBeModified.TakeFirst(), rpc);
+            }
 
             canHaveModifier.RemoveAll(player => player.Is(Faction.Neutral) || player.Is(Faction.Impostors));
             canHaveModifier.Shuffle();
@@ -663,6 +673,9 @@ namespace TownOfUs
                     case CustomRPC.SetAnthropomancer:
                         new Anthropomancer(Utils.PlayerById(reader.ReadByte()));
                         break;
+                    case CustomRPC.SetCarnivore:
+                        new Carnivore(Utils.PlayerById(reader.ReadByte()));
+                        break;
                     case CustomRPC.BarryButton:
                         var buttonBarry = Utils.PlayerById(reader.ReadByte());
                         if (AmongUsClient.Instance.AmHost)
@@ -684,6 +697,14 @@ namespace TownOfUs
                         Anthropomancer anthropomancer = Modifier.GetModifier<Anthropomancer>(player);
                         byte eatenId = reader.ReadByte();
                         anthropomancer.Eat(eatenId);
+                        break;
+                    }
+                    case CustomRPC.CarnivoreEat:
+                    {
+                        PlayerControl player = Utils.PlayerById(reader.ReadByte());
+                        Carnivore carnivore = Modifier.GetModifier<Carnivore>(player);
+                        byte eatenId = reader.ReadByte();
+                        carnivore.Eat(eatenId);
                         break;
                     }
                     case CustomRPC.SetUndertaker:
@@ -767,6 +788,7 @@ namespace TownOfUs
                 NeutralRoles.Clear();
                 ImpostorRoles.Clear();
                 CrewmateModifiers.Clear();
+                ImpostorModifiers.Clear();
                 GlobalModifiers.Clear();
 
                 RecordRewind.points.Clear();
@@ -898,6 +920,10 @@ namespace TownOfUs
                 if (Check(CustomGameOptions.AnthropomancerOn))
                     GlobalModifiers.Add(
                         (typeof(Anthropomancer), CustomRPC.SetAnthropomancer, CustomGameOptions.AnthropomancerOn));
+
+                if (Check(CustomGameOptions.CarnivoreOn))
+                    ImpostorModifiers.Add(
+                        (typeof(Carnivore), CustomRPC.SetCarnivore, CustomGameOptions.CarnivoreOn));
                 #endregion
                 GenEachRole(infected.ToList());
             }
