@@ -36,7 +36,6 @@ namespace TownOfUs
         public static int ProphetOn => (int) Generate.ProphetOn.Get();
         public static int CovertOn => (int) Generate.CovertOn.Get();
         public static int PhantomOn => (int) Generate.PhantomOn.Get();
-        public static int AnalystOn => (int) Generate.AnalystOn.Get();
         public static int UndertakerOn => (int) Generate.UndertakerOn.Get();
         public static int AssassinOn => (int) Generate.AssassinOn.Get();
         public static int UnderdogOn => (int) Generate.UnderdogOn.Get();
