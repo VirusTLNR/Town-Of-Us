@@ -9,7 +9,7 @@ namespace TownOfUs.NeutralRoles.ArsonistMod
     public static class HudManagerUpdate
     {
         public static Sprite IgniteSprite => TownOfUs.IgniteSprite;
-        
+
         public static void Postfix(HudManager __instance)
         {
             if (PlayerControl.AllPlayerControls.Count <= 1) return;

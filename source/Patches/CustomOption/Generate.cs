@@ -43,6 +43,7 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption UnderdogOn;
         public static CustomNumberOption TeleporterOn;
         public static CustomNumberOption ConcealerOn;
+        public static CustomNumberOption GrenadierOn;
 
         private static CustomHeaderOption Modifiers;
         public static CustomNumberOption TorchOn;
@@ -52,6 +53,8 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption DrunkOn;
         public static CustomNumberOption BigBoiOn;
         public static CustomNumberOption ButtonBarryOn;
+        public static CustomNumberOption AnthropomancerOn;
+        public static CustomNumberOption CarnivoreOn;
 
 
         private static CustomHeaderOption CustomGameSettings;
@@ -189,6 +192,10 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption TimeToConceal;
         public static CustomNumberOption ConcealDuration;
 
+        private static CustomHeaderOption Grenadier;
+        public static CustomNumberOption GrenadeCooldown;
+        public static CustomNumberOption GrenadeDuration;
+
         private static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
 
@@ -268,6 +275,8 @@ namespace TownOfUs.CustomOption
                 PercentFormat);
             ConcealerOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Concealer).GetColoredName()}", 0f, 0f, 100f, 10f,
                 PercentFormat);
+            GrenadierOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Grenadier).GetColoredName()}", 0f, 0f, 100f, 10f,
+                PercentFormat);
 
 
             Modifiers = new CustomHeaderOption(num++, "Modifiers");
@@ -287,6 +296,11 @@ namespace TownOfUs.CustomOption
             ButtonBarryOn =
                 new CustomNumberOption(true, num++, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
                     PercentFormat);
+            AnthropomancerOn =
+                new CustomNumberOption(true, num++, "<color=#336629>Anthropomancer</color>", 0f, 0f, 100f, 10f,
+                    PercentFormat);
+            CarnivoreOn =
+                new CustomNumberOption(true, num++, "<color=#640000>Carnivore</color>", 0f, 0f, 100f, 10f, PercentFormat);
             #endregion
 
 
@@ -500,6 +514,13 @@ namespace TownOfUs.CustomOption
             ConcealCooldown = new CustomNumberOption(num++, "Conceal Cooldown", 30, 10, 60, 2.5f, CooldownFormat);
             TimeToConceal = new CustomNumberOption(num++, "Delay Before Concealing", 5, 2.5f, 15, 2.5f, CooldownFormat);
             ConcealDuration = new CustomNumberOption(num++, "Conceal Duration", 10, 2.5f, 20f, 2.5f, CooldownFormat);
+
+            Grenadier =
+                new CustomHeaderOption(num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Concealer).GetColoredName()}");
+            GrenadeCooldown =
+                new CustomNumberOption(num++, "Flash Grenade Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
+            GrenadeDuration =
+                new CustomNumberOption(num++, "Flash Grenade Duration", 10, 5, 15, 1f, CooldownFormat);
             #endregion
         }
     }
