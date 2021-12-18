@@ -6,7 +6,6 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
     public class AddButton
     {
-
         private static bool IsExempt(PlayerControl player) {
             if (
                 player.Data.IsImpostor
@@ -45,6 +44,15 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
                         IMeetingGuesser.KillFromMeetingGuess(assassin, playerControl, role);
                         assassin.RemainingKills--;
                     });
+            }
+        }
+
+        public static void MaybeHideButtons()
+        {
+            Assassin assassin = Assassin.AssassinState;
+            if (!assassin.CanKeepGuessing())
+            {
+                ShowHideButtons.HideButtons(assassin);
             }
         }
     }

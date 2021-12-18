@@ -11,8 +11,8 @@ namespace TownOfUs.Roles
         public static Assassin AssassinState { get; set; }
         public Dictionary<byte, (GameObject, GameObject, TMP_Text)> Buttons { get; } = new Dictionary<byte, (GameObject, GameObject, TMP_Text)>();
         public Dictionary<byte, int> Guesses { get; } = new Dictionary<byte, int>();
-
         public List<RoleEnum> PossibleGuesses { get; }
+        public int RemainingKills { get; set; }
 
         public Assassin()
         {
@@ -25,8 +25,6 @@ namespace TownOfUs.Roles
             if (CustomGameOptions.AssassinCrewmateGuess)
                 PossibleGuesses.Add(RoleEnum.Crewmate);
         }
-
-        public int RemainingKills { get; set; }
 
         public bool CanKeepGuessing() => RemainingKills > 0
                                          && !CustomGameOptions.AssassinMultiKill;

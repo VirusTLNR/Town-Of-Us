@@ -33,7 +33,7 @@ namespace TownOfUs.Roles
             Action<PlayerControl, Role> doOnCorrectGuess
             )
         {
-            var targetId = voteArea.TargetPlayerId;
+            byte targetId = voteArea.TargetPlayerId;
             if (IsExempt(voteArea) || !canGuess(Utils.PlayerById(voteArea.TargetPlayerId)))
             {
                 role.Buttons[targetId] = (null, null, null);

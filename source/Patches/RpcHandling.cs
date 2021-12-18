@@ -18,6 +18,7 @@ using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;
 using UnityEngine;
+using AddButton = TownOfUs.ImpostorRoles.AssassinMod.AddButton;
 using Coroutine = TownOfUs.ImpostorRoles.JanitorMod.Coroutine;
 using Object = UnityEngine.Object;
 using PerformKillButton = TownOfUs.NeutralRoles.ShifterMod.PerformKillButton;
@@ -456,6 +457,7 @@ namespace TownOfUs
                     case CustomRPC.AssassinKill:
                         var toDie = Utils.PlayerById(reader.ReadByte());
                         AssassinKill.MurderPlayer(toDie);
+                        AddButton.MaybeHideButtons();
                         break;
                     case CustomRPC.Teleport:
                         byte teleports = reader.ReadByte();
