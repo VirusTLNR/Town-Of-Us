@@ -30,10 +30,10 @@ namespace TownOfUs.Roles
                                          && !CustomGameOptions.AssassinMultiKill;
     }
 
-    [HarmonyPatch(typeof(LobbyBehaviour), nameof(LobbyBehaviour.Start))]
-    public static class LobbyBehaviour_Start
+    [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__14), nameof(IntroCutscene._CoBegin_d__14.MoveNext))]
+    public static class InitializeAssassin
     {
-        private static void Postfix(LobbyBehaviour __instance)
+        private static void Postfix(IntroCutscene __instance)
         {
             Assassin.AssassinState = new Assassin();
         }
