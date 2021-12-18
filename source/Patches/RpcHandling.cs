@@ -98,7 +98,7 @@ namespace TownOfUs
             SortRoles(NeutralRoles, CustomGameOptions.MaxNeutralRoles);
             SortRoles(ImpostorRoles, Math.Min(impostors.Count, CustomGameOptions.MaxImpostorRoles));
             SortRoles(CrewmateModifiers, crewmates.Count);
-            SortRoles(CrewmateModifiers, impostors.Count);
+            SortRoles(ImpostorModifiers, impostors.Count);
             SortRoles(GlobalModifiers, crewmates.Count + impostors.Count);
 
             var crewAndNeutralRoles = new List<(Type, CustomRPC, int)>();
