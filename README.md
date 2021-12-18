@@ -37,7 +37,6 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Camouflager](#camouflager)
 - [Miner](#miner)
 - [Swooper](#swooper)
-- [Assassin](#assassin)
 - [Underdog](#underdog)
 - [Undertaker](#undertaker)
 - [Teleporter](#teleporter)
@@ -1032,22 +1031,6 @@ To balance the role, they can't vent.
 | Swooper Duration | How long the Swooping lasts for | Time | 10s |
 
 -----------------------
-## Assassin
-### **Team: Impostors**
-
-The Assassin is an Impostor that can kill during meetings by guessing the role of non-Impostors.\
-If they guessed wrong, they die instead.
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Assassin | The percentage probability of the Assassin appearing | Percentage | 0% |
-| Assassin Kill | The number of kill the Assassin can do with their ability | Number | 1 |
-| Assassin Guess Crewmate | Whether the Assassin can Guess "Crewmate" | Toggle | False |
-| Assassin Guess Neutral  | Whether the Assassin can Guess Neutral roles | Toggle | False |
-| Assassin Multiple Kill  | Whether the Assassin can kill more than once per meeting | Toggle | True |
-
------------------------
 ## Undertaker
 ### **Team: Impostors**
 
@@ -1222,6 +1205,20 @@ During meetings, they will be able to see the roles of players who they killed.
 | Max Neutral Roles | The maximum number of Neutral roles a game can have | Number | 1 |
 | Role Appears Under Name | Whether your own role appears under your name | Toggle | True |
 | Probability of a completely vanilla game | The percentage probability of a vanilla Among Us game happening | Percentage | 0% |
+
+### **Assassination**
+All Impostors have the ability to kill during meetings by guessing the role of non-Impostors.
+If they guess wrong, they die instead.\
+This was previously its own role, but for balance reasons this power is granted to all impostors.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Number of Assassinations | The number of kills the Impostors can do with their ability (total shared all Impostors)| Number | 1 |
+| Impostor can guess "Crewmate" | Whether the Impostors can Guess "Crewmate" | Toggle | False |
+| Impostor can guess Neutral  | Whether the Impostors can Guess Neutral roles | Toggle | False |
+| Impostors can assassinate more than once per meeting  | Whether the Impostors can kill more than once per meeting | Toggle | True |
+
 
 -----------------------
 # Extras

@@ -68,6 +68,7 @@ namespace TownOfUs.CustomOption
         public static CustomToggleOption RoleUnderName;
         public static CustomNumberOption VanillaGame;
 
+        private static CustomHeaderOption Assassination;
         public static CustomNumberOption AssassinKills;
         public static CustomToggleOption AssassinGuessNeutrals;
         public static CustomToggleOption AssassinCrewmateGuess;
@@ -321,10 +322,9 @@ namespace TownOfUs.CustomOption
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
             VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
                 PercentFormat);
-            #endregion
 
-            #region ImpostorSettings
-            AssassinKills = new CustomNumberOption(num++, "Number of Impostor Assassinations", 0, 1, 5, 1);
+            Assassination = new CustomHeaderOption(num++, "<color=#FFFFFF>Assassination</color>");
+            AssassinKills = new CustomNumberOption(num++, "Number of Assassinations", 0, 1, 5, 1);
             AssassinCrewmateGuess = new CustomToggleOption(num++, "Impostors can guess \"Crewmate\"", false);
             AssassinGuessNeutrals = new CustomToggleOption(num++, "Impostors can guess Neutral roles", false);
             AssassinMultiKill = new CustomToggleOption(num++, "Impostors can assassinate more than once per meeting");
