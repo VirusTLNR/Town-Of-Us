@@ -301,6 +301,50 @@ namespace TownOfUs
             return result;
         }
 
+        public static Tuple<List<string>,List<string>,List<string>> GatherMapTasks()
+        {
+            //basically looping through all task types to collect 3 lists of tasks from the map,
+            //this may also include the added tasks for roles/modifiers, so be careful with the special tasks
+            List<string> shorts = new List<string>();
+            List<string> longs = new List<string>();
+            List<string> commons = new List<string>();
+
+            foreach (var shorttask in ShipStatus.Instance.NormalTasks)
+            {
+                shorts.Add(shorttask.name);
+            }
+            foreach (var longtask in ShipStatus.Instance.LongTasks)
+            {
+                longs.Add(longtask.name);
+            }
+            foreach (var specialtask in ShipStatus.Instance.SpecialTasks)
+            {
+                commons.Add(specialtask.name);
+            }
+            
+            Tuple<List<string>, List<string>, List<string>> listOfTasks = new Tuple<List<string>, List<string>, List<string>>(shorts, longs, commons);
+            
+            return listOfTasks;
+        }
+
+        public static bool SearchAndRemoveTaskByList(PlayerControl player,PlayerTask task,List<string> taskList)
+        {
+            //taskList will be a list of tasks pulled from the map tuple of tasks..
+            //so you either pull shorts(T1/item1), longs(T2/item2) or commons(t3/item3)
+            foreach (var listedTask in taskList)
+            {
+                if (task.name.Contains(listedTask))
+                {
+                    Logger<TownOfUs>.Instance.LogMessage($"{player.name} -> TaskRemoved:- {task.name} aka {listedTask}");
+                    player.myTasks.Remove(task);
+                    //task successfully removed
+                    return true;
+                }
+            }
+            //no task removed
+            return false;
+        }
+
         public static void ModifyTaskCount(PlayerControl player, int taskpercentage)
         {
             //should this really be limited to only phantom? this could have other purposes.
@@ -319,7 +363,8 @@ namespace TownOfUs
                 int STWeight = 1;
 
 
-                int WeightedTasksValue = (CT * CTWeight) + (LT * LTWeight) +
+                //must be floats for WeightedTasksValue and NewWeightedTasksValue otherwise rounding is incorrect
+                float WeightedTasksValue = (CT * CTWeight) + (LT * LTWeight) +
                      (ST * STWeight);
                 Logger<TownOfUs>.Instance.LogDebug($"weightedtaskvalue=" + WeightedTasksValue.ToString());
 
@@ -342,6 +387,8 @@ namespace TownOfUs
                     Logger<TownOfUs>.Instance.LogDebug($"CTB=" + CTB.ToString());
                     Logger<TownOfUs>.Instance.LogDebug($"LTB=" + LTB.ToString());
                     Logger<TownOfUs>.Instance.LogDebug($"STB=" + STB.ToString());
+
+                    //if the weighting of each task type is changed, the higher task weight should be the first if in these if/else statments and the true/false's will need modifying
                     if (w + CTWeight <= NewWTV && NewCT < CT && CTB == false)
                     {
                         NewCT += 1;
@@ -377,91 +424,107 @@ namespace TownOfUs
                         STB = false;
                     }
                 }
-                Logger<TownOfUs>.Instance.LogMessage($"OLD Tasks Count (ST/LT/CT)=" + ST + "/" + LT + "/" + CT);
-                Logger<TownOfUs>.Instance.LogMessage($"NEW Tasks Count (ST/LT/CT)=" + NewST + "/" + NewLT + "/" + NewCT);
+                Logger<TownOfUs>.Instance.LogDebug($"OLD Tasks Count (ST/LT/CT)=" + ST + "/" + LT + "/" + CT);
+                Logger<TownOfUs>.Instance.LogDebug($"NEW Tasks Count (ST/LT/CT)=" + NewST + "/" + NewLT + "/" + NewCT);
 
                 #endregion weighting calculation
 
-                //WIP:- new task removal, not working yet
-                /*int STdiff = 0;
-                int LTdiff = 0;
-                int CTdiff = 0;
-                int totaldiff = 0;
-                STdiff = ST - NewST;
-                LTdiff = LT - NewLT;
-                CTdiff = CT - NewCT;
-                totaldiff = STdiff + LTdiff + CTdiff;
-                int flag = -1;
+                //new task removal, seems to be working 100% correct.
+                int STdiff = ST - NewST;
+                int LTdiff = LT - NewLT;
+                int CTdiff = CT - NewCT;
+                int totaldiff = STdiff + LTdiff + CTdiff;
+                int tasksremoved = 0;
 
-                List<string> mytasks = new List<string>();
-                List<Tuple<string,string>> alltasks = new List<Tuple<string,string>>();
+                List<Tuple<string, string>> alltasks = new List<Tuple<string, string>>();
+                Tuple<List<string>, List<string>, List<string>> mapTasks = GatherMapTasks();
 
-                foreach (var task in player.myTasks)
+                foreach (var task in mapTasks.Item1)
                 {
-                    mytasks.Add(task.name);
-                    if (flag == -1)
-                    {
-                        foreach (var shorttask in ShipStatus.Instance.NormalTasks)
-                        {
-                            alltasks.Add(new Tuple<string, string>("Short", shorttask.name));
-                            if (STdiff > 0 && task.name.Contains(shorttask.name))
-                            {
-                                Logger<TownOfUs>.Instance.LogMessage($"ShortTaskRemoved:- {task.name} aka {shorttask.name}");
-                                player.myTasks.Remove(task);
-                                STdiff--;
-                                flag = 0;
-                                //break;
-                            }
-                        }
-                    }
-                    if (flag == -1)
-                    {
-                        foreach (var longtask in ShipStatus.Instance.LongTasks)
-                        {
-                            alltasks.Add(new Tuple<string, string>("Long", longtask.name));
-                            if (LTdiff > 0 && task.name.Contains(longtask.name))
-                            {
-                                Logger<TownOfUs>.Instance.LogMessage($"LongTaskRemoved:- {task.name} aka {longtask.name}");
-                                player.myTasks.Remove(task);
-                                LTdiff--;
-                                flag = 1;
-                                //break;
-                            }
-                        }
-                    }
-                    if (flag == -1)
-                    {
-                        foreach (var specialtask in ShipStatus.Instance.SpecialTasks)
-                        {
-                            alltasks.Add(new Tuple<string, string>("Special", specialtask.name));
-                            if (CTdiff > 0 && task.name.Contains(specialtask.name))
-                            {
-                                Logger<TownOfUs>.Instance.LogMessage($"SpecialTaskRemoved:- {task.name} aka {specialtask.name}");
-                                player.myTasks.Remove(task);
-                                CTdiff--;
-                                flag = 2;
-                                //break;
-                            }
-                        }
-                    }
-                    Logger<TownOfUs>.Instance.LogMessage($"Tasks To Remove Count (ST/LT/CT)=" + STdiff + "/" + LTdiff + "/" + CTdiff);
-                    flag = -1;
+                    alltasks.Add(new Tuple<string, string>("Short", task));
                 }
-                Logger<TownOfUs>.Instance.LogMessage($"Task Removal Ended!");
-
-                foreach (var t in mytasks)
+                foreach (var task in mapTasks.Item2)
                 {
-                    Logger<TownOfUs>.Instance.LogMessage($"MyTasks:- {t}");
+                    alltasks.Add(new Tuple<string, string>("Long", task));
+                }
+                foreach (var task in mapTasks.Item3)
+                {
+                    alltasks.Add(new Tuple<string, string>("Special", task));
+                }
+                foreach(var task in player.myTasks)
+                {
+                    alltasks.Add(new Tuple<string, string>("MyTasks", task.name));
                 }
 
-                Logger<TownOfUs>.Instance.LogMessage($" ----- ");
+                for (int i = 1; i <= totaldiff; i++)
+                {
+                    Logger<TownOfUs>.Instance.LogDebug($"i={i}");
+                    Logger<TownOfUs>.Instance.LogDebug($"STdiff={STdiff}");
+                    Logger<TownOfUs>.Instance.LogDebug($"LTdiff={LTdiff}");
+                    Logger<TownOfUs>.Instance.LogDebug($"CTdiff={CTdiff}");
+                    if (STdiff > 0)
+                    {
+                        foreach (var task in player.myTasks)
+                        {
+                            Logger<TownOfUs>.Instance.LogDebug($"ST Task.Name={task.name}");
+                            if (SearchAndRemoveTaskByList(player, task, mapTasks.Item1))
+                            {
+                                Logger<TownOfUs>.Instance.LogDebug($"ST Task Removed:- {task.name}");
+                                tasksremoved++;
+                                break;
+                            }
+                        }
+                        //this is only attempts at removing a task, so should tick down to 0 whether it removes a task or not
+                        //otherwise risk a possible infinite loop
+                        STdiff--;
+                    }
+                    else if (LTdiff > 0)
+                    {
+                        foreach (var task in player.myTasks)
+                        {
+                            Logger<TownOfUs>.Instance.LogDebug($"LT Task.Name={task.name}");
+                            if (SearchAndRemoveTaskByList(player, task, mapTasks.Item2))
+                            {
+                                Logger<TownOfUs>.Instance.LogDebug($"LT Task Removed:- {task.name}");
+                                tasksremoved++;
+                                break;
+                            }
+                        }
+                        //this is only attemps at removing a task, so should tick down to 0 whether it removes a task or not
+                        //otherwise risk a possible infinite loop
+                        LTdiff--;
+                    }
+                    else if (CTdiff > 0)
+                    {
+                        foreach (var task in player.myTasks)
+                        {
+                            Logger<TownOfUs>.Instance.LogDebug($"CT Task.Name={task.name}");
+                            if (SearchAndRemoveTaskByList(player, task, mapTasks.Item3))
+                            {
+                                Logger<TownOfUs>.Instance.LogDebug($"CT Task Removed:- {task.name}");
+                                tasksremoved++;
+                                break;
+                            }
+                        }
+                        //this is only attemps at removing a task, so should tick down to 0 whether it removes a task or not
+                        //otherwise risk a possible infinite loop
+                        CTdiff--;
+                    }
+                }
+
+                Logger<TownOfUs>.Instance.LogDebug($"Remaining Tasks Diff (ST/LT/CT=tasksremoved)=" + STdiff + "/" + LTdiff + "/" + CTdiff+ "="+ tasksremoved);
+                Logger<TownOfUs>.Instance.LogDebug($"Task Removal Ended!");
+
+                //strictly a list of all tasks (phantom and all map tasks)
+                Logger<TownOfUs>.Instance.LogDebug($" ----- ");
+                Logger<TownOfUs>.Instance.LogDebug($"List of All Tasks (player(MyTasks) + map(Short/Long/Special).. special is Common Tasks + role/modifier added tasks");
                 foreach (var t in alltasks)
                 {
-                    Logger<TownOfUs>.Instance.LogMessage($"AllTasks:- {t.Item1}/{t.Item2}");
-                }*/
+                    Logger<TownOfUs>.Instance.LogDebug($"AllTasks:- {t.Item1}/{t.Item2}");
+                }
 
-                //TODO: not weighted properly yet so tasks removed will be random.
-                int TaskDifference = NewST + NewLT + NewCT - ST - LT - CT;
+                //TODO: old code, this is not weighted properly yet so tasks removed will be random. do not use unless new task removal proves to be not working.
+                /*int TaskDifference = NewST + NewLT + NewCT - ST - LT - CT;
 
                 Logger<TownOfUs>.Instance.LogDebug($"TaskDifference=" + TaskDifference);
                 if (TaskDifference == 0)
@@ -494,7 +557,7 @@ namespace TownOfUs
                 else if (TaskDifference > 0)
                 {
                     //TODO: dont know yet how this would be handled so percentages higher than 100% should be disabled for now
-                }/**/
+                }*/
             }
         }
 
