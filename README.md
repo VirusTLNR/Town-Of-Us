@@ -84,6 +84,15 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 <li>
  <details>
+   <summary> v2.7.1 </summary>
+   <ul>
+     <li> Grenadier no longer shows up in the game options menu as the "Concealer". </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
    <summary> v2.7.0 </summary>
    <ul>
      <li> Add the Grenadier. </li>
