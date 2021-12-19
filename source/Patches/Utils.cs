@@ -16,7 +16,6 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 using PerformKill = TownOfUs.ImpostorRoles.UnderdogMod.PerformKill;
-using Reactor;
 
 namespace TownOfUs
 {
