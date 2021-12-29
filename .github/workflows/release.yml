@@ -14,6 +14,12 @@ jobs:
       uses: LeGitHubDeTai/github-to-discord@main
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        MESSAGE_TITLE: New Version
+        MESSAGE_TITLE: "New Version"
         MESSAGE_URL: 'https://github.com/Anusien/Town-Of-Us/releases/latest'
         SECTION_NAME: "Changelog"
+        DISCORD_AVATAR: "https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+        AUTHOR_AVATAR: "https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+        DISCORD_USERNAME: "Release Announcement"
+        FOOTER_TEXT: ""
+        FOOTER_URL: ""
+        MESSAGE_DESCRIPTION: ""
