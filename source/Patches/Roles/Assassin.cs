@@ -27,7 +27,7 @@ namespace TownOfUs.Roles
         }
 
         public bool CanKeepGuessing() => RemainingKills > 0
-                                         && !CustomGameOptions.AssassinMultiKill;
+                                         && CustomGameOptions.AssassinMultiKill;
     }
 
     [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__14), nameof(IntroCutscene._CoBegin_d__14.MoveNext))]
