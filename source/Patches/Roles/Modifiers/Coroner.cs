@@ -10,7 +10,7 @@ namespace TownOfUs.Roles.Modifiers
 {
     public class Coroner : Modifier
     {
-        private readonly HashSet<byte> _eaten = new HashSet<byte>();
+        private readonly HashSet<byte> _revealed = new HashSet<byte>();
 
         public Coroner(PlayerControl player) : base(player, ModifierEnum.Anthropomancer)
         {
@@ -19,14 +19,14 @@ namespace TownOfUs.Roles.Modifiers
             Color = new Color(0.20f, 0.40f, 0.16f);
         }
 
-        public void Eat(byte playerId)
+        public void Reveal(byte playerId)
         {
-            _eaten.Add(playerId);
+            _revealed.Add(playerId);
         }
 
-        public bool HasEaten(byte playerId)
+        public bool HasRevealed(byte playerId)
         {
-            return _eaten.Contains(playerId);
+            return _revealed.Contains(playerId);
         }
     }
 
@@ -51,7 +51,7 @@ namespace TownOfUs.Roles.Modifiers
             writer.Write(info.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
-            ((Coroner) modifier).Eat(info.PlayerId);
+            ((Coroner) modifier).Reveal(info.PlayerId);
         }
     }
 
@@ -81,7 +81,7 @@ namespace TownOfUs.Roles.Modifiers
             Coroner coroner = Modifier.GetModifier<Coroner>(PlayerControl.LocalPlayer);
             foreach (PlayerVoteArea voteArea in __instance.playerStates)
             {
-                if (!coroner.HasEaten(voteArea.TargetPlayerId))
+                if (!coroner.HasRevealed(voteArea.TargetPlayerId))
                 {
                     continue;
                 }

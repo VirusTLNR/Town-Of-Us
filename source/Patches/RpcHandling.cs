@@ -698,7 +698,7 @@ namespace TownOfUs
                         PlayerControl player = Utils.PlayerById(reader.ReadByte());
                         Coroner coroner = Modifier.GetModifier<Coroner>(player);
                         byte eatenId = reader.ReadByte();
-                        coroner.Eat(eatenId);
+                        coroner.Reveal(eatenId);
                         break;
                     }
                     case CustomRPC.CarnivoreEat:
