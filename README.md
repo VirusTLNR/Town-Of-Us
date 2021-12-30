@@ -37,11 +37,11 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Camouflager](#camouflager)
 - [Miner](#miner)
 - [Swooper](#swooper)
-- [Assassin](#assassin)
 - [Underdog](#underdog)
 - [Undertaker](#undertaker)
 - [Teleporter](#teleporter)
 - [Concealer](#concealer)
+- [Grenadier](#grenadier)
 
 **Modifiers**
 - [Torch](#torch)
@@ -51,6 +51,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Drunk](#drunk)
 - [Giant](#giant)
 - [Button Barry](#button-barry)
+- [Anthropomancer](#anthropomancer)
+- [Carnivore](#carnivore)
 
 
 
@@ -78,6 +80,47 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.8.0 </summary>
+   <ul>
+     <li> Removed the Assassin in favor of letting every Impostor assasinate. </li>
+     <li> Anthropomancer is renamed to the Coroner. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.7.1 </summary>
+   <ul>
+     <li> Grenadier no longer shows up in the game options menu as the "Concealer". </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.7.0 </summary>
+   <ul>
+     <li> Add the Grenadier. </li>
+     <li> New options will automatically be visible in the game settings window. First PR from <a href="https://github.com/VincentVision">VincentVision</a>! </li>
+     <li> Add the Anthropomancer. </li>
+     <li> Add the Carnivore. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.6.4 </summary>
+   <ul>
+     <li> Investigator's footprints no longer lag. </li>
+     <li> Summary of roles and tasks shows after the game ends. First PR from <a href="https://github.com/VirusTLNR">VirusTLNR</a>! </li>
+   </ul>
+ </details>
+</li>
 
 <li>
  <details>
@@ -1007,22 +1050,6 @@ To balance the role, they can't vent.
 | Swooper Duration | How long the Swooping lasts for | Time | 10s |
 
 -----------------------
-## Assassin
-### **Team: Impostors**
-
-The Assassin is an Impostor that can kill during meetings by guessing the role of non-Impostors.\
-If they guessed wrong, they die instead.
-
-### Game Options
-| Name | Description | Type | Default |
-|----------|:-------------:|:------:|:------:|
-| Assassin | The percentage probability of the Assassin appearing | Percentage | 0% |
-| Assassin Kill | The number of kill the Assassin can do with his ability | Number | 1 |
-| Assassin Guess Crewmate | Whether the Assassin can Guess "Crewmate" | Toggle | False |
-| Assassin Guess Neutral  | Whether the Assassin can Guess Neutral roles | Toggle | False |
-| Assassin Multiple Kill  | Whether the Assassin can kill more than once per meeting | Toggle | True |
-
------------------------
 ## Undertaker
 ### **Team: Impostors**
 
@@ -1078,6 +1105,21 @@ The impostors will be able to see them normally and know that the player is conc
 | Conceal Cooldown | The cooldown of the Concealer's Conceal ability | Time | 30s | 
 | Delay Before Concealing | How long after the Concealer presses the button before the player will become invisible | Time | 5s |
 | Conceal Duration | How long the concealment lasts | Time | 10s |
+
+-----------------------
+## Grenadier
+### **Team: Impostors**
+
+The Grenadier is an Impostor that can throw smoke grenades.\
+During the game, the Grenadier has the option to throw down a smoke grenade which blinds crewmates so they can't see.\
+However, a sabotage and a smoke grenade can not be active at the same time.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Grenadier | The percentage probability of the Grenadier appearing | Percentage | 0% |
+| Flash Grenade Cooldown | The cooldown of the Grenadier's Flash button | Time | 25s |
+| Flash Grenade Duration | How long the Flash Grenade lasts for | Time | 10s |
 
 -----------------------
 
@@ -1150,6 +1192,26 @@ After the first time they use this ability, their vision is halved for the rest 
 | Button Barry | The percentage probability of Button Barry appearing | Percentage | 0% |
 
 -----------------------
+## Coroner
+### **Applied to: All**
+Coroner has the ability to investigate corpses.\
+During meetings, they will be able to see the roles of players whose dead bodies they report.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Coroner | The percentage probability of Coroner appearing | Percentage | 0% |
+
+-----------------------
+## Carnivore
+### **Applied to: Impostors**
+Carnivore has the ability to learn from the corpses of the people it kills.\
+During meetings, they will be able to see the roles of players who they killed.
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Carnivore | The percentage probability of Carnivore appearing | Percentage | 0% |
+
+-----------------------
 # Custom Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
@@ -1162,6 +1224,20 @@ After the first time they use this ability, their vision is halved for the rest 
 | Max Neutral Roles | The maximum number of Neutral roles a game can have | Number | 1 |
 | Role Appears Under Name | Whether your own role appears under your name | Toggle | True |
 | Probability of a completely vanilla game | The percentage probability of a vanilla Among Us game happening | Percentage | 0% |
+
+### **Assassination**
+All Impostors have the ability to kill during meetings by guessing the role of non-Impostors.
+If they guess wrong, they die instead.\
+This was previously its own role, but for balance reasons this power is granted to all impostors.
+
+### Game Options
+| Name | Description | Type | Default |
+|----------|:-------------:|:------:|:------:|
+| Number of Assassinations | The number of kills the Impostors can do with their ability (total shared all Impostors)| Number | 1 |
+| Impostor can guess "Crewmate" | Whether the Impostors can Guess "Crewmate" | Toggle | False |
+| Impostor can guess Neutral  | Whether the Impostors can Guess Neutral roles | Toggle | False |
+| Impostors can assassinate more than once per meeting  | Whether the Impostors can kill more than once per meeting | Toggle | True |
+
 
 -----------------------
 # Extras

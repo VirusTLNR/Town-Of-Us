@@ -1,21 +1,11 @@
-﻿using System;
-using HarmonyLib;
-using Reactor.Extensions;
-using TMPro;
-using TownOfUs.Extensions;
-using TownOfUs.Patches;
+﻿using HarmonyLib;
 using TownOfUs.Roles;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
-using Object = UnityEngine.Object;
 
 namespace TownOfUs.ImpostorRoles.AssassinMod
 {
     [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
     public class AddButton
     {
-
         private static bool IsExempt(PlayerControl player) {
             if (
                 player.Data.IsImpostor
@@ -30,34 +20,39 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
 
         public static void Postfix(MeetingHud __instance)
         {
-            foreach (var role in Role.GetRoles(RoleEnum.Assassin))
-            {
-                var assassin = (Assassin) role;
-                assassin.Guesses.Clear();
-                assassin.Buttons.Clear();
-            }
+            Assassin.AssassinState.Guesses.Clear();
+            Assassin.AssassinState.Buttons.Clear();
 
             if (
                 PlayerControl.LocalPlayer.Data.IsDead
-                || !PlayerControl.LocalPlayer.Is(RoleEnum.Assassin)
+                || !PlayerControl.LocalPlayer.Is(Faction.Impostors)
             )
             {
                 return;
             }
 
-            var assassinRole = Role.GetRole<Assassin>(PlayerControl.LocalPlayer);
-            if (assassinRole.RemainingKills <= 0) return;
+            Assassin assassin = Assassin.AssassinState;
+            if (assassin.RemainingKills <= 0) return;
             foreach (var voteArea in __instance.playerStates)
             {
                 IMeetingGuesser.GenButton(
-                    assassinRole,
+                    assassin,
                     voteArea,
                     playerControl => !IsExempt(playerControl),
                     (playerControl, role) =>
                     {
-                        IMeetingGuesser.KillFromMeetingGuess(assassinRole, playerControl, role);
-                        assassinRole.RemainingKills--;
+                        IMeetingGuesser.KillFromMeetingGuess(assassin, playerControl, role);
+                        assassin.RemainingKills--;
                     });
+            }
+        }
+
+        public static void MaybeHideButtons()
+        {
+            Assassin assassin = Assassin.AssassinState;
+            if (!assassin.CanKeepGuessing())
+            {
+                ShowHideButtons.HideButtons(assassin);
             }
         }
     }

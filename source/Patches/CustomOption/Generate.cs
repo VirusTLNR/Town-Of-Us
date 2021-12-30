@@ -25,7 +25,6 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ProphetOn;
         public static CustomNumberOption CovertOn;
 
-
         private static CustomHeaderOption NeutralRoles;
         public static CustomNumberOption JesterOn;
         public static CustomNumberOption ShifterOn;
@@ -41,11 +40,10 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption MinerOn;
         public static CustomNumberOption SwooperOn;
         public static CustomNumberOption UndertakerOn;
-        public static CustomNumberOption AssassinOn;
         public static CustomNumberOption UnderdogOn;
         public static CustomNumberOption TeleporterOn;
         public static CustomNumberOption ConcealerOn;
-
+        public static CustomNumberOption GrenadierOn;
 
         private static CustomHeaderOption Modifiers;
         public static CustomNumberOption TorchOn;
@@ -55,6 +53,8 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption DrunkOn;
         public static CustomNumberOption BigBoiOn;
         public static CustomNumberOption ButtonBarryOn;
+        public static CustomNumberOption AnthropomancerOn;
+        public static CustomNumberOption CarnivoreOn;
 
 
         private static CustomHeaderOption CustomGameSettings;
@@ -67,6 +67,13 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption MaxNeutralRoles;
         public static CustomToggleOption RoleUnderName;
         public static CustomNumberOption VanillaGame;
+
+        private static CustomHeaderOption Assassination;
+        public static CustomNumberOption AssassinKills;
+        public static CustomToggleOption AssassinGuessNeutrals;
+        public static CustomToggleOption AssassinCrewmateGuess;
+        public static CustomToggleOption AssassinMultiKill;
+
 
         private static CustomHeaderOption Mayor;
         public static CustomNumberOption MayorVoteBank;
@@ -174,12 +181,6 @@ namespace TownOfUs.CustomOption
         private static CustomHeaderOption Undertaker;
         public static CustomNumberOption DragCooldown;
 
-        private static CustomHeaderOption Assassin;
-        public static CustomNumberOption AssassinKills;
-        public static CustomToggleOption AssassinGuessNeutrals;
-        public static CustomToggleOption AssassinCrewmateGuess;
-        public static CustomToggleOption AssassinMultiKill;
-
         private static CustomHeaderOption Teleporter;
         public static CustomNumberOption TeleporterCooldown;
         public static CustomToggleOption TeleportSelf;
@@ -189,6 +190,10 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption ConcealCooldown;
         public static CustomNumberOption TimeToConceal;
         public static CustomNumberOption ConcealDuration;
+
+        private static CustomHeaderOption Grenadier;
+        public static CustomNumberOption GrenadeCooldown;
+        public static CustomNumberOption GrenadeDuration;
 
         private static Func<object, string> PercentFormat { get; } = value => $"{value:0}%";
         private static Func<object, string> CooldownFormat { get; } = value => $"{value:0.0#}s";
@@ -251,8 +256,6 @@ namespace TownOfUs.CustomOption
 
 
             ImpostorRoles = new CustomHeaderOption(num++, "Impostor Roles");
-            AssassinOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Assassin).GetColoredName()}", 0f, 0f, 100f, 10f,
-                PercentFormat);
             JanitorOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Janitor).GetColoredName()}", 0f, 0f, 100f, 10f,
                 PercentFormat);
             MorphlingOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Morphling).GetColoredName()}", 0f, 0f, 100f, 10f,
@@ -270,6 +273,8 @@ namespace TownOfUs.CustomOption
             TeleporterOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Teleporter).GetColoredName()}", 0f, 0f, 100f, 10f,
                 PercentFormat);
             ConcealerOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Concealer).GetColoredName()}", 0f, 0f, 100f, 10f,
+                PercentFormat);
+            GrenadierOn = new CustomNumberOption(true, num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Grenadier).GetColoredName()}", 0f, 0f, 100f, 10f,
                 PercentFormat);
 
 
@@ -290,6 +295,11 @@ namespace TownOfUs.CustomOption
             ButtonBarryOn =
                 new CustomNumberOption(true, num++, "<color=#E600FFFF>Button Barry</color>", 0f, 0f, 100f, 10f,
                     PercentFormat);
+            AnthropomancerOn =
+                new CustomNumberOption(true, num++, "<color=#336629>Coroner</color>", 0f, 0f, 100f, 10f,
+                    PercentFormat);
+            CarnivoreOn =
+                new CustomNumberOption(true, num++, "<color=#640000>Carnivore</color>", 0f, 0f, 100f, 10f, PercentFormat);
             #endregion
 
 
@@ -310,10 +320,15 @@ namespace TownOfUs.CustomOption
             RoleUnderName = new CustomToggleOption(num++, "Role Appears Under Name");
             VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
                 PercentFormat);
+
+            Assassination = new CustomHeaderOption(num++, "<color=#FFFFFF>Assassination</color>");
+            AssassinKills = new CustomNumberOption(num++, "Number of Assassinations", 0, 1, 5, 1);
+            AssassinCrewmateGuess = new CustomToggleOption(num++, "Impostors can guess \"Crewmate\"", false);
+            AssassinGuessNeutrals = new CustomToggleOption(num++, "Impostors can guess Neutral roles", false);
+            AssassinMultiKill = new CustomToggleOption(num++, "Impostors can assassinate more than once per meeting");
             #endregion
 
-
-            #region CrewConfiguration
+            #region CrewRoles
             Mayor =
                 new CustomHeaderOption(num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Mayor).GetColoredName()}");
             MayorVoteBank =
@@ -426,7 +441,7 @@ namespace TownOfUs.CustomOption
             #endregion
 
 
-            #region NeutralConfiguration
+            #region NeutralRoles
             Shifter =
                 new CustomHeaderOption(num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Shifter).GetColoredName()}");
             ShifterCd =
@@ -455,7 +470,7 @@ namespace TownOfUs.CustomOption
             #endregion
 
 
-            #region ImpostorConfiguration
+            #region ImpostorRoles
             Morphling =
                 new CustomHeaderOption(num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Morphling).GetColoredName()}");
             MorphlingCooldown =
@@ -483,12 +498,6 @@ namespace TownOfUs.CustomOption
             Undertaker = new CustomHeaderOption(num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Undertaker).GetColoredName()}");
             DragCooldown = new CustomNumberOption(num++, "Drag Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
 
-            Assassin = new CustomHeaderOption(num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Assassin).GetColoredName()}");
-            AssassinKills = new CustomNumberOption(num++, "Number of Assassin Kills", 1, 1, 5, 1);
-            AssassinCrewmateGuess = new CustomToggleOption(num++, "Assassin can Guess \"Crewmate\"", false);
-            AssassinGuessNeutrals = new CustomToggleOption(num++, "Assassin can Guess Neutral roles", false);
-            AssassinMultiKill = new CustomToggleOption(num++, "Assassin can kill more than once per meeting");
-
             Teleporter = new CustomHeaderOption(num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Teleporter).GetColoredName()}");
             TeleporterCooldown =
                 new CustomNumberOption(num++, "Teleporter Cooldown", 45, 10, 120, 2.5f, CooldownFormat);
@@ -499,6 +508,13 @@ namespace TownOfUs.CustomOption
             ConcealCooldown = new CustomNumberOption(num++, "Conceal Cooldown", 30, 10, 60, 2.5f, CooldownFormat);
             TimeToConceal = new CustomNumberOption(num++, "Delay Before Concealing", 5, 2.5f, 15, 2.5f, CooldownFormat);
             ConcealDuration = new CustomNumberOption(num++, "Conceal Duration", 10, 2.5f, 20f, 2.5f, CooldownFormat);
+
+            Grenadier =
+                new CustomHeaderOption(num++, $"{RoleDetailsAttribute.GetRoleDetails(RoleEnum.Grenadier).GetColoredName()}");
+            GrenadeCooldown =
+                new CustomNumberOption(num++, "Flash Grenade Cooldown", 25, 10, 40, 2.5f, CooldownFormat);
+            GrenadeDuration =
+                new CustomNumberOption(num++, "Flash Grenade Duration", 10, 5, 15, 1f, CooldownFormat);
             #endregion
         }
     }

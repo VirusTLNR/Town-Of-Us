@@ -27,10 +27,10 @@ namespace TownOfUs
         SetProphet,
         SetCovert,
         SetUndertaker,
-        SetAssassin,
         SetUnderdog,
         SetTeleporter,
         SetConcealer,
+        SetGrenadier,
 
         SetTorch,
         SetDiseased,
@@ -39,6 +39,8 @@ namespace TownOfUs
         SetDrunk,
         SetBigBoi,
         SetButtonBarry,
+        SetCoroner,
+        SetCarnivore,
 
         SetPhantom,
         PhantomDied,
@@ -79,12 +81,15 @@ namespace TownOfUs
         Ignite,
         AltruistRevive,
         BarryButton,
+        CoronerReveal,
+        CarnivoreEat,
         Drag,
         Drop,
         AssassinKill,
         Teleport,
         Conceal,
         GoCovert,
+        FlashGrenade,
 
         SetGlitch,
         BypassKill,
@@ -94,11 +99,10 @@ namespace TownOfUs
 
         ExecutionerToJester,
 
-
         Start,
         SyncCustomSettings,
         FixAnimation,
 
-        AddMayorVoteBank
+        AddMayorVoteBank,
     }
 }

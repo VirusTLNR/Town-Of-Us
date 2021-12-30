@@ -20,8 +20,6 @@ namespace TownOfUs.Roles
 
         public List<RoleEnum> PossibleGuesses { get; }
 
-        public PlayerControl Player { get; }
-
         public bool CanKeepGuessing();
 
         private static Sprite CycleSprite => TownOfUs.CycleSprite;
@@ -35,7 +33,7 @@ namespace TownOfUs.Roles
             Action<PlayerControl, Role> doOnCorrectGuess
             )
         {
-            var targetId = voteArea.TargetPlayerId;
+            byte targetId = voteArea.TargetPlayerId;
             if (IsExempt(voteArea) || !canGuess(Utils.PlayerById(voteArea.TargetPlayerId)))
             {
                 role.Buttons[targetId] = (null, null, null);
@@ -142,7 +140,7 @@ namespace TownOfUs.Roles
 
                 if (actualRole.RoleType != currentGuess)
                 {
-                    KillFromMeetingGuess(role, role.Player, actualRole);
+                    KillFromMeetingGuess(role, PlayerControl.LocalPlayer, actualRole);
                     ShowHideButtons.HideSingle(role, targetId, true);
                     return;
                 }
@@ -189,9 +187,8 @@ namespace TownOfUs.Roles
         )
         {
             if (
-                killedSelf ||
-                !role.CanKeepGuessing() ||
-                !CustomGameOptions.AssassinMultiKill
+                killedSelf
+                || !role.CanKeepGuessing()
             )
             {
                 HideButtons(role);
@@ -217,6 +214,10 @@ namespace TownOfUs.Roles
             {
                 HideButtons(role);
             }
+            else if (PlayerControl.LocalPlayer.Is(Faction.Impostors))
+            {
+                HideButtons(Assassin.AssassinState);
+            }
         }
     }
 
@@ -228,6 +229,10 @@ namespace TownOfUs.Roles
             if (Role.GetRole(PlayerControl.LocalPlayer) is IMeetingGuesser role)
             {
                 ShowHideButtons.HideButtons(role);
+            }
+            else if (PlayerControl.LocalPlayer.Is(Faction.Impostors))
+            {
+                ShowHideButtons.HideButtons(Assassin.AssassinState);
             }
         }
     }

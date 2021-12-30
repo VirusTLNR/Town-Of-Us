@@ -1,0 +1,26 @@
+name: Announce Release
+on:
+  release:
+    types: [published]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Discord notification
+      uses: LeGitHubDeTai/github-to-discord@main
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        MESSAGE_TITLE: "New Version"
+        MESSAGE_URL: 'https://github.com/Anusien/Town-Of-Us/releases/latest'
+        SECTION_NAME: "Changelog"
+        DISCORD_AVATAR: "https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+        DISCORD_USERNAME: "Release Announcement"
+        AUTHOR_AVATAR: "https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+        AUTHOR_USERNAME: "Town of Us"
+        FOOTER_TEXT: " "
+        FOOTER_URL: " "
+        MESSAGE_DESCRIPTION: " "

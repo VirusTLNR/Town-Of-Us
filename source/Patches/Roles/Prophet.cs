@@ -45,7 +45,7 @@ namespace TownOfUs.Roles
             PlayerControl target = allPlayers
                 .Where(player => player.PlayerId != PlayerControl.LocalPlayer.PlayerId)
                 .Where(player => !Revealed.Contains(player.PlayerId))
-                .Where(player => GetRole(player).Faction == Faction.Crewmates)
+                .Where(player => player.Is(Faction.Crewmates))
                 .Random();
 
             if (target == null)
