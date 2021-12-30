@@ -672,8 +672,8 @@ namespace TownOfUs
                     case CustomRPC.SetButtonBarry:
                         new ButtonBarry(Utils.PlayerById(reader.ReadByte()));
                         break;
-                    case CustomRPC.SetAnthropomancer:
-                        new Anthropomancer(Utils.PlayerById(reader.ReadByte()));
+                    case CustomRPC.SetCoroner:
+                        new Coroner(Utils.PlayerById(reader.ReadByte()));
                         break;
                     case CustomRPC.SetCarnivore:
                         new Carnivore(Utils.PlayerById(reader.ReadByte()));
@@ -696,9 +696,9 @@ namespace TownOfUs
                     case CustomRPC.AnthropomancerEat:
                     {
                         PlayerControl player = Utils.PlayerById(reader.ReadByte());
-                        Anthropomancer anthropomancer = Modifier.GetModifier<Anthropomancer>(player);
+                        Coroner coroner = Modifier.GetModifier<Coroner>(player);
                         byte eatenId = reader.ReadByte();
-                        anthropomancer.Eat(eatenId);
+                        coroner.Reveal(eatenId);
                         break;
                     }
                     case CustomRPC.CarnivoreEat:
@@ -914,7 +914,7 @@ namespace TownOfUs
 
                 if (Check(CustomGameOptions.AnthropomancerOn))
                     GlobalModifiers.Add(
-                        (typeof(Anthropomancer), CustomRPC.SetAnthropomancer, CustomGameOptions.AnthropomancerOn));
+                        (typeof(Coroner), CustomRPC.SetCoroner, CustomGameOptions.AnthropomancerOn));
 
                 if (Check(CustomGameOptions.CarnivoreOn))
                     ImpostorModifiers.Add(
