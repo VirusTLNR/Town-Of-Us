@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using DepotDownloader;
 using HarmonyLib;
 using Hazel;
-using Rewired;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
 
