@@ -43,8 +43,8 @@ namespace TownOfUs.Roles
         public DateTime LastMimic { get; set; }
         public DateTime LastHack { get; set; }
         public DateTime LastKill { get; set; }
-        public KillButtonManager HackButton { get; set; }
-        public KillButtonManager MimicButton { get; set; }
+        public KillButton HackButton { get; set; }
+        public KillButton MimicButton { get; set; }
         public PlayerControl KillTarget { get; set; }
         public PlayerControl HackTarget { get; set; }
         public ChatController MimicList { get; set; }
@@ -91,7 +91,7 @@ namespace TownOfUs.Roles
 
         public void Loses()
         {
-            Player.Data.IsImpostor = true;
+            Player.Data.IsImpostor() = true;
         }
 
         protected override void DoOnGameStart()
@@ -288,8 +288,8 @@ namespace TownOfUs.Roles
                                 new Vector3(HudManager.Instance.KillButton.transform.position.x,
                                     HudManager.Instance.KillButton.transform.position.y, -50f);
                             HudManager.Instance.KillButton.enabled = false;
-                            HudManager.Instance.KillButton.renderer.color = Palette.DisabledClear;
-                            HudManager.Instance.KillButton.renderer.material.SetFloat("_Desat", 1f);
+                            HudManager.Instance.KillButton.graphic.color = Palette.DisabledClear;
+                            HudManager.Instance.KillButton.graphic.material.SetFloat("_Desat", 1f);
                         }
 
                         if (HudManager.Instance.UseButton != null)
@@ -454,7 +454,7 @@ namespace TownOfUs.Roles
         {
             public static void KillButtonUpdate(Glitch __gInstance, HudManager __instance)
             {
-                if (!__gInstance.Player.Data.IsImpostor && Input.GetKeyDown(KeyCode.Q))
+                if (!__gInstance.Player.Data.IsImpostor() && Input.GetKeyDown(KeyCode.Q))
                     __instance.KillButton.PerformKill();
 
                 __instance.KillButton.gameObject.SetActive(__instance.UseButton.isActiveAndEnabled &&

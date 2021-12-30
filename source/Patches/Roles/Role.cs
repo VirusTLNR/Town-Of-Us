@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Reactor.Extensions;
 using TMPro;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using TownOfUs.Patches;
 using TownOfUs.Roles.Modifiers;
@@ -21,7 +22,7 @@ namespace TownOfUs.Roles
 
         public static bool NobodyWins;
 
-        public readonly List<KillButtonManager> ExtraButtons = new List<KillButtonManager>();
+        public readonly List<KillButton> ExtraButtons = new List<KillButton>();
 
         protected Func<string> ImpostorText;
         protected Func<string> TaskText;
@@ -103,7 +104,7 @@ namespace TownOfUs.Roles
                 -0.5f
             );
             if (PlayerControl.LocalPlayer.Data.IsDead && CustomGameOptions.DeadSeeRoles) return Utils.ShowDeadBodies;
-            if (Faction == Faction.Impostors && PlayerControl.LocalPlayer.Data.IsImpostor &&
+            if (Faction == Faction.Impostors && PlayerControl.LocalPlayer.Data.IsImpostor() &&
                 CustomGameOptions.ImpostorSeeRoles) return true;
             return GetRole(PlayerControl.LocalPlayer) == this;
         }
@@ -112,7 +113,7 @@ namespace TownOfUs.Roles
          * Hook. Override this method to run before the cutscene showing the player who's on their team.
          * I'm not really sure why anybody does this at the moment.
          */
-        protected virtual void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
+        protected virtual void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
         {
         }
 
@@ -578,7 +579,7 @@ namespace TownOfUs.Roles
 
                 foreach (var player in PlayerControl.AllPlayerControls)
                 {
-                    if (!(player.Data != null && player.Data.IsImpostor && PlayerControl.LocalPlayer.Data.IsImpostor))
+                    if (!(player.Data != null && player.Data.IsImpostor() && PlayerControl.LocalPlayer.Data.IsImpostor()))
                     {
                         player.nameText.text = player.name;
                         player.nameText.color = Color.white;
@@ -593,7 +594,7 @@ namespace TownOfUs.Roles
                             continue;
                         }
 
-                    if (player.Data != null && PlayerControl.LocalPlayer.Data.IsImpostor && player.Data.IsImpostor) continue;
+                    if (player.Data != null && PlayerControl.LocalPlayer.Data.IsImpostor() && player.Data.IsImpostor()) continue;
                 }
             }
         }

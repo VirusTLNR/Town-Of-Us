@@ -7,7 +7,7 @@ namespace TownOfUs.Roles
 {
     public class Morphling : RoleWithCooldown, IVisualAlteration
     {
-        public KillButtonManager _morphButton;
+        public KillButton _morphButton;
         public PlayerControl ClosestPlayer;
         public PlayerControl MorphedPlayer;
 
@@ -20,7 +20,7 @@ namespace TownOfUs.Roles
             TaskText = () => "Morph into crewmates to be disguised";
         }
 
-        public KillButtonManager MorphButton
+        public KillButton MorphButton
         {
             get => _morphButton;
             set

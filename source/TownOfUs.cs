@@ -26,6 +26,9 @@ namespace TownOfUs
         public static string GetVersion() => typeof(TownOfUs).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
         private const string Id = "com.slushiegoose.townofus";
 
+        public static Vector3 ButtonPosition { get; } = new Vector3(2.6f, 0.7f, -9f);
+
+        public static Sprite SettingsButton;
         public static Sprite JanitorClean;
         public static Sprite EngineerFix;
         public static Sprite SwapperSwitch;
@@ -75,6 +78,7 @@ namespace TownOfUs
 
             Generate.GenerateAll();
 
+            SettingsButton = CreateSprite("TownOfUs.Resources.SettingsButton.png");
             JanitorClean = CreateSprite("TownOfUs.Resources.Janitor.png");
             EngineerFix = CreateSprite("TownOfUs.Resources.Engineer.png");
             SwapperSwitch = CreateSprite("TownOfUs.Resources.SwapperSwitch.png");
@@ -124,10 +128,12 @@ namespace TownOfUs
 
             ServerManager.DefaultRegions = defaultRegions.ToArray();
 
+            /*
             SceneManager.add_sceneLoaded((Action<Scene, LoadSceneMode>) ((scene, loadSceneMode) =>
             {
                 ModManager.Instance.ShowModStamp();
             }));
+            */
 
             _harmony.PatchAll();
             DirtyPatches.Initialize(_harmony);

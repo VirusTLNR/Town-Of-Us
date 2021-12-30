@@ -31,7 +31,7 @@ namespace TownOfUs.Roles
             _lastTeleported = DateTime.UtcNow;
         }
 
-        public KillButtonManager TeleportButton
+        public KillButton TeleportButton
         {
             get => _teleportButton;
             set

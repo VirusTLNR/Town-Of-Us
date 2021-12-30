@@ -1,12 +1,13 @@
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
 {
-    [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.SetTarget))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.SetTarget))]
     public class SetTarget
     {
-        public static void Postfix(KillButtonManager __instance, [HarmonyArgument(0)] PlayerControl target)
+        public static void Postfix(KillButton __instance, [HarmonyArgument(0)] PlayerControl target)
         {
             if (
                 PlayerControl.AllPlayerControls.Count <= 1
@@ -24,10 +25,10 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
                 return;
             }
 
-            if (target.Data.IsImpostor)
+            if (target.Data.IsImpostor())
             {
-                __instance.renderer.color = Palette.DisabledClear;
-                __instance.renderer.material.SetFloat("_Desat", 1f);
+                __instance.graphic.color = Palette.DisabledClear;
+                __instance.graphic.material.SetFloat("_Desat", 1f);
             }
         }
     }

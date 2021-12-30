@@ -30,7 +30,7 @@ namespace TownOfUs.Roles
 
         internal override bool Criteria()
         {
-            return OneTaskLeft && PlayerControl.LocalPlayer.Data.IsImpostor ||
+            return OneTaskLeft && PlayerControl.LocalPlayer.Data.IsImpostor() ||
                    base.Criteria();
         }
 

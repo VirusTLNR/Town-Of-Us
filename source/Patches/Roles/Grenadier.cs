@@ -33,7 +33,7 @@ namespace TownOfUs.Roles
         public bool Flashed => TimeRemaining > 0f;
 
 
-        public KillButtonManager FlashButton
+        public KillButton FlashButton
         {
             get => _flashButton;
             set
@@ -71,16 +71,16 @@ namespace TownOfUs.Roles
                 if (TimeRemaining > CustomGameOptions.GrenadeDuration - 0.5f && !sabActive)
                 {
                     float fade = (TimeRemaining - CustomGameOptions.GrenadeDuration) * -2.0f;
-                    if (!player.Data.IsImpostor && !player.Data.IsDead && !MeetingHud.Instance)
+                    if (!player.Data.IsImpostor() && !player.Data.IsDead && !MeetingHud.Instance)
                     {
                         ((Renderer)DestroyableSingleton<HudManager>.Instance.FullScreen).enabled = true;
                         DestroyableSingleton<HudManager>.Instance.FullScreen.color = Color.Lerp((new Color(0.83f, 0.83f, 0.83f, 0f)), (new Color(0.83f, 0.83f, 0.83f, 1f)), fade);
                     }
-                    else if ((player.Data.IsImpostor || player.Data.IsDead) && !MeetingHud.Instance)
+                    else if ((player.Data.IsImpostor() || player.Data.IsDead) && !MeetingHud.Instance)
                     {
                         ((Renderer)DestroyableSingleton<HudManager>.Instance.FullScreen).enabled = true;
                         DestroyableSingleton<HudManager>.Instance.FullScreen.color = Color.Lerp((new Color(0.83f, 0.83f, 0.83f, 0f)), (new Color(0.83f, 0.83f, 0.83f, 0.2f)), fade);
-                        if (PlayerControl.LocalPlayer.Data.IsImpostor && MapBehaviour.Instance.infectedOverlay.SabSystem.Timer < 0.5f)
+                        if (PlayerControl.LocalPlayer.Data.IsImpostor() && MapBehaviour.Instance.infectedOverlay.SabSystem.Timer < 0.5f)
                         {
                             MapBehaviour.Instance.infectedOverlay.SabSystem.Timer = 0.5f;
                         }
@@ -93,16 +93,16 @@ namespace TownOfUs.Roles
                 }
                 else if (TimeRemaining <= (CustomGameOptions.GrenadeDuration - 0.5f) && TimeRemaining >= 0.5f && !sabActive)
                 {
-                    if ((!player.Data.IsImpostor && !player.Data.IsDead) && !MeetingHud.Instance)
+                    if ((!player.Data.IsImpostor() && !player.Data.IsDead) && !MeetingHud.Instance)
                     {
                         ((Renderer)DestroyableSingleton<HudManager>.Instance.FullScreen).enabled = true;
                         DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(0.83f, 0.83f, 0.83f, 1f);
                     }
-                    else if ((player.Data.IsImpostor || player.Data.IsDead) && !MeetingHud.Instance)
+                    else if ((player.Data.IsImpostor() || player.Data.IsDead) && !MeetingHud.Instance)
                     {
                         ((Renderer)DestroyableSingleton<HudManager>.Instance.FullScreen).enabled = true;
                         DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(0.83f, 0.83f, 0.83f, 0.2f);
-                        if (PlayerControl.LocalPlayer.Data.IsImpostor && MapBehaviour.Instance.infectedOverlay.SabSystem.Timer < 0.5f)
+                        if (PlayerControl.LocalPlayer.Data.IsImpostor() && MapBehaviour.Instance.infectedOverlay.SabSystem.Timer < 0.5f)
                         {
                             MapBehaviour.Instance.infectedOverlay.SabSystem.Timer = 0.5f;
                         }
@@ -116,16 +116,16 @@ namespace TownOfUs.Roles
                 else if (TimeRemaining < 0.5f && !sabActive)
                 {
                     float fade2 = (TimeRemaining * -2.0f) + 1.0f;
-                    if ((!player.Data.IsImpostor && !player.Data.IsDead) && !MeetingHud.Instance)
+                    if ((!player.Data.IsImpostor() && !player.Data.IsDead) && !MeetingHud.Instance)
                     {
                         ((Renderer)DestroyableSingleton<HudManager>.Instance.FullScreen).enabled = true;
                         DestroyableSingleton<HudManager>.Instance.FullScreen.color = Color.Lerp((new Color(0.83f, 0.83f, 0.83f, 1f)), (new Color(0.83f, 0.83f, 0.83f, 0f)), fade2);
                     }
-                    else if ((player.Data.IsImpostor || player.Data.IsDead) && !MeetingHud.Instance)
+                    else if ((player.Data.IsImpostor() || player.Data.IsDead) && !MeetingHud.Instance)
                     {
                         ((Renderer)DestroyableSingleton<HudManager>.Instance.FullScreen).enabled = true;
                         DestroyableSingleton<HudManager>.Instance.FullScreen.color = Color.Lerp((new Color(0.83f, 0.83f, 0.83f, 0.2f)), (new Color(0.83f, 0.83f, 0.83f, 0f)), fade2);
-                        if (PlayerControl.LocalPlayer.Data.IsImpostor && MapBehaviour.Instance.infectedOverlay.SabSystem.Timer < 0.5f)
+                        if (PlayerControl.LocalPlayer.Data.IsImpostor() && MapBehaviour.Instance.infectedOverlay.SabSystem.Timer < 0.5f)
                         {
                             MapBehaviour.Instance.infectedOverlay.SabSystem.Timer = 0.5f;
                         }
@@ -146,7 +146,7 @@ namespace TownOfUs.Roles
 
             if (TimeRemaining > 0.5f)
             {
-                if (PlayerControl.LocalPlayer.Data.IsImpostor && MapBehaviour.Instance.infectedOverlay.SabSystem.Timer < 0.5f)
+                if (PlayerControl.LocalPlayer.Data.IsImpostor() && MapBehaviour.Instance.infectedOverlay.SabSystem.Timer < 0.5f)
                 {
                     MapBehaviour.Instance.infectedOverlay.SabSystem.Timer = 0.5f;
                 }

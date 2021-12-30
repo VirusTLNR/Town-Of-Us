@@ -3,7 +3,7 @@ using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.MorphlingMod
 {
-    [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.SetTarget))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.SetTarget))]
     public class SetTarget
     {
         public static void Postfix(KillButtonManager __instance, [HarmonyArgument(0)] PlayerControl target)
@@ -14,10 +14,10 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Morphling)) return;
             var role = Role.GetRole<Morphling>(PlayerControl.LocalPlayer);
             if (target != null && __instance == DestroyableSingleton<HudManager>.Instance.KillButton)
-                if (target.Data.IsImpostor)
+                if (target.Data.IsImpostor())
                 {
-                    __instance.renderer.color = Palette.DisabledClear;
-                    __instance.renderer.material.SetFloat("_Desat", 1f);
+                    __instance.graphic.color = Palette.DisabledClear;
+                    __instance.graphic.material.SetFloat("_Desat", 1f);
                 }
         }
     }

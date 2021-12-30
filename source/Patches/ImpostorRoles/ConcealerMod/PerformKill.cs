@@ -2,14 +2,15 @@ using System;
 using HarmonyLib;
 using Hazel;
 using TownOfUs.CrewmateRoles.MedicMod;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
 {
-    [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.PerformKill))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class PerformKill
     {
-        public static bool Prefix(KillButtonManager __instance)
+        public static bool Prefix(KillButton __instance)
         {
             if (!PlayerControl.LocalPlayer.Is(RoleEnum.Concealer))
             {
@@ -35,7 +36,7 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
                 || !__instance.isActiveAndEnabled
                 || role.CooldownTimer() != 0
                 || role.Target == null
-                || role.Target.Data.IsImpostor
+                || role.Target.Data.IsImpostor()
             )
             {
                 return false;

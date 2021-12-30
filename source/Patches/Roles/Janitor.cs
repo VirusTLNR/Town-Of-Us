@@ -2,7 +2,7 @@
 {
     public class Janitor : Role
     {
-        public KillButtonManager _cleanButton;
+        public KillButton _cleanButton;
 
         public Janitor(PlayerControl player) : base(player, RoleEnum.Janitor)
         {
@@ -12,7 +12,7 @@
 
         public DeadBody CurrentTarget { get; set; }
 
-        public KillButtonManager CleanButton
+        public KillButton CleanButton
         {
             get => _cleanButton;
             set

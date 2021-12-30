@@ -6,13 +6,13 @@ using UnityEngine;
 
 namespace TownOfUs.ImpostorRoles.MorphlingMod
 {
-    [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.PerformKill))]
+    [HarmonyPatch(typeof(KillButton), nameof(KillButton.DoClick))]
     public class PerformKill
     {
         private static Sprite SampleSprite => TownOfUs.SampleSprite;
         private static Sprite MorphSprite => TownOfUs.MorphSprite;
 
-        public static bool Prefix(KillButtonManager __instance)
+        public static bool Prefix(KillButton __instance)
         {
             var flag = PlayerControl.LocalPlayer.Is(RoleEnum.Morphling);
             if (!flag) return true;

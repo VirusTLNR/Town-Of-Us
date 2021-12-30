@@ -17,7 +17,7 @@ namespace TownOfUs.ImpostorRoles.UnderdogMod
         internal static bool LastImp()
         {
             return PlayerControl.AllPlayerControls.ToArray()
-                .Count(x => x.Data.IsImpostor && !x.Data.IsDead) == 1;
+                .Count(x => x.Data.IsImpostor() && !x.Data.IsDead) == 1;
         }
     }
 }

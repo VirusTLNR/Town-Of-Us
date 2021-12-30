@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -19,21 +20,31 @@ namespace TownOfUs.Patches.CustomHats
         private static ManualLogSource Log => PluginSingleton<TownOfUs>.Instance.Log;
         private static Assembly Assembly => typeof(TownOfUs).Assembly;
 
-        internal static void LoadHats()
+        private static bool LoadedHats = false;
+
+        internal static void LoadHatsRoutine()
         {
-            Log.LogMessage($"Generating Hats from namespace {HAT_RESOURCE_NAMESPACE}");
+            if (LoadedHats || !DestroyableSingleton<HatManager>.InstanceExists || DestroyableSingleton<HatManager>.Instance.AllHats.Count == 0)
+                return;
+            LoadedHats = true;
+            Coroutines.Start(LoadHats());
+        }
+
+        internal static IEnumerator LoadHats()
+        {
+
             try
             {
                 var hatJson = LoadJson();
-
                 var hatBehaviours = DiscoverHatBehaviours(hatJson);
 
                 DestroyableSingleton<HatManager>.Instance.AllHats.ForEach(
                     (Action<HatBehaviour>)(x => x.StoreName = "Vanilla")
                 );
+                var originalCount = DestroyableSingleton<HatManager>.Instance.AllHats.Count;
                 for (var i = 0; i < hatBehaviours.Count; i++)
                 {
-                    hatBehaviours[i].Order = HAT_ORDER_BASELINE + i;
+                    hatBehaviours[i].Order = originalCount + i;
                     HatManager.Instance.AllHats.Add(hatBehaviours[i]);
                 }
 
@@ -42,14 +53,13 @@ namespace TownOfUs.Patches.CustomHats
             {
                 Log.LogError($"Error while loading hats: {e.Message}\nStack: {e.StackTrace}");
             }
+            yield return null;
         }
 
         private static HatMetadataJson LoadJson()
         {
             var stream = Assembly.GetManifestResourceStream($"{HAT_RESOURCE_NAMESPACE}.{HAT_METADATA_JSON}");
-            
-            // The only JsonConvert.DeserializeObject generic that is available in Among Us
-            return JsonConvert.DeserializeObject<HatMetadataJson>(Encoding.UTF8.GetString(stream.ReadFully()), (JsonSerializerSettings) null);
+            return JsonConvert.DeserializeObject<HatMetadataJson>(Encoding.UTF8.GetString(stream.ReadFully()));
         }
 
         private static List<HatBehaviour> DiscoverHatBehaviours(HatMetadataJson metadata)
@@ -65,14 +75,17 @@ namespace TownOfUs.Patches.CustomHats
                     {
                         var hatBehaviour = GenerateHatBehaviour(stream.ReadFully());
                         hatBehaviour.StoreName = hatCredit.Artist;
-                        hatBehaviour.ProductId = hatCredit.Name;
+                        hatBehaviour.ProductId = hatCredit.Id;
+                        hatBehaviour.name = hatCredit.Name;
+                        hatBehaviour.Free = true;
                         hatBehaviours.Add(hatBehaviour);
                     }
                 }
                 catch (Exception e)
                 {
-                    PluginSingleton<TownOfUs>.Instance.Log.LogError($"Error loading hat {hatCredit.Id} in metadata file ({HAT_METADATA_JSON})");
-                    PluginSingleton<TownOfUs>.Instance.Log.LogError($"{e.Message}\nStack:{e.StackTrace}");
+                   Log.LogError(
+                        $"Error loading hat {hatCredit.Id} in metadata file ({HAT_METADATA_JSON})");
+                     Log.LogError($"{e.Message}\nStack:{e.StackTrace}");
                 }
             }
 
@@ -86,6 +99,7 @@ namespace TownOfUs.Patches.CustomHats
             var tex2D = new Texture2D(1, 1, TextureFormat.ARGB32, false);
             TownOfUs.LoadImage(tex2D, mainImg, false);
             var sprite = Sprite.Create(tex2D, new Rect(0.0f, 0.0f, tex2D.width, tex2D.height), new Vector2(0.5f, 0.5f), 100);
+
 
             var hat = ScriptableObject.CreateInstance<HatBehaviour>();
             hat.MainImage = sprite;

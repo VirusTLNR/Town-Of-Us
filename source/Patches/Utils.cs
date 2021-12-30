@@ -222,7 +222,7 @@ namespace TownOfUs
             var role = Role.GetRole(player);
             if (role != null) return role.RoleType;
 
-            return player.Data.IsImpostor ? RoleEnum.Impostor : RoleEnum.Crewmate;
+            return player.Data.IsImpostor() ? RoleEnum.Impostor : RoleEnum.Crewmate;
         }
 
         public static PlayerControl PlayerById(byte id)
@@ -317,7 +317,7 @@ namespace TownOfUs
 
         public static void SetTarget(
             ref PlayerControl closestPlayer,
-            KillButtonManager button,
+            KillButton button,
             float maxDistance = float.NaN,
             List<PlayerControl> targets = null
         )
@@ -467,7 +467,7 @@ namespace TownOfUs
                     return;
                 }
 
-                if (target.Is(ModifierEnum.Diseased) && killer.Data.IsImpostor)
+                if (target.Is(ModifierEnum.Diseased) && killer.Data.IsImpostor())
                 {
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown * 3);
                     return;
@@ -479,7 +479,7 @@ namespace TownOfUs
                     return;
                 }
 
-                if (killer.Data.IsImpostor)
+                if (killer.Data.IsImpostor())
                 {
                     killer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
                 }

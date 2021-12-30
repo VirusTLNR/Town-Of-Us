@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.AssassinMod
@@ -8,7 +9,7 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
     {
         private static bool IsExempt(PlayerControl player) {
             if (
-                player.Data.IsImpostor
+                player.Data.IsImpostor()
             )
             {
                 return true;
