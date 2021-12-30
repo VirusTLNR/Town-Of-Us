@@ -8,13 +8,13 @@ using UnityEngine;
 
 namespace TownOfUs.Roles.Modifiers
 {
-    public class Anthropomancer : Modifier
+    public class Coroner : Modifier
     {
         private readonly HashSet<byte> _eaten = new HashSet<byte>();
 
-        public Anthropomancer(PlayerControl player) : base(player, ModifierEnum.Anthropomancer)
+        public Coroner(PlayerControl player) : base(player, ModifierEnum.Anthropomancer)
         {
-            Name = "Anthropomancer";
+            Name = "Coroner";
             TaskText = () => "Read the entrails of dead players to discover their role.";
             Color = new Color(0.20f, 0.40f, 0.16f);
         }
@@ -51,7 +51,7 @@ namespace TownOfUs.Roles.Modifiers
             writer.Write(info.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);
 
-            ((Anthropomancer) modifier).Eat(info.PlayerId);
+            ((Coroner) modifier).Eat(info.PlayerId);
         }
     }
 
@@ -78,10 +78,10 @@ namespace TownOfUs.Roles.Modifiers
 
         private static void UpdateMeeting(MeetingHud __instance)
         {
-            Anthropomancer anthropomancer = Modifier.GetModifier<Anthropomancer>(PlayerControl.LocalPlayer);
+            Coroner coroner = Modifier.GetModifier<Coroner>(PlayerControl.LocalPlayer);
             foreach (PlayerVoteArea voteArea in __instance.playerStates)
             {
-                if (!anthropomancer.HasEaten(voteArea.TargetPlayerId))
+                if (!coroner.HasEaten(voteArea.TargetPlayerId))
                 {
                     continue;
                 }

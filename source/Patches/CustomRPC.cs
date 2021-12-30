@@ -39,7 +39,7 @@ namespace TownOfUs
         SetDrunk,
         SetBigBoi,
         SetButtonBarry,
-        SetAnthropomancer,
+        SetCoroner,
         SetCarnivore,
 
         SetPhantom,

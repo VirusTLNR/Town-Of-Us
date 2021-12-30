@@ -60,7 +60,7 @@ namespace TownOfUs.Roles.Modifiers
         }
     }
 
-    // TODO: Refactor with the Anthropomancer to share code
+    // TODO: Refactor with the Coroner to share code
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class ShowCarnivorePlayers
     {
