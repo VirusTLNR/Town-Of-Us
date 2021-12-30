@@ -45,7 +45,7 @@ namespace TownOfUs
 
                 // If the console is not a sabotage repair console
                 if (
-                       Role.GetRole(playerControl).Faction == Faction.Neutral
+                       playerControl.Is(Faction.Neutral)
                        && !playerControl.Is(RoleEnum.Phantom)
                        && !__instance.AllowImpostor
                 )

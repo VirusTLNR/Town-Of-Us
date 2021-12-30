@@ -37,7 +37,6 @@ namespace TownOfUs
         public static int CovertOn => (int) Generate.CovertOn.Get();
         public static int PhantomOn => (int) Generate.PhantomOn.Get();
         public static int UndertakerOn => (int) Generate.UndertakerOn.Get();
-        public static int AssassinOn => (int) Generate.AssassinOn.Get();
         public static int UnderdogOn => (int) Generate.UnderdogOn.Get();
         public static int TeleporterOn => (int) Generate.TeleporterOn.Get();
         public static int ConcealerOn => (int) Generate.ConcealerOn.Get();
@@ -182,7 +181,6 @@ namespace TownOfUs
                     if (On(CamouflagerOn)) enabledRoles.Add(RoleEnum.Camouflager);
                     if (On(JanitorOn)) enabledRoles.Add(RoleEnum.Janitor);
                     if (On(UndertakerOn)) enabledRoles.Add(RoleEnum.Undertaker);
-                    if (On(AssassinOn)) enabledRoles.Add(RoleEnum.Assassin);
                     if (On(UnderdogOn)) enabledRoles.Add(RoleEnum.Underdog);
                     if (On(TeleporterOn)) enabledRoles.Add(RoleEnum.Teleporter);
                     if (On(ConcealerOn)) enabledRoles.Add(RoleEnum.Concealer);

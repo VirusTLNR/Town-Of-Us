@@ -30,7 +30,7 @@ namespace TownOfUs.CrewmateRoles.SnitchMod
                         Coroutines.Start(Utils.FlashCoroutine(role.Color));
                     }
                     else if (PlayerControl.LocalPlayer.Data.IsImpostor
-                             || (Role.GetRole<Snitch>(PlayerControl.LocalPlayer).Faction == Faction.Neutral && CustomGameOptions.SnitchSeesNeutrals))
+                             || PlayerControl.LocalPlayer.Is(Faction.Neutral) && CustomGameOptions.SnitchSeesNeutrals)
                     {
                         Coroutines.Start(Utils.FlashCoroutine(role.Color));
                         var gameObj = new GameObject();

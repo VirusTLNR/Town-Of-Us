@@ -18,6 +18,7 @@ using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnhollowerBaseLib;
 using UnityEngine;
+using AddButton = TownOfUs.ImpostorRoles.AssassinMod.AddButton;
 using Coroutine = TownOfUs.ImpostorRoles.JanitorMod.Coroutine;
 using Object = UnityEngine.Object;
 using PerformKillButton = TownOfUs.NeutralRoles.ShifterMod.PerformKillButton;
@@ -456,6 +457,7 @@ namespace TownOfUs
                     case CustomRPC.AssassinKill:
                         var toDie = Utils.PlayerById(reader.ReadByte());
                         AssassinKill.MurderPlayer(toDie);
+                        AddButton.MaybeHideButtons();
                         break;
                     case CustomRPC.Teleport:
                         byte teleports = reader.ReadByte();
@@ -734,10 +736,6 @@ namespace TownOfUs
                         body.TruePosition.Set(deadBodyVector.x, deadBodyVector.y);
                         break;
                     }
-
-                    case CustomRPC.SetAssassin:
-                        new Assassin(Utils.PlayerById(reader.ReadByte()));
-                        break;
                     case CustomRPC.SetUnderdog:
                         new Underdog(Utils.PlayerById(reader.ReadByte()));
                         break;
@@ -862,9 +860,6 @@ namespace TownOfUs
                 #region Impostor Roles
                 if (Check(CustomGameOptions.UndertakerOn))
                     ImpostorRoles.Add((typeof(Undertaker), CustomRPC.SetUndertaker, CustomGameOptions.UndertakerOn));
-
-                if (Check(CustomGameOptions.AssassinOn))
-                    ImpostorRoles.Add((typeof(Assassin), CustomRPC.SetAssassin, CustomGameOptions.AssassinOn));
 
                 if (Check(CustomGameOptions.UnderdogOn))
                     ImpostorRoles.Add((typeof(Underdog), CustomRPC.SetUnderdog, CustomGameOptions.UnderdogOn));
