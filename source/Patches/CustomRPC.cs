@@ -81,7 +81,7 @@ namespace TownOfUs
         Ignite,
         AltruistRevive,
         BarryButton,
-        AnthropomancerEat,
+        CoronerReveal,
         CarnivoreEat,
         Drag,
         Drop,

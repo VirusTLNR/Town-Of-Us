@@ -46,7 +46,7 @@ namespace TownOfUs.Roles.Modifiers
             }
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
-                (byte)CustomRPC.AnthropomancerEat, SendOption.Reliable, -1);
+                (byte)CustomRPC.CoronerReveal, SendOption.Reliable, -1);
             writer.Write(PlayerControl.LocalPlayer.PlayerId);
             writer.Write(info.PlayerId);
             AmongUsClient.Instance.FinishRpcImmediately(writer);

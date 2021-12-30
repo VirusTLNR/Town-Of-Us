@@ -693,7 +693,7 @@ namespace TownOfUs
                         }
 
                         break;
-                    case CustomRPC.AnthropomancerEat:
+                    case CustomRPC.CoronerReveal:
                     {
                         PlayerControl player = Utils.PlayerById(reader.ReadByte());
                         Coroner coroner = Modifier.GetModifier<Coroner>(player);
