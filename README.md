@@ -86,6 +86,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
    <summary> v2.8.0 </summary>
    <ul>
      <li> Removed the Assassin in favor of letting every Impostor assasinate. </li>
+     <li> Anthropomancer is renamed to the Coroner. </li>
    </ul>
  </details>
 </li>
@@ -1191,14 +1192,14 @@ After the first time they use this ability, their vision is halved for the rest 
 | Button Barry | The percentage probability of Button Barry appearing | Percentage | 0% |
 
 -----------------------
-## Anthropomancer
+## Coroner
 ### **Applied to: All**
-Anthropomancer has the ability to divine the roles of dead players.\
+Coroner has the ability to investigate corpses.\
 During meetings, they will be able to see the roles of players whose dead bodies they report.
 ### Game Options
 | Name | Description | Type | Default |
 |----------|:-------------:|:------:|:------:|
-| Anthropomancer | The percentage probability of Anthropomancer appearing | Percentage | 0% |
+| Coroner | The percentage probability of Coroner appearing | Percentage | 0% |
 
 -----------------------
 ## Carnivore
