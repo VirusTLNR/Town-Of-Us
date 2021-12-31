@@ -51,7 +51,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Drunk](#drunk)
 - [Giant](#giant)
 - [Button Barry](#button-barry)
-- [Anthropomancer](#anthropomancer)
+- [Coroner](#coroner)
 - [Carnivore](#carnivore)
 
 
