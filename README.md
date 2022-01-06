@@ -51,7 +51,7 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Drunk](#drunk)
 - [Giant](#giant)
 - [Button Barry](#button-barry)
-- [Anthropomancer](#anthropomancer)
+- [Coroner](#coroner)
 - [Carnivore](#carnivore)
 
 
@@ -80,6 +80,16 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.8.1 </summary>
+   <ul>
+     <li> Fixed a bug where assassinations were being counted multiple times. </li>
+     <li> Maximum number of assassinations raised from 5 to 10. </li>
+   </ul>
+ </details>
+</li>
 
 <li>
  <details>

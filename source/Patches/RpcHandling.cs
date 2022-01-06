@@ -457,6 +457,7 @@ namespace TownOfUs
                     case CustomRPC.AssassinKill:
                         var toDie = Utils.PlayerById(reader.ReadByte());
                         AssassinKill.MurderPlayer(toDie);
+                        Assassin.AssassinState.RemainingKills--;
                         AddButton.MaybeHideButtons();
                         break;
                     case CustomRPC.Teleport:

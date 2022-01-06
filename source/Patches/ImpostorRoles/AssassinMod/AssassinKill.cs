@@ -40,10 +40,6 @@ namespace TownOfUs.ImpostorRoles.AssassinMod
             bool checkLover = true
         )
         {
-            Assassin.AssassinState.RemainingKills--;
-
-            AddButton.MaybeHideButtons();
-
             var hudManager = DestroyableSingleton<HudManager>.Instance;
             if (checkLover)
             {
