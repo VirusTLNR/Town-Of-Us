@@ -83,6 +83,16 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 <li>
  <details>
+   <summary> v2.8.1 </summary>
+   <ul>
+     <li> Fixed a bug where assassinations were being counted multiple times. </li>
+     <li> Maximum number of assassinations raised from 5 to 10. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
    <summary> v2.8.0 </summary>
    <ul>
      <li> Removed the Assassin in favor of letting every Impostor assasinate. </li>
