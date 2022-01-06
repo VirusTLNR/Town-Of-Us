@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using UnhollowerBaseLib;
 using UnityEngine;
 
 namespace TownOfUs.Handshake
@@ -18,7 +19,7 @@ namespace TownOfUs.Handshake
         private static float timer = 600f;
         private static float kickingTimer = 0f;
         private static bool versionSent = false;
-        //private static string lobbyCodeText = "";
+        private static string lobbyCodeText = "";
 
         [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerJoined))]
         public class AmongUsClientOnPlayerJoinedPatch
@@ -46,7 +47,7 @@ namespace TownOfUs.Handshake
                 // Copy lobby code
                 string code = InnerNet.GameCode.IntToGameName(AmongUsClient.Instance.GameId);
                 GUIUtility.systemCopyBuffer = code;
-                //lobbyCodeText = DestroyableSingleton<TranslationController>.Instance.GetString(StringNames.RoomCode, new Il2CppReferenceArray<Il2CppSystem.Object>(0)) + "\r\n" + code;
+                lobbyCodeText = DestroyableSingleton<TranslationController>.Instance.GetString(StringNames.RoomCode, new Il2CppReferenceArray<Il2CppSystem.Object>(0)) + "\r\n" + code;
             }
         }
 
@@ -90,7 +91,7 @@ namespace TownOfUs.Handshake
                         else
                         {
                             PlayerVersion PV = playerVersions[client.Id];
-                            int diff = touVersion.CompareTo(PV.version); //may need to fix this.
+                            int diff = touVersion.CompareTo(PV.version);
                             if (diff > 0)
                             {
                                 message += $"<color=#FF0000FF>{client.Character.Data.PlayerName} has an older version of Town Of Us (v{playerVersions[client.Id].version.ToString()})\n</color>";
@@ -132,7 +133,14 @@ namespace TownOfUs.Handshake
                         Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"##vers##:-{vers.Key}//{vers.Value.guid}//{vers.Value.version.ToString()}");
                     }
                     */
-                    if (!playerVersions.ContainsKey(AmongUsClient.Instance.HostId) || touVersion.CompareTo(playerVersions[AmongUsClient.Instance.HostId].version) != 0) //may need to check this.
+                    string message = "";
+                    bool triggerUpdate = false;
+                    string hostVersion = "";
+                    PlayerVersion PV = playerVersions[AmongUsClient.Instance.HostId];
+                    int diff = touVersion.CompareTo(PV.version);
+                    Reactor.Logger<TownOfUs>.Instance.LogMessage($"MyGUID:- {Assembly.GetExecutingAssembly().ManifestModule.ModuleVersionId}");
+                    Reactor.Logger<TownOfUs>.Instance.LogMessage($"HostGUID:- {PV.guid}");
+                    if (!playerVersions.ContainsKey(AmongUsClient.Instance.HostId) || touVersion.CompareTo(PV.version) != 0)
                     {
                         kickingTimer += Time.deltaTime;
                         if (kickingTimer > 10)
@@ -141,10 +149,45 @@ namespace TownOfUs.Handshake
                             AmongUsClient.Instance.ExitGame(DisconnectReasons.ExitGame);
                             SceneChanger.ChangeScene("MainMenu");
                         }
-                        /*Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"##TOUVEERCHECK##:-{touVersion}");
-                        Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogMessage($"##TOUHOSTVERCHECK##:-{playerVersions[AmongUsClient.Instance.HostId].version}");*/
+                        //new but not working... needs a change in what is sent via the RPC. for this to work.
+                        /*
+                        if (!playerVersions.ContainsKey(AmongUsClient.Instance.HostId))
+                        {
+                            message += $"<color=#FF0000FF>The Host({AmongUsClient.Instance.allClients[AmongUsClient.Instance.HostId].PlayerName}) is not a Town Of Us Host\nYou will be kicked in {Math.Round(10 - kickingTimer)}s</color>";
+                        }
+                        else if (diff < 0)
+                        {
+                            message += $"<color=#FF0000FF>The Host({AmongUsClient.Instance.allClients[AmongUsClient.Instance.HostId].PlayerName}) has an older version of Town Of Us (v{PV.version.ToString()})\n</color>";
+                            //for linking up with the auto mod update
+                            triggerUpdate = true;
+                            hostVersion = PV.version.ToString();
+                        }
+                        else if (diff > 0)
+                        {
+                            message += $"<color=#FF0000FF>The Host({AmongUsClient.Instance.allClients[AmongUsClient.Instance.HostId].PlayerName}) has a newer version of Town Of Us (v{PV.version.ToString()})\n</color>";
+                            //for linking up with the auto mod update
+                            triggerUpdate = true;
+                            hostVersion = PV.version.ToString();
+                        }
+                        //else if (!PV.GuidMatches())
+                        else if (Assembly.GetExecutingAssembly().ManifestModule.ModuleVersionId != PV.guid)
+                        {
+                            message += $"<color=#FF0000FF>The Host({AmongUsClient.Instance.allClients[AmongUsClient.Instance.HostId].PlayerName}) has a modified version of TOU v{PV.version.ToString()} <size=50%>[{forkName}]({PV.guid.ToString()})</size>\n</color>";
+                        }
+                        __instance.GameStartText.text = message;
+                        */
+
+                        //original
                         __instance.GameStartText.text = $"<color=#FF0000FF>The host has no or a different version of Town Of Us\nYou will be kicked in {Math.Round(10 - kickingTimer)}s</color>";
                         __instance.GameStartText.transform.localPosition = __instance.StartButton.transform.localPosition + Vector3.up * 2;
+                        if (triggerUpdate == true && kickingTimer == 10)
+                        {
+                            //do auto update --- not implemented yet as the auto update system is not implemented yet.
+                            //basically.. after lobby disconnect...
+                            //trigger an auto update to save the user having to re-open the game...
+                            //the version it should be updating to is 'hostversion'
+                            //this will require a change to the RPC
+                        }
                     }
                     else
                     {
@@ -199,7 +242,7 @@ namespace TownOfUs.Handshake
                         }
 
                         PlayerVersion PV = playerVersions[client.Id];
-                        int diff = touVersion.CompareTo(PV.version); //may need to fix this
+                        int diff = touVersion.CompareTo(PV.version);
                         if (diff != 0 || !PV.GuidMatches())
                         {
                             continueStart = false;
@@ -262,6 +305,28 @@ namespace TownOfUs.Handshake
             else
                 ver = new System.Version(major, minor, build, revision);
             playerVersions[clientId] = new PlayerVersion(ver, guid);
+        }
+
+        public static void HandshakeRPC(MessageReader reader)
+        {
+            byte major = reader.ReadByte();
+            byte minor = reader.ReadByte();
+            byte patch = reader.ReadByte();
+            int versionOwnerId = reader.ReadPackedInt32();
+            byte revision = 0xFF;
+            Guid guid;
+            if (reader.Length - reader.Position >= 17)
+            { // enough bytes left to read
+                revision = reader.ReadByte();
+                // GUID
+                byte[] gbytes = reader.ReadBytes(16);
+                guid = new Guid(gbytes);
+            }
+            else
+            {
+                guid = new Guid(new byte[16]);
+            }
+            Handshake.ClientHandshake.versionHandshake(major, minor, patch, revision == 0xFF ? -1 : revision, guid, versionOwnerId);
         }
     }
 }
