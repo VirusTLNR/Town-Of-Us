@@ -47,9 +47,7 @@ namespace TownOfUs.Patches.CustomHats
         private static HatMetadataJson LoadJson()
         {
             var stream = Assembly.GetManifestResourceStream($"{HAT_RESOURCE_NAMESPACE}.{HAT_METADATA_JSON}");
-            
-            // The only JsonConvert.DeserializeObject generic that is available in Among Us
-            return JsonConvert.DeserializeObject<HatMetadataJson>(Encoding.UTF8.GetString(stream.ReadFully()), (JsonSerializerSettings) null);
+            return JsonConvert.DeserializeObject<HatMetadataJson>(Encoding.UTF8.GetString(stream.ReadFully()));
         }
 
         private static List<HatBehaviour> DiscoverHatBehaviours(HatMetadataJson metadata)
