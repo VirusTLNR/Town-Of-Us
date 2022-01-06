@@ -54,6 +54,9 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Coroner](#coroner)
 - [Carnivore](#carnivore)
 
+**Game Settings**
+- [Custom Game Options](#custom-game-options)
+- [Assassination](#assassination)
 
 
 -----------------------
