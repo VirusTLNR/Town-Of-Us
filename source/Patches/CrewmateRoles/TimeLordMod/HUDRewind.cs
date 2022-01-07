@@ -23,7 +23,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
 
             var role = Role.GetRole<TimeLord>(PlayerControl.LocalPlayer);
 
-
+            // The sprite is set in KillButtonSprite
             if (isDead)
             {
                 rewindButton.gameObject.SetActive(false);
@@ -33,11 +33,18 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             {
                 rewindButton.gameObject.SetActive(!MeetingHud.Instance);
                 rewindButton.isActive = !MeetingHud.Instance;
-                rewindButton.SetCoolDown(role.TimeLordRewindTimer(), role.GetCooldown());
+                if (role.IsRewinding)
+                {
+                    rewindButton.SetCoolDown(role.TimeRemaining, CustomGameOptions.RewindDuration);
+                }
+                else
+                {
+                    rewindButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.RewindCooldown);
+                }
             }
 
             var renderer = rewindButton.renderer;
-            if (!rewindButton.isCoolingDown & !RecordRewind.rewinding & rewindButton.enabled)
+            if (!rewindButton.isCoolingDown && !RecordRewind.rewinding && rewindButton.enabled)
             {
                 renderer.color = Palette.EnabledColor;
                 renderer.material.SetFloat("_Desat", 0f);

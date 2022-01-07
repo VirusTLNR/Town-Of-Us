@@ -34,7 +34,7 @@ namespace TownOfUs.ImpostorRoles.GrenadierMod
                 return;
             }
 
-            role.FlashButton.SetCoolDown(role.FlashTimer(), CustomGameOptions.GrenadeCooldown);
+            role.FlashButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.GrenadeCooldown);
 
             if (
                 role.FlashButton.enabled

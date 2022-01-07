@@ -10,25 +10,14 @@ using Random = System.Random;
 
 namespace TownOfUs.Roles
 {
-    public class Teleporter : Role
+    public class Teleporter : RoleWithCooldown
     {
         private KillButtonManager _teleportButton;
-        private DateTime _lastTeleported;
 
-        public Teleporter(PlayerControl player) : base(player, RoleEnum.Teleporter)
+        public Teleporter(PlayerControl player) : base(player, RoleEnum.Teleporter, CustomGameOptions.TeleporterCooldown)
         {
             ImpostorText = () => "Play fifty-two crew pickup";
             TaskText = () => "Play fifty-two crew pickup";
-        }
-
-        protected override void DoOnGameStart()
-        {
-            _lastTeleported = DateTime.UtcNow;
-        }
-
-        protected override void DoOnMeetingEnd()
-        {
-            _lastTeleported = DateTime.UtcNow;
         }
 
         public KillButtonManager TeleportButton
@@ -44,7 +33,7 @@ namespace TownOfUs.Roles
 
         public void Teleport()
         {
-            _lastTeleported = DateTime.UtcNow;
+            ResetCooldownTimer();
             Dictionary<byte, Vector2> coordinates = GenerateTeleportCoordinates();
 
             var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
@@ -123,18 +112,6 @@ namespace TownOfUs.Roles
                 coordinates.Add(target.PlayerId, destination);
             }
             return coordinates;
-        }
-
-        public float TeleportTimer()
-        {
-            var utcNow = DateTime.UtcNow;
-            var timeSpan = utcNow - _lastTeleported;
-            var num = CustomGameOptions.TeleporterCooldown * 1000f;
-            if (num - (float) timeSpan.TotalMilliseconds < 0f)
-            {
-                return 0;
-            }
-            return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
         }
     }
 }
