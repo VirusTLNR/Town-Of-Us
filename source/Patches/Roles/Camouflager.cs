@@ -10,7 +10,7 @@ namespace TownOfUs.Roles
         public bool Enabled;
         public float TimeRemaining;
 
-        public Camouflager(PlayerControl player) : base(player, RoleEnum.Camouflager, CustomGameOptions.CamouflagerDuration)
+        public Camouflager(PlayerControl player) : base(player, RoleEnum.Camouflager, CustomGameOptions.CamouflagerCd)
         {
             ImpostorText = () => "Camouflage and turn everyone grey";
             TaskText = () => "Camouflage and get secret kills";

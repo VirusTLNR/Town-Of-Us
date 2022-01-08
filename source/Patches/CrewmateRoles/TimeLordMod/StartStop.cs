@@ -24,6 +24,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
         {
             //System.Console.WriteLine("STOP...");
             role.ResetCooldownTimer();
+            role.TimeRemaining = 0;
             RecordRewind.rewinding = false;
             PlayerControl.LocalPlayer.moveable = true;
             HudManager.Instance.FullScreen.enabled = false;
