@@ -3,14 +3,13 @@ using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class Covert : Role
+    public class Covert : RoleWithCooldown
     {
-        private KillButtonManager __covertButton;
-        public DateTime LastCovert;
+        private KillButtonManager _covertButton;
         public float CovertTimeRemaining;
         public bool IsCovert { get; private set; }
 
-        public Covert(PlayerControl player) : base(player, RoleEnum.Covert)
+        public Covert(PlayerControl player) : base(player, RoleEnum.Covert, CustomGameOptions.CovertCooldown)
         {
             ImpostorText = () => "Do your tasks. Covertly.";
             TaskText = () => "Do your tasks. Covertly.";
@@ -18,30 +17,25 @@ namespace TownOfUs.Roles
 
         protected override void DoOnGameStart()
         {
-            LastCovert = DateTime.UtcNow;
+            base.DoOnGameStart();
             CovertTimeRemaining = 0f;
         }
 
         protected override void DoOnMeetingEnd()
         {
-            LastCovert = DateTime.UtcNow;
+            base.DoOnMeetingEnd();
             CovertTimeRemaining = 0f;
         }
 
         public KillButtonManager CovertButton
         {
-            get => __covertButton;
+            get => _covertButton;
             set
             {
-                __covertButton = value;
+                _covertButton = value;
                 ExtraButtons.Clear();
                 ExtraButtons.Add(value);
             }
-        }
-
-        public float CovertTimer()
-        {
-            return Utils.GetCooldownTimeRemaining(() => LastCovert, () => CustomGameOptions.CovertCooldown);
         }
 
         public void CovertTick()
@@ -73,7 +67,7 @@ namespace TownOfUs.Roles
         private void LeaveCovert()
         {
             IsCovert = false;
-            LastCovert = DateTime.UtcNow;
+            ResetCooldownTimer();
             Utils.MakeVisible(Player);
         }
     }

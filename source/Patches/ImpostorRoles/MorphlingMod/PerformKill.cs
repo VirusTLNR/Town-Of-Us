@@ -9,8 +9,8 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
     [HarmonyPatch(typeof(KillButtonManager), nameof(KillButtonManager.PerformKill))]
     public class PerformKill
     {
-        public static Sprite SampleSprite => TownOfUs.SampleSprite;
-        public static Sprite MorphSprite => TownOfUs.MorphSprite;
+        private static Sprite SampleSprite => TownOfUs.SampleSprite;
+        private static Sprite MorphSprite => TownOfUs.MorphSprite;
 
         public static bool Prefix(KillButtonManager __instance)
         {
@@ -30,13 +30,15 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
                     role.MorphButton.renderer.sprite = MorphSprite;
                     role.MorphButton.SetTarget(null);
                     DestroyableSingleton<HudManager>.Instance.KillButton.SetTarget(null);
-                    if (role.MorphTimer() < 5f)
-                        role.LastMorphed = DateTime.UtcNow.AddSeconds(5 - CustomGameOptions.MorphlingCd);
+                    if (role.CooldownTimer() < 5f)
+                    {
+                        role.SetCooldownTimer(5);
+                    }
                 }
                 else
                 {
                     if (__instance.isCoolingDown) return false;
-                    if (role.MorphTimer() != 0) return false;
+                    if (role.CooldownTimer() != 0) return false;
                     var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                         (byte) CustomRPC.Morph,
                         SendOption.Reliable, -1);

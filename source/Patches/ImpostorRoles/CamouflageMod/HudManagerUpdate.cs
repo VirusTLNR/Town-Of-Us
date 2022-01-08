@@ -36,7 +36,7 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
                 return;
             }
 
-            role.CamouflageButton.SetCoolDown(role.CamouflageTimer(), CustomGameOptions.CamouflagerCd);
+            role.CamouflageButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.CamouflagerCd);
             role.CamouflageButton.renderer.color = Palette.EnabledColor;
             role.CamouflageButton.renderer.material.SetFloat("_Desat", 0f);
         }

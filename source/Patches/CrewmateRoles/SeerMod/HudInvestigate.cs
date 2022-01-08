@@ -34,7 +34,7 @@ namespace TownOfUs.CrewmateRoles.SeerMod
             {
                 investigateButton.gameObject.SetActive(!MeetingHud.Instance);
                 investigateButton.isActive = !MeetingHud.Instance;
-                investigateButton.SetCoolDown(role.SeerTimer(), CustomGameOptions.SeerCd);
+                investigateButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.SeerCd);
 
                 var notInvestigated = PlayerControl.AllPlayerControls
                     .ToArray()

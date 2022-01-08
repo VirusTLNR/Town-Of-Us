@@ -456,14 +456,14 @@ namespace TownOfUs
                 };
 
                 Murder.KilledPlayers.Add(deadBody);
-                
+
                 if (!killer.AmOwner) return;
 
                 if (target.Is(ModifierEnum.Diseased) && killer.Is(RoleEnum.Glitch))
                 {
-                    var glitch = Role.GetRole<Glitch>(killer);
-                    glitch.LastKill = DateTime.UtcNow.AddSeconds(2 * CustomGameOptions.GlitchKillCooldown);
-                    glitch.Player.SetKillTimer(CustomGameOptions.GlitchKillCooldown * 3);
+                    Glitch glitch = Role.GetRole<Glitch>(killer);
+                    glitch.LastKill = DateTime.UtcNow.AddSeconds(2 * PlayerControl.GameOptions.KillCooldown);
+                    glitch.Player.SetKillTimer(PlayerControl.GameOptions.KillCooldown * 3);
                     return;
                 }
 

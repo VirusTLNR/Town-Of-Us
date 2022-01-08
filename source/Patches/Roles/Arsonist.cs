@@ -6,30 +6,19 @@ using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class Arsonist : Role
+    public class Arsonist : RoleWithCooldown
     {
         private KillButtonManager _igniteButton;
         public bool ArsonistWins;
         public PlayerControl ClosestPlayer;
         public readonly List<byte> DousedPlayers = new List<byte>();
         public bool IgniteUsed;
-        public DateTime LastDoused;
 
 
-        public Arsonist(PlayerControl player) : base(player, RoleEnum.Arsonist)
+        public Arsonist(PlayerControl player) : base(player, RoleEnum.Arsonist, CustomGameOptions.DouseCd)
         {
             ImpostorText = () => "Douse players and ignite the light";
             TaskText = () => "Douse players and ignite to kill everyone\nFake Tasks:";
-        }
-
-        protected override void DoOnGameStart()
-        {
-            LastDoused = DateTime.UtcNow;
-        }
-
-        protected override void DoOnMeetingEnd()
-        {
-            LastDoused = DateTime.UtcNow;
         }
 
         public KillButtonManager IgniteButton
@@ -98,16 +87,6 @@ namespace TownOfUs.Roles
             var arsonistTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             arsonistTeam.Add(PlayerControl.LocalPlayer);
             __instance.yourTeam = arsonistTeam;
-        }
-
-        public float DouseTimer()
-        {
-            var utcNow = DateTime.UtcNow;
-            var timeSpan = utcNow - LastDoused;
-            var num = CustomGameOptions.DouseCd * 1000f;
-            var flag2 = num - (float) timeSpan.TotalMilliseconds < 0f;
-            if (flag2) return 0;
-            return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace TownOfUs.ImpostorRoles.MinerMod
                 if (__instance.isCoolingDown) return false;
                 if (!__instance.isActiveAndEnabled) return false;
                 if (!role.CanPlace) return false;
-                if (role.MineTimer() != 0) return false;
+                if (role.CooldownTimer() != 0) return false;
 
                 var writer = AmongUsClient.Instance.StartRpcImmediately(PlayerControl.LocalPlayer.NetId,
                     (byte) CustomRPC.Mine, SendOption.Reliable, -1);
@@ -70,7 +70,7 @@ namespace TownOfUs.ImpostorRoles.MinerMod
             ShipStatus.Instance.AllVents = allVents.ToArray();
 
             role.Vents.Add(vent);
-            role.LastMined = DateTime.UtcNow;
+            role.ResetCooldownTimer();
         }
 
         public static int GetAvailableId()

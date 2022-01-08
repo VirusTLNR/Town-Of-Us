@@ -153,8 +153,6 @@ namespace TownOfUs.CustomOption
         public static CustomNumberOption MimicDurationOption;
         public static CustomNumberOption HackCooldownOption;
         public static CustomNumberOption HackDurationOption;
-        public static CustomNumberOption GlitchKillCooldownOption;
-        public static CustomNumberOption InitialGlitchKillCooldownOption;
         public static CustomStringOption GlitchHackDistanceOption;
 
         private static CustomHeaderOption Arsonist;
@@ -457,10 +455,6 @@ namespace TownOfUs.CustomOption
             MimicDurationOption = new CustomNumberOption(num++, "Mimic Duration", 10, 1, 30, 1f, CooldownFormat);
             HackCooldownOption = new CustomNumberOption(num++, "Hack Cooldown", 30, 10, 120, 2.5f, CooldownFormat);
             HackDurationOption = new CustomNumberOption(num++, "Hack Duration", 10, 1, 30, 1f, CooldownFormat);
-            GlitchKillCooldownOption =
-                new CustomNumberOption(num++, "Glitch Kill Cooldown", 30, 10, 120, 2.5f, CooldownFormat);
-            InitialGlitchKillCooldownOption =
-                new CustomNumberOption(num++, "Initial Glitch Kill Cooldown", 10, 10, 120, 2.5f, CooldownFormat);
             GlitchHackDistanceOption =
                 new CustomStringOption(num++, "Glitch Hack Distance", new[] {"Short", "Normal", "Long"});
 

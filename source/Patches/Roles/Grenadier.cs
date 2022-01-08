@@ -4,15 +4,14 @@ using System.Linq;
 
 namespace TownOfUs.Roles
 {
-    public class Grenadier : Role
+    public class Grenadier : RoleWithCooldown
     {
         private KillButtonManager _flashButton;
         public bool Enabled;
-        private DateTime _lastFlashed;
         public float TimeRemaining;
         private static Il2CppSystem.Collections.Generic.List<PlayerControl> _closestPlayers;
 
-        public Grenadier(PlayerControl player) : base(player, RoleEnum.Grenadier)
+        public Grenadier(PlayerControl player) : base(player, RoleEnum.Grenadier, CustomGameOptions.GrenadeCooldown)
         {
             ImpostorText = () => "Hinder the Crewmates Vision";
             TaskText = () => "Blind the crewmates to get sneaky kills";
@@ -20,13 +19,13 @@ namespace TownOfUs.Roles
 
         protected override void DoOnGameStart()
         {
-            _lastFlashed = DateTime.UtcNow;
+            base.DoOnGameStart();
             TimeRemaining = 0f;
         }
 
         protected override void DoOnMeetingEnd()
         {
-            _lastFlashed = DateTime.UtcNow;
+            base.DoOnMeetingEnd();
             TimeRemaining = 0f;
         }
 
@@ -42,11 +41,6 @@ namespace TownOfUs.Roles
                 ExtraButtons.Clear();
                 ExtraButtons.Add(value);
             }
-        }
-
-        public float FlashTimer()
-        {
-            return Utils.GetCooldownTimeRemaining(() => _lastFlashed, () => CustomGameOptions.GrenadeCooldown);
         }
 
         public void Flash()
@@ -156,7 +150,7 @@ namespace TownOfUs.Roles
         public void UnFlash()
         {
             Enabled = false;
-            _lastFlashed = DateTime.UtcNow;
+            ResetCooldownTimer();
             ((Renderer)DestroyableSingleton<HudManager>.Instance.FullScreen).enabled = true;
             DestroyableSingleton<HudManager>.Instance.FullScreen.color = new Color(0.83f, 0.83f, 0.83f, 0f);
         }

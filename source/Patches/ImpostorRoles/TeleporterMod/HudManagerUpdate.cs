@@ -33,7 +33,7 @@ namespace TownOfUs.ImpostorRoles.TeleporterMod
             var position = __instance.KillButton.transform.localPosition;
             role.TeleportButton.transform.localPosition = new Vector3(position.x,
                 __instance.ReportButton.transform.localPosition.y, position.z);
-            role.TeleportButton.SetCoolDown(role.TeleportTimer(), CustomGameOptions.TeleporterCooldown);
+            role.TeleportButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.TeleporterCooldown);
 
             if (
                 role.TeleportButton.enabled

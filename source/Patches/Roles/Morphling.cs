@@ -5,18 +5,16 @@ using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class Morphling : Role, IVisualAlteration
-
+    public class Morphling : RoleWithCooldown, IVisualAlteration
     {
         public KillButtonManager _morphButton;
         public PlayerControl ClosestPlayer;
-        public DateTime LastMorphed;
         public PlayerControl MorphedPlayer;
 
         public PlayerControl SampledPlayer;
         public float TimeRemaining;
 
-        public Morphling(PlayerControl player) : base(player, RoleEnum.Morphling)
+        public Morphling(PlayerControl player) : base(player, RoleEnum.Morphling, CustomGameOptions.MorphlingCd)
         {
             ImpostorText = () => "Transform into crewmates";
             TaskText = () => "Morph into crewmates to be disguised";
@@ -33,16 +31,11 @@ namespace TownOfUs.Roles
             }
         }
 
-        protected override void DoOnGameStart()
-        {
-            LastMorphed = DateTime.UtcNow;
-        }
-
         protected override void DoOnMeetingEnd()
         {
+            base.DoOnMeetingEnd();
             MorphButton.renderer.sprite = TownOfUs.SampleSprite;
             SampledPlayer = null;
-            LastMorphed = DateTime.UtcNow;
         }
 
         public bool Morphed => TimeRemaining > 0f;
@@ -57,17 +50,7 @@ namespace TownOfUs.Roles
         {
             MorphedPlayer = null;
             Utils.Unmorph(Player);
-            LastMorphed = DateTime.UtcNow;
-        }
-
-        public float MorphTimer()
-        {
-            var utcNow = DateTime.UtcNow;
-            var timeSpan = utcNow - LastMorphed;
-            var num = CustomGameOptions.MorphlingCd * 1000f;
-            var flag2 = num - (float)timeSpan.TotalMilliseconds < 0f;
-            if (flag2) return 0;
-            return (num - (float)timeSpan.TotalMilliseconds) / 1000f;
+            ResetCooldownTimer();
         }
 
         public bool TryGetModifiedAppearance(out VisualAppearance appearance)

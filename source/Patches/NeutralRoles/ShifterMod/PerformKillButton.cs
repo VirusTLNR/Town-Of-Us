@@ -36,7 +36,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
             var role = Role.GetRole<Shifter>(PlayerControl.LocalPlayer);
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
-            if (role.ShifterShiftTimer() != 0f) return false;
+            if (role.CooldownTimer() != 0f) return false;
             if (!__instance.enabled) return false;
             var maxDistance = GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
             if (Vector2.Distance(role.ClosestPlayer.GetTruePosition(),
@@ -48,7 +48,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 Utils.BreakShield(role.ClosestPlayer);
                 if (CustomGameOptions.ShieldBreaks)
                 {
-                    role.LastShifted = DateTime.UtcNow;
+                    role.ResetCooldownTimer();
                 }
 
                 return false;
@@ -91,7 +91,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
         {
             RoleEnum role = Utils.GetRole(other);
             //TODO - Shift Animation
-            shifterRole.LastShifted = DateTime.UtcNow;
+            shifterRole.ResetCooldownTimer();
             var shifter = shifterRole.Player;
             List<PlayerTask> tasks1, tasks2;
             List<GameData.TaskInfo> taskinfos1, taskinfos2;

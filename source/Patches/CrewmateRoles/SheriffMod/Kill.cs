@@ -18,7 +18,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
             var role = Role.GetRole<Sheriff>(PlayerControl.LocalPlayer);
             if (!PlayerControl.LocalPlayer.CanMove) return false;
             if (PlayerControl.LocalPlayer.Data.IsDead) return false;
-            if (role.SheriffKillTimer() != 0f) return false;
+            if (role.CooldownTimer() != 0f) return false;
             if (!__instance.enabled || role.ClosestPlayer == null) return false;
             var distBetweenPlayers = Utils.getDistBetweenPlayers(PlayerControl.LocalPlayer, role.ClosestPlayer);
             var flag3 = distBetweenPlayers < GameOptionsData.KillDistances[PlayerControl.GameOptions.KillDistance];
@@ -29,7 +29,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
 
                 if (CustomGameOptions.ShieldBreaks)
                 {
-                    role.LastKilled = DateTime.UtcNow;
+                    role.ResetCooldownTimer();
                 }
 
                 return false;
@@ -53,7 +53,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
                 Utils.RpcMurderPlayer(PlayerControl.LocalPlayer, role.ClosestPlayer);
             }
 
-            role.LastKilled = DateTime.UtcNow;
+            role.ResetCooldownTimer();
 
             return false;
         }

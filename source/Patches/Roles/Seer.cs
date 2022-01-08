@@ -5,39 +5,17 @@ using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class Seer : Role
+    public class Seer : RoleWithCooldown
     {
         public readonly Dictionary<byte, bool> Investigated = new Dictionary<byte, bool>();
 
-        public Seer(PlayerControl player) : base(player, RoleEnum.Seer)
+        public Seer(PlayerControl player) : base(player, RoleEnum.Seer, CustomGameOptions.SeerCd)
         {
             ImpostorText = () => "Investigate roles";
             TaskText = () => "Investigate roles and find the Impostor";
-            LastInvestigated = DateTime.UtcNow;
         }
 
         public PlayerControl ClosestPlayer;
-        public DateTime LastInvestigated { get; set; }
-
-        protected override void DoOnGameStart()
-        {
-            LastInvestigated = DateTime.UtcNow;
-        }
-
-        protected override void DoOnMeetingEnd()
-        {
-            LastInvestigated = DateTime.UtcNow;
-        }
-
-        public float SeerTimer()
-        {
-            var utcNow = DateTime.UtcNow;
-            var timeSpan = utcNow - LastInvestigated;
-            var num = CustomGameOptions.SeerCd * 1000f;
-            var flag2 = num - (float) timeSpan.TotalMilliseconds < 0f;
-            if (flag2) return 0;
-            return (num - (float) timeSpan.TotalMilliseconds) / 1000f;
-        }
 
         public bool CheckSeeReveal(PlayerControl player)
         {

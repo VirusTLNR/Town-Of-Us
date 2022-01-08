@@ -38,7 +38,7 @@ namespace TownOfUs.CrewmateRoles.CovertMod
                 return;
             }
 
-            role.CovertButton.SetCoolDown(role.CovertTimer(), CustomGameOptions.CovertCooldown);
+            role.CovertButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.CovertCooldown);
             role.CovertButton.renderer.color = Palette.EnabledColor;
             role.CovertButton.renderer.material.SetFloat("_Desat", 0f);
         }

@@ -4,28 +4,18 @@ using Object = UnityEngine.Object;
 
 namespace TownOfUs.Roles
 {
-    public class Swooper : Role
+    public class Swooper : RoleWithCooldown
     {
         public KillButtonManager _swoopButton;
         public bool Enabled;
-        public DateTime LastSwooped;
         public float TimeRemaining;
 
-        public Swooper(PlayerControl player) : base(player, RoleEnum.Swooper)
+        public Swooper(PlayerControl player) : base(player, RoleEnum.Swooper, CustomGameOptions.SwoopCd)
         {
             ImpostorText = () => "Turn invisible temporarily";
             TaskText = () => "Turn invisible and sneakily kill";
         }
 
-        protected override void DoOnGameStart()
-        {
-            LastSwooped = DateTime.UtcNow;
-        }
-
-        protected override void DoOnMeetingEnd()
-        {
-            LastSwooped = DateTime.UtcNow;
-        }
         public bool IsSwooped => TimeRemaining > 0f;
 
         public KillButtonManager SwoopButton
@@ -39,11 +29,6 @@ namespace TownOfUs.Roles
             }
         }
 
-        public float SwoopTimer()
-        {
-            return Utils.GetCooldownTimeRemaining(() => LastSwooped, () => CustomGameOptions.SwoopCd);
-        }
-
         public void Swoop()
         {
             Enabled = true;
@@ -54,7 +39,7 @@ namespace TownOfUs.Roles
         public void UnSwoop()
         {
             Enabled = false;
-            LastSwooped = DateTime.UtcNow;
+            ResetCooldownTimer();
             Utils.MakeVisible(Player);
         }
     }

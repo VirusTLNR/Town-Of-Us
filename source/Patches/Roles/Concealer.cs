@@ -4,16 +4,15 @@ using UnityEngine;
 
 namespace TownOfUs.Roles
 {
-    public class Concealer : Role
+    public class Concealer : RoleWithCooldown
     {
         private KillButtonManager _concealButton;
-        public DateTime LastConcealed { get; set; }
         public float TimeBeforeConcealed { get; private set; }
         public float ConcealTimeRemaining { get; private set; }
         public PlayerControl Target;
         public PlayerControl Concealed { get; private set; }
 
-        public Concealer(PlayerControl player) : base(player, RoleEnum.Concealer)
+        public Concealer(PlayerControl player) : base(player, RoleEnum.Concealer, CustomGameOptions.ConcealCooldown)
         {
             ImpostorText = () => "Conceal crewmates from each other for a sneaky kill";
             TaskText = () => "Conceal crewmates from each other for a sneaky kill";
@@ -21,13 +20,13 @@ namespace TownOfUs.Roles
 
         protected override void DoOnGameStart()
         {
-            LastConcealed = DateTime.UtcNow;
+            base.DoOnGameStart();
             Target = null;
         }
 
         protected override void DoOnMeetingEnd()
         {
-            LastConcealed = DateTime.UtcNow;
+            base.DoOnMeetingEnd();
             Target = null;
         }
 
@@ -40,11 +39,6 @@ namespace TownOfUs.Roles
                 ExtraButtons.Clear();
                 ExtraButtons.Add(value);
             }
-        }
-
-        public float ConcealTimer()
-        {
-            return Utils.GetCooldownTimeRemaining(() => LastConcealed, () => CustomGameOptions.ConcealCooldown);
         }
 
         public void StartConceal(PlayerControl concealed)
@@ -103,7 +97,7 @@ namespace TownOfUs.Roles
 
         private void Unconceal()
         {
-            LastConcealed = DateTime.UtcNow;
+            ResetCooldownTimer();
             if (Concealed != null)
             {
                 Utils.MakeVisible(Concealed);
