@@ -1,5 +1,6 @@
 using System;
 using HarmonyLib;
+using UnityEngine;
 
 namespace TownOfUs.Patches.ImpostorRoles
 {
@@ -18,7 +19,8 @@ namespace TownOfUs.Patches.ImpostorRoles
             if (
                 PlayerControl.GameOptions.KillCooldown > 10
                 && __instance.Data.IsImpostor && time == 10
-                && (__instance.killTimer > time || __instance.killTimer == 0))
+                && Math.Abs(__instance.killTimer - time) > 2 * Time.deltaTime
+                )
             {
                 time = CustomGameOptions.InitialImpostorKillCooldown;
             }
