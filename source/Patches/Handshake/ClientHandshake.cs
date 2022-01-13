@@ -285,19 +285,5 @@ namespace TownOfUs.Handshake
             Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"auVersion={auVersion}");
             logVersion(auVersion, touVersion, guid, forkName, clientId);
         }
-
-        private static void SendCustomDisconnect(this InnerNetClient innerNetClient, int clientId, string message)
-        {
-            var messageWriter = MessageWriter.Get(SendOption.Reliable);
-            messageWriter.StartMessage(11);
-            messageWriter.Write(innerNetClient.GameId);
-            messageWriter.WritePacked(clientId);
-            messageWriter.Write(false);
-            messageWriter.Write(8);
-            messageWriter.Write(message);
-            messageWriter.EndMessage();
-            innerNetClient.SendOrDisconnect(messageWriter);
-            messageWriter.Recycle();
-        }
     }
 }
