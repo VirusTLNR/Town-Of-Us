@@ -15,12 +15,12 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
     {
         public static bool rewinding = false;
         public static TimeLord whoIsRewinding;
-        public static List<PointInTime> points = new List<PointInTime>();
+        public static readonly List<PointInTime> points = new List<PointInTime>();
         private static float deadTime;
         private static bool isDead;
         private static float recordTime => CustomGameOptions.RewindDuration;
 
-        public static void Record()
+        private static void Record()
         {
             if (points.Count > Mathf.Round(recordTime / Time.deltaTime)) points.RemoveAt(points.Count - 1);
 
@@ -61,7 +61,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             }
         }
 
-        public static void Rewind()
+        private static void Rewind()
         {
             if (Minigame.Instance)
                 try
@@ -83,7 +83,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
                     PlayerControl.LocalPlayer.MyPhysics.RpcExitVent(Vent.currentVent.Id);
                     PlayerControl.LocalPlayer.MyPhysics.ExitAllVents();
                 }
-                
+
                 if (!PlayerControl.LocalPlayer.inVent)
                 {
                     if (!PlayerControl.LocalPlayer.Collider.enabled)
@@ -148,15 +148,28 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
         public static void Postfix()
         {
             if (rewinding)
-                Rewind();
-            else Record();
-
-            foreach (var role in Role.GetRoles(RoleEnum.TimeLord))
             {
-                var TimeLord = (TimeLord) role;
-                if ((DateTime.UtcNow - TimeLord.StartRewind).TotalMilliseconds >
-                    CustomGameOptions.RewindDuration * 1000f && TimeLord.FinishRewind < TimeLord.StartRewind)
-                    StartStop.StopRewind(TimeLord);
+                Rewind();
+            }
+            else
+            {
+                Record();
+            }
+
+            if (rewinding)
+            {
+                foreach (var role in Role.GetRoles(RoleEnum.TimeLord))
+                {
+                    var timeLord = (TimeLord) role;
+                    if (timeLord.IsRewinding)
+                    {
+                        timeLord.TimeRemaining -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        StartStop.StopRewind(timeLord);
+                    }
+                }
             }
         }
     }

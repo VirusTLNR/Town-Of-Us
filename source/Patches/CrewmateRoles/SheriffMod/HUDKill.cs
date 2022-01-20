@@ -39,6 +39,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
                     Utils.SetTarget(ref role.ClosestPlayer, KillButton);
                 }
             }
+            // TODO: Remove this?
             else
             {
                 var isImpostor = PlayerControl.LocalPlayer.Data.IsImpostor();

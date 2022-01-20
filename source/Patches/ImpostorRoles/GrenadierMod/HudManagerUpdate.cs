@@ -34,7 +34,7 @@ namespace TownOfUs.ImpostorRoles.GrenadierMod
                 return;
             }
 
-            role.FlashButton.SetCoolDown(role.FlashTimer(), CustomGameOptions.GrenadeCooldown);
+            role.FlashButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.GrenadeCooldown);
 
             if (
                 role.FlashButton.enabled
@@ -42,7 +42,6 @@ namespace TownOfUs.ImpostorRoles.GrenadierMod
                 && !Utils.IsSabotageActive()
             )
             {
-
                 role.FlashButton.renderer.color = Palette.EnabledColor;
                 role.FlashButton.renderer.material.SetFloat("_Desat", 0f);
             }

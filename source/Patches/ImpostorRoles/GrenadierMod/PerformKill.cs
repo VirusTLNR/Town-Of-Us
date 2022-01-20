@@ -27,7 +27,7 @@ namespace TownOfUs.ImpostorRoles.GrenadierMod
                 __instance.isCoolingDown
                 || !__instance.isActiveAndEnabled
                 || Utils.IsSabotageActive()
-                || role.FlashTimer() != 0
+                || role.CooldownTimer() != 0
             )
             {
                 return false;

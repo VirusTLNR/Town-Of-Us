@@ -2,11 +2,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Time>$([System.DateTime]::Now.ToString("yyyyMMddHmm"))</Time>
-    <AssemblyVersion>2.8.0</AssemblyVersion>
-    <Version>2.8.0</Version>
+    <AssemblyVersion>2.9.0</AssemblyVersion>
+    <Version>2.9.0</Version>
     <DebugType>embedded</DebugType>
   </PropertyGroup>
-
+  
   <PropertyGroup>
     <GamePlatform Condition="'$(GamePlatform)' == ''">Steam</GamePlatform>
     <GameVersion Condition="'$(GamePlatform)' == 'Steam'">2021.11.9</GameVersion>

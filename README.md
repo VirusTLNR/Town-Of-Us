@@ -51,9 +51,12 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 - [Drunk](#drunk)
 - [Giant](#giant)
 - [Button Barry](#button-barry)
-- [Anthropomancer](#anthropomancer)
+- [Coroner](#coroner)
 - [Carnivore](#carnivore)
 
+**Game Settings**
+- [Custom Game Options](#custom-game-options)
+- [Assassination](#assassination)
 
 
 -----------------------
@@ -80,6 +83,27 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+   <summary> v2.9.0 </summary>
+   <ul>
+     <li> Discount all starting cooldowns equivalent to the discount impostors get on their kill button. </li>
+     <li> Remove the Glitch kill cooldown settings and just match impostor's instead. </li>
+     <li> Fixed a bug where the initial impostor kill cooldown setting wasn't being honored. </li>
+   </ul>
+ </details>
+</li>
+
+<li>
+ <details>
+   <summary> v2.8.1 </summary>
+   <ul>
+     <li> Fixed a bug where assassinations were being counted multiple times. </li>
+     <li> Maximum number of assassinations raised from 5 to 10. </li>
+   </ul>
+ </details>
+</li>
 
 <li>
  <details>
@@ -937,8 +961,6 @@ The Glitch can Mimic someone, which results in them looking exactly like the oth
 | Mimic Duration | How long The Glitch can Mimic a player | Time | 10s |
 | Hack Cooldown | The cooldown of The Glitch's Hack button | Time | 30s |
 | Hack Duration | How long The Glitch can Hack a player | Time | 10s |
-| Glitch Kill Cooldown | The cooldown of the Glitch's Kill button | Time | 30s |
-| Initial Glitch Kill Cooldown | The cooldown of The Glitch's Kill button at the start of a game | Time | 10s |
 | Glitch Hack Distance | How far away The Glitch can Hack someone from | Short / Normal / Long | Short |
 
 -----------------------

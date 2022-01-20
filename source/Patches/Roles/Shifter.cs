@@ -12,7 +12,6 @@ namespace TownOfUs.Roles
         }
 
         public PlayerControl ClosestPlayer;
-        public DateTime LastShifted { get; set; }
 
         public void Loses()
         {

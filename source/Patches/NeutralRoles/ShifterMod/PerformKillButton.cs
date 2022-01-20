@@ -48,7 +48,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 Utils.BreakShield(role.ClosestPlayer);
                 if (CustomGameOptions.ShieldBreaks)
                 {
-                    role.LastShifted = DateTime.UtcNow;
+                    role.ResetCooldownTimer();
                 }
 
                 return false;
@@ -91,7 +91,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
         {
             RoleEnum role = Utils.GetRole(other);
             //TODO - Shift Animation
-            shifterRole.LastShifted = DateTime.UtcNow;
+            shifterRole.ResetCooldownTimer();
             var shifter = shifterRole.Player;
             List<PlayerTask> tasks1, tasks2;
             List<GameData.TaskInfo> taskinfos1, taskinfos2;
