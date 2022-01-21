@@ -18,13 +18,12 @@ using UnityEngine.SceneManagement;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Us", MajorVersion)]
+    [BepInAutoPlugin("com.slushiegoose.townofus")]
+    [BepInProcess("Among Us.exe")]
     [BepInDependency(ReactorPlugin.Id)]
-    public class TownOfUs : BasePlugin
+    public partial class TownOfUs : BasePlugin
     {
-        public const string MajorVersion = "2.2.2";
         public static string GetVersion() => typeof(TownOfUs).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
-        private const string Id = "com.slushiegoose.townofus";
 
         public static Vector3 ButtonPosition { get; } = new Vector3(2.6f, 0.7f, -9f);
 
