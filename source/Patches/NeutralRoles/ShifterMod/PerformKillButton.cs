@@ -172,9 +172,9 @@ namespace TownOfUs.NeutralRoles.ShifterMod
             }
             else
             {
-                shifter.Data.IsImpostor() = true;
+                shifter.Data.SetImpostor(true);
                 shifter.MurderPlayer(shifter);
-                shifter.Data.IsImpostor() = false;
+                shifter.Data.SetImpostor(false);
                 swapTasks = false;
             }
 
@@ -222,7 +222,7 @@ namespace TownOfUs.NeutralRoles.ShifterMod
                 if (shifter.Is(RoleEnum.Arsonist) && other.AmOwner)
                     Role.GetRole<Arsonist>(shifter).IgniteButton.Destroy();
                 DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(false);
-                DestroyableSingleton<HudManager>.Instance.KillButton.isActive = false;
+                // DestroyableSingleton<HudManager>.Instance.KillButton.isActive = false;
             }
         }
     }

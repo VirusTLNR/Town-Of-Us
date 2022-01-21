@@ -23,11 +23,11 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
             if (__instance == role.MorphButton)
             {
                 if (!__instance.isActiveAndEnabled) return false;
-                if (role.MorphButton.renderer.sprite == SampleSprite)
+                if (role.MorphButton.graphic.sprite == SampleSprite)
                 {
                     if (target == null) return false;
                     role.SampledPlayer = target;
-                    role.MorphButton.renderer.sprite = MorphSprite;
+                    role.MorphButton.graphic.sprite = MorphSprite;
                     role.MorphButton.SetTarget(null);
                     DestroyableSingleton<HudManager>.Instance.KillButton.SetTarget(null);
                     if (role.CooldownTimer() < 5f)

@@ -40,7 +40,6 @@ namespace TownOfUs
             for (int i = 0; i < toRemoveWinners.Count(); i++)
             {
                 TempData.winners.Remove(toRemoveWinners[i]);
-                return;
             }
 
             if (jester != null)

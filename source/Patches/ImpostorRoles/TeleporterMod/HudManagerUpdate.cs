@@ -28,7 +28,7 @@ namespace TownOfUs.ImpostorRoles.TeleporterMod
                 role.TeleportButton.graphic.enabled = true;
             }
 
-            role.TeleportButton.graphic.sprite = TownOfUs.ButtonSprite;
+            role.TeleportButton.graphic.sprite = TownOfUs.TeleportSprite;
             role.TeleportButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
             var position = __instance.KillButton.transform.localPosition;
             role.TeleportButton.transform.localPosition = new Vector3(position.x,

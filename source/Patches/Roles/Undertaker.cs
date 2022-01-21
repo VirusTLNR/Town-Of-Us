@@ -23,7 +23,7 @@ namespace TownOfUs.Roles
 
         protected override void DoOnMeetingEnd()
         {
-            DragDropButton.renderer.sprite = TownOfUs.DragSprite;
+            DragDropButton.graphic.sprite = TownOfUs.DragSprite;
             CurrentlyDragging = null;
             LastDragged = DateTime.UtcNow;
         }

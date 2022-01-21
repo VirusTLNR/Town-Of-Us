@@ -21,7 +21,7 @@ namespace TownOfUs.ImpostorRoles.UndertakerMod
 
             if (__instance == role.DragDropButton)
             {
-                if (role.DragDropButton.renderer.sprite == TownOfUs.DragSprite)
+                if (role.DragDropButton.graphic.sprite == TownOfUs.DragSprite)
                 {
                     if (__instance.isCoolingDown) return false;
                     if (!__instance.enabled) return false;

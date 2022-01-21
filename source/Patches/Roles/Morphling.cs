@@ -34,7 +34,7 @@ namespace TownOfUs.Roles
         protected override void DoOnMeetingEnd()
         {
             base.DoOnMeetingEnd();
-            MorphButton.renderer.sprite = TownOfUs.SampleSprite;
+            MorphButton.graphic.sprite = TownOfUs.SampleSprite;
             SampledPlayer = null;
         }
 
