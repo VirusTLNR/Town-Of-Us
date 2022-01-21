@@ -12,7 +12,7 @@ namespace TownOfUs.Patches.CustomHats
     [HarmonyPatch(typeof(HatsTab), nameof(HatsTab.OnEnable))]
     public static class HatsTab_OnEnable
     {
-        public static bool Postfix(HatsTab __instance)
+        public static bool Prefix(HatsTab __instance)
         {
             var allHats = DestroyableSingleton<HatManager>.Instance.GetUnlockedHats();
             var hatGroups = new SortedList<string, List<HatBehaviour>>(
