@@ -12,7 +12,7 @@ namespace TownOfUs.Roles
 {
     public class Teleporter : RoleWithCooldown
     {
-        private KillButtonManager _teleportButton;
+        private KillButton _teleportButton;
 
         public Teleporter(PlayerControl player) : base(player, RoleEnum.Teleporter, CustomGameOptions.TeleporterCooldown)
         {

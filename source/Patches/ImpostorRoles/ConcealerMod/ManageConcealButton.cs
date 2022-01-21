@@ -44,7 +44,7 @@ namespace TownOfUs.Patches.ImpostorRoles.ConcealerMod
             Utils.SetTarget(ref role.Target, role.ConcealButton);
 
             role.ConcealButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.ConcealCooldown);
-            role.ConcealButton.renderer.color = Palette.EnabledColor;
+            role.ConcealButton.graphic.color = Palette.EnabledColor;
         }
     }
 }

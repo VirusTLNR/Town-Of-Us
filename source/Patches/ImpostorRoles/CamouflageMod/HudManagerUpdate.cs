@@ -27,7 +27,6 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
             }
 
             role.CamouflageButton.GetComponent<AspectPosition>().Update();
-
             role.CamouflageButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
 
             if (role.Enabled)
@@ -37,8 +36,8 @@ namespace TownOfUs.ImpostorRoles.CamouflageMod
             }
 
             role.CamouflageButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.CamouflagerCd);
-            role.CamouflageButton.renderer.color = Palette.EnabledColor;
-            role.CamouflageButton.renderer.material.SetFloat("_Desat", 0f);
+            role.CamouflageButton.graphic.color = Palette.EnabledColor;
+            role.CamouflageButton.graphic.material.SetFloat("_Desat", 0f);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TownOfUs.CrewmateRoles.SeerMod;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles

@@ -1,4 +1,5 @@
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 using TownOfUs.Roles.Modifiers;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace TownOfUs
                 return false;
             }
 
-            if (player.IsImpostor || player._object.Is(RoleEnum.Glitch))
+            if (player.IsImpostor() || player._object.Is(RoleEnum.Glitch))
             {
                 __result = __instance.MaxLightRadius * PlayerControl.GameOptions.ImpostorLightMod;
                 if (player.Object.Is(ModifierEnum.ButtonBarry))

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Hazel;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ namespace TownOfUs.Roles
         // Returns true if either lover is an impostor
         public bool LoverImpostor { get; set; }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
         {
             var loverTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             loverTeam.Add(PlayerControl.LocalPlayer);
@@ -45,7 +46,7 @@ namespace TownOfUs.Roles
             if (!CustomGameOptions.RoleUnderName && player == null) return Player.name;
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.HatId == 0U ? 1.5f : 2f,
+                Player.Data.DefaultOutfit.HatId == "hat_NoHat" ? 1.5f : 2f,
                 -0.5f
             );
             if (PlayerControl.LocalPlayer.Data.IsImpostor() && RoleType == RoleEnum.LoverImpostor)

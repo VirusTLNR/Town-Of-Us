@@ -42,13 +42,13 @@ namespace TownOfUs.ImpostorRoles.GrenadierMod
                 && !Utils.IsSabotageActive()
             )
             {
-                role.FlashButton.renderer.color = Palette.EnabledColor;
-                role.FlashButton.renderer.material.SetFloat("_Desat", 0f);
+                role.FlashButton.graphic.color = Palette.EnabledColor;
+                role.FlashButton.graphic.material.SetFloat("_Desat", 0f);
             }
             else
             {
-                role.FlashButton.renderer.color = Palette.DisabledClear;
-                role.FlashButton.renderer.material.SetFloat("_Desat", 1f);
+                role.FlashButton.graphic.color = Palette.DisabledClear;
+                role.FlashButton.graphic.material.SetFloat("_Desat", 1f);
             }
         }
     }

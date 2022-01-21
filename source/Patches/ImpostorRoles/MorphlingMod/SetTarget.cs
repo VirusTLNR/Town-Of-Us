@@ -1,4 +1,5 @@
 using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.ImpostorRoles.MorphlingMod
@@ -6,7 +7,7 @@ namespace TownOfUs.ImpostorRoles.MorphlingMod
     [HarmonyPatch(typeof(KillButton), nameof(KillButton.SetTarget))]
     public class SetTarget
     {
-        public static void Postfix(KillButtonManager __instance, [HarmonyArgument(0)] PlayerControl target)
+        public static void Postfix(KillButton __instance, [HarmonyArgument(0)] PlayerControl target)
         {
             if (PlayerControl.AllPlayerControls.Count <= 1) return;
             if (PlayerControl.LocalPlayer == null) return;

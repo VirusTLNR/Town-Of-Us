@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
 using System.Linq;
+using TownOfUs.Extensions;
 
 namespace TownOfUs.Roles
 {
     public class Grenadier : RoleWithCooldown
     {
-        private KillButtonManager _flashButton;
+        private KillButton _flashButton;
         public bool Enabled;
         public float TimeRemaining;
         private static Il2CppSystem.Collections.Generic.List<PlayerControl> _closestPlayers;

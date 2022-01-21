@@ -32,7 +32,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             else
             {
                 rewindButton.gameObject.SetActive(!MeetingHud.Instance);
-                rewindButton.isActive = !MeetingHud.Instance; // TODO: I think this is unnecessary?
+                // rewindButton.isActive = !MeetingHud.Instance; // TODO: I think this is unnecessary?
                 if (role.IsRewinding)
                 {
                     rewindButton.SetCoolDown(role.TimeRemaining, CustomGameOptions.RewindDuration);

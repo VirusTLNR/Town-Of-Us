@@ -1,4 +1,5 @@
 using System;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace TownOfUs.Roles
 {
     public class Concealer : RoleWithCooldown
     {
-        private KillButtonManager _concealButton;
+        private KillButton _concealButton;
         public float TimeBeforeConcealed { get; private set; }
         public float ConcealTimeRemaining { get; private set; }
         public PlayerControl Target;

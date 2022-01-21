@@ -25,10 +25,10 @@ namespace TownOfUs.ImpostorRoles.TeleporterMod
             if (role.TeleportButton == null)
             {
                 role.TeleportButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.TeleportButton.renderer.enabled = true;
+                role.TeleportButton.graphic.enabled = true;
             }
 
-            role.TeleportButton.renderer.sprite = TownOfUs.ButtonSprite;
+            role.TeleportButton.graphic.sprite = TownOfUs.ButtonSprite;
             role.TeleportButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
             var position = __instance.KillButton.transform.localPosition;
             role.TeleportButton.transform.localPosition = new Vector3(position.x,
@@ -41,13 +41,13 @@ namespace TownOfUs.ImpostorRoles.TeleporterMod
                 && !Utils.IsSabotageActive()
                 )
             {
-                role.TeleportButton.renderer.color = Palette.EnabledColor;
-                role.TeleportButton.renderer.material.SetFloat("_Desat", 0f);
+                role.TeleportButton.graphic.color = Palette.EnabledColor;
+                role.TeleportButton.graphic.material.SetFloat("_Desat", 0f);
                 return;
             }
 
-            role.TeleportButton.renderer.color = Palette.DisabledClear;
-            role.TeleportButton.renderer.material.SetFloat("_Desat", 1f);
+            role.TeleportButton.graphic.color = Palette.DisabledClear;
+            role.TeleportButton.graphic.material.SetFloat("_Desat", 1f);
         }
     }
 }
