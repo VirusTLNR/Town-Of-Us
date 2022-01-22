@@ -34,6 +34,8 @@ namespace TownOfUs.ImpostorRoles.TeleporterMod
             role.TeleportButton.graphic.sprite = TownOfUs.TeleportSprite;
             role.TeleportButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
 
+            role.TeleportButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.TeleporterCooldown);
+
             if (
                 role.TeleportButton.enabled
                 && !role.TeleportButton.isCoolingDown
