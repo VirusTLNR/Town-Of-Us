@@ -68,11 +68,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 | Game Version | Supported? |
 | :-----------------: | :------------: |
-|  [Steam](#installation-guide-steam) (v2021.11.9.5s) | ❌ |
-|  [Epic Games](#installation-guide-epic-games) (v2021.11.9.5e) | ❌ |
-|  [Steam](#installation-guide-steam) (v2021.6.30s) | ✔️ |
-|  [Epic Games](#installation-guide-epic-games) (v2021.7.20e) | ✔️ |
-|  [Epic Games](#installation-guide-epic-games) (v2021.6.30e) | ✔️ |
+|  [Steam](#installation-guide-steam) (v2021.12.15s) | ✔ |
+|  [Epic Games](#installation-guide-epic-games) (v2021.12.15e) | ✔ |
 |  itch.io | ❌ |
 |  Microsoft Store | ❌ |
 |  Android | ❌ |
