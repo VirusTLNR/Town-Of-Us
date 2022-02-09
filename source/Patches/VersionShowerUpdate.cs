@@ -7,10 +7,12 @@ namespace TownOfUs
     [HarmonyPatch(typeof(VersionShower), nameof(VersionShower.Start))]
     public static class VersionShowerUpdate
     {
+        public static string versionShowerString = "<color=#00FF00FF>TownOfUs " + TownOfUs.GetVersion() + "</color>";
+
         public static void Postfix(VersionShower __instance)
         {
             var text = __instance.text;
-            text.text += " - <color=#00FF00FF>TownOfUs " + TownOfUs.GetVersion() + "</color>";
+            text.text += " - "+ versionShowerString;
         }
     }
 }

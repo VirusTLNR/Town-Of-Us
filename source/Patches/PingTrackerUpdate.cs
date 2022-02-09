@@ -28,7 +28,7 @@ namespace TownOfUs
             position.AdjustPosition();
 
             __instance.text.text =
-                "<color=#00FF00FF>TownOfUs " + TownOfUs.GetVersion() + "</color>\n" +
+                VersionShowerUpdate.versionShowerString+"\n" +
                 $"Ping: {AmongUsClient.Instance.Ping}ms\n" +
                 (!MeetingHud.Instance
                     ? "tinyurl.com/Town-Of-Us"
