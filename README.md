@@ -83,11 +83,26 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 <li>
  <details>
+  <summary> v3.0.0 </summary>
+  <ul>
+     <li> Support for Among Us 2021.12.15. </li>
+     <li> Added an icon for the Teleporter ability. </li>
+     <li> Changed the Swapper text to no longer recommend causing chaos. </li>
+
+  </ul>
+ </details>
+</li>
+
+<li>
+ <details>
    <summary> v2.9.0 </summary>
    <ul>
      <li> Discount all starting cooldowns equivalent to the discount impostors get on their kill button. </li>
      <li> Remove the Glitch kill cooldown settings and just match impostor's instead. </li>
      <li> Fixed a bug where the initial impostor kill cooldown setting wasn't being honored. </li>
+     <li> Fixes for players hit by Grenadier staying flashed in lobby. Thanks https://github.com/Oshroth/. </li>
+     <li> Giant shows a different height and weight on Medbay Scanner. </li>
+     <li> Fixed a color issue when the Spy gets Shifted. </li>
    </ul>
  </details>
 </li>
