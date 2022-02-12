@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using TownOfUs.Extensions;
 using TownOfUs.Roles;
 
 namespace TownOfUs.CrewmateRoles.SheriffMod
@@ -6,7 +7,7 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
     [HarmonyPatch(typeof(HudManager), nameof(HudManager.Update))]
     public class HUDKill
     {
-        private static KillButtonManager KillButton;
+        private static KillButton KillButton;
 
         public static void Postfix(HudManager __instance)
         {
@@ -27,12 +28,12 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
                 if (isDead)
                 {
                     KillButton.gameObject.SetActive(false);
-                    KillButton.isActive = false;
+                    // KillButton.isActive = false;
                 }
                 else
                 {
                     KillButton.gameObject.SetActive(!MeetingHud.Instance);
-                    KillButton.isActive = !MeetingHud.Instance;
+                    // KillButton.isActive = !MeetingHud.Instance;
                     KillButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.SheriffKillCd);
 
                     Utils.SetTarget(ref role.ClosestPlayer, KillButton);
@@ -41,18 +42,18 @@ namespace TownOfUs.CrewmateRoles.SheriffMod
             // TODO: Remove this?
             else
             {
-                var isImpostor = PlayerControl.LocalPlayer.Data.IsImpostor;
+                var isImpostor = PlayerControl.LocalPlayer.Data.IsImpostor();
                 if (!isImpostor) return;
                 var isDead2 = PlayerControl.LocalPlayer.Data.IsDead;
                 if (isDead2)
                 {
                     KillButton.gameObject.SetActive(false);
-                    KillButton.isActive = false;
+                    // KillButton.isActive = false;
                 }
                 else
                 {
                     __instance.KillButton.gameObject.SetActive(!MeetingHud.Instance);
-                    __instance.KillButton.isActive = !MeetingHud.Instance;
+                    // __instance.KillButton.isActive = !MeetingHud.Instance;
                 }
             }
         }

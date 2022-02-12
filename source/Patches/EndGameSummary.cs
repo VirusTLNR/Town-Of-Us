@@ -68,7 +68,7 @@ namespace TownOfUs.Patches
         {
             var position = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, Camera.main.nearClipPlane));
             GameObject roleSummary = UnityEngine.Object.Instantiate(__instance.WinText.gameObject);
-            roleSummary.transform.position = new Vector3(__instance.ExitButton.transform.position.x + 0.1f, position.y - 0.1f, -14f);
+            roleSummary.transform.position = new Vector3(__instance.Navigation.ExitButton.transform.position.x + 0.1f, position.y - 0.1f, -14f);
             roleSummary.transform.localScale = new Vector3(1f, 1f, 1f);
 
             var roleSummaryText = new StringBuilder();
@@ -94,8 +94,8 @@ namespace TownOfUs.Patches
                 var won = "";
                 foreach (WinningPlayerData winner in TempData.winners)
                 {
-                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"WinnerName=#{winner.Name}# vs PlayerName=#{data.PlayerName}#");
-                    if (winner.Name == data.PlayerName)
+                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"WinnerName=#{winner.PlayerName}# vs PlayerName=#{data.PlayerName}#");
+                    if (winner.PlayerName == data.PlayerName)
                     {
                         Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"TRUE");
                         won = $"[<color=#FAD934FF>W</color>]";

@@ -18,14 +18,16 @@ using UnityEngine.SceneManagement;
 
 namespace TownOfUs
 {
-    [BepInPlugin(Id, "Town Of Us", MajorVersion)]
+    [BepInAutoPlugin("com.slushiegoose.townofus")]
+    [BepInProcess("Among Us.exe")]
     [BepInDependency(ReactorPlugin.Id)]
-    public class TownOfUs : BasePlugin
+    public partial class TownOfUs : BasePlugin
     {
-        public const string MajorVersion = "2.2.2";
         public static string GetVersion() => typeof(TownOfUs).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
-        private const string Id = "com.slushiegoose.townofus";
 
+        public static Vector3 ButtonPosition { get; } = new Vector3(2.6f, 0.7f, -9f);
+
+        public static Sprite SettingsButton;
         public static Sprite JanitorClean;
         public static Sprite EngineerFix;
         public static Sprite SwapperSwitch;
@@ -49,6 +51,7 @@ namespace TownOfUs
         public static Sprite ReviveSprite;
         public static Sprite FlashSprite;
         public static Sprite ButtonSprite;
+        public static Sprite TeleportSprite;
         public static Sprite PolusSprite;
 
         public static Sprite CycleSprite;
@@ -75,6 +78,7 @@ namespace TownOfUs
 
             Generate.GenerateAll();
 
+            SettingsButton = CreateSprite("TownOfUs.Resources.SettingsButton.png");
             JanitorClean = CreateSprite("TownOfUs.Resources.Janitor.png");
             EngineerFix = CreateSprite("TownOfUs.Resources.Engineer.png");
             SwapperSwitch = CreateSprite("TownOfUs.Resources.SwapperSwitch.png");
@@ -98,6 +102,7 @@ namespace TownOfUs
             ReviveSprite = CreateSprite("TownOfUs.Resources.Revive.png");
             FlashSprite = CreateSprite("TownOfUs.Resources.Flash.png");
             ButtonSprite = CreateSprite("TownOfUs.Resources.Button.png");
+            TeleportSprite = CreateSprite("TownOfUs.Resources.Teleport.png");
             DragSprite = CreateSprite("TownOfUs.Resources.Drag.png");
             DropSprite = CreateSprite("TownOfUs.Resources.Drop.png");
             PolusSprite = CreateSprite("TownOfUs.Resources.polus.gg.png");

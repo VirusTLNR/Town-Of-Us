@@ -51,7 +51,7 @@ namespace TownOfUs.CrewmateRoles.SwapperMod
                 var name1 = Swap1.NameText.transform;
                 var mask1 = Swap1.Background.transform;
                 var whiteBackground1 = Swap1.PlayerButton.transform;
-                
+
                 var pooldest1 = (Vector2) pool1.position;
                 var namedest1 = (Vector2) name1.position;
                 var maskdest1 = (Vector2) mask1.position;

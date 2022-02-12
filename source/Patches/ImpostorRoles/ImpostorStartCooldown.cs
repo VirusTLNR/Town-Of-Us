@@ -1,5 +1,6 @@
 using System;
 using HarmonyLib;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Patches.ImpostorRoles
@@ -17,8 +18,8 @@ namespace TownOfUs.Patches.ImpostorRoles
         public static void Prefix(PlayerControl __instance, ref float time)
         {
             if (
-                PlayerControl.GameOptions.KillCooldown > 10
-                && __instance.Data.IsImpostor && time == 10
+                PlayerControl.GameOptions.KillCooldown > 1
+                && __instance.Data.IsImpostor() && time == 10
                 && Math.Abs(__instance.killTimer - time) > 2 * Time.deltaTime
                 )
             {

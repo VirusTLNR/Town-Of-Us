@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Hazel;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ namespace TownOfUs.Roles
         // Returns true if either lover is an impostor
         public bool LoverImpostor { get; set; }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
         {
             var loverTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             loverTeam.Add(PlayerControl.LocalPlayer);
@@ -45,10 +46,10 @@ namespace TownOfUs.Roles
             if (!CustomGameOptions.RoleUnderName && player == null) return Player.name;
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.HatId == 0U ? 1.5f : 2f,
+                Player.CurrentOutfit.HatId == "hat_NoHat" ? 1.5f : 2f,
                 -0.5f
             );
-            if (PlayerControl.LocalPlayer.Data.IsImpostor && RoleType == RoleEnum.LoverImpostor)
+            if (PlayerControl.LocalPlayer.Data.IsImpostor() && RoleType == RoleEnum.LoverImpostor)
             {
                 Player.nameText.color = Palette.ImpostorRed;
                 if (player != null) player.NameText.color = Palette.ImpostorRed;
@@ -153,9 +154,9 @@ namespace TownOfUs.Roles
             /*var lover1 = Player;
             var lover2 = OtherLover.Player;
             //System.Console.WriteLine("reached révoila");
-            lover1.Data.IsImpostor = true;
+            lover1.Data.IsImpostor() = true;
             lover1.Data.IsDead = false;
-            lover2.Data.IsImpostor = true;
+            lover2.Data.IsImpostor() = true;
             lover2.Data.IsDead = false;
             foreach (var player in PlayerControl.AllPlayerControls)
             {
@@ -164,7 +165,7 @@ namespace TownOfUs.Roles
                 player.RemoveInfected();
                 player.Die(0);
                 player.Data.IsDead = true;
-                player.Data.IsImpostor = false;
+                player.Data.IsImpostor() = false;
             }*/
 
             LoveCoupleWins = true;

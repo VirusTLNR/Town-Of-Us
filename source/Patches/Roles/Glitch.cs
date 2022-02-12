@@ -43,8 +43,8 @@ namespace TownOfUs.Roles
         public DateTime LastMimic { get; set; }
         public DateTime LastHack { get; set; }
         public DateTime LastKill { get; set; }
-        public KillButtonManager HackButton { get; set; }
-        public KillButtonManager MimicButton { get; set; }
+        public KillButton HackButton { get; set; }
+        public KillButton MimicButton { get; set; }
         public PlayerControl KillTarget { get; set; }
         public PlayerControl HackTarget { get; set; }
         public ChatController MimicList { get; set; }
@@ -91,7 +91,7 @@ namespace TownOfUs.Roles
 
         public void Loses()
         {
-            Player.Data.IsImpostor = true;
+            LostByRPC = true;
         }
 
         protected override void DoOnGameStart()
@@ -111,7 +111,7 @@ namespace TownOfUs.Roles
             LastKill = DateTime.UtcNow;
         }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
         {
             var glitchTeam = new Il2CppSystem.Collections.Generic.List<PlayerControl>();
             glitchTeam.Add(PlayerControl.LocalPlayer);
@@ -200,7 +200,7 @@ namespace TownOfUs.Roles
             }
         }
 
-        public bool UseAbility(KillButtonManager __instance)
+        public bool UseAbility(KillButton __instance)
         {
             if (__instance == HackButton)
                 HackButtonHandler.HackButtonPress(this, __instance);
@@ -288,8 +288,8 @@ namespace TownOfUs.Roles
                                 new Vector3(HudManager.Instance.KillButton.transform.position.x,
                                     HudManager.Instance.KillButton.transform.position.y, -50f);
                             HudManager.Instance.KillButton.enabled = false;
-                            HudManager.Instance.KillButton.renderer.color = Palette.DisabledClear;
-                            HudManager.Instance.KillButton.renderer.material.SetFloat("_Desat", 1f);
+                            HudManager.Instance.KillButton.graphic.color = Palette.DisabledClear;
+                            HudManager.Instance.KillButton.graphic.material.SetFloat("_Desat", 1f);
                         }
 
                         if (HudManager.Instance.UseButton != null)
@@ -306,8 +306,9 @@ namespace TownOfUs.Roles
                                     HudManager.Instance.UseButton.transform.position.y, -50f);
                             lockImg[1].layer = 5;
                             HudManager.Instance.UseButton.enabled = false;
-                            HudManager.Instance.UseButton.currentButtonShown.graphic.color = Palette.DisabledClear;
-                            HudManager.Instance.UseButton.currentButtonShown.graphic.material.SetFloat("_Desat", 1f);
+                            //TODO: !LOOK INTO THIS USE BUTTON..
+                            HudManager.Instance.UseButton.graphic.color = Palette.DisabledClear;
+                            HudManager.Instance.UseButton.graphic.material.SetFloat("_Desat", 1f);
                         }
 
                         if (HudManager.Instance.ReportButton != null)
@@ -343,8 +344,8 @@ namespace TownOfUs.Roles
                                     role.ExtraButtons[0].transform.position.y, -50f);
                                 lockImg[3].layer = 5;
                                 role.ExtraButtons[0].enabled = false;
-                                role.ExtraButtons[0].renderer.color = Palette.DisabledClear;
-                                role.ExtraButtons[0].renderer.material.SetFloat("_Desat", 1f);
+                                role.ExtraButtons[0].graphic.color = Palette.DisabledClear;
+                                role.ExtraButtons[0].graphic.material.SetFloat("_Desat", 1f);
                             }
 
                         if (Minigame.Instance)
@@ -376,15 +377,16 @@ namespace TownOfUs.Roles
                             HudManager.Instance.UseButton.enabled = true;
                             HudManager.Instance.ReportButton.enabled = true;
                             HudManager.Instance.KillButton.enabled = true;
-                            HudManager.Instance.UseButton.currentButtonShown.graphic.color = Palette.EnabledColor;
-                            HudManager.Instance.UseButton.currentButtonShown.graphic.material.SetFloat("_Desat", 0f);
+                            //TODO: !LOOK INTO THIS USE BUTTON..
+                            HudManager.Instance.UseButton.graphic.color = Palette.DisabledClear;
+                            HudManager.Instance.UseButton.graphic.material.SetFloat("_Desat", 1f);
                             var role = GetRole(PlayerControl.LocalPlayer);
                             if (role != null)
                                 if (role.ExtraButtons.Count > 0)
                                 {
                                     role.ExtraButtons[0].enabled = true;
-                                    role.ExtraButtons[0].renderer.color = Palette.EnabledColor;
-                                    role.ExtraButtons[0].renderer.material.SetFloat("_Desat", 0f);
+                                    role.ExtraButtons[0].graphic.color = Palette.EnabledColor;
+                                    role.ExtraButtons[0].graphic.material.SetFloat("_Desat", 0f);
                                 }
                         }
 
@@ -454,8 +456,8 @@ namespace TownOfUs.Roles
         {
             public static void KillButtonUpdate(Glitch __gInstance, HudManager __instance)
             {
-                if (!__gInstance.Player.Data.IsImpostor && Input.GetKeyDown(KeyCode.Q))
-                    __instance.KillButton.PerformKill();
+                if (!__gInstance.Player.Data.IsImpostor() && Input.GetKeyDown(KeyCode.Q))
+                    __instance.KillButton.DoClick();
 
                 __instance.KillButton.gameObject.SetActive(__instance.UseButton.isActiveAndEnabled &&
                                                            !__gInstance.Player.Data.IsDead);
@@ -477,7 +479,7 @@ namespace TownOfUs.Roles
                     __gInstance.KillTarget.myRend.material.SetColor("_OutlineColor", __gInstance.Color);
             }
 
-            public static void KillButtonPress(Glitch __gInstance, KillButtonManager __instance)
+            public static void KillButtonPress(Glitch __gInstance, KillButton __instance)
             {
                 if (__gInstance.KillTarget != null)
                 {
@@ -507,15 +509,15 @@ namespace TownOfUs.Roles
                 {
                     __gInstance.HackButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
                     __gInstance.HackButton.gameObject.SetActive(true);
-                    __gInstance.HackButton.renderer.enabled = true;
+                    __gInstance.HackButton.graphic.enabled = true;
                 }
 
-                __gInstance.HackButton.renderer.sprite = HackSprite;
+                __gInstance.HackButton.graphic.sprite = HackSprite;
 
                 __gInstance.HackButton.gameObject.SetActive(__instance.UseButton.isActiveAndEnabled &&
                                                             !__gInstance.Player.Data.IsDead);
                 __gInstance.HackButton.transform.position = new Vector3(__gInstance.MimicButton.transform.position.x,
-                    __instance.ReportButton.transform.position.y, __instance.ReportButton.transform.position.z);
+                    __gInstance.HackButton.transform.position.y, __instance.ReportButton.transform.position.z);
                 __gInstance.HackButton.SetCoolDown(
                     CustomGameOptions.HackCooldown - (float)(DateTime.UtcNow - __gInstance.LastHack).TotalSeconds,
                     CustomGameOptions.HackCooldown);
@@ -538,7 +540,7 @@ namespace TownOfUs.Roles
                     __gInstance.HackTarget.myRend.material.SetColor("_OutlineColor", __gInstance.Color);
             }
 
-            public static void HackButtonPress(Glitch __gInstance, KillButtonManager __instance)
+            public static void HackButtonPress(Glitch __gInstance, KillButton __instance)
             {
                 if (__gInstance.HackTarget != null)
                 {
@@ -568,10 +570,10 @@ namespace TownOfUs.Roles
                 {
                     __gInstance.MimicButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
                     __gInstance.MimicButton.gameObject.SetActive(true);
-                    __gInstance.MimicButton.renderer.enabled = true;
+                    __gInstance.MimicButton.graphic.enabled = true;
                 }
 
-                __gInstance.MimicButton.renderer.sprite = MimicSprite;
+                __gInstance.MimicButton.graphic.sprite = MimicSprite;
 
                 __gInstance.MimicButton.gameObject.SetActive(__instance.UseButton.isActiveAndEnabled &&
                                                              !__gInstance.Player.Data.IsDead);
@@ -582,14 +584,14 @@ namespace TownOfUs.Roles
                 if (!__gInstance.MimicButton.isCoolingDown && !__gInstance.IsUsingMimic)
                 {
                     __gInstance.MimicButton.isCoolingDown = false;
-                    __gInstance.MimicButton.renderer.material.SetFloat("_Desat", 0f);
-                    __gInstance.MimicButton.renderer.color = Palette.EnabledColor;
+                    __gInstance.MimicButton.graphic.material.SetFloat("_Desat", 0f);
+                    __gInstance.MimicButton.graphic.color = Palette.EnabledColor;
                 }
                 else
                 {
                     __gInstance.MimicButton.isCoolingDown = true;
-                    __gInstance.MimicButton.renderer.material.SetFloat("_Desat", 1f);
-                    __gInstance.MimicButton.renderer.color = Palette.DisabledClear;
+                    __gInstance.MimicButton.graphic.material.SetFloat("_Desat", 1f);
+                    __gInstance.MimicButton.graphic.color = Palette.DisabledClear;
                 }
 
                 if (!__gInstance.IsUsingMimic)
@@ -599,7 +601,7 @@ namespace TownOfUs.Roles
                         CustomGameOptions.MimicCooldown);
             }
 
-            public static void MimicButtonPress(Glitch __gInstance, KillButtonManager __instance)
+            public static void MimicButtonPress(Glitch __gInstance, KillButton __instance)
             {
                 if (__gInstance.MimicList == null)
                 {

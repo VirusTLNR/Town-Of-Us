@@ -1,4 +1,5 @@
 using System;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace TownOfUs.Roles
 {
     public class Concealer : RoleWithCooldown
     {
-        private KillButtonManager _concealButton;
+        private KillButton _concealButton;
         public float TimeBeforeConcealed { get; private set; }
         public float ConcealTimeRemaining { get; private set; }
         public PlayerControl Target;
@@ -30,7 +31,7 @@ namespace TownOfUs.Roles
             Target = null;
         }
 
-        public KillButtonManager ConcealButton
+        public KillButton ConcealButton
         {
             get => _concealButton;
             set
@@ -82,7 +83,7 @@ namespace TownOfUs.Roles
         {
             // If the local player is an impostor, we don't actually want to swoop them
             if (
-                PlayerControl.LocalPlayer.Data.IsImpostor
+                PlayerControl.LocalPlayer.Data.IsImpostor()
                 || PlayerControl.LocalPlayer.Data.IsDead
                 || CamouflageUnCamouflage.IsCamoed
                 || Concealed == null

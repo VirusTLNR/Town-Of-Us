@@ -27,12 +27,12 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
             if (isDead)
             {
                 rewindButton.gameObject.SetActive(false);
-                rewindButton.isActive = false;
+                // rewindButton.isActive = false;
             }
             else
             {
                 rewindButton.gameObject.SetActive(!MeetingHud.Instance);
-                rewindButton.isActive = !MeetingHud.Instance; // TODO: I think this is unnecessary?
+                // rewindButton.isActive = !MeetingHud.Instance; // TODO: I think this is unnecessary?
                 if (role.IsRewinding)
                 {
                     rewindButton.SetCoolDown(role.TimeRemaining, CustomGameOptions.RewindDuration);
@@ -43,7 +43,7 @@ namespace TownOfUs.CrewmateRoles.TimeLordMod
                 }
             }
 
-            var renderer = rewindButton.renderer;
+            var renderer = rewindButton.graphic;
             if (
                 !rewindButton.isCoolingDown
                 && !RecordRewind.rewinding // Other roles show it as enabled when the ability is active, should this?

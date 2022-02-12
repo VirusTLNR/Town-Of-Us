@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TownOfUs.CrewmateRoles.SeerMod;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -27,9 +28,9 @@ namespace TownOfUs.Roles
                 case SeeReveal.Nobody:
                     return false;
                 case SeeReveal.ImpsAndNeut:
-                    return role != null && role.Faction != Faction.Crewmates || player.Data.IsImpostor;
+                    return role != null && role.Faction != Faction.Crewmates || player.Data.IsImpostor();
                 case SeeReveal.Crew:
-                    return role != null && role.Faction == Faction.Crewmates || !player.Data.IsImpostor;
+                    return role != null && role.Faction == Faction.Crewmates || !player.Data.IsImpostor();
             }
 
             return false;

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Reactor.Extensions;
 using TMPro;
+using TownOfUs.Extensions;
 using TownOfUs.ImpostorRoles.CamouflageMod;
 using TownOfUs.Patches;
 using TownOfUs.Roles.Modifiers;
@@ -21,7 +22,7 @@ namespace TownOfUs.Roles
 
         public static bool NobodyWins;
 
-        public readonly List<KillButtonManager> ExtraButtons = new List<KillButtonManager>();
+        public readonly List<KillButton> ExtraButtons = new List<KillButton>();
 
         protected Func<string> ImpostorText;
         protected Func<string> TaskText;
@@ -55,6 +56,7 @@ namespace TownOfUs.Roles
         protected internal RoleEnum RoleType { get; }
         private RoleDetailsAttribute RoleDetailsAttribute { get; }
 
+        public bool LostByRPC { get; protected set; }
         protected internal bool Hidden { get; set; } = false;
 
         protected internal Faction Faction => RoleDetailsAttribute.Faction;
@@ -99,11 +101,11 @@ namespace TownOfUs.Roles
         {
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.HatId == 0U ? 1.5f : 2.0f,
+                Player.Data.DefaultOutfit.HatId == "hat_NoHat" ? 1.5f : 2.0f,
                 -0.5f
             );
             if (PlayerControl.LocalPlayer.Data.IsDead && CustomGameOptions.DeadSeeRoles) return Utils.ShowDeadBodies;
-            if (Faction == Faction.Impostors && PlayerControl.LocalPlayer.Data.IsImpostor &&
+            if (Faction == Faction.Impostors && PlayerControl.LocalPlayer.Data.IsImpostor() &&
                 CustomGameOptions.ImpostorSeeRoles) return true;
             return GetRole(PlayerControl.LocalPlayer) == this;
         }
@@ -112,7 +114,7 @@ namespace TownOfUs.Roles
          * Hook. Override this method to run before the cutscene showing the player who's on their team.
          * I'm not really sure why anybody does this at the moment.
          */
-        protected virtual void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
+        protected virtual void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
         {
         }
 
@@ -195,10 +197,10 @@ namespace TownOfUs.Roles
 
             Player.nameText.transform.localPosition = new Vector3(
                 0f,
-                Player.Data.HatId == 0U ? 1.5f : 2.0f,
+                Player.CurrentOutfit.HatId == "hat_NoHat" ? 1.5f : 2.0f,
                 -0.5f
             );
-            return Player.name + "\n" + Name;
+            return Player.GetDefaultOutfit()._playerName + "\n" + Name;
         }
 
         public static bool operator ==(Role a, Role b)
@@ -253,12 +255,12 @@ namespace TownOfUs.Roles
         public static T Gen<T>(Type type, List<PlayerControl> players, CustomRPC rpc)
         {
             var player = players[Random.RandomRangeInt(0, players.Count)];
-            
+
             var role = Gen<T>(type, player, rpc);
             players.Remove(player);
             return role;
         }
-        
+
         public static Role GetRole(PlayerControl player)
         {
             if (player == null) return null;
@@ -306,7 +308,7 @@ namespace TownOfUs.Roles
                     //System.Console.WriteLine("REACHED HERE - CREW");
                     var modifier = Modifier.GetModifier(PlayerControl.LocalPlayer);
                     if (modifier != null)
-                        ModifierText = Object.Instantiate(__instance.Title, __instance.Title.transform.parent, false);
+                        ModifierText = Object.Instantiate(__instance.RoleText, __instance.RoleText.transform.parent, false);
                     //System.Console.WriteLine("MODIFIER TEXT PLEASE WORK");
                     //                        Scale = ModifierText.scale;
                     else
@@ -322,7 +324,7 @@ namespace TownOfUs.Roles
                     //System.Console.WriteLine("REACHED HERE - IMP");
                     var modifier = Modifier.GetModifier(PlayerControl.LocalPlayer);
                     if (modifier != null)
-                        ModifierText = Object.Instantiate(__instance.Title, __instance.Title.transform.parent, false);
+                        ModifierText = Object.Instantiate(__instance.RoleText, __instance.RoleText.transform.parent, false);
                     //System.Console.WriteLine("MODIFIER TEXT PLEASE WORK");
                     //                        Scale = ModifierText.scale;
                     else
@@ -330,26 +332,28 @@ namespace TownOfUs.Roles
                 }
             }
 
-            [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__14), nameof(IntroCutscene._CoBegin_d__14.MoveNext))]
+            [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__18), nameof(IntroCutscene._CoBegin_d__18.MoveNext))]
             public static class IntroCutscene_CoBegin__d_MoveNext
             {
-                public static void Prefix(IntroCutscene._CoBegin_d__14 __instance)
+                public static void Prefix(IntroCutscene._CoBegin_d__18 __instance)
                 {
                     var role = GetRole(PlayerControl.LocalPlayer);
 
                     if (role != null) role.IntroPrefix(__instance);
                 }
 
-                public static void Postfix(IntroCutscene._CoBegin_d__14 __instance)
+                public static void Postfix(IntroCutscene._CoBegin_d__18 __instance)
                 {
                     var role = GetRole(PlayerControl.LocalPlayer);
-                    var alpha = __instance.__4__this.Title.color.a;
+                    var alpha = __instance.__4__this.RoleText.color.a;
                     if (role != null && !role.Hidden)
                     {
-                        __instance.__4__this.Title.text = role.Name;
-                        __instance.__4__this.Title.color = role.Color;
-                        __instance.__4__this.ImpostorText.text = role.ImpostorText();
-                        __instance.__4__this.ImpostorText.gameObject.SetActive(true);
+                        __instance.__4__this.TeamTitle.text = role.Faction == Faction.Neutral ? "Neutral" : __instance.__4__this.TeamTitle.text;
+                        __instance.__4__this.TeamTitle.color = role.Faction == Faction.Neutral ? Color.white : __instance.__4__this.TeamTitle.color;
+                        __instance.__4__this.RoleText.text = role.Name;
+                        __instance.__4__this.RoleText.color = role.Color;
+                        __instance.__4__this.RoleBlurbText.text = role.ImpostorText();
+                        //    __instance.__4__this.ImpostorText.gameObject.SetActive(true);
                         __instance.__4__this.BackgroundBar.material.color = role.Color;
                     }
 
@@ -384,10 +388,10 @@ namespace TownOfUs.Roles
             }
         }
 
-        [HarmonyPatch(typeof(PlayerControl._CoSetTasks_d__83), nameof(PlayerControl._CoSetTasks_d__83.MoveNext))]
+        [HarmonyPatch(typeof(PlayerControl._CoSetTasks_d__102), nameof(PlayerControl._CoSetTasks_d__102.MoveNext))]
         public static class PlayerControl_SetTasks
         {
-            public static void Postfix(PlayerControl._CoSetTasks_d__83 __instance)
+            public static void Postfix(PlayerControl._CoSetTasks_d__102 __instance)
             {
                 if (__instance == null) return;
                 var player = __instance.__4__this;
@@ -558,7 +562,7 @@ namespace TownOfUs.Roles
                     {
                         try
                         {
-                            player.NameText.text = role.Player.name;
+                            player.NameText.text = role.Player.GetDefaultOutfit()._playerName;
                         }
                         catch
                         {
@@ -578,7 +582,7 @@ namespace TownOfUs.Roles
 
                 foreach (var player in PlayerControl.AllPlayerControls)
                 {
-                    if (!(player.Data != null && player.Data.IsImpostor && PlayerControl.LocalPlayer.Data.IsImpostor))
+                    if (!(player.Data != null && player.Data.IsImpostor() && PlayerControl.LocalPlayer.Data.IsImpostor()))
                     {
                         player.nameText.text = player.name;
                         player.nameText.color = Color.white;
@@ -593,7 +597,7 @@ namespace TownOfUs.Roles
                             continue;
                         }
 
-                    if (player.Data != null && PlayerControl.LocalPlayer.Data.IsImpostor && player.Data.IsImpostor) continue;
+                    if (player.Data != null && PlayerControl.LocalPlayer.Data.IsImpostor() && player.Data.IsImpostor()) continue;
                 }
             }
         }

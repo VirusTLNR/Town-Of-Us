@@ -68,11 +68,8 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 
 | Game Version | Supported? |
 | :-----------------: | :------------: |
-|  [Steam](#installation-guide-steam) (v2021.11.9.5s) | ❌ |
-|  [Epic Games](#installation-guide-epic-games) (v2021.11.9.5e) | ❌ |
-|  [Steam](#installation-guide-steam) (v2021.6.30s) | ✔️ |
-|  [Epic Games](#installation-guide-epic-games) (v2021.7.20e) | ✔️ |
-|  [Epic Games](#installation-guide-epic-games) (v2021.6.30e) | ✔️ |
+|  [Steam](#installation-guide-steam) (v2021.12.15s) | ✔ |
+|  [Epic Games](#installation-guide-epic-games) (v2021.12.15e) | ✔ |
 |  itch.io | ❌ |
 |  Microsoft Store | ❌ |
 |  Android | ❌ |
@@ -83,6 +80,21 @@ An Among Us mod that adds a bunch of roles, modifiers and game settings
 <details>
   <summary> Changelog </summary>
 <ul>
+
+<li>
+ <details>
+  <summary> v3.0.0 </summary>
+  <ul>
+     <li> Support for Among Us 2021.12.15. </li>
+     <li> Added an icon for the Teleporter ability. </li>
+     <li> Changed the Swapper text to no longer recommend causing chaos. </li>
+     <li> Sheriff Kills Glitch defaults to True. </li>
+     <li> Fixes for players hit by Grenadier staying flashed in lobby. Thanks <a href="https://github.com/Oshroth/">Oshroth</a>. </li>
+     <li> Giant shows a different height and weight on Medbay Scanner. Thanks <a href="https://github.com/Oshroth/">Oshroth</a>. </li>
+     <li> Fixed a color issue when the Spy gets Shifted. </li>
+  </ul>
+ </details>
+</li>
 
 <li>
  <details>
@@ -709,7 +721,7 @@ However, if they kill a Crewmate or a Neutral player they can't kill, they inste
 | Sheriff Miskill Kills Crewmate | Whether the other player is killed if the Sheriff Misfires | Toggle | False |
 | Sheriff Kills Jester | Whether the Sheriff is able to kill the Jester | Toggle | False |
 | Sheriff Kills Shifter | Whether the Sheriff is able to kill the Shifter | Toggle | False |
-| Sheriff Kills The Glitch | Whether the Sheriff is able to kill The Glitch | Toggle | False |
+| Sheriff Kills The Glitch | Whether the Sheriff is able to kill The Glitch | Toggle | True |
 | Sheriff Kills the Executioner | Whether the Sheriff is able to kill the Executioner | Toggle | False |
 | Sheriff Kills Arsonist | Whether the Sheriff is able to kill the Arsonist | Toggle | False |
 | Sheriff Kill Cooldown | The cooldown on the Sheriff's kill button | Time | 25s |
@@ -1309,7 +1321,8 @@ If you have any bugs or any need to contact me, join the [Discord server](https:
 [TorchMod](https://github.com/tomozbot/TorchMod) - For the inspiration of the Torch Mod.\
 [XtraCube](https://github.com/XtraCube) - For the RainbowMod.\
 [PhasmoFireGod](https://twitch.tv/PhasmoFireGod) - Button Art.\
-[TheOtherRoles](https://github.com/Eisbison/TheOtherRoles) - For the inspiration of the Child and Spy roles.
+[TheOtherRoles](https://github.com/Eisbison/TheOtherRoles) - For several roles.\
+[Guus](https://github.com/OhMyGuus) for support and help with the 2021.12.15 upgrade.
 
 [Essentials](https://github.com/DorCoMaNdO/Reactor-Essentials) - For created custom game options.\
 v1.0.3 uses [Essentials](https://github.com/DorCoMaNdO/Reactor-Essentials) directly.\

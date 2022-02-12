@@ -30,7 +30,7 @@ namespace TownOfUs.Roles
                                          && CustomGameOptions.AssassinMultiKill;
     }
 
-    [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__14), nameof(IntroCutscene._CoBegin_d__14.MoveNext))]
+    [HarmonyPatch(typeof(IntroCutscene._CoBegin_d__18), nameof(IntroCutscene._CoBegin_d__18.MoveNext))]
     public static class InitializeAssassin
     {
         private static void Postfix(IntroCutscene __instance)

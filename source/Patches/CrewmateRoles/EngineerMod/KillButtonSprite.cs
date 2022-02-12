@@ -21,14 +21,14 @@ namespace TownOfUs.CrewmateRoles.EngineerMod
 
             var role = Role.GetRole<Engineer>(PlayerControl.LocalPlayer);
 
-            __instance.KillButton.renderer.sprite = Sprite;
+            __instance.KillButton.graphic.sprite = Sprite;
             __instance.KillButton.SetCoolDown(0f, 10f);
             __instance.KillButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead &&
                                                        __instance.UseButton.isActiveAndEnabled && !MeetingHud.Instance);
 
             if (PlayerControl.LocalPlayer.Data.IsDead) return;
             if (!ShipStatus.Instance) return;
-            var renderer = __instance.KillButton.renderer;
+            var renderer = __instance.KillButton.graphic;
             if (Utils.IsSabotageActive() && !role.UsedThisRound & __instance.KillButton.enabled)
             {
                 renderer.color = Palette.EnabledColor;

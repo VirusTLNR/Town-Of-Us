@@ -9,7 +9,7 @@ namespace TownOfUs.Roles
     {
         public readonly List<Vent> Vents = new List<Vent>();
 
-        public KillButtonManager _mineButton;
+        public KillButton _mineButton;
 
         public Miner(PlayerControl player) : base(player, RoleEnum.Miner, CustomGameOptions.MineCd)
         {
@@ -28,7 +28,7 @@ namespace TownOfUs.Roles
                 Vector2.Scale(vents[0].GetComponent<BoxCollider2D>().size, vents[0].transform.localScale) * 0.75f;
         }
 
-        public KillButtonManager MineButton
+        public KillButton MineButton
         {
             get => _mineButton;
             set

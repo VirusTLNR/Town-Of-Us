@@ -4,7 +4,7 @@ namespace TownOfUs.Roles
 {
     public class Undertaker : Role
     {
-        public KillButtonManager _dragDropButton;
+        public KillButton _dragDropButton;
 
         public Undertaker(PlayerControl player) : base(player, RoleEnum.Undertaker)
         {
@@ -23,12 +23,12 @@ namespace TownOfUs.Roles
 
         protected override void DoOnMeetingEnd()
         {
-            DragDropButton.renderer.sprite = TownOfUs.DragSprite;
+            DragDropButton.graphic.sprite = TownOfUs.DragSprite;
             CurrentlyDragging = null;
             LastDragged = DateTime.UtcNow;
         }
 
-        public KillButtonManager DragDropButton
+        public KillButton DragDropButton
         {
             get => _dragDropButton;
             set

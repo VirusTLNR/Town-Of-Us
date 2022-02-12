@@ -1,4 +1,5 @@
 ﻿using System;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -15,7 +16,7 @@ namespace TownOfUs.Roles
 
         public void Loses()
         {
-            Player.Data.IsImpostor = true;
+            LostByRPC = true;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Il2CppSystem.Collections.Generic;
+using TownOfUs.Extensions;
 using UnityEngine;
 
 namespace TownOfUs.Roles
@@ -18,7 +19,7 @@ namespace TownOfUs.Roles
                     : $"Vote {target.name} out\nFake Tasks:";
         }
 
-        protected override void IntroPrefix(IntroCutscene._CoBegin_d__14 __instance)
+        protected override void IntroPrefix(IntroCutscene._CoBegin_d__18 __instance)
         {
             var executionerteam = new List<PlayerControl>();
             executionerteam.Add(PlayerControl.LocalPlayer);
@@ -41,7 +42,7 @@ namespace TownOfUs.Roles
 
         public void Loses()
         {
-            Player.Data.IsImpostor = true;
+            LostByRPC = true;
         }
     }
 }

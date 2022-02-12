@@ -1,4 +1,5 @@
 ﻿using System;
+using TownOfUs.Extensions;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -6,7 +7,7 @@ namespace TownOfUs.Roles
 {
     public class Swooper : RoleWithCooldown
     {
-        public KillButtonManager _swoopButton;
+        public KillButton _swoopButton;
         public bool Enabled;
         public float TimeRemaining;
 
@@ -18,7 +19,7 @@ namespace TownOfUs.Roles
 
         public bool IsSwooped => TimeRemaining > 0f;
 
-        public KillButtonManager SwoopButton
+        public KillButton SwoopButton
         {
             get => _swoopButton;
             set
@@ -33,7 +34,7 @@ namespace TownOfUs.Roles
         {
             Enabled = true;
             TimeRemaining -= Time.deltaTime;
-            Utils.MakeInvisible(Player, PlayerControl.LocalPlayer.Data.IsImpostor || PlayerControl.LocalPlayer.Data.IsDead);
+            Utils.MakeInvisible(Player, PlayerControl.LocalPlayer.Data.IsImpostor() || PlayerControl.LocalPlayer.Data.IsDead);
         }
 
         public void UnSwoop()

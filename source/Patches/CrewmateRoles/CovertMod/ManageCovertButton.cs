@@ -26,10 +26,10 @@ namespace TownOfUs.CrewmateRoles.CovertMod
             if (role.CovertButton == null)
             {
                 role.CovertButton = Object.Instantiate(__instance.KillButton, HudManager.Instance.transform);
-                role.CovertButton.renderer.enabled = true;
+                role.CovertButton.graphic.enabled = true;
             }
 
-            role.CovertButton.renderer.sprite = CovertSprite;
+            role.CovertButton.graphic.sprite = CovertSprite;
             role.CovertButton.gameObject.SetActive(!PlayerControl.LocalPlayer.Data.IsDead && !MeetingHud.Instance);
 
             if (role.IsCovert)
@@ -39,8 +39,8 @@ namespace TownOfUs.CrewmateRoles.CovertMod
             }
 
             role.CovertButton.SetCoolDown(role.CooldownTimer(), CustomGameOptions.CovertCooldown);
-            role.CovertButton.renderer.color = Palette.EnabledColor;
-            role.CovertButton.renderer.material.SetFloat("_Desat", 0f);
+            role.CovertButton.graphic.color = Palette.EnabledColor;
+            role.CovertButton.graphic.material.SetFloat("_Desat", 0f);
         }
     }
 }

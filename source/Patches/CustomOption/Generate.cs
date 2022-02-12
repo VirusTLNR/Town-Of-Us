@@ -321,7 +321,7 @@ namespace TownOfUs.CustomOption
             VanillaGame = new CustomNumberOption(num++, "Probability of a completely vanilla game", 0f, 0f, 100f, 5f,
                 PercentFormat);
 
-            Assassination = new CustomHeaderOption(num++, "<color=#FFFFFF>Assassination</color>");
+            Assassination = new CustomHeaderOption(num++, "<color=#FF0000FF>Assassination</color>");
             AssassinKills = new CustomNumberOption(num++, "Number of Assassinations", 0, 1, 10, 1);
             AssassinCrewmateGuess = new CustomToggleOption(num++, "Impostors can guess \"Crewmate\"", false);
             AssassinGuessNeutrals = new CustomToggleOption(num++, "Impostors can guess Neutral roles", false);
@@ -352,7 +352,7 @@ namespace TownOfUs.CustomOption
             SheriffKillsShifter =
                 new CustomToggleOption(num++, "Sheriff Kills Shifter", false);
             SheriffKillsGlitch =
-                new CustomToggleOption(num++, "Sheriff Kills The Glitch", false);
+                new CustomToggleOption(num++, "Sheriff Kills The Glitch", true);
             SheriffKillsExecutioner =
                 new CustomToggleOption(num++, "Sheriff Kills Executioner", false);
             SheriffKillsArsonist =

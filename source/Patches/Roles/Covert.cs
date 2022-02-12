@@ -5,7 +5,7 @@ namespace TownOfUs.Roles
 {
     public class Covert : RoleWithCooldown
     {
-        private KillButtonManager _covertButton;
+        private KillButton _covertButton;
         public float CovertTimeRemaining;
         public bool IsCovert { get; private set; }
 
@@ -27,7 +27,7 @@ namespace TownOfUs.Roles
             CovertTimeRemaining = 0f;
         }
 
-        public KillButtonManager CovertButton
+        public KillButton CovertButton
         {
             get => _covertButton;
             set
