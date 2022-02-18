@@ -13,7 +13,7 @@ namespace TownOfUs.Handshake
     {
         public static bool hideLobbyCode = false;
         //this should really be automated.
-        const string auVersion = "2021-06-30";
+        const string auVersion = "2021-12-14";
         //do not change unless you are forking TOU to make your own variation on the mod, this is used to identify different forks of the same mod only.
         const string touForkName = "Anusien";
         public static System.Version touVersion = System.Version.Parse(TownOfUs.GetVersion());
