@@ -13,12 +13,13 @@ namespace TownOfUs.Patches
     [HarmonyPatch]
     static class EndGameSummary
     {
-        public static class AdditionalTempData
+        public static class AdditionalGameData
         {
             public static bool updateFlag = false;
             public static List<PlayerInfo> playerData = new List<PlayerInfo>();
             public static List<KeyValuePair<byte, Role>> roleHistory = new List<KeyValuePair<byte, Role>>();
-            public static List<Tuple<string, string>> summaryTextLines = new List<Tuple<string, string>>();
+            public static List<KeyValuePair<string, string>> summaryTextLines = new List<KeyValuePair<string, string>>();
+            //public static List<Tuple<string, string>> summaryTextLines = new List<Tuple<string, string>>();
 
             public static void clear()
             {
@@ -43,7 +44,9 @@ namespace TownOfUs.Patches
         [HarmonyPriority(Priority.Last)]
         public static void Postfix(HudManager __instance)
         {
-            if (EndGameSummary.AdditionalTempData.updateFlag)
+            //using game state instead of the flag... which works but spams errors so leaving this commented out for now.
+            //if(AmongUsClient.Instance.GameState == InnerNet.InnerNetClient.GameStates.Started)
+            if (EndGameSummary.AdditionalGameData.updateFlag)
             {
                 //EndGameSummary.TrackRoleHistory();
                 EndGameSummary.UpdatePlayerInfo();
@@ -58,15 +61,15 @@ namespace TownOfUs.Patches
             foreach (var player in PlayerControl.AllPlayerControls)
             {
                 var role = Role.GetRole(player);
-                if (role != null && (AdditionalTempData.roleHistory.FindAll(x => x.Key == player.PlayerId).Count==0 ||AdditionalTempData.roleHistory.Last(x => x.Key == player.PlayerId).Value != role))
+                if (role != null && (AdditionalGameData.roleHistory.FindAll(x => x.Key == player.PlayerId).Count==0 ||AdditionalGameData.roleHistory.Last(x => x.Key == player.PlayerId).Value != role))
                 {
-                    AdditionalTempData.roleHistory.Add(KeyValuePair.Create(player.PlayerId, role));
+                    AdditionalGameData.roleHistory.Add(KeyValuePair.Create(player.PlayerId, role));
                     Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"-----------RoleChangeStart--------");
                     Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RC-PlayerID={player.PlayerId}, playername:-{player.name}");
-                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RC-tKey={AdditionalTempData.roleHistory.FindLast(x => x.Key == player.PlayerId).Key}");
-                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RC-Value={AdditionalTempData.roleHistory.FindLast(x => x.Key == player.PlayerId).Value}");
-                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RC-Count={AdditionalTempData.roleHistory.FindAll(x => x.Key == player.PlayerId).Count}");
-                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RC-Total={AdditionalTempData.roleHistory.Count}");
+                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RC-tKey={AdditionalGameData.roleHistory.FindLast(x => x.Key == player.PlayerId).Key}");
+                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RC-Value={AdditionalGameData.roleHistory.FindLast(x => x.Key == player.PlayerId).Value}");
+                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RC-Count={AdditionalGameData.roleHistory.FindAll(x => x.Key == player.PlayerId).Count}");
+                    Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RC-Total={AdditionalGameData.roleHistory.Count}");
                     Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"------------RoleChangeEnd---------");
                 }
             }
@@ -75,11 +78,11 @@ namespace TownOfUs.Patches
         public static void UpdatePlayerInfo()
         {
             TrackRoleHistory();
-            List<AdditionalTempData.PlayerInfo> pinfolist = new List<AdditionalTempData.PlayerInfo>();
+            List<AdditionalGameData.PlayerInfo> pinfolist = new List<AdditionalGameData.PlayerInfo>();
 
             foreach (GameData.PlayerInfo player in GameData.Instance.AllPlayers)
             {
-                AdditionalTempData.PlayerInfo pinfo = new AdditionalTempData.PlayerInfo();
+                AdditionalGameData.PlayerInfo pinfo = new AdditionalGameData.PlayerInfo();
                 byte pid = player.PlayerId;
                 pinfo.PlayerId = player.PlayerId;
                 pinfo.PlayerName = player.PlayerName;
@@ -104,13 +107,13 @@ namespace TownOfUs.Patches
             //the summary now sorts by winner when loaded later, so this just makes winners and losers..
             //...have a random order, but winners always at the top now.
             pinfolist.Shuffle();
-            AdditionalTempData.playerData = pinfolist;
-            AdditionalTempData.updateFlag = true;
+            AdditionalGameData.playerData = pinfolist;
+            AdditionalGameData.updateFlag = true;
         }
 
         public static void LoadGameSummary(EndGameManager __instance)
         {
-            AdditionalTempData.updateFlag = false;
+            AdditionalGameData.updateFlag = false;
             var position = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, Camera.main.nearClipPlane));
             GameObject roleSummary = UnityEngine.Object.Instantiate(__instance.WinText.gameObject);
             roleSummary.transform.position = new Vector3(__instance.Navigation.ExitButton.transform.position.x + 0.1f, position.y - 0.1f, -14f);
@@ -120,7 +123,7 @@ namespace TownOfUs.Patches
 
             roleSummaryText.AppendLine("End-of-game Summary:");
 
-            foreach (var data in AdditionalTempData.playerData)
+            foreach (var data in AdditionalGameData.playerData)
             {
                 var pid = data.PlayerId;
                 //this way works 100%.
@@ -180,10 +183,10 @@ namespace TownOfUs.Patches
                 //sets how many roles show per line in the role history, reduce in case the roles overlap into the victory/defeat message in the middle
                 int rolesPerLine = 4;
                 Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"------------------------------------------------------------------------------------");
-                Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RoleHistoryLoop-before-totalrolehistorycount:-{AdditionalTempData.roleHistory.Count}");
+                Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RoleHistoryLoop-before-totalrolehistorycount:-{AdditionalGameData.roleHistory.Count}");
                 Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"------------------------------------------------------------------------------------");
 
-                foreach (var roleHistory in AdditionalTempData.roleHistory)
+                foreach (var roleHistory in AdditionalGameData.roleHistory)
                 {
                     Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"RoleHistoryLoop-PID.:-{pid} / roleHistory.Key:-{roleHistory.Key}");
                     if (roleHistory.Key==pid)
@@ -209,24 +212,29 @@ namespace TownOfUs.Patches
                 if (rhInfo.Length > String.Concat(data.CurrentRole.ColorString,data.CurrentRole.Name+"</color>").Length+3+setNewLine.Length)
                 {
                     rhInfo = rhInfo.Substring(0, rhInfo.Length - (3+setNewLine.Length));
-                    AdditionalTempData.summaryTextLines.Add(Tuple.Create(won,$"<size=80%>{won}{nameinfo} the {modifierInfo}{roleInfo}{taskInfo}</size>\n<size=60%>      {rhInfo}</size><size=40%>\n </size>"));
+                    AdditionalGameData.summaryTextLines.Add(KeyValuePair.Create(won, $"<size=80%>{won}{nameinfo} the {modifierInfo}{roleInfo}{taskInfo}</size>\n<size=60%>      {rhInfo}</size><size=40%>\n </size>"));
+                    //AdditionalGameData.summaryTextLines.Add(Tuple.Create(won, $"<size=80%>{won}{nameinfo} the {modifierInfo}{roleInfo}{taskInfo}</size>\n<size=60%>      {rhInfo}</size><size=40%>\n </size>"));
                     //roleSummaryText.AppendLine($"<size=80%>{won}{nameinfo} the {modifierInfo}{roleInfo}{taskInfo}</size>\n<size=10%>\n </size><size=60%>{rhinfo}</size><size=40%>\n </size>");
                 }
                 else
                 {
-                    AdditionalTempData.summaryTextLines.Add(Tuple.Create(won, $"<size=80%>{won}{nameinfo} the {modifierInfo}{roleInfo}{taskInfo}</size>"));
+                    AdditionalGameData.summaryTextLines.Add(KeyValuePair.Create(won, $"<size=80%>{won}{nameinfo} the {modifierInfo}{roleInfo}{taskInfo}</size>"));
+                    //AdditionalGameData.summaryTextLines.Add(Tuple.Create(won, $"<size=80%>{won}{nameinfo} the {modifierInfo}{roleInfo}{taskInfo}</size>"));
                     //roleSummaryText.AppendLine($"{won}{nameinfo} the {modifierInfo}{roleInfo}{taskInfo}");
                 }
             }
 
 
             //sorting winners to the top, still in a randomish order.
-            AdditionalTempData.summaryTextLines = AdditionalTempData.summaryTextLines.OrderByDescending(tuple => tuple.Item1).ToList();
-            Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"SummaryTextLines.Count:-{AdditionalTempData.summaryTextLines.Count}");
+            //AdditionalGameData.summaryTextLines = AdditionalGameData.summaryTextLines.OrderByDescending(tuple => tuple.Item1).ToList();
+            AdditionalGameData.summaryTextLines = AdditionalGameData.summaryTextLines.OrderByDescending(kvp => kvp.Key).ToList();
+            Reactor.PluginSingleton<TownOfUs>.Instance.Log.LogDebug($"SummaryTextLines.Count:-{AdditionalGameData.summaryTextLines.Count}");
             //adding to summary text
-            foreach (Tuple<string,string> line in AdditionalTempData.summaryTextLines)
+            foreach (KeyValuePair<string, string> line in AdditionalGameData.summaryTextLines)
+            //foreach (Tuple<string, string> line in AdditionalGameData.summaryTextLines)
             {
-                roleSummaryText.AppendLine(line.Item2);
+                roleSummaryText.AppendLine(line.Value);
+                //roleSummaryText.AppendLine(line.Item2);
             }
 
             TMPro.TMP_Text roleSummaryTextMesh = roleSummary.GetComponent<TMPro.TMP_Text>();

@@ -368,8 +368,8 @@ namespace TownOfUs
                         Role.NobodyWins = false;
                         RecordRewind.points.Clear();
                         KillButtonTarget.DontRevive = byte.MaxValue;
-                        Patches.EndGameSummary.AdditionalTempData.clear();
-                        Patches.EndGameSummary.AdditionalTempData.updateFlag = true;
+                        Patches.EndGameSummary.AdditionalGameData.clear();
+                        Patches.EndGameSummary.AdditionalGameData.updateFlag = true;
                         break;
 
                     case CustomRPC.JanitorClean:
@@ -799,8 +799,8 @@ namespace TownOfUs
                 CrewmateModifiers.Clear();
                 ImpostorModifiers.Clear();
                 GlobalModifiers.Clear();
-                Patches.EndGameSummary.AdditionalTempData.clear();
-                Patches.EndGameSummary.AdditionalTempData.updateFlag = true;
+                Patches.EndGameSummary.AdditionalGameData.clear();
+                Patches.EndGameSummary.AdditionalGameData.updateFlag = true;
 
                 RecordRewind.points.Clear();
                 Murder.KilledPlayers.Clear();
